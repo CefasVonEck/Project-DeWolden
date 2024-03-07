@@ -93,6 +93,14 @@ public class dialouge : MonoBehaviour
             // show the textbox
             Showtxt();
         }
+        else
+        {
+            // enable movement
+            Player.GetComponent<Player>().enabled = true;
+
+            // disable the textbox
+            txtbox.SetActive(false);
+        }
     }
 
     // for when the player is in talk range
@@ -150,14 +158,8 @@ public class dialouge : MonoBehaviour
     {
         // reset dia
         curdia = 1;
-        // if the final dia is active and the player continues enable movement
+
         india = false;
-
-        // enable movement
-        Player.GetComponent<Player>().enabled = true;
-
-        // disable the textbox
-        txtbox.SetActive(false);
     }
 
     // for setting the right dialouge active
