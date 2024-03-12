@@ -6,7 +6,20 @@ using TMPro;
 public class dialouge : MonoBehaviour
 {
     [SerializeField]
+    private bool hastalked = false;
+
+    [SerializeField]
+    private Animator ani;
+
+    [SerializeField]
+    private bool mainchartalk = true;
+
+
+    [SerializeField]
     private TextMeshProUGUI dia;
+
+    [SerializeField]
+    private TextMeshProUGUI namechar;
 
     //current dia
     [SerializeField]
@@ -20,10 +33,13 @@ public class dialouge : MonoBehaviour
     private string text;
 
     [SerializeField]
+    private string nameChar;
+
+    [SerializeField]
     private GameObject txtbox;
 
 
-    // all dia strings
+    // all dia strings and names
     [SerializeField]
     private string Dia1 = "Hey";
 
@@ -33,6 +49,11 @@ public class dialouge : MonoBehaviour
     [SerializeField]
     private string Dia3 = "by";
 
+    [SerializeField]
+    private string NameMain = "Mina";
+
+    [SerializeField]
+    private string NameNPC = "Farmer";
 
     // e button
     [SerializeField]
@@ -43,19 +64,32 @@ public class dialouge : MonoBehaviour
     private GameObject Player;
 
     [SerializeField]
+    private GameObject PlayerRen;
+
+    [SerializeField]
+    private GameObject NPCRen;
+
+
+    [SerializeField]
     private bool inrange = false;
 
     [SerializeField]
     private bool india = false;
 
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        // look for right gameobjects and disable textbox
         Player = GameObject.FindWithTag("Player");
         indi = GameObject.FindWithTag("interact");
         txtbox = GameObject.FindWithTag("box");
+
+        NPCRen = GameObject.FindWithTag("NPCRen");
+        PlayerRen = GameObject.FindWithTag("CharRen");
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+        // disable textbox
         txtbox.SetActive(false);
     }
 
@@ -82,6 +116,7 @@ public class dialouge : MonoBehaviour
 
         // constantly update the text 
         dia.text = text.ToString();
+        namechar.text = nameChar.ToString();
 
         // if the player is in dialouge
         if(india == true)
@@ -108,8 +143,12 @@ public class dialouge : MonoBehaviour
     {
         if (inrange == true)
         {
-            // show the indicator
-            indi.SetActive(true);
+            if (hastalked == false)
+            {
+                // show the indicator
+                indi.SetActive(true);
+            }
+
 
             // if e is pressed
             if (Input.GetKeyDown("e"))
@@ -130,9 +169,13 @@ public class dialouge : MonoBehaviour
     //for showing text
     void Showtxt()
     {
-        // enable dialouge/ disable movement
-        Player.GetComponent<Player>().enabled = false;
-        txtbox.SetActive(true);
+        if (hastalked == false)
+        {
+            // enable dialouge/ disable movement
+            Player.GetComponent<Player>().enabled = false;
+            txtbox.SetActive(true);
+        }
+
     }
 
     // for going trough the text
@@ -157,7 +200,8 @@ public class dialouge : MonoBehaviour
     void fintxt()
     {
         // reset dia
-        curdia = 1;
+        //curdia = 1;
+        hastalked = true;
 
         india = false;
     }
@@ -167,17 +211,39 @@ public class dialouge : MonoBehaviour
     {
         if (curdia == 1)
         {
+            ani.SetBool("main", true);
+            ani.SetBool("side", false);
             text = Dia1;
+            PlayerRen.SetActive(true);
+            NPCRen.SetActive(false);
+
+            nameChar = NameMain;
         }
 
         else if (curdia == 2)
         {
+            ani.SetBool("side", true);
+            ani.SetBool("main", false);
+
             text = Dia2;
+            PlayerRen.SetActive(false);
+            NPCRen.SetActive(true);
+
+            nameChar = NameNPC;
         }
 
         else if (curdia == 3)
         {
+            ani.SetBool("side", false);
+            ani.SetBool("main", true);
+
             text = Dia3;
+            PlayerRen.SetActive(true);
+            NPCRen.SetActive(false);
+            
+            nameChar = NameMain;
         }
     }
+
+
 }
