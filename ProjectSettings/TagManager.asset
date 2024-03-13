@@ -5,14 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - interact
-  - box
   - NPCRen
   - CharRen
+  - boxmain
+  - boxnpc
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - postprocess
   - Water
   - UI
   - FireLayer
