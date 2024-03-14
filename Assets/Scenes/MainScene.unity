@@ -873,7 +873,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8a93866a74f8a8d4184772a1fed01dfc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d83094a654a901e4394b4b52ca2437da, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1110,12 +1110,20 @@ PrefabInstance:
       propertyPath: movementSpeed
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7356444690224225605, guid: 47e7403f46a0536489b9cac50f21f8b2, type: 3}
+      propertyPath: m_Name
+      value: (CamZoom:OrthoSize)CineMachine2D
+      objectReference: {fileID: 0}
     - target: {fileID: 7867651786655184092, guid: 47e7403f46a0536489b9cac50f21f8b2, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7979847561093414677, guid: 47e7403f46a0536489b9cac50f21f8b2, type: 3}
       propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7979847561093414677, guid: 47e7403f46a0536489b9cac50f21f8b2, type: 3}
+      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7979847561093414677, guid: 47e7403f46a0536489b9cac50f21f8b2, type: 3}
@@ -13816,7 +13824,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8a93866a74f8a8d4184772a1fed01dfc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aac0bf4cb1fffcc468dbef1338302ea9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14962,7 +14970,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 284194783, guid: f7fd534590526ed47bb804163e4a7ebd, type: 3}
-  m_Color: {r: 0.061437607, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
