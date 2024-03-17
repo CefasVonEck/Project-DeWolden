@@ -26,15 +26,15 @@ public class SliderController : MonoBehaviour
     }
 
     // Function to set the slider value
-    private void SetSliderValue(float value)
+    public void SetSliderValue(float value)
     {
-        slider.value = value;
-        currentValue = value;
+        slider.value = currentValue - value;
+        currentValue = currentValue - value;
     }
 
     void FixedUpdate()
     {
-        SetSliderValue(currentValue - 0.01f);
+       // SetSliderValue(currentValue - 0.01f);
 
 
         if (textMeshPro != null)
