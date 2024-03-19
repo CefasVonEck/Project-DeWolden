@@ -59,22 +59,33 @@ public class PlayerAbilities : MonoBehaviour
         Attack2.text = abilityName2;
     }
 
+    public int getWaitingTime()
+    {
+        return  attackAgainTimer;
+    }
+
     public void PlayerAttacked()
     {
-        attackAgainTimer = 350;
-        healthEnemy.SetSliderValue(attackDamage1 + attackDamageBoost1);
-        //--maxAbilityUse;
+        if (enemyAbilities.getWaitingTime() + this.getWaitingTime() == 0)
+        {
+            attackAgainTimer = 350;
+            healthEnemy.SetSliderValue(attackDamage1 + attackDamageBoost1);
+            //--maxAbilityUse;
 
-        UseMessage.text = enemyName + " Used " + abilityName + " and it hit!";
+            UseMessage.text = enemyName + " Used " + abilityName + " and it hit!";
+        }
     }
 
     public void PlayerAttacked2()
     {
-        attackAgainTimer = 350;
-        enemyAbilities.reduceAttackSpeed(-25f);
-        //--maxAbilityUse;
+        if (enemyAbilities.getWaitingTime() + this.getWaitingTime() == 0)
+        {
+            attackAgainTimer = 350;
+            enemyAbilities.reduceAttackSpeed(-25f);
+            //--maxAbilityUse;
 
-        UseMessage.text = enemyName + " Used " + abilityName2 + " and it hit!";
+            UseMessage.text = enemyName + " Used " + abilityName2 + " and it hit!";
+        }
     }
 
     void FixedUpdate()

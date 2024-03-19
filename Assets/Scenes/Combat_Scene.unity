@@ -2247,7 +2247,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 543ba9201d124cc4d9dc76e7b5479b33, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2456,7 +2456,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 543ba9201d124cc4d9dc76e7b5479b33, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2606,7 +2606,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: a77ac91154bf5d245a087b6f545ded39, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2681,7 +2681,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: a77ac91154bf5d245a087b6f545ded39, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3439,7 +3439,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 543ba9201d124cc4d9dc76e7b5479b33, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3598,13 +3598,13 @@ MonoBehaviour:
   enemyName: Mina
   abilityName: Earpiercing Scream
   attackDamage1: 15
-  agileDamage1: 5
+  agileDamage1: 3
   attackDamageBoost1: 0
   maxAbilityUse: 1000
   changeBeingUsed: 0
   abilityName2: Vannish in Fog
   attackDamage2: 0
-  agileDamage2: 50
+  agileDamage2: 5
   attackDamageBoost2: 0
   UseMessage: {fileID: 1149140857}
   Attack1: {fileID: 451872265}
@@ -4046,7 +4046,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: a77ac91154bf5d245a087b6f545ded39, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5215,7 +5215,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: a77ac91154bf5d245a087b6f545ded39, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5374,15 +5374,15 @@ MonoBehaviour:
   healthMina: {fileID: 224170721}
   enemyName: Grunt Wolf
   abilityName: Claw Attack
-  attackDamage1: 5
+  attackDamage1: 15
   agileDamage1: 0
   attackDamageBoost1: 0
   maxAbilityUse: 100
-  changeBeingUsed: 75
+  changeBeingUsed: 80
   abilityName2: Howl
   attackDamage2: 0
   agileDamage2: 0
-  attackDamageBoost2: 0
+  attackDamageBoost2: 7
   UseMessage: {fileID: 1149140857}
   startBattleMessage: ' jumped  from behind a Boulder and attacked you!'
 --- !u!1 &1955600855
@@ -5749,7 +5749,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 137, y: -155}
+  m_AnchoredPosition: {x: 190.15, y: -180.9}
   m_SizeDelta: {x: 420.2229, y: 14.9418}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2091615366

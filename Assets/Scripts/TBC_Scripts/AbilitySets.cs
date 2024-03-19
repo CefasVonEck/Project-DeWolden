@@ -54,12 +54,18 @@ public class AbilitySets : MonoBehaviour
     [SerializeField]
     private String startBattleMessage = "";
 
+    private float countExtraDamage = 0;
 
     // Start is called before the first frame update
     void Start() 
     {
         attackAgainTimer = 200;
         UseMessage.text = enemyName + " " + startBattleMessage;
+    }
+
+    public int getWaitingTime()
+    {
+        return waitingMessage + attackAgainTimer;
     }
 
     public static void afterPlayerAttacked()
@@ -77,13 +83,22 @@ public class AbilitySets : MonoBehaviour
     {
         if(attackAgainTimer == 1)
         {
-            if(UnityEngine.Random.Range(0, 100 - attackSpeed) == 0)
+            if(UnityEngine.Random.Range(0, 100 - (int)(attackSpeed / 2f)) <= 5)
             {
                 UseMessage.text = enemyName + " tried to attack and missed!";
+                waitingMessage = 150;
             }
-            else if (UnityEngine.Random.Range(0,100) <= changeBeingUsed - attackSpeed && maxAbilityUse > 0)
+            else if (UnityEngine.Random.Range(1,131) >= (int)(changeBeingUsed - (attackSpeed / 2f)) && maxAbilityUse > 0)
             {
-                healthMina.SetSliderValue(attackDamage1 + attackDamageBoost1);
+                if(attackDamageBoost1 > 0)
+                {
+                    countExtraDamage += attackDamageBoost1;
+                }
+                else
+                {
+                    healthMina.SetSliderValue(attackDamage1 + countExtraDamage);
+                }
+
                 --maxAbilityUse;
 
                 UseMessage.text = enemyName + " Used " + abilityName + " and it hit!";
@@ -92,7 +107,14 @@ public class AbilitySets : MonoBehaviour
             }
             else
             {
-                healthMina.SetSliderValue(attackDamage2 + attackDamageBoost2);
+                if (attackDamageBoost2 > 0)
+                {
+                    countExtraDamage += attackDamageBoost2;
+                }
+                else
+                {
+                    healthMina.SetSliderValue(attackDamage2 + countExtraDamage);
+                }
 
                 UseMessage.text = enemyName + " Used " + abilityName2 + " and it hit!";
 
