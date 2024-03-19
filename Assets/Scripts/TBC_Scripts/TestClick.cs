@@ -25,12 +25,18 @@ public class TestClick : MonoBehaviour
 
     public void afterPlayerAttacked()
     {
-        playerThings.PlayerAttacked();
+        if(enemyAttacks.getWaitingTime() + playerThings.getWaitingTime() == 0)
+        {
+            playerThings.PlayerAttacked();
+        }
     }
 
     public void afterPlayerAttacked2()
     {
-        playerThings.PlayerAttacked2();
+        if (enemyAttacks.getWaitingTime() + playerThings.getWaitingTime() == 0)
+        {
+            playerThings.PlayerAttacked2();
+        }
     }
 
 }
