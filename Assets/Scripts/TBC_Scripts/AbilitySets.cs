@@ -13,11 +13,15 @@ public class AbilitySets : MonoBehaviour
     private float maxAttackSpeed = 0;
 
 
+
     private int waitingMessage = 0;
 
 
     [SerializeField]
     private SliderController healthMina;
+
+    [SerializeField]
+    private PlayerAbilities PlayerAbilities;
 
     private static int attackAgainTimer = 0;
 
@@ -36,7 +40,10 @@ public class AbilitySets : MonoBehaviour
     private int maxAbilityUse = 0;
     [SerializeField]
     private int changeBeingUsed = 0;
-
+    [SerializeField]
+    private String attackUseMessage = null;
+    [SerializeField]
+    private bool canMiss = true;
 
     [SerializeField]
     private String abilityName2 = "";
@@ -46,7 +53,23 @@ public class AbilitySets : MonoBehaviour
     private int agileDamage2 = 0;
     [SerializeField]
     private int attackDamageBoost2 = 0;
+    [SerializeField]
+    private int maxAbilityUse2 = 0;
+    [SerializeField]
+    private int changeBeingUsed2 = 0;
+    [SerializeField]
+    private String attackUseMessage2 = null;
+    [SerializeField]
+    private bool canMiss2 = true;
 
+    [SerializeField]
+    private String abilityNameLast = "";
+    [SerializeField]
+    private int attackDamageLast = 0;
+    [SerializeField]
+    private int agileDamageLast = 0;
+    [SerializeField]
+    private int attackDamageBoostLast = 0;
 
     [SerializeField]
     private TextMeshProUGUI UseMessage;
@@ -75,7 +98,10 @@ public class AbilitySets : MonoBehaviour
 
     public void reduceAttackSpeed(float speed)
     {
-        attackSpeed -= speed;
+        if(attackSpeed < 120)
+        {
+            attackSpeed -= speed;
+        }
     }
 
     // Update is called once per frame
@@ -83,12 +109,12 @@ public class AbilitySets : MonoBehaviour
     {
         if(attackAgainTimer == 1)
         {
-            if(UnityEngine.Random.Range(0, 100 - (int)(attackSpeed / 2f)) <= 5)
+            if(UnityEngine.Random.Range(0, 100 - (int)(attackSpeed)) <= 5)
             {
                 UseMessage.text = enemyName + " tried to attack and missed!";
                 waitingMessage = 150;
             }
-            else if (UnityEngine.Random.Range(1,131) >= (int)(changeBeingUsed - (attackSpeed / 2f)) && maxAbilityUse > 0)
+            else if ((UnityEngine.Random.Range(1,131) >= (int)(changeBeingUsed - (attackSpeed)) || !canMiss) && maxAbilityUse > 0)
             {
                 if(attackDamageBoost1 > 0)
                 {
@@ -99,13 +125,22 @@ public class AbilitySets : MonoBehaviour
                     healthMina.SetSliderValue(attackDamage1 + countExtraDamage);
                 }
 
+                PlayerAbilities.decreaseHittingAbility(agileDamage1);
+
                 --maxAbilityUse;
 
-                UseMessage.text = enemyName + " Used " + abilityName + " and it hit!";
+                if (attackUseMessage != null && !(attackUseMessage.Equals("")))
+                {
+                    UseMessage.text = enemyName + " Used <i>" + abilityName + "</i>" + attackUseMessage;
+                }
+                else
+                {
+                    UseMessage.text = enemyName + " Used <i>" + abilityName + "</i>" + " and it hit!";
+                }
 
-                waitingMessage = 100;
+                waitingMessage = 200;
             }
-            else
+            else if ((UnityEngine.Random.Range(1, 131) >= (int)(changeBeingUsed2 - (attackSpeed / 2f)) || !canMiss2) && maxAbilityUse2 > 0)
             {
                 if (attackDamageBoost2 > 0)
                 {
@@ -116,15 +151,43 @@ public class AbilitySets : MonoBehaviour
                     healthMina.SetSliderValue(attackDamage2 + countExtraDamage);
                 }
 
-                UseMessage.text = enemyName + " Used " + abilityName2 + " and it hit!";
+                PlayerAbilities.decreaseHittingAbility(agileDamage2);
 
-                waitingMessage = 100;
+                --maxAbilityUse2;
+
+                if (attackUseMessage2 != null && !(attackUseMessage2.Equals("")))
+                {
+                    UseMessage.text = enemyName + " Used <i>" + abilityName2 + "</i>" + attackUseMessage2;
+                }
+                else
+                {
+                    UseMessage.text = enemyName + " Used <i>" + abilityName2 + "</i>" + " and it hit!";
+                }
+
+                waitingMessage = 200;
+            }
+            else
+            {
+                if (attackDamageBoostLast > 0)
+                {
+                    countExtraDamage += attackDamageBoostLast;
+                }
+                else
+                {
+                    healthMina.SetSliderValue(attackDamageLast + countExtraDamage);
+                }
+
+                PlayerAbilities.decreaseHittingAbility(agileDamageLast);
+
+                UseMessage.text = enemyName + " Used <i>" + abilityNameLast + "</i>" + " and it hit!";
+
+                waitingMessage = 200;
             }
         }
 
-        if(attackSpeed < maxAttackSpeed)
+        if(attackSpeed > maxAttackSpeed)
         {
-            attackSpeed += 0.1f;
+            attackSpeed -= 0.015f;
         }
 
         if (attackAgainTimer > 0)
