@@ -8,6 +8,9 @@ using System.Text.RegularExpressions;
 public class PlayerAbilities : MonoBehaviour
 {
     [SerializeField]
+    private bool abilitySpeedIsKing = false;
+
+    [SerializeField]
     private SliderController healthEnemy;
 
     [SerializeField]
@@ -33,6 +36,8 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField]
     private String attackUseMessage = null;
     [SerializeField]
+    private String userName1 = "";
+    [SerializeField]
     private bool canMiss = true;
 
     [SerializeField]
@@ -45,6 +50,8 @@ public class PlayerAbilities : MonoBehaviour
     private int attackDamageBoost2 = 0;
     [SerializeField]
     private String attackUseMessage2 = null;
+    [SerializeField]
+    private String userName2 = "";
     [SerializeField]
     private bool canMiss2 = true;
 
@@ -59,6 +66,8 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField]
     private String attackUseMessage3 = null;
     [SerializeField]
+    private String userName3 = "";
+    [SerializeField]
     private bool canMiss3 = true;
 
     [SerializeField]
@@ -71,6 +80,8 @@ public class PlayerAbilities : MonoBehaviour
     private int attackDamageBoost4 = 0;
     [SerializeField]
     private String attackUseMessage4 = null;
+    [SerializeField]
+    private String userName4 = "";
     [SerializeField]
     private bool canMiss4 = true;
 
@@ -95,10 +106,25 @@ public class PlayerAbilities : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Attack1.text = abilityName;
-        Attack2.text = abilityName2;
-        Attack3.text = abilityName3;
-        Attack4.text = abilityName4;
+        if (abilityName != null && !abilityName.Equals(""))
+        {
+            Attack1.text = abilityName;
+        }
+
+        if (abilityName2 != null && !abilityName2.Equals(""))
+        {
+            Attack2.text = abilityName2;
+        }
+
+        if(abilityName3 != null && !abilityName3.Equals(""))
+        {
+            Attack3.text = abilityName3;
+        }
+
+        if (abilityName4 != null && !abilityName4.Equals(""))
+        {
+            Attack4.text = abilityName4;
+        }
     }
 
     public void decreaseHittingAbility(int decreaseWith)
@@ -135,8 +161,13 @@ public class PlayerAbilities : MonoBehaviour
                 healthEnemy.SetSliderValue(attackDamage1 + attackDamageBoost);
             }
 
-            decreaseHittingAbility(agileDamage1);
+            decreaseHittingAbility(-agileDamage1);
             //--maxAbilityUse;
+
+            if(userName1 != null && !(userName1.Equals("")))
+            {
+                enemyName = userName1;
+            }
 
             if (attackUseMessage != null && !(attackUseMessage.Equals("")))
             {
@@ -170,9 +201,14 @@ public class PlayerAbilities : MonoBehaviour
                 attackDamageBoost += attackDamageBoost2;
             }
 
-            enemyAbilities.reduceAttackSpeed(agileDamage2);
+            enemyAbilities.reduceAttackSpeed(-agileDamage2);
 
             //--maxAbilityUse;
+
+            if (userName2 != null && !(userName2.Equals("")))
+            {
+                enemyName = userName2;
+            }
 
             if (attackUseMessage2 != null && !(attackUseMessage2.Equals("")))
             {
@@ -206,8 +242,13 @@ public class PlayerAbilities : MonoBehaviour
                 attackDamageBoost += attackDamageBoost3;
             }
 
-            enemyAbilities.reduceAttackSpeed(agileDamage3);
+            enemyAbilities.reduceAttackSpeed(-agileDamage3);
             //--maxAbilityUse;
+
+            if (userName3 != null && !(userName3.Equals("")))
+            {
+                enemyName = userName3;
+            }
 
             if (attackUseMessage3 != null && !(attackUseMessage3.Equals("")))
             {
@@ -241,8 +282,13 @@ public class PlayerAbilities : MonoBehaviour
                 attackDamageBoost += attackDamageBoost4;
             }
 
-            enemyAbilities.reduceAttackSpeed(agileDamage4);
+            enemyAbilities.reduceAttackSpeed(-agileDamage4);
             //--maxAbilityUse;
+
+            if (userName4 != null && !(userName4.Equals("")))
+            {
+                enemyName = userName4;
+            }
 
             if (attackUseMessage4 != null && !(attackUseMessage4.Equals("")))
             {

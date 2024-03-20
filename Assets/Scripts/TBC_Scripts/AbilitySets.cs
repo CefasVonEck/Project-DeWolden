@@ -8,11 +8,12 @@ using System.Text.RegularExpressions;
 public class AbilitySets : MonoBehaviour
 {
     [SerializeField]
+    private bool abilitySpeedIsKing = false;
+
+    [SerializeField]
     private float attackSpeed = 0;
     [SerializeField]
     private float maxAttackSpeed = 0;
-
-
 
     private int waitingMessage = 0;
 
@@ -78,11 +79,19 @@ public class AbilitySets : MonoBehaviour
     private String startBattleMessage = "";
 
     private float countExtraDamage = 0;
-
+    
     // Start is called before the first frame update
     void Start() 
     {
-        attackAgainTimer = 200;
+        if(!abilitySpeedIsKing)
+        {
+            attackAgainTimer = 200;
+        }
+        else
+        {
+            waitingMessage = 200;
+        }
+
         UseMessage.text = enemyName + " " + startBattleMessage;
     }
 
@@ -114,7 +123,7 @@ public class AbilitySets : MonoBehaviour
                 UseMessage.text = enemyName + " tried to attack and missed!";
                 waitingMessage = 150;
             }
-            else if ((UnityEngine.Random.Range(1,131) >= (int)(changeBeingUsed - (attackSpeed)) || !canMiss) && maxAbilityUse > 0)
+            else if ((UnityEngine.Random.Range(1,131) >= (int)(changeBeingUsed - (attackSpeed)) || !canMiss || (attackDamage1 > 3 && healthMina.getValue() < 20)) && maxAbilityUse > 0)
             {
                 if(attackDamageBoost1 > 0)
                 {
@@ -140,7 +149,7 @@ public class AbilitySets : MonoBehaviour
 
                 waitingMessage = 200;
             }
-            else if ((UnityEngine.Random.Range(1, 131) >= (int)(changeBeingUsed2 - (attackSpeed / 2f)) || !canMiss2) && maxAbilityUse2 > 0)
+            else if ((UnityEngine.Random.Range(1, 131) >= (int)(changeBeingUsed2 - (attackSpeed / 2f)) || !canMiss2 || (attackDamage2 > 3 && healthMina.getValue() < 20)) && maxAbilityUse2 > 0)
             {
                 if (attackDamageBoost2 > 0)
                 {
@@ -187,7 +196,7 @@ public class AbilitySets : MonoBehaviour
 
         if(attackSpeed > maxAttackSpeed)
         {
-            attackSpeed -= 0.015f;
+            attackSpeed -= 0.001f;
         }
 
         if (attackAgainTimer > 0)
