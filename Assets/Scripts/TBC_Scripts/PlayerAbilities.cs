@@ -127,6 +127,118 @@ public class PlayerAbilities : MonoBehaviour
         }
     }
 
+    public void abilityInfo1()
+    {
+        if(!(Attack1.text.Contains(":")))
+        {
+            if(attackDamage1 > 0 && agileDamage1 > 0)
+            {
+                Attack1.text += ":  <i> Att. " + attackDamage1 + "  Accur. " + agileDamage1;
+            }
+            else if (agileDamage1 > 0)
+            {
+                Attack1.text += ":  <i>Accur. " + agileDamage1;
+            }
+            else
+            {
+                Attack1.text += ":  <i> Att. " + attackDamage1;
+            }
+        }
+        else if (Attack1.text.Contains(":"))
+        {
+            string[] parts = Attack1.text.Split(':');
+
+            // Take the first part (before the colon)
+            string modifiedString = parts[0];
+
+            Attack1.text = modifiedString;
+        }
+    }
+
+    public void abilityInfo2()
+    {
+        if (!(Attack2.text.Contains(":")))
+        {
+            if (attackDamage2 > 0 && agileDamage2 > 0)
+            {
+                Attack2.text += ":  <i> Att. " + attackDamage2 + "  Accur. " + agileDamage2;
+            }
+            else if (agileDamage2 > 0)
+            {
+                Attack2.text += ":  <i>Accur. " + agileDamage1;
+            }
+            else
+            {
+                Attack2.text += ":  <i> Att. " + attackDamage2;
+            }
+        }
+        else if (Attack2.text.Contains(":"))
+        {
+            string[] parts = Attack2.text.Split(':');
+
+            // Take the first part (before the colon)
+            string modifiedString = parts[0];
+
+            Attack2.text = modifiedString;
+        }
+    }
+
+    public void abilityInfo3()
+    {
+        if (!(Attack3.text.Contains(":")))
+        {
+            if (attackDamage3 > 0 && agileDamage3 > 0)
+            {
+                Attack3.text += ":  <i> Att. " + attackDamage3 + "  Accur. " + agileDamage3;
+            }
+            else if (agileDamage3 > 0)
+            {
+                Attack3.text += ":  <i>Accur. " + agileDamage1;
+            }
+            else
+            {
+                Attack3.text += ":  <i> Att. " + attackDamage3;
+            }
+        }
+        else if (Attack3.text.Contains(":"))
+        {
+            string[] parts = Attack3.text.Split(':');
+
+            // Take the first part (before the colon)
+            string modifiedString = parts[0];
+
+            Attack3.text = modifiedString;
+        }
+    }
+
+    public void abilityInfo4()
+    {
+        if (!(Attack4.text.Contains(":")))
+        {
+            if (attackDamage4 > 0 && agileDamage4 > 0)
+            {
+                Attack4.text += ":  <i> Att. " + attackDamage4 + "  Accur. " + agileDamage4;
+            }
+            else if (agileDamage4 > 0)
+            {
+                Attack4.text += ":  <i>Accur. " + agileDamage1;
+            }
+            else
+            {
+                Attack4.text += ":  <i> Att. " + attackDamage4;
+            }
+        }
+        else if (Attack4.text.Contains(":"))
+        {
+            string[] parts = Attack4.text.Split(':');
+
+            // Take the first part (before the colon)
+            string modifiedString = parts[0];
+
+            Attack4.text = modifiedString;
+        }
+    }
+
     public void decreaseHittingAbility(int decreaseWith)
     {
         if (missAbiblityChanges < 85)

@@ -17,7 +17,6 @@ public class AbilitySets : MonoBehaviour
 
     private int waitingMessage = 0;
 
-
     [SerializeField]
     private SliderController healthMina;
 
@@ -213,6 +212,5 @@ public class AbilitySets : MonoBehaviour
                 UseMessage.text = "Waiting for the Player to make a move...";
             }
         }
-    }
-        
+    }     
 }

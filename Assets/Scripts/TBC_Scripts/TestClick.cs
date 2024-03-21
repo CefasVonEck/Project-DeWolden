@@ -1,20 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TestClick : MonoBehaviour
 {
-
-    [SerializeField]
-    private PlayerAbilities playerThings;
-
-    [SerializeField]
-    private AbilitySets enemyAttacks;
-
     // Start is called before the first frame update
     void Start()
     {
         
+    }
+
+    // This method will be called when the mouse pointer enters the button's area
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Debug.Log("Mouse entered button area");
+        // Add your code to perform actions when hovered
+        // For example, change button color, display tooltip, etc.
+        this.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -23,20 +26,8 @@ public class TestClick : MonoBehaviour
         
     }
 
-    public void afterPlayerAttacked()
+    public void youstupidDoYouWork()
     {
-        if(enemyAttacks.getWaitingTime() + playerThings.getWaitingTime() == 0)
-        {
-            playerThings.PlayerAttacked();
-        }
+        Debug.Log("Mouse entered button area");
     }
-
-    public void afterPlayerAttacked2()
-    {
-        if (enemyAttacks.getWaitingTime() + playerThings.getWaitingTime() == 0)
-        {
-            playerThings.PlayerAttacked2();
-        }
-    }
-
 }
