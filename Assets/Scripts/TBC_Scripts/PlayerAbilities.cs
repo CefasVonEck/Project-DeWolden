@@ -131,11 +131,27 @@ public class PlayerAbilities : MonoBehaviour
     {
         if(!(Attack1.text.Contains(":")))
         {
-            if(attackDamage1 > 0 && agileDamage1 > 0)
+            if(attackDamage1 > 0 && agileDamage1 > 0 && attackDamageBoost1 > 0)
+            {
+                Attack1.text += ":  <i> Att. " + attackDamage1 + "  Accur. " + agileDamage1 + "  DMG+ " + attackDamageBoost1;
+            }
+            else if (agileDamage1 > 0 && attackDamageBoost1 > 0)
+            {
+                Attack1.text += ":  <i> Accur. " + agileDamage1 + "  DMG+ " + attackDamageBoost1;
+            }
+            else if (attackDamage1 > 0 && attackDamageBoost1 > 0)
+            {
+                Attack1.text += ":  <i> Att. " + attackDamage1 + "  DMG+ " + attackDamageBoost1;
+            }
+            else if (attackDamage1 > 0 && attackDamageBoost1 > 0)
             {
                 Attack1.text += ":  <i> Att. " + attackDamage1 + "  Accur. " + agileDamage1;
             }
-            else if (agileDamage1 > 0)
+            else if (attackDamageBoost1 > 0 && agileDamage1 <= 0 && attackDamage1 <= 0)
+            {
+                Attack1.text += ":  <i>DMG+ " + attackDamageBoost1;
+            }
+            else if (attackDamageBoost1 <= 0 && agileDamage1 > 0 && attackDamage1 <= 0)
             {
                 Attack1.text += ":  <i>Accur. " + agileDamage1;
             }
@@ -159,13 +175,29 @@ public class PlayerAbilities : MonoBehaviour
     {
         if (!(Attack2.text.Contains(":")))
         {
-            if (attackDamage2 > 0 && agileDamage2 > 0)
+            if (attackDamage2 > 0 && agileDamage2 > 0 && attackDamageBoost2 > 0)
+            {
+                Attack2.text += ":  <i> Att. " + attackDamage2 + "  Accur. " + agileDamage2 + "  DMG+ " + attackDamageBoost2;
+            }
+            else if (agileDamage2 > 0 && attackDamageBoost2 > 0)
+            {
+                Attack2.text += ":  <i> Accur. " + agileDamage2 + "  DMG+ " + attackDamageBoost2;
+            }
+            else if (attackDamage2 > 0 && attackDamageBoost2 > 0)
+            {
+                Attack2.text += ":  <i> Att. " + attackDamage2 + "  DMG+ " + attackDamageBoost2;
+            }
+            else if (attackDamage2 > 0 && attackDamageBoost2 > 0)
             {
                 Attack2.text += ":  <i> Att. " + attackDamage2 + "  Accur. " + agileDamage2;
             }
-            else if (agileDamage2 > 0)
+            else if (attackDamageBoost2 > 0 && agileDamage2 <= 0 && attackDamage2 <= 0)
             {
-                Attack2.text += ":  <i>Accur. " + agileDamage1;
+                Attack2.text += ":  <i>DMG+ " + attackDamageBoost2;
+            }
+            else if (attackDamageBoost2 <= 0 && agileDamage2 > 0 && attackDamage2 <= 0)
+            {
+                Attack2.text += ":  <i>Accur. " + agileDamage2;
             }
             else
             {
@@ -187,13 +219,29 @@ public class PlayerAbilities : MonoBehaviour
     {
         if (!(Attack3.text.Contains(":")))
         {
-            if (attackDamage3 > 0 && agileDamage3 > 0)
+            if (attackDamage3 > 0 && agileDamage3 > 0 && attackDamageBoost3 > 0)
+            {
+                Attack3.text += ":  <i> Att. " + attackDamage3 + "  Accur. " + agileDamage3 + "  DMG+ " + attackDamageBoost3;
+            }
+            else if (agileDamage3 > 0 && attackDamageBoost3 > 0)
+            {
+                Attack3.text += ":  <i> Accur. " + agileDamage3 + "  DMG+ " + attackDamageBoost3;
+            }
+            else if (attackDamage3 > 0 && attackDamageBoost3 > 0)
+            {
+                Attack3.text += ":  <i> Att. " + attackDamage3 + "  DMG+ " + attackDamageBoost3;
+            }
+            else if (attackDamage3 > 0 && attackDamageBoost3 > 0)
             {
                 Attack3.text += ":  <i> Att. " + attackDamage3 + "  Accur. " + agileDamage3;
             }
-            else if (agileDamage3 > 0)
+            else if (attackDamageBoost3 > 0 && agileDamage3 <= 0 && attackDamage3 <= 0)
             {
-                Attack3.text += ":  <i>Accur. " + agileDamage1;
+                Attack3.text += ":  <i>DMG+ " + attackDamageBoost3;
+            }
+            else if (attackDamageBoost3 <= 0 && agileDamage3 > 0 && attackDamage3 <= 0)
+            {
+                Attack3.text += ":  <i>Accur. " + agileDamage3;
             }
             else
             {
@@ -215,13 +263,29 @@ public class PlayerAbilities : MonoBehaviour
     {
         if (!(Attack4.text.Contains(":")))
         {
-            if (attackDamage4 > 0 && agileDamage4 > 0)
+            if (attackDamage4 > 0 && agileDamage4 > 0 && attackDamageBoost4 > 0)
+            {
+                Attack4.text += ":  <i> Att. " + attackDamage4 + "  Accur. " + agileDamage4 + "  DMG+ " + attackDamageBoost4;
+            }
+            else if (agileDamage4 > 0 && attackDamageBoost4 > 0)
+            {
+                Attack4.text += ":  <i> Accur. " + agileDamage4 + "  DMG+ " + attackDamageBoost4;
+            }
+            else if (attackDamage4 > 0 && attackDamageBoost4 > 0)
+            {
+                Attack4.text += ":  <i> Att. " + attackDamage4 + "  DMG+ " + attackDamageBoost4;
+            }
+            else if (attackDamage4 > 0 && attackDamageBoost4 > 0)
             {
                 Attack4.text += ":  <i> Att. " + attackDamage4 + "  Accur. " + agileDamage4;
             }
-            else if (agileDamage4 > 0)
+            else if (attackDamageBoost4 > 0 && agileDamage4 <= 0 && attackDamage4 <= 0)
             {
-                Attack4.text += ":  <i>Accur. " + agileDamage1;
+                Attack4.text += ":  <i>DMG+ " + attackDamageBoost4;
+            }
+            else if (attackDamageBoost4 <= 0 && agileDamage4 > 0 && attackDamage4 <= 0)
+            {
+                Attack4.text += ":  <i>Accur. " + agileDamage4;
             }
             else
             {
@@ -254,7 +318,17 @@ public class PlayerAbilities : MonoBehaviour
 
     public void PlayerAttacked()
     {
-        if (UnityEngine.Random.Range(0, 100 - missAbiblityChanges) <= 5 && canMiss)
+        int shouldGoFirst = -2;
+        if(abilitySpeedIsKing)
+        {
+            shouldGoFirst = enemyAbilities.useAttack(-2);
+        }
+
+        if (abilitySpeedIsKing && enemyAbilities.getAbilitySpeed() > agileDamage1)
+        {
+            
+        }
+        else if (UnityEngine.Random.Range(0, 100 - missAbiblityChanges) <= 5 && canMiss)
         {
             UseMessage.text = enemyName + " tried to attack and missed!";
             attackAgainTimer = 250;
@@ -290,11 +364,26 @@ public class PlayerAbilities : MonoBehaviour
                 UseMessage.text = enemyName + " Used <i>" + abilityName + "</i>" + " and it hit!";
             }
         }
+
+        if (abilitySpeedIsKing)
+        {
+            enemyAbilities.useAttack(shouldGoFirst);
+        }
     }
 
     public void PlayerAttacked2()
     {
-        if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss2)
+        int shouldGoFirst = -2;
+        if (abilitySpeedIsKing)
+        {
+            shouldGoFirst = enemyAbilities.useAttack(-2);
+        }
+
+        if (abilitySpeedIsKing && enemyAbilities.getAbilitySpeed() > agileDamage2)
+        {
+
+        }
+        else if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss2)
         {
             UseMessage.text = enemyName + " tried to attack and missed!";
             attackAgainTimer = 250;
@@ -331,11 +420,26 @@ public class PlayerAbilities : MonoBehaviour
                 UseMessage.text = enemyName + " Used <i>" + abilityName2 + "</i>" + " and it hit!";
             }
         }
+
+        if (abilitySpeedIsKing)
+        {
+            enemyAbilities.useAttack(shouldGoFirst);
+        }
     }
 
     public void PlayerAttacked3()
     {
-        if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss3)
+        int shouldGoFirst = -2;
+        if (abilitySpeedIsKing)
+        {
+            shouldGoFirst = enemyAbilities.useAttack(-2);
+        }
+
+        if (abilitySpeedIsKing && enemyAbilities.getAbilitySpeed() > agileDamage3)
+        {
+
+        }
+        else if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss3)
         {
             UseMessage.text = enemyName + " tried to attack and missed!";
             attackAgainTimer = 250;
@@ -371,11 +475,26 @@ public class PlayerAbilities : MonoBehaviour
                 UseMessage.text = enemyName + " Used <i>" + abilityName3 + "</i>" + " and it hit!";
             }
         }
+
+        if (abilitySpeedIsKing)
+        {
+            enemyAbilities.useAttack(shouldGoFirst);
+        }
     }
 
     public void PlayerAttacked4()
     {
-        if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss4)
+        int shouldGoFirst = -2;
+        if (abilitySpeedIsKing)
+        {
+            shouldGoFirst = enemyAbilities.useAttack(-2);
+        }
+
+        if (abilitySpeedIsKing && enemyAbilities.getAbilitySpeed() > agileDamage4)
+        {
+
+        }
+        else if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss4)
         {
             UseMessage.text = enemyName + " tried to attack and missed!";
             attackAgainTimer = 250;
@@ -411,6 +530,11 @@ public class PlayerAbilities : MonoBehaviour
                 UseMessage.text = enemyName + " Used <i>" + abilityName4 + "</i>" + " and it hit!";
             }
         }
+
+        if (abilitySpeedIsKing)
+        {
+            enemyAbilities.useAttack(shouldGoFirst);
+        }
     }
 
     void FixedUpdate()
@@ -424,7 +548,14 @@ public class PlayerAbilities : MonoBehaviour
         if (attackAgainTimer == 150)
         {
             AbilitySets.afterPlayerAttacked();
-            UseMessage.text = "Enemy waiting its turn...";
+            if (abilitySpeedIsKing)
+            {
+
+            }
+            else
+            {
+                UseMessage.text = "Enemy waiting its turn...";
+            } 
         }
     }
 
