@@ -106,7 +106,7 @@ public class AbilitySets : MonoBehaviour
 
     public void reduceAttackSpeed(float speed)
     {
-        if(attackSpeed < 120)
+        if(attackSpeed < 80)
         {
             attackSpeed -= speed;
         }
@@ -201,7 +201,7 @@ public class AbilitySets : MonoBehaviour
 
         if ((abilityUse == -2))
         {
-            if (UnityEngine.Random.Range(0, 100 - (int)(attackSpeed)) <= 5)
+            if (UnityEngine.Random.Range(0, 100 - (int)(attackSpeed)) <= 25)
             {
                 willUseInMove = 1;
             }
@@ -242,7 +242,7 @@ public class AbilitySets : MonoBehaviour
 
         if(attackSpeed > maxAttackSpeed)
         {
-            attackSpeed -= 0.001f;
+            attackSpeed -= 0.0005f;
         }
 
         if (attackAgainTimer > 0)
