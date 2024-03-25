@@ -16,7 +16,7 @@ public class writer : MonoBehaviour
     public string partialtext;
 
     [SerializeField]
-    private float DeltaTime;
+    public float DeltaTime;
 
     // we have it public since this is going to be changed all the time
     public TextMeshProUGUI Towrite;
@@ -40,6 +40,7 @@ public class writer : MonoBehaviour
     }
     public void StartWriting()
     {
+        //DeltaTime = 0f;
         DeltaTime += Time.deltaTime;
 
         while (DeltaTime >= writeSpeed && partialtext.Length < text.Length)

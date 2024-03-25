@@ -6749,7 +6749,7 @@ MonoBehaviour:
   text: 
   writeSpeed: 0.1
   partialtext: 
-  DeltaTime: 0
+  DeltaTime: 1
   Towrite: {fileID: 0}
 --- !u!1 &1463903392
 GameObject:

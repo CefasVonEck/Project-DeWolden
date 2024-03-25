@@ -272,7 +272,7 @@ public class dialouge : MonoBehaviour
         // if space is pressed
         if (Input.GetKeyDown(KeyCode.Space))
         {
-
+            write.DeltaTime = 0f;
             //write.partialtext = "";
 
             // go to next text
