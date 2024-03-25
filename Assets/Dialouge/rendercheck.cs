@@ -9,7 +9,9 @@ public class rendercheck : MonoBehaviour
 
     public bool nextboxshow = false;
 
-
+    private void Awake()
+    {
+    }
     // Start is called before the first frame update
     void Start()
     {

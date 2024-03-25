@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class dialouge : MonoBehaviour
 {
+    public writer write;
+
+
+
     [SerializeField]
     private GameObject bright;
 
@@ -53,8 +58,8 @@ public class dialouge : MonoBehaviour
     private int maxdiaMain;
 
     // the string variable for the character to say
-    [SerializeField]
-    private string textChar;
+    //[SerializeField]
+    //private string textChar;
 
     // the string variable for the name of the character
     [SerializeField]
@@ -268,8 +273,11 @@ public class dialouge : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
 
+            //write.partialtext = "";
+
             // go to next text
             curdiaMain += 1;
+            //write.partialtext = "";
 
             // make sure the text isn't shown yet (did it since it looked weird otherwise
             checkMain.canshowtext = false;
@@ -299,6 +307,7 @@ public class dialouge : MonoBehaviour
 
         txtboxmain.SetActive(false);
         txtboxNPC.SetActive(false);
+        //write.partialtext = "";
     }
 
     // for setting the right dialouge active
@@ -307,6 +316,7 @@ public class dialouge : MonoBehaviour
         // setting first dia right
         if (curdiaMain == 1)
         {
+            write.text = Dia1M;
             // getting the NPC Render away (just to be sure)
             NpcRen.SetBool("comin", false);
 
@@ -318,9 +328,8 @@ public class dialouge : MonoBehaviour
             //right text showing
             if (checkMain.canshowtext == true)
             {
-                textChar = Dia1M;
-                diaNPC.gameObject.SetActive(false);
-                diaMain.gameObject.SetActive(true);
+                write.Towrite = diaMain;
+                write.StartWriting();
             }
 
             // set the name right
@@ -337,6 +346,7 @@ public class dialouge : MonoBehaviour
 
         else if (curdiaMain == 3)
         {
+            write.text = Dia2M;
             // have the render going away first
             NpcRen.SetBool("comin", false);
 
@@ -351,9 +361,11 @@ public class dialouge : MonoBehaviour
             //right text showing
             if (checkMain.canshowtext == true)
             {
-                textChar = Dia2M;
-                diaNPC.gameObject.SetActive(false);
-                diaMain.gameObject.SetActive(true);
+                write.Towrite = diaMain;
+                write.StartWriting();
+
+                //diaNPC.gameObject.SetActive(false);
+                //diaMain.gameObject.SetActive(true);
             }
 
 
@@ -370,7 +382,8 @@ public class dialouge : MonoBehaviour
         }
 
         else if (curdiaMain == 5)
-        {
+        {                
+            write.text = Dia3M;
             // have the render going away first
             NpcRen.SetBool("comin", false);
 
@@ -385,9 +398,11 @@ public class dialouge : MonoBehaviour
             //right text showing
             if (checkMain.canshowtext == true)
             {
-                textChar = Dia3M;
-                diaNPC.gameObject.SetActive(false);
-                diaMain.gameObject.SetActive(true);
+                write.Towrite = diaMain;
+                write.StartWriting();
+
+                //diaNPC.gameObject.SetActive(false);
+                //diaMain.gameObject.SetActive(true);
             }
 
 
@@ -409,6 +424,7 @@ public class dialouge : MonoBehaviour
         // setting first dia right
         if (curdiaMain == 2)
         {
+            write.text = Dia1N;
             // have the render going away first
             playRen.SetBool("coming", false);
 
@@ -423,9 +439,12 @@ public class dialouge : MonoBehaviour
             //right text showing
             if (checkNpc.canshowtext == true)
             {
-                textNpc = Dia1N;
-                diaNPC.gameObject.SetActive(true);
-                diaMain.gameObject.SetActive(false);
+                write.Towrite = diaNPC;
+                write.StartWriting();
+
+
+                //diaNPC.gameObject.SetActive(true);
+                //diaMain.gameObject.SetActive(false);
             }
 
 
@@ -442,6 +461,7 @@ public class dialouge : MonoBehaviour
 
         else if (curdiaMain == 4)
         {
+            write.text = Dia2N;
             // have the right render showing up
             playRen.SetBool("coming", false);
 
@@ -456,9 +476,11 @@ public class dialouge : MonoBehaviour
             //right text showing
             if (checkNpc.canshowtext == true)
             {
-                textNpc = Dia2N;
-                diaNPC.gameObject.SetActive(true);
-                diaMain.gameObject.SetActive(false);
+                write.Towrite = diaNPC;
+                write.StartWriting();
+
+                //diaNPC.gameObject.SetActive(true);
+                //diaMain.gameObject.SetActive(false);
             }
 
 
@@ -476,6 +498,7 @@ public class dialouge : MonoBehaviour
 
         else if (curdiaMain == 6)
         {
+            write.text = Dia3N;
             // have the right render showing up
             playRen.SetBool("coming", false);
 
@@ -490,9 +513,11 @@ public class dialouge : MonoBehaviour
             //right text showing
             if (checkNpc.canshowtext == true)
             {
-                textNpc = Dia3N;
-                diaNPC.gameObject.SetActive(true);
-                diaMain.gameObject.SetActive(false);
+                write.Towrite = diaNPC;
+                write.StartWriting();
+
+                //diaNPC.gameObject.SetActive(true);
+                //diaMain.gameObject.SetActive(false);
             }
 
 
@@ -509,18 +534,20 @@ public class dialouge : MonoBehaviour
         }
     }
 
-
     void Textup()
     {
         // constantly update the text 
-        diaMain.text = textChar.ToString();
+        diaMain.text = write.partialtext.ToString();
         
         nameMain.text = nameChar.ToString();
 
-        diaNPC.text = textNpc.ToString();
+        diaNPC.text = write.partialtext.ToString();
 
         nameNPC.text = nameNpc.ToString();
     }
+
+
+
 
 
 }

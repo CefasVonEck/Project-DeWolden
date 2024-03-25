@@ -12,6 +12,8 @@ public class Texthandler : MonoBehaviour
 
     public bool rengone = false;
 
+    [SerializeField]
+    private writer scrip;
 
     // Start is called before the first frame update
     void Start()
@@ -54,5 +56,11 @@ public class Texthandler : MonoBehaviour
     {
         boxinplace = false;
         canshowtext = false;
+        //scrip.partialtext = "";
+    }
+
+    public void ResTex()
+    {
+        scrip.partialtext = "";
     }
 }
