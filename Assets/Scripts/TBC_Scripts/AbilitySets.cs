@@ -21,6 +21,9 @@ public class AbilitySets : MonoBehaviour
     private SliderController healthMina;
 
     [SerializeField]
+    private SliderController accuracyMe;
+
+    [SerializeField]
     private PlayerAbilities PlayerAbilities;
 
     private static int attackAgainTimer = 0;
@@ -84,11 +87,11 @@ public class AbilitySets : MonoBehaviour
     {
         if(!abilitySpeedIsKing)
         {
-            attackAgainTimer = 200;
+            attackAgainTimer = 100;
         }
         else
         {
-            waitingMessage = 200;
+            waitingMessage = 100;
         }
 
         UseMessage.text = enemyName + " " + startBattleMessage;
@@ -101,7 +104,7 @@ public class AbilitySets : MonoBehaviour
 
     public static void afterPlayerAttacked()
     {
-        attackAgainTimer = 150;
+        attackAgainTimer = 50;
     }
 
     public void reduceAttackSpeed(float speed)
@@ -119,7 +122,7 @@ public class AbilitySets : MonoBehaviour
         if (abilityUse == 1)
         {
             UseMessage.text = enemyName + " tried to attack and missed!";
-            waitingMessage = 150;
+            waitingMessage = 50;
 
             usedAbilitySpeed = 0;
         }
@@ -149,7 +152,7 @@ public class AbilitySets : MonoBehaviour
 
             usedAbilitySpeed = agileDamage1;
 
-            waitingMessage = 200;
+            waitingMessage = 100;
         }
         else if (abilityUse == 3)
         {
@@ -177,7 +180,7 @@ public class AbilitySets : MonoBehaviour
 
             usedAbilitySpeed = agileDamage2;
 
-            waitingMessage = 200;
+            waitingMessage = 100;
         }
         else if(abilityUse == 4)
         {
@@ -196,7 +199,7 @@ public class AbilitySets : MonoBehaviour
 
             UseMessage.text = enemyName + " Used <i>" + abilityNameLast + "</i>" + " and it hit!";
 
-            waitingMessage = 200;
+            waitingMessage = 100;
         }
 
         if ((abilityUse == -2))
@@ -244,6 +247,8 @@ public class AbilitySets : MonoBehaviour
         {
             attackSpeed -= 0.0005f;
         }
+
+        accuracyMe.SetSliderValue(attackSpeed);
 
         if (attackAgainTimer > 0)
         {

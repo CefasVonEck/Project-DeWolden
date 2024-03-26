@@ -133,11 +133,11 @@ public class PlayerAbilities : MonoBehaviour
         {
             if(attackDamage1 > 0 && agileDamage1 > 0 && attackDamageBoost1 > 0)
             {
-                Attack1.text += ":  <i> Att. " + attackDamage1 + "  Accur. " + agileDamage1 + "  DMG+ " + attackDamageBoost1;
+                Attack1.text += ":  <i> Att. " + attackDamage1 + "  Accur. -" + agileDamage1 + "  DMG+ " + attackDamageBoost1;
             }
             else if (agileDamage1 > 0 && attackDamageBoost1 > 0)
             {
-                Attack1.text += ":  <i> Accur. " + agileDamage1 + "  DMG+ " + attackDamageBoost1;
+                Attack1.text += ":  <i> Accur. -" + agileDamage1 + "  DMG+ " + attackDamageBoost1;
             }
             else if (attackDamage1 > 0 && attackDamageBoost1 > 0)
             {
@@ -145,7 +145,7 @@ public class PlayerAbilities : MonoBehaviour
             }
             else if (attackDamage1 > 0 && attackDamageBoost1 > 0)
             {
-                Attack1.text += ":  <i> Att. " + attackDamage1 + "  Accur. " + agileDamage1;
+                Attack1.text += ":  <i> Att. " + attackDamage1 + "  Accur. -" + agileDamage1;
             }
             else if (attackDamageBoost1 > 0 && agileDamage1 <= 0 && attackDamage1 <= 0)
             {
@@ -153,7 +153,7 @@ public class PlayerAbilities : MonoBehaviour
             }
             else if (attackDamageBoost1 <= 0 && agileDamage1 > 0 && attackDamage1 <= 0)
             {
-                Attack1.text += ":  <i>Accur. " + agileDamage1;
+                Attack1.text += ":  <i>Accur. -" + agileDamage1;
             }
             else
             {
@@ -177,11 +177,11 @@ public class PlayerAbilities : MonoBehaviour
         {
             if (attackDamage2 > 0 && agileDamage2 > 0 && attackDamageBoost2 > 0)
             {
-                Attack2.text += ":  <i> Att. " + attackDamage2 + "  Accur. " + agileDamage2 + "  DMG+ " + attackDamageBoost2;
+                Attack2.text += ":  <i> Att. " + attackDamage2 + "  Accur. -" + agileDamage2 + "  DMG+ " + attackDamageBoost2;
             }
             else if (agileDamage2 > 0 && attackDamageBoost2 > 0)
             {
-                Attack2.text += ":  <i> Accur. " + agileDamage2 + "  DMG+ " + attackDamageBoost2;
+                Attack2.text += ":  <i> Accur. -" + agileDamage2 + "  DMG+ " + attackDamageBoost2;
             }
             else if (attackDamage2 > 0 && attackDamageBoost2 > 0)
             {
@@ -189,7 +189,7 @@ public class PlayerAbilities : MonoBehaviour
             }
             else if (attackDamage2 > 0 && attackDamageBoost2 > 0)
             {
-                Attack2.text += ":  <i> Att. " + attackDamage2 + "  Accur. " + agileDamage2;
+                Attack2.text += ":  <i> Att. " + attackDamage2 + "  Accur. -" + agileDamage2;
             }
             else if (attackDamageBoost2 > 0 && agileDamage2 <= 0 && attackDamage2 <= 0)
             {
@@ -197,7 +197,7 @@ public class PlayerAbilities : MonoBehaviour
             }
             else if (attackDamageBoost2 <= 0 && agileDamage2 > 0 && attackDamage2 <= 0)
             {
-                Attack2.text += ":  <i>Accur. " + agileDamage2;
+                Attack2.text += ":  <i>Accur. -" + agileDamage2;
             }
             else
             {
@@ -221,11 +221,11 @@ public class PlayerAbilities : MonoBehaviour
         {
             if (attackDamage3 > 0 && agileDamage3 > 0 && attackDamageBoost3 > 0)
             {
-                Attack3.text += ":  <i> Att. " + attackDamage3 + "  Accur. " + agileDamage3 + "  DMG+ " + attackDamageBoost3;
+                Attack3.text += ":  <i> Att. " + attackDamage3 + "  Accur. -" + agileDamage3 + "  DMG+ " + attackDamageBoost3;
             }
             else if (agileDamage3 > 0 && attackDamageBoost3 > 0)
             {
-                Attack3.text += ":  <i> Accur. " + agileDamage3 + "  DMG+ " + attackDamageBoost3;
+                Attack3.text += ":  <i> Accur. -" + agileDamage3 + "  DMG+ " + attackDamageBoost3;
             }
             else if (attackDamage3 > 0 && attackDamageBoost3 > 0)
             {
@@ -233,7 +233,7 @@ public class PlayerAbilities : MonoBehaviour
             }
             else if (attackDamage3 > 0 && attackDamageBoost3 > 0)
             {
-                Attack3.text += ":  <i> Att. " + attackDamage3 + "  Accur. " + agileDamage3;
+                Attack3.text += ":  <i> Att. " + attackDamage3 + "  Accur. -" + agileDamage3;
             }
             else if (attackDamageBoost3 > 0 && agileDamage3 <= 0 && attackDamage3 <= 0)
             {
@@ -241,7 +241,7 @@ public class PlayerAbilities : MonoBehaviour
             }
             else if (attackDamageBoost3 <= 0 && agileDamage3 > 0 && attackDamage3 <= 0)
             {
-                Attack3.text += ":  <i>Accur. " + agileDamage3;
+                Attack3.text += ":  <i>Accur. -" + agileDamage3;
             }
             else
             {
@@ -265,11 +265,11 @@ public class PlayerAbilities : MonoBehaviour
         {
             if (attackDamage4 > 0 && agileDamage4 > 0 && attackDamageBoost4 > 0)
             {
-                Attack4.text += ":  <i> Att. " + attackDamage4 + "  Accur. " + agileDamage4 + "  DMG+ " + attackDamageBoost4;
+                Attack4.text += ":  <i> Att. " + attackDamage4 + "  Accur. -" + agileDamage4 + "  DMG+ " + attackDamageBoost4;
             }
             else if (agileDamage4 > 0 && attackDamageBoost4 > 0)
             {
-                Attack4.text += ":  <i> Accur. " + agileDamage4 + "  DMG+ " + attackDamageBoost4;
+                Attack4.text += ":  <i> Accur. -" + agileDamage4 + "  DMG+ " + attackDamageBoost4;
             }
             else if (attackDamage4 > 0 && attackDamageBoost4 > 0)
             {
@@ -277,7 +277,7 @@ public class PlayerAbilities : MonoBehaviour
             }
             else if (attackDamage4 > 0 && attackDamageBoost4 > 0)
             {
-                Attack4.text += ":  <i> Att. " + attackDamage4 + "  Accur. " + agileDamage4;
+                Attack4.text += ":  <i> Att. " + attackDamage4 + "  Accur. -" + agileDamage4;
             }
             else if (attackDamageBoost4 > 0 && agileDamage4 <= 0 && attackDamage4 <= 0)
             {
@@ -285,7 +285,7 @@ public class PlayerAbilities : MonoBehaviour
             }
             else if (attackDamageBoost4 <= 0 && agileDamage4 > 0 && attackDamage4 <= 0)
             {
-                Attack4.text += ":  <i>Accur. " + agileDamage4;
+                Attack4.text += ":  <i>Accur. -" + agileDamage4;
             }
             else
             {
@@ -331,11 +331,17 @@ public class PlayerAbilities : MonoBehaviour
         else if (UnityEngine.Random.Range(0, 100 - missAbiblityChanges) <= 5 && canMiss)
         {
             UseMessage.text = enemyName + " tried to attack and missed!";
-            attackAgainTimer = 250;
+
+            if (userName1 != null && !(userName1.Equals("")))
+            {
+                enemyName = userName1;
+            }
+
+            attackAgainTimer = 50;
         }
         else if (enemyAbilities.getWaitingTime() + this.getWaitingTime() == 0)
         {
-            attackAgainTimer = 450;
+            attackAgainTimer = 50;
 
             if (attackDamage1 > 0)
             {
@@ -386,11 +392,17 @@ public class PlayerAbilities : MonoBehaviour
         else if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss2)
         {
             UseMessage.text = enemyName + " tried to attack and missed!";
-            attackAgainTimer = 250;
+
+            if (userName2 != null && !(userName2.Equals("")))
+            {
+                enemyName = userName2;
+            }
+
+            attackAgainTimer = 50;
         }
         else if (enemyAbilities.getWaitingTime() + this.getWaitingTime() == 0)
         {
-            attackAgainTimer = 450;
+            attackAgainTimer = 50;
 
             if (attackDamage2 > 0)
             {
@@ -442,11 +454,17 @@ public class PlayerAbilities : MonoBehaviour
         else if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss3)
         {
             UseMessage.text = enemyName + " tried to attack and missed!";
-            attackAgainTimer = 250;
+
+            if (userName3 != null && !(userName3.Equals("")))
+            {
+                enemyName = userName3;
+            }
+
+            attackAgainTimer = 50;
         }
         else if (enemyAbilities.getWaitingTime() + this.getWaitingTime() == 0)
         {
-            attackAgainTimer = 450;
+            attackAgainTimer = 50;
 
             if (attackDamage3 > 0)
             {
@@ -497,11 +515,17 @@ public class PlayerAbilities : MonoBehaviour
         else if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss4)
         {
             UseMessage.text = enemyName + " tried to attack and missed!";
-            attackAgainTimer = 250;
+
+            if (userName4 != null && !(userName4.Equals("")))
+            {
+                enemyName = userName4;
+            }
+
+            attackAgainTimer = 50;
         }
         else if (enemyAbilities.getWaitingTime() + this.getWaitingTime() == 0)
         {
-            attackAgainTimer = 450;
+            attackAgainTimer = 50;
 
             if (attackDamage4 > 0)
             {
@@ -545,7 +569,7 @@ public class PlayerAbilities : MonoBehaviour
             //Debug.Log(attackAgainTimer);
         }
 
-        if (attackAgainTimer == 150)
+        if (attackAgainTimer == 5)
         {
             AbilitySets.afterPlayerAttacked();
             if (abilitySpeedIsKing)
@@ -554,7 +578,7 @@ public class PlayerAbilities : MonoBehaviour
             }
             else
             {
-                UseMessage.text = "Enemy waiting its turn...";
+                UseMessage.text = "...";
             } 
         }
     }
