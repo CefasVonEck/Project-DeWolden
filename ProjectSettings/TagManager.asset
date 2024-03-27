@@ -9,6 +9,9 @@ TagManager:
   - CharRen
   - boxmain
   - boxnpc
+  - locpop
+  - LocName
+  - Over
   layers:
   - Default
   - TransparentFX

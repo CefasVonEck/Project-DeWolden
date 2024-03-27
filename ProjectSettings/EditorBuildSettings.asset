@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Game-Backup/Scenes/CasinoScene.unity
     guid: 99b0e2282bc1cb14d8f9da074bf6a4e1
   - enabled: 1
-    path: Assets/sceneswitcher/scenetest.unity
-    guid: 9210eb4d9bf671e41a30baba60ccde14
+    path: Assets/Scenes/test.unity
+    guid: bd05a5a41cf3c4b449c6b1b4327f6544
   m_configObjects: {}
