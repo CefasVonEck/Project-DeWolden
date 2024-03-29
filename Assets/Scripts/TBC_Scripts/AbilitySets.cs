@@ -1,15 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
-using System.Text.RegularExpressions;
 
 public class AbilitySets : MonoBehaviour
 {
-    [SerializeField]
-    private bool abilitySpeedIsKing = false;
-
     [SerializeField]
     private float attackSpeed = 0;
     [SerializeField]
@@ -19,6 +13,9 @@ public class AbilitySets : MonoBehaviour
 
     [SerializeField]
     private SliderController healthMina;
+
+    [SerializeField]
+    private SliderController healthJager;
 
     [SerializeField]
     private SliderController accuracyMe;
@@ -85,14 +82,7 @@ public class AbilitySets : MonoBehaviour
     // Start is called before the first frame update
     void Start() 
     {
-        if(!abilitySpeedIsKing)
-        {
-            attackAgainTimer = 100;
-        }
-        else
-        {
-            waitingMessage = 100;
-        }
+        attackAgainTimer = 200;
 
         UseMessage.text = enemyName + " " + startBattleMessage;
     }
@@ -104,7 +94,7 @@ public class AbilitySets : MonoBehaviour
 
     public static void afterPlayerAttacked()
     {
-        attackAgainTimer = 50;
+        attackAgainTimer = 150;
     }
 
     public void reduceAttackSpeed(float speed)
@@ -134,10 +124,26 @@ public class AbilitySets : MonoBehaviour
             }
             else
             {
-                healthMina.SetSliderValue(attackDamage1 + countExtraDamage);
+                if (UnityEngine.Random.Range(0, 100) <= 50)
+                {
+                    healthMina.SetSliderValue(attackDamage1 + countExtraDamage);
+                }
+                else
+                {
+                    healthJager.SetSliderValue(attackDamage1 + countExtraDamage);
+                }
             }
 
-            PlayerAbilities.decreaseHittingAbility(agileDamage1);
+
+            if (UnityEngine.Random.Range(0, 100) <= 50)
+            {
+                PlayerAbilities.decreaseHittingAbilityMina(agileDamage1);
+            }
+            else
+            {
+                PlayerAbilities.decreaseHittingAbilityJager(agileDamage1);
+            }
+
 
             --maxAbilityUse;
 
@@ -162,10 +168,24 @@ public class AbilitySets : MonoBehaviour
             }
             else
             {
-                healthMina.SetSliderValue(attackDamage2 + countExtraDamage);
+                if (UnityEngine.Random.Range(0, 100) <= 50)
+                {
+                    healthMina.SetSliderValue(attackDamage1 + countExtraDamage);
+                }
+                else
+                {
+                    healthJager.SetSliderValue(attackDamage1 + countExtraDamage);
+                }
             }
 
-            PlayerAbilities.decreaseHittingAbility(agileDamage2);
+            if (UnityEngine.Random.Range(0, 100) <= 50)
+            {
+                PlayerAbilities.decreaseHittingAbilityMina(agileDamage2);
+            }
+            else
+            {
+                PlayerAbilities.decreaseHittingAbilityJager(agileDamage2);
+            }
 
             --maxAbilityUse2;
 
@@ -190,10 +210,24 @@ public class AbilitySets : MonoBehaviour
             }
             else
             {
-                healthMina.SetSliderValue(attackDamageLast + countExtraDamage);
+                if (UnityEngine.Random.Range(0, 100) <= 50)
+                {
+                    healthMina.SetSliderValue(attackDamageLast + countExtraDamage);
+                }
+                else
+                {
+                    healthJager.SetSliderValue(attackDamageLast + countExtraDamage);
+                }
             }
 
-            PlayerAbilities.decreaseHittingAbility(agileDamageLast);
+            if (UnityEngine.Random.Range(0, 100) <= 50)
+            {
+                PlayerAbilities.decreaseHittingAbilityMina(agileDamageLast);
+            }
+            else
+            {
+                PlayerAbilities.decreaseHittingAbilityJager(agileDamageLast);
+            }
 
             usedAbilitySpeed = agileDamageLast;
 
@@ -237,7 +271,13 @@ public class AbilitySets : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(!abilitySpeedIsKing && attackAgainTimer == 1)
+        if (attackAgainTimer == 100)
+        {
+            int attackUsed = useAttack(-2);
+            useAttack(attackUsed);
+        }
+
+        if (attackAgainTimer == 1)
         {
             int attackUsed = useAttack(-2);
             useAttack(attackUsed);
@@ -256,19 +296,13 @@ public class AbilitySets : MonoBehaviour
             //Debug.Log(attackAgainTimer);
         } 
 
-        if(waitingMessage > 0)
+        if(waitingMessage > 0 && attackAgainTimer < 10)
         {
             --waitingMessage;
             if(waitingMessage == 0)
             {
-                if(abilitySpeedIsKing)
-                {
-                    UseMessage.text = "Choose for comparing Ability Speed with the Enemy...";
-                }
-                else
-                {
-                    UseMessage.text = "Waiting for the Player to make a move...";
-                }
+                UseMessage.text = "Waiting for the Player to make a move...";
+                PlayerAbilities.unlockAttacks();
             }
         }
     }     

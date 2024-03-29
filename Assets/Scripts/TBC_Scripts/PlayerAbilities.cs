@@ -4,14 +4,21 @@ using UnityEngine;
 using TMPro;
 using System;
 using System.Text.RegularExpressions;
+using UnityEngine.UI;
 
 public class PlayerAbilities : MonoBehaviour
 {
     [SerializeField]
-    private bool abilitySpeedIsKing = false;
+    private SliderController healthEnemySelected;
+    [SerializeField]
+    private SliderController healthEnemy01;
+    [SerializeField]
+    private SliderController healthEnemy02;
 
     [SerializeField]
-    private SliderController healthEnemy;
+    private SliderController healthMina;
+    [SerializeField]
+    private SliderController healthJager;
 
     [SerializeField]
     private AbilitySets enemyAbilities;
@@ -38,7 +45,16 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField]
     private String userName1 = "";
     [SerializeField]
+    private bool hitAll = true;
+    [SerializeField]
     private bool canMiss = true;
+    [SerializeField]
+    private bool harmTeammate = true;
+    [SerializeField]
+    private int damageTeammate = 0;
+    [SerializeField]
+    private int agileDamageTeammate = 0;
+
 
     [SerializeField]
     private String abilityName2 = "";
@@ -53,7 +69,15 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField]
     private String userName2 = "";
     [SerializeField]
+    private bool hitAll2 = true;
+    [SerializeField]
     private bool canMiss2 = true;
+    [SerializeField]
+    private bool harmTeammate2 = true;
+    [SerializeField]
+    private int damageTeammate2 = 0;
+    [SerializeField]
+    private int agileDamageTeammate2 = 0;
 
     [SerializeField]
     private String abilityName3 = "";
@@ -68,7 +92,15 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField]
     private String userName3 = "";
     [SerializeField]
+    private bool hitAll3 = true;
+    [SerializeField]
     private bool canMiss3 = true;
+    [SerializeField]
+    private bool harmTeammate3 = true;
+    [SerializeField]
+    private int damageTeammate3 = 0;
+    [SerializeField]
+    private int agileDamageTeammate3 = 0;
 
     [SerializeField]
     private String abilityName4 = "";
@@ -83,9 +115,18 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField]
     private String userName4 = "";
     [SerializeField]
+    private bool hitAll4 = true;
+    [SerializeField]
     private bool canMiss4 = true;
+    [SerializeField]
+    private bool harmTeammate4 = true;
+    [SerializeField]
+    private int damageTeammate4 = 0;
+    [SerializeField]
+    private int agileDamageTeammate4 = 0;
 
-    private int attackDamageBoost = 0;
+    private int attackDamageBoostMina = 0;
+    private int attackDamageBoostJager = 0;
 
 
     [SerializeField]
@@ -101,7 +142,24 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI Attack4;
 
-    private int missAbiblityChanges = 0;
+    [SerializeField]
+    private Button AttackButton1;
+    [SerializeField]
+    private Button AttackButton2;
+
+    [SerializeField]
+    private Button AttackButton3;
+    [SerializeField]
+    private Button AttackButton4;
+
+
+    [SerializeField]
+    private Button enemy1;
+    [SerializeField]
+    private Button enemy2;
+
+    private int missAbiblityChangesMina = 0;
+    private int missAbiblityChangesJager = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -125,6 +183,11 @@ public class PlayerAbilities : MonoBehaviour
         {
             Attack4.text = abilityName4;
         }
+
+        AttackButton1.interactable = false;
+        AttackButton2.interactable = false;
+        AttackButton3.interactable = false;
+        AttackButton4.interactable = false;
     }
 
     public void abilityInfo1()
@@ -303,11 +366,19 @@ public class PlayerAbilities : MonoBehaviour
         }
     }
 
-    public void decreaseHittingAbility(int decreaseWith)
+    public void decreaseHittingAbilityMina(int decreaseWith)
     {
-        if (missAbiblityChanges < 85)
+        if (missAbiblityChangesMina < 85)
         {
-            missAbiblityChanges += decreaseWith;
+            missAbiblityChangesMina += decreaseWith;
+        }
+    }
+
+    public void decreaseHittingAbilityJager(int decreaseWith)
+    {
+        if (missAbiblityChangesJager < 85)
+        {
+            missAbiblityChangesJager += decreaseWith;
         }
     }
 
@@ -316,47 +387,65 @@ public class PlayerAbilities : MonoBehaviour
         return  attackAgainTimer;
     }
 
-    public void PlayerAttacked()
+    private void PlayerAttacked()
     {
         int shouldGoFirst = -2;
-        if(abilitySpeedIsKing)
+        
+        if (UnityEngine.Random.Range(0, 100 - missAbiblityChangesMina) <= 5 && canMiss)
         {
-            shouldGoFirst = enemyAbilities.useAttack(-2);
-        }
-
-        if (abilitySpeedIsKing && enemyAbilities.getAbilitySpeed() > agileDamage1)
-        {
-            
-        }
-        else if (UnityEngine.Random.Range(0, 100 - missAbiblityChanges) <= 5 && canMiss)
-        {
-            UseMessage.text = enemyName + " tried to attack and missed!";
-
             if (userName1 != null && !(userName1.Equals("")))
             {
                 enemyName = userName1;
             }
 
-            attackAgainTimer = 50;
+            UseMessage.text = enemyName + " tried to attack and missed!";
+
+            attackAgainTimer = 70;
         }
         else if (enemyAbilities.getWaitingTime() + this.getWaitingTime() == 0)
         {
-            attackAgainTimer = 50;
+            attackAgainTimer = 70;
 
-            if (attackDamage1 > 0)
+            if (hitAll)
             {
-                healthEnemy.SetSliderValue(attackDamage1 + attackDamageBoost);
+                if (attackDamage1 > 0)
+                {
+                    healthEnemy01.SetSliderValue(attackDamage1 + attackDamageBoostMina);
+                    healthEnemy02.SetSliderValue(attackDamage1 + attackDamageBoostMina);
+                }
+
+                if (attackDamageBoost1 > 0)
+                {
+                    healthEnemy01.SetSliderValue(attackDamage1 + attackDamageBoostMina);
+                    healthEnemy02.SetSliderValue(attackDamage1 + attackDamageBoostMina);
+                }
+            }
+            else
+            {
+                if (attackDamage1 > 0)
+                {
+                    healthEnemySelected.SetSliderValue(attackDamage1 + attackDamageBoostMina);
+                }
+
+                if (attackDamageBoost1 > 0)
+                {
+                    attackDamageBoostMina += attackDamageBoost1;
+                }
             }
 
-            if(attackDamageBoost1 > 0)
+            if (this.harmTeammate)
             {
-                healthEnemy.SetSliderValue(attackDamage1 + attackDamageBoost);
+                healthJager.SetSliderValue(damageTeammate);
+                if (attackDamageBoostJager - agileDamageTeammate >= 0)
+                {
+                    attackDamageBoostJager -= agileDamageTeammate;
+                }
             }
 
-            decreaseHittingAbility(-agileDamage1);
+            enemyAbilities.reduceAttackSpeed(-agileDamage1);
             //--maxAbilityUse;
 
-            if(userName1 != null && !(userName1.Equals("")))
+            if (userName1 != null && !(userName1.Equals("")))
             {
                 enemyName = userName1;
             }
@@ -370,48 +459,61 @@ public class PlayerAbilities : MonoBehaviour
                 UseMessage.text = enemyName + " Used <i>" + abilityName + "</i>" + " and it hit!";
             }
         }
-
-        if (abilitySpeedIsKing)
-        {
-            enemyAbilities.useAttack(shouldGoFirst);
-        }
     }
 
-    public void PlayerAttacked2()
+    private void PlayerAttacked2()
     {
         int shouldGoFirst = -2;
-        if (abilitySpeedIsKing)
+        
+        if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss2)
         {
-            shouldGoFirst = enemyAbilities.useAttack(-2);
-        }
-
-        if (abilitySpeedIsKing && enemyAbilities.getAbilitySpeed() > agileDamage2)
-        {
-
-        }
-        else if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss2)
-        {
-            UseMessage.text = enemyName + " tried to attack and missed!";
-
             if (userName2 != null && !(userName2.Equals("")))
             {
                 enemyName = userName2;
             }
 
-            attackAgainTimer = 50;
+            UseMessage.text = enemyName + " tried to attack and missed!";
+
+            attackAgainTimer = 70;
         }
         else if (enemyAbilities.getWaitingTime() + this.getWaitingTime() == 0)
         {
-            attackAgainTimer = 50;
+            attackAgainTimer = 70;
 
-            if (attackDamage2 > 0)
+            if (hitAll2)
             {
-                healthEnemy.SetSliderValue(attackDamage2 + attackDamageBoost);
+                if (attackDamage2 > 0)
+                {
+                    healthEnemy01.SetSliderValue(attackDamage2 + attackDamageBoostMina);
+                    healthEnemy02.SetSliderValue(attackDamage2 + attackDamageBoostMina);
+                }
+
+                if (attackDamageBoost2 > 0)
+                {
+                    healthEnemy01.SetSliderValue(attackDamage2 + attackDamageBoostMina);
+                    healthEnemy02.SetSliderValue(attackDamage2 + attackDamageBoostMina);
+                }
+            }
+            else
+            {
+                if (attackDamage2 > 0)
+                {
+                    healthEnemySelected.SetSliderValue(attackDamage2 + attackDamageBoostMina);
+                }
+
+                if (attackDamageBoost2 > 0)
+                {
+                    attackDamageBoostMina += attackDamageBoost2;
+                }
             }
 
-            if (attackDamageBoost2 > 0)
+            if (this.harmTeammate2)
             {
-                attackDamageBoost += attackDamageBoost2;
+                healthJager.SetSliderValue(damageTeammate2);
+                if (attackDamageBoostJager - agileDamageTeammate2 >= 0)
+                {
+                    attackDamageBoostJager -= agileDamageTeammate2;
+                }
             }
 
             enemyAbilities.reduceAttackSpeed(-agileDamage2);
@@ -432,48 +534,61 @@ public class PlayerAbilities : MonoBehaviour
                 UseMessage.text = enemyName + " Used <i>" + abilityName2 + "</i>" + " and it hit!";
             }
         }
-
-        if (abilitySpeedIsKing)
-        {
-            enemyAbilities.useAttack(shouldGoFirst);
-        }
     }
 
-    public void PlayerAttacked3()
+    private void PlayerAttacked3()
     {
         int shouldGoFirst = -2;
-        if (abilitySpeedIsKing)
+        
+        if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss3)
         {
-            shouldGoFirst = enemyAbilities.useAttack(-2);
-        }
-
-        if (abilitySpeedIsKing && enemyAbilities.getAbilitySpeed() > agileDamage3)
-        {
-
-        }
-        else if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss3)
-        {
-            UseMessage.text = enemyName + " tried to attack and missed!";
-
             if (userName3 != null && !(userName3.Equals("")))
             {
                 enemyName = userName3;
             }
 
-            attackAgainTimer = 50;
+            UseMessage.text = enemyName + " tried to attack and missed!";
+
+            attackAgainTimer = 70;
         }
         else if (enemyAbilities.getWaitingTime() + this.getWaitingTime() == 0)
         {
-            attackAgainTimer = 50;
+            attackAgainTimer = 70;
 
-            if (attackDamage3 > 0)
+            if (hitAll3)
             {
-                healthEnemy.SetSliderValue(attackDamage3 + attackDamageBoost);
+                if (attackDamage3 > 0)
+                {
+                    healthEnemy01.SetSliderValue(attackDamage3 + attackDamageBoostJager);
+                    healthEnemy02.SetSliderValue(attackDamage3 + attackDamageBoostJager);
+                }
+
+                if (attackDamageBoost3 > 0)
+                {
+                    healthEnemy01.SetSliderValue(attackDamage3 + attackDamageBoostJager);
+                    healthEnemy02.SetSliderValue(attackDamage3 + attackDamageBoostJager);
+                }
+            }
+            else
+            {
+                if (attackDamage3 > 0)
+                {
+                    healthEnemySelected.SetSliderValue(attackDamage3 + attackDamageBoostJager);
+                }
+
+                if (attackDamageBoost3 > 0)
+                {
+                    attackDamageBoostJager += attackDamageBoost3;
+                }
             }
 
-            if (attackDamageBoost3 > 0)
+            if (this.harmTeammate3)
             {
-                attackDamageBoost += attackDamageBoost3;
+                healthMina.SetSliderValue(damageTeammate3);
+                if (attackDamageBoostMina - agileDamageTeammate3 >= 0)
+                {
+                    attackDamageBoostMina -= agileDamageTeammate3;
+                }
             }
 
             enemyAbilities.reduceAttackSpeed(-agileDamage3);
@@ -494,47 +609,61 @@ public class PlayerAbilities : MonoBehaviour
             }
         }
 
-        if (abilitySpeedIsKing)
-        {
-            enemyAbilities.useAttack(shouldGoFirst);
-        }
     }
 
-    public void PlayerAttacked4()
+    private void PlayerAttacked4()
     {
         int shouldGoFirst = -2;
-        if (abilitySpeedIsKing)
+        
+        if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss4)
         {
-            shouldGoFirst = enemyAbilities.useAttack(-2);
-        }
-
-        if (abilitySpeedIsKing && enemyAbilities.getAbilitySpeed() > agileDamage4)
-        {
-
-        }
-        else if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss4)
-        {
-            UseMessage.text = enemyName + " tried to attack and missed!";
-
             if (userName4 != null && !(userName4.Equals("")))
             {
                 enemyName = userName4;
             }
 
-            attackAgainTimer = 50;
+            UseMessage.text = enemyName + " tried to attack and missed!";
+
+            attackAgainTimer = 70;
         }
         else if (enemyAbilities.getWaitingTime() + this.getWaitingTime() == 0)
         {
-            attackAgainTimer = 50;
+            attackAgainTimer = 70;
 
-            if (attackDamage4 > 0)
+            if (hitAll3)
             {
-                healthEnemy.SetSliderValue(attackDamage4 + attackDamageBoost);
+                if (attackDamage4 > 0)
+                {
+                    healthEnemy01.SetSliderValue(attackDamage4 + attackDamageBoostJager);
+                    healthEnemy02.SetSliderValue(attackDamage4 + attackDamageBoostJager);
+                }
+
+                if (attackDamageBoost4 > 0)
+                {
+                    healthEnemy01.SetSliderValue(attackDamage4 + attackDamageBoostJager);
+                    healthEnemy02.SetSliderValue(attackDamage4 + attackDamageBoostJager);
+                }
+            }
+            else
+            {
+                if (attackDamage4 > 0)
+                {
+                    healthEnemySelected.SetSliderValue(attackDamage4 + attackDamageBoostJager);
+                }
+
+                if (attackDamageBoost4 > 0)
+                {
+                    attackDamageBoostJager += attackDamageBoost4;
+                }
             }
 
-            if (attackDamageBoost4 > 0)
+            if (this.harmTeammate4)
             {
-                attackDamageBoost += attackDamageBoost4;
+                healthMina.SetSliderValue(damageTeammate4);
+                if (attackDamageBoostMina - agileDamageTeammate4 >= 0)
+                {
+                    attackDamageBoostMina -= agileDamageTeammate4;
+                }
             }
 
             enemyAbilities.reduceAttackSpeed(-agileDamage4);
@@ -554,10 +683,40 @@ public class PlayerAbilities : MonoBehaviour
                 UseMessage.text = enemyName + " Used <i>" + abilityName4 + "</i>" + " and it hit!";
             }
         }
+    }
 
-        if (abilitySpeedIsKing)
+    private int abilityChosen = -1;
+    public void chooseAbility(int id)
+    {
+        abilityChosen = id;
+
+        if(id == 0 && hitAll)
         {
-            enemyAbilities.useAttack(shouldGoFirst);
+            this.PlayerAttacked();
+        }
+        else if (id == 1 && hitAll2)
+        {
+            this.PlayerAttacked2();
+        }
+        else if (id == 2 && hitAll3)
+        {
+            this.PlayerAttacked3();
+        }
+        else if (id == 3 && hitAll4)
+        {
+            this.PlayerAttacked4();
+        }
+        else
+        {
+            if (enemy1 != null)
+            {
+                enemy1.interactable = true;
+            }
+
+            if (enemy2 != null)
+            {
+                enemy2.interactable = true;
+            }
         }
     }
 
@@ -569,45 +728,68 @@ public class PlayerAbilities : MonoBehaviour
             //Debug.Log(attackAgainTimer);
         }
 
+        if (attackAgainTimer == 45)
+        {
+            AttackButton1.interactable = false;
+            AttackButton2.interactable = false;
+            AttackButton3.interactable = false;
+            AttackButton4.interactable = false;
+
+            if (enemy1 != null)
+            {
+                enemy1.interactable = false;
+            }
+
+            if (enemy2 != null)
+            {
+                enemy2.interactable = false;
+            }
+        }
+
         if (attackAgainTimer == 5)
         {
             AbilitySets.afterPlayerAttacked();
-            if (abilitySpeedIsKing)
-            {
-
-            }
-            else
-            {
-                UseMessage.text = "...";
-            } 
+            UseMessage.text = "...";
         }
     }
 
-    // Update is called once per frame
-    void FixedUpdate2()
+    public void unlockAttacks()
     {
-        if (attackAgainTimer == 1)
-        {
-            if (UnityEngine.Random.Range(0, (float)changeBeingUsed) == 0.0f && maxAbilityUse > 0)
-            {
-                healthEnemy.SetSliderValue(attackDamage1 + attackDamageBoost1);
-                --maxAbilityUse;
-
-                UseMessage.text = enemyName + " Used <i>" + abilityName + "</i>" + " and it hit!";
-            }
-            else
-            {
-                healthEnemy.SetSliderValue(attackDamage2 + attackDamageBoost2);
-
-                UseMessage.text = enemyName + " Used <i>" + abilityName2 + "</i>" + " and it hit!";
-            }
-        }
-
-        if (attackAgainTimer > 0)
-        {
-            --attackAgainTimer;
-            //Debug.Log(attackAgainTimer);
-        }
+        AttackButton1.interactable = true;
+        AttackButton2.interactable = true;
+        AttackButton3.interactable = true;
+        AttackButton4.interactable = true;
     }
 
+    public void selectEnemy1()
+    {
+        healthEnemySelected = healthEnemy01;
+        activateAttack();
+    }
+
+    public void selectEnemy2()
+    {
+        healthEnemySelected = healthEnemy02;
+        activateAttack();
+    }
+
+    private void activateAttack()
+    {
+        if (abilityChosen == 0)
+        {
+            this.PlayerAttacked();
+        }
+        else if (abilityChosen == 1)
+        {
+            this.PlayerAttacked2();
+        }
+        else if (abilityChosen == 2)
+        {
+            this.PlayerAttacked3();
+        }
+        else if (abilityChosen == 3)
+        {
+            this.PlayerAttacked4();
+        }
+    }
 }
