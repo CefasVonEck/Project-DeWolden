@@ -11,11 +11,15 @@ public class locationswap : MonoBehaviour
     [SerializeField]
     private string sceneName;
 
+    // the text pop up
     [SerializeField]
     private GameObject pop;
+
+    // the overlay for switcing scenes
     [SerializeField]
     private GameObject Over;
 
+    // the name of the location to travel too
     [SerializeField]
     private string loc;
 
@@ -35,6 +39,7 @@ public class locationswap : MonoBehaviour
 
     [SerializeField]
     private bool enteredTrigger;
+
 
     private void Awake()
     {
@@ -62,25 +67,21 @@ public class locationswap : MonoBehaviour
 
         if (enteredTrigger == true)
         {
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 clickyes();
-            }
-            else if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                clickno();
             }
         }
     }
 
     // during collision
-    public void OnTriggerEnter2D(Collider2D other)
+    public void OnTriggerStay2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
             // show pop up
             pop.SetActive(true);
-            Time.timeScale = 0f;
+            //Time.timeScale = 0f;
 
             Name.text = loc.ToString();
 
@@ -88,10 +89,21 @@ public class locationswap : MonoBehaviour
         }
     }
 
+    public void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            if (pop.activeInHierarchy == true)
+            {
+                pop.SetActive(false);
+            }
+            enteredTrigger = false;
+        }
+    }
+
     // if clicked yes move to location
     public void clickyes()
     {
-        Time.timeScale = 1f;
 
         //show a black overlay
         Over.SetActive(true);
@@ -99,12 +111,6 @@ public class locationswap : MonoBehaviour
         canmove = true;
         Invoke("changescene", 2);
         Invoke("Res", 1);
-    }
-
-    public void clickno()
-    {
-        Time.timeScale = 1f;
-        pop.SetActive(false);
     }
 
     public void changescene()
