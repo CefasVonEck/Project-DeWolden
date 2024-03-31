@@ -5,9 +5,27 @@ using System;
 public class AbilitySets : MonoBehaviour
 {
     [SerializeField]
-    private float attackSpeed = 0;
+    private int enemiesAtOnce = 0;
+
     [SerializeField]
-    private float maxAttackSpeed = 0;
+    private float attackSpeedEnemy1 = 0;
+    [SerializeField]
+    private float maxAttackSpeedEnemy1 = 0;
+
+    [SerializeField]
+    private float attackSpeedEnemy2 = 0;
+    [SerializeField]
+    private float maxAttackSpeedEnemy2 = 0;
+
+    [SerializeField]
+    private float attackSpeedEnemy3 = 0;
+    [SerializeField]
+    private float maxAttackSpeedEnemy3 = 0;
+
+    [SerializeField]
+    private float attackSpeedEnemy4 = 0;
+    [SerializeField]
+    private float maxAttackSpeedEnemy4 = 0;
 
     private int waitingMessage = 0;
 
@@ -26,6 +44,14 @@ public class AbilitySets : MonoBehaviour
     private static int attackAgainTimer = 0;
 
     [SerializeField]
+    private String enemyOneName = "";
+    [SerializeField]
+    private String enemyTwoName = "";
+    [SerializeField]
+    private String enemyThreeName = "";
+    [SerializeField]
+    private String enemyFourName = "";
+
     private String enemyName = "";
 
     [SerializeField]
@@ -33,15 +59,19 @@ public class AbilitySets : MonoBehaviour
     [SerializeField]
     private int attackDamage1 = 0;
     [SerializeField]
-    private int agileDamage1 = 0;
+    private int accurcyDamage1 = 0;
     [SerializeField]
     private int attackDamageBoost1 = 0;
+    [SerializeField]
+    private int accurcyBoost1 = 0;
     [SerializeField]
     private int maxAbilityUse = 0;
     [SerializeField]
     private int changeBeingUsed = 0;
     [SerializeField]
     private String attackUseMessage = null;
+    [SerializeField]
+    private bool boostAllAccurcy1 = false;
     [SerializeField]
     private bool canMiss = true;
 
@@ -50,15 +80,19 @@ public class AbilitySets : MonoBehaviour
     [SerializeField]
     private int attackDamage2 = 0;
     [SerializeField]
-    private int agileDamage2 = 0;
+    private int accurcyDamage2 = 0;
     [SerializeField]
     private int attackDamageBoost2 = 0;
+    [SerializeField]
+    private int accurcyBoost2 = 0;
     [SerializeField]
     private int maxAbilityUse2 = 0;
     [SerializeField]
     private int changeBeingUsed2 = 0;
     [SerializeField]
     private String attackUseMessage2 = null;
+    [SerializeField]
+    private bool boostAllAccurcy2 = false;
     [SerializeField]
     private bool canMiss2 = true;
 
@@ -67,7 +101,9 @@ public class AbilitySets : MonoBehaviour
     [SerializeField]
     private int attackDamageLast = 0;
     [SerializeField]
-    private int agileDamageLast = 0;
+    private int accurcyDamageLast = 0;
+    [SerializeField]
+    private bool boostAllAccurcyLast = false;
     [SerializeField]
     private int attackDamageBoostLast = 0;
 
@@ -82,7 +118,7 @@ public class AbilitySets : MonoBehaviour
     // Start is called before the first frame update
     void Start() 
     {
-        attackAgainTimer = 200;
+        attackAgainTimer = 350;
 
         UseMessage.text = enemyName + " " + startBattleMessage;
     }
@@ -94,20 +130,72 @@ public class AbilitySets : MonoBehaviour
 
     public static void afterPlayerAttacked()
     {
-        attackAgainTimer = 150;
+        attackAgainTimer = 300;
     }
 
-    public void reduceAttackSpeed(float speed)
+    public void reduceAttackSpeed(float speed,int enemyID)
     {
-        if(attackSpeed < 80)
+        if(enemyID == 0 && attackSpeedEnemy1 < 80)
         {
-            attackSpeed -= speed;
+            attackSpeedEnemy1 -= speed;
+        }
+        else if (enemyID == 1 && attackSpeedEnemy2 < 80)
+        {
+            attackSpeedEnemy2 -= speed;
+        }
+        else if (enemyID == 2 && attackSpeedEnemy3 < 80)
+        {
+            attackSpeedEnemy3 -= speed;
+        }
+        else if (enemyID == 3 && attackSpeedEnemy4 < 80)
+        {
+            attackSpeedEnemy4 -= speed;
         }
     }
-
-    public int useAttack(int abilityUse)
+    public int useAttack(int abilityUse, int enemyID)
     {
         int willUseInMove = -1;
+
+        if ((abilityUse == -2))
+        {
+            float attackSpeed = 0;
+
+            if (enemyID == 0)
+            {
+                attackSpeed = attackSpeedEnemy1;
+            }
+            else if (enemyID == 1)
+            {
+                attackSpeed = attackSpeedEnemy2;
+            }
+            else if (enemyID == 3)
+            {
+                attackSpeed = attackSpeedEnemy3;
+            }
+            else if (enemyID == 4)
+            {
+                attackSpeed = attackSpeedEnemy4;
+            }
+
+            if (UnityEngine.Random.Range(0, 100 - (int)(attackSpeed)) <= 25)
+            {
+                willUseInMove = 1;
+            }
+            else if ((UnityEngine.Random.Range(1, 131) >= (int)(changeBeingUsed - (attackSpeed)) || !canMiss || (attackDamage1 > 3 && healthMina.getValue() < 20)) && maxAbilityUse > 0)
+            {
+                willUseInMove = 2;
+            }
+            else if ((UnityEngine.Random.Range(1, 131) >= (int)(changeBeingUsed2 - (attackSpeed / 2f)) || !canMiss2 || (attackDamage2 > 3 && healthMina.getValue() < 20)) && maxAbilityUse2 > 0)
+            {
+                willUseInMove = 3;
+            }
+            else
+            {
+                willUseInMove = 4;
+            }
+
+            abilityUse = willUseInMove;
+        }
 
         if (abilityUse == 1)
         {
@@ -116,7 +204,7 @@ public class AbilitySets : MonoBehaviour
 
             usedAbilitySpeed = 0;
         }
-        else if(abilityUse == 2)
+        else if (abilityUse == 2)
         {
             if (attackDamageBoost1 > 0)
             {
@@ -134,14 +222,26 @@ public class AbilitySets : MonoBehaviour
                 }
             }
 
+            if (accurcyBoost1 > 0)
+            { 
+                if (boostAllAccurcy1)
+                {
+                    attackSpeedEnemy1 += accurcyBoost1;
+                    attackSpeedEnemy2 += accurcyBoost2;
+                }
+                else
+                {
+                    attackSpeedEnemy1 += accurcyBoost1;
+                }
+            }
 
             if (UnityEngine.Random.Range(0, 100) <= 50)
             {
-                PlayerAbilities.decreaseHittingAbilityMina(agileDamage1);
+                PlayerAbilities.decreaseHittingAbilityMina(accurcyDamage1);
             }
             else
             {
-                PlayerAbilities.decreaseHittingAbilityJager(agileDamage1);
+                PlayerAbilities.decreaseHittingAbilityJager(accurcyDamage1);
             }
 
 
@@ -156,7 +256,7 @@ public class AbilitySets : MonoBehaviour
                 UseMessage.text = enemyName + " Used <i>" + abilityName + "</i>" + " and it hit!";
             }
 
-            usedAbilitySpeed = agileDamage1;
+            usedAbilitySpeed = accurcyDamage1;
 
             waitingMessage = 100;
         }
@@ -178,13 +278,26 @@ public class AbilitySets : MonoBehaviour
                 }
             }
 
+            if (accurcyBoost2 > 0)
+            {
+                if (boostAllAccurcy2)
+                {
+                    attackSpeedEnemy1 += accurcyBoost2;
+                    attackSpeedEnemy2 += accurcyBoost2;
+                }
+                else
+                {
+                    attackSpeedEnemy2 += accurcyBoost2;
+                }
+            }
+
             if (UnityEngine.Random.Range(0, 100) <= 50)
             {
-                PlayerAbilities.decreaseHittingAbilityMina(agileDamage2);
+                PlayerAbilities.decreaseHittingAbilityMina(accurcyDamage2);
             }
             else
             {
-                PlayerAbilities.decreaseHittingAbilityJager(agileDamage2);
+                PlayerAbilities.decreaseHittingAbilityJager(accurcyDamage2);
             }
 
             --maxAbilityUse2;
@@ -198,7 +311,7 @@ public class AbilitySets : MonoBehaviour
                 UseMessage.text = enemyName + " Used <i>" + abilityName2 + "</i>" + " and it hit!";
             }
 
-            usedAbilitySpeed = agileDamage2;
+            usedAbilitySpeed = accurcyDamage2;
 
             waitingMessage = 100;
         }
@@ -220,42 +333,27 @@ public class AbilitySets : MonoBehaviour
                 }
             }
 
+            if (boostAllAccurcyLast)
+            {
+                attackSpeedEnemy1 += accurcyBoost1;
+                attackSpeedEnemy2 += accurcyBoost2;
+            }
+
             if (UnityEngine.Random.Range(0, 100) <= 50)
             {
-                PlayerAbilities.decreaseHittingAbilityMina(agileDamageLast);
+                PlayerAbilities.decreaseHittingAbilityMina(accurcyDamageLast);
             }
             else
             {
-                PlayerAbilities.decreaseHittingAbilityJager(agileDamageLast);
+                PlayerAbilities.decreaseHittingAbilityJager(accurcyDamageLast);
             }
 
-            usedAbilitySpeed = agileDamageLast;
+
+            usedAbilitySpeed = accurcyDamageLast;
 
             UseMessage.text = enemyName + " Used <i>" + abilityNameLast + "</i>" + " and it hit!";
 
             waitingMessage = 100;
-        }
-
-        if ((abilityUse == -2))
-        {
-            if (UnityEngine.Random.Range(0, 100 - (int)(attackSpeed)) <= 25)
-            {
-                willUseInMove = 1;
-            }
-            else if ((UnityEngine.Random.Range(1, 131) >= (int)(changeBeingUsed - (attackSpeed)) || !canMiss || (attackDamage1 > 3 && healthMina.getValue() < 20)) && maxAbilityUse > 0)
-            {
-                willUseInMove = 2;
-            }
-            else if ((UnityEngine.Random.Range(1, 131) >= (int)(changeBeingUsed2 - (attackSpeed / 2f)) || !canMiss2 || (attackDamage2 > 3 && healthMina.getValue() < 20)) && maxAbilityUse2 > 0)
-            {
-                willUseInMove = 3;
-            }
-            else
-            {
-                willUseInMove = 4;
-            }
-
-            abilityUse = willUseInMove;
         }
 
         return abilityUse;
@@ -271,24 +369,52 @@ public class AbilitySets : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (attackAgainTimer == 100)
+
+        if (enemiesAtOnce > 3 && attackAgainTimer == 250)
         {
-            int attackUsed = useAttack(-2);
-            useAttack(attackUsed);
+            this.enemyName = enemyFourName;
+            useAttack(-2, 0);
+        }
+
+        if (enemiesAtOnce > 2 && attackAgainTimer == 150)
+        {
+            this.enemyName = enemyThreeName;
+            useAttack(-2, 1);
+        }
+
+        if (enemiesAtOnce > 1 && attackAgainTimer == 80)
+        {
+            this.enemyName = enemyTwoName;
+            useAttack(-2, 2);
         }
 
         if (attackAgainTimer == 1)
         {
-            int attackUsed = useAttack(-2);
-            useAttack(attackUsed);
+            this.enemyName = enemyOneName;
+            useAttack(-2, 3);
         }
 
-        if(attackSpeed > maxAttackSpeed)
+        if(attackSpeedEnemy1 > attackSpeedEnemy1)
         {
-            attackSpeed -= 0.0005f;
+            attackSpeedEnemy1 -= 0.0005f;
         }
 
-        accuracyMe.SetSliderValue(attackSpeed);
+        if (attackSpeedEnemy2 > attackSpeedEnemy2)
+        {
+            attackSpeedEnemy2 -= 0.0005f;
+        }
+
+        if (attackSpeedEnemy3 > attackSpeedEnemy3)
+        {
+            attackSpeedEnemy3 -= 0.0005f;
+        }
+
+        if (attackSpeedEnemy4 > attackSpeedEnemy4)
+        {
+            attackSpeedEnemy4 -= 0.0005f;
+        }
+
+        //accuracyMe.SetSliderValue(attackSpeedEnemy1);
 
         if (attackAgainTimer > 0)
         {

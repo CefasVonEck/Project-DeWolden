@@ -14,6 +14,10 @@ public class PlayerAbilities : MonoBehaviour
     private SliderController healthEnemy01;
     [SerializeField]
     private SliderController healthEnemy02;
+    [SerializeField]
+    private SliderController healthEnemy03;
+    [SerializeField]
+    private SliderController healthEnemy04;
 
     [SerializeField]
     private SliderController healthMina;
@@ -157,6 +161,10 @@ public class PlayerAbilities : MonoBehaviour
     private Button enemy1;
     [SerializeField]
     private Button enemy2;
+    [SerializeField]
+    private Button enemy3;
+    [SerializeField]
+    private Button enemy4;
 
     private int missAbiblityChangesMina = 0;
     private int missAbiblityChangesJager = 0;
@@ -188,6 +196,26 @@ public class PlayerAbilities : MonoBehaviour
         AttackButton2.interactable = false;
         AttackButton3.interactable = false;
         AttackButton4.interactable = false;
+
+        if (enemy1 != null)
+        {
+            enemy1.interactable = false;
+        }
+
+        if (enemy2 != null)
+        {
+            enemy2.interactable = false;
+        }
+
+        if (enemy3 != null)
+        {
+            enemy3.interactable = false;
+        }
+
+        if (enemy4 != null)
+        {
+            enemy4.interactable = false;
+        }
     }
 
     public void abilityInfo1()
@@ -196,7 +224,7 @@ public class PlayerAbilities : MonoBehaviour
         {
             if(attackDamage1 > 0 && agileDamage1 > 0 && attackDamageBoost1 > 0)
             {
-                Attack1.text += ":  <i> Att. " + attackDamage1 + "  Accur. -" + agileDamage1 + "  DMG+ " + attackDamageBoost1;
+                Attack1.text += ":  <i> Att. " + (attackDamage1 + attackDamageBoostMina) + "  Accur. -" + agileDamage1 + "  DMG+ " + attackDamageBoost1;
             }
             else if (agileDamage1 > 0 && attackDamageBoost1 > 0)
             {
@@ -204,11 +232,11 @@ public class PlayerAbilities : MonoBehaviour
             }
             else if (attackDamage1 > 0 && attackDamageBoost1 > 0)
             {
-                Attack1.text += ":  <i> Att. " + attackDamage1 + "  DMG+ " + attackDamageBoost1;
+                Attack1.text += ":  <i> Att. " + (attackDamage1 + attackDamageBoostMina) + "  DMG+ " + attackDamageBoost1;
             }
             else if (attackDamage1 > 0 && attackDamageBoost1 > 0)
             {
-                Attack1.text += ":  <i> Att. " + attackDamage1 + "  Accur. -" + agileDamage1;
+                Attack1.text += ":  <i> Att. " + (attackDamage1 + attackDamageBoostMina) + "  Accur. -" + agileDamage1;
             }
             else if (attackDamageBoost1 > 0 && agileDamage1 <= 0 && attackDamage1 <= 0)
             {
@@ -220,7 +248,12 @@ public class PlayerAbilities : MonoBehaviour
             }
             else
             {
-                Attack1.text += ":  <i> Att. " + attackDamage1;
+                Attack1.text += ":  <i> Att. " + (attackDamage1 + attackDamageBoostMina);
+            }
+
+            if(damageTeammate > 0)
+            {
+                Attack1.text += " PID: " + damageTeammate;
             }
         }
         else if (Attack1.text.Contains(":"))
@@ -233,14 +266,14 @@ public class PlayerAbilities : MonoBehaviour
             Attack1.text = modifiedString;
         }
     }
-
+    
     public void abilityInfo2()
     {
         if (!(Attack2.text.Contains(":")))
         {
             if (attackDamage2 > 0 && agileDamage2 > 0 && attackDamageBoost2 > 0)
             {
-                Attack2.text += ":  <i> Att. " + attackDamage2 + "  Accur. -" + agileDamage2 + "  DMG+ " + attackDamageBoost2;
+                Attack2.text += ":  <i> Att. " + (attackDamage2 + attackDamageBoostMina) + "  Accur. -" + agileDamage2 + "  DMG+ " + attackDamageBoost2;
             }
             else if (agileDamage2 > 0 && attackDamageBoost2 > 0)
             {
@@ -248,11 +281,11 @@ public class PlayerAbilities : MonoBehaviour
             }
             else if (attackDamage2 > 0 && attackDamageBoost2 > 0)
             {
-                Attack2.text += ":  <i> Att. " + attackDamage2 + "  DMG+ " + attackDamageBoost2;
+                Attack2.text += ":  <i> Att. " + (attackDamage2 + attackDamageBoostMina) + "  DMG+ " + attackDamageBoost2;
             }
             else if (attackDamage2 > 0 && attackDamageBoost2 > 0)
             {
-                Attack2.text += ":  <i> Att. " + attackDamage2 + "  Accur. -" + agileDamage2;
+                Attack2.text += ":  <i> Att. " + (attackDamage2 + attackDamageBoostMina) + "  Accur. -" + agileDamage2;
             }
             else if (attackDamageBoost2 > 0 && agileDamage2 <= 0 && attackDamage2 <= 0)
             {
@@ -264,7 +297,12 @@ public class PlayerAbilities : MonoBehaviour
             }
             else
             {
-                Attack2.text += ":  <i> Att. " + attackDamage2;
+                Attack2.text += ":  <i> Att. " + (attackDamage2 + attackDamageBoostMina);
+            }
+
+            if (damageTeammate2 > 0)
+            {
+                Attack2.text += " PID: " + damageTeammate2;
             }
         }
         else if (Attack2.text.Contains(":"))
@@ -284,7 +322,7 @@ public class PlayerAbilities : MonoBehaviour
         {
             if (attackDamage3 > 0 && agileDamage3 > 0 && attackDamageBoost3 > 0)
             {
-                Attack3.text += ":  <i> Att. " + attackDamage3 + "  Accur. -" + agileDamage3 + "  DMG+ " + attackDamageBoost3;
+                Attack3.text += ":  <i> Att. " + (attackDamage3 + attackDamageBoostJager) + "  Accur. -" + agileDamage3 + "  DMG+ " + attackDamageBoost3;
             }
             else if (agileDamage3 > 0 && attackDamageBoost3 > 0)
             {
@@ -292,11 +330,11 @@ public class PlayerAbilities : MonoBehaviour
             }
             else if (attackDamage3 > 0 && attackDamageBoost3 > 0)
             {
-                Attack3.text += ":  <i> Att. " + attackDamage3 + "  DMG+ " + attackDamageBoost3;
+                Attack3.text += ":  <i> Att. " + (attackDamage3 + attackDamageBoostJager) + "  DMG+ " + attackDamageBoost3;
             }
             else if (attackDamage3 > 0 && attackDamageBoost3 > 0)
             {
-                Attack3.text += ":  <i> Att. " + attackDamage3 + "  Accur. -" + agileDamage3;
+                Attack3.text += ":  <i> Att. " + (attackDamage3 + attackDamageBoostJager) + "  Accur. -" + agileDamage3;
             }
             else if (attackDamageBoost3 > 0 && agileDamage3 <= 0 && attackDamage3 <= 0)
             {
@@ -308,7 +346,12 @@ public class PlayerAbilities : MonoBehaviour
             }
             else
             {
-                Attack3.text += ":  <i> Att. " + attackDamage3;
+                Attack3.text += ":  <i> Att. " + (attackDamage3 + attackDamageBoostJager);
+            }
+
+            if (damageTeammate3 > 0)
+            {
+                Attack3.text += " PID: " + damageTeammate3;
             }
         }
         else if (Attack3.text.Contains(":"))
@@ -328,7 +371,7 @@ public class PlayerAbilities : MonoBehaviour
         {
             if (attackDamage4 > 0 && agileDamage4 > 0 && attackDamageBoost4 > 0)
             {
-                Attack4.text += ":  <i> Att. " + attackDamage4 + "  Accur. -" + agileDamage4 + "  DMG+ " + attackDamageBoost4;
+                Attack4.text += ":  <i> Att. " + (attackDamage4 + attackDamageBoostJager) + "  Accur. -" + agileDamage4 + "  DMG+ " + attackDamageBoost4;
             }
             else if (agileDamage4 > 0 && attackDamageBoost4 > 0)
             {
@@ -336,15 +379,15 @@ public class PlayerAbilities : MonoBehaviour
             }
             else if (attackDamage4 > 0 && attackDamageBoost4 > 0)
             {
-                Attack4.text += ":  <i> Att. " + attackDamage4 + "  DMG+ " + attackDamageBoost4;
+                Attack4.text += ":  <i> Att. " + (attackDamage4 + attackDamageBoostJager) + "  DMG+ " + attackDamageBoost4;
             }
             else if (attackDamage4 > 0 && attackDamageBoost4 > 0)
             {
-                Attack4.text += ":  <i> Att. " + attackDamage4 + "  Accur. -" + agileDamage4;
+                Attack4.text += ":  <i> Att. " + attackDamage4 + attackDamageBoostJager + "  Accur. -" + agileDamage4;
             }
             else if (attackDamageBoost4 > 0 && agileDamage4 <= 0 && attackDamage4 <= 0)
             {
-                Attack4.text += ":  <i>DMG+ " + attackDamageBoost4;
+                Attack4.text += ":  <i>DMG+ " + (attackDamage4 + attackDamageBoostJager);
             }
             else if (attackDamageBoost4 <= 0 && agileDamage4 > 0 && attackDamage4 <= 0)
             {
@@ -352,7 +395,12 @@ public class PlayerAbilities : MonoBehaviour
             }
             else
             {
-                Attack4.text += ":  <i> Att. " + attackDamage4;
+                Attack4.text += ":  <i> Att. " + (attackDamage4 + attackDamageBoostJager);
+            }
+
+            if (damageTeammate4 > 0)
+            {
+                Attack4.text += " PID: " + damageTeammate4;
             }
         }
         else if (Attack4.text.Contains(":"))
@@ -408,16 +456,14 @@ public class PlayerAbilities : MonoBehaviour
 
             if (hitAll)
             {
-                if (attackDamage1 > 0)
-                {
-                    healthEnemy01.SetSliderValue(attackDamage1 + attackDamageBoostMina);
-                    healthEnemy02.SetSliderValue(attackDamage1 + attackDamageBoostMina);
-                }
+                healthEnemy01.SetSliderValue(attackDamage1 + attackDamageBoostMina);
+                if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage1 + attackDamageBoostMina); }
+                if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage1 + attackDamageBoostMina); }
+                if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage1 + attackDamageBoostMina); }
 
                 if (attackDamageBoost1 > 0)
                 {
-                    healthEnemy01.SetSliderValue(attackDamage1 + attackDamageBoostMina);
-                    healthEnemy02.SetSliderValue(attackDamage1 + attackDamageBoostMina);
+                    attackDamageBoostMina += attackDamageBoost1;
                 }
             }
             else
@@ -442,7 +488,18 @@ public class PlayerAbilities : MonoBehaviour
                 }
             }
 
-            enemyAbilities.reduceAttackSpeed(-agileDamage1);
+            if(this.hitAll)
+            {
+                enemyAbilities.reduceAttackSpeed(-agileDamage1, 0);
+                enemyAbilities.reduceAttackSpeed(-agileDamage1, 1);
+                enemyAbilities.reduceAttackSpeed(-agileDamage1, 2);
+                enemyAbilities.reduceAttackSpeed(-agileDamage1, 3);
+            }
+            else
+            {
+                enemyAbilities.reduceAttackSpeed(-agileDamage1, selectedEnemy);
+            }
+            
             //--maxAbilityUse;
 
             if (userName1 != null && !(userName1.Equals("")))
@@ -485,13 +542,14 @@ public class PlayerAbilities : MonoBehaviour
                 if (attackDamage2 > 0)
                 {
                     healthEnemy01.SetSliderValue(attackDamage2 + attackDamageBoostMina);
-                    healthEnemy02.SetSliderValue(attackDamage2 + attackDamageBoostMina);
+                    if (healthEnemy02 != null){healthEnemy02.SetSliderValue(attackDamage2 + attackDamageBoostMina);}
+                    if (healthEnemy03 != null){healthEnemy03.SetSliderValue(attackDamage2 + attackDamageBoostMina);}
+                    if (healthEnemy04 != null){healthEnemy04.SetSliderValue(attackDamage2 + attackDamageBoostMina);}
                 }
 
                 if (attackDamageBoost2 > 0)
                 {
-                    healthEnemy01.SetSliderValue(attackDamage2 + attackDamageBoostMina);
-                    healthEnemy02.SetSliderValue(attackDamage2 + attackDamageBoostMina);
+                    attackDamageBoostMina += attackDamageBoost2;
                 }
             }
             else
@@ -516,7 +574,17 @@ public class PlayerAbilities : MonoBehaviour
                 }
             }
 
-            enemyAbilities.reduceAttackSpeed(-agileDamage2);
+            if (this.hitAll)
+            {
+                enemyAbilities.reduceAttackSpeed(-agileDamage2, 0);
+                enemyAbilities.reduceAttackSpeed(-agileDamage2, 1);
+                enemyAbilities.reduceAttackSpeed(-agileDamage2, 2);
+                enemyAbilities.reduceAttackSpeed(-agileDamage2, 3);
+            }
+            else
+            {
+                enemyAbilities.reduceAttackSpeed(-agileDamage2, selectedEnemy);
+            }
 
             //--maxAbilityUse;
 
@@ -560,13 +628,14 @@ public class PlayerAbilities : MonoBehaviour
                 if (attackDamage3 > 0)
                 {
                     healthEnemy01.SetSliderValue(attackDamage3 + attackDamageBoostJager);
-                    healthEnemy02.SetSliderValue(attackDamage3 + attackDamageBoostJager);
+                    if (healthEnemy02 != null){healthEnemy02.SetSliderValue(attackDamage3 + attackDamageBoostJager);}
+                    if (healthEnemy03 != null){healthEnemy03.SetSliderValue(attackDamage3 + attackDamageBoostJager);}
+                    if (healthEnemy04 != null){healthEnemy04.SetSliderValue(attackDamage3 + attackDamageBoostJager);}
                 }
 
                 if (attackDamageBoost3 > 0)
                 {
-                    healthEnemy01.SetSliderValue(attackDamage3 + attackDamageBoostJager);
-                    healthEnemy02.SetSliderValue(attackDamage3 + attackDamageBoostJager);
+                    attackDamageBoostJager += attackDamageBoost3;
                 }
             }
             else
@@ -591,7 +660,17 @@ public class PlayerAbilities : MonoBehaviour
                 }
             }
 
-            enemyAbilities.reduceAttackSpeed(-agileDamage3);
+            if (this.hitAll)
+            {
+                enemyAbilities.reduceAttackSpeed(-agileDamage3, 0);
+                enemyAbilities.reduceAttackSpeed(-agileDamage3, 1);
+                enemyAbilities.reduceAttackSpeed(-agileDamage3, 2);
+                enemyAbilities.reduceAttackSpeed(-agileDamage3, 3);
+            }
+            else
+            {
+                enemyAbilities.reduceAttackSpeed(-agileDamage3, selectedEnemy);
+            }
             //--maxAbilityUse;
 
             if (userName3 != null && !(userName3.Equals("")))
@@ -608,7 +687,6 @@ public class PlayerAbilities : MonoBehaviour
                 UseMessage.text = enemyName + " Used <i>" + abilityName3 + "</i>" + " and it hit!";
             }
         }
-
     }
 
     private void PlayerAttacked4()
@@ -630,18 +708,19 @@ public class PlayerAbilities : MonoBehaviour
         {
             attackAgainTimer = 70;
 
-            if (hitAll3)
+            if (hitAll4)
             {
                 if (attackDamage4 > 0)
                 {
                     healthEnemy01.SetSliderValue(attackDamage4 + attackDamageBoostJager);
-                    healthEnemy02.SetSliderValue(attackDamage4 + attackDamageBoostJager);
+                    if (healthEnemy02 != null){healthEnemy02.SetSliderValue(attackDamage4 + attackDamageBoostJager);}
+                    if (healthEnemy03 != null){healthEnemy03.SetSliderValue(attackDamage4 + attackDamageBoostJager);}
+                    if (healthEnemy04 != null){healthEnemy04.SetSliderValue(attackDamage4 + attackDamageBoostJager);}
                 }
 
                 if (attackDamageBoost4 > 0)
                 {
-                    healthEnemy01.SetSliderValue(attackDamage4 + attackDamageBoostJager);
-                    healthEnemy02.SetSliderValue(attackDamage4 + attackDamageBoostJager);
+                    attackDamageBoostJager += attackDamageBoost4;
                 }
             }
             else
@@ -666,7 +745,17 @@ public class PlayerAbilities : MonoBehaviour
                 }
             }
 
-            enemyAbilities.reduceAttackSpeed(-agileDamage4);
+            if (this.hitAll)
+            {
+                enemyAbilities.reduceAttackSpeed(-agileDamage4, 0);
+                enemyAbilities.reduceAttackSpeed(-agileDamage4, 1);
+                enemyAbilities.reduceAttackSpeed(-agileDamage4, 2);
+                enemyAbilities.reduceAttackSpeed(-agileDamage4, 3);
+            }
+            else
+            {
+                enemyAbilities.reduceAttackSpeed(-agileDamage4, selectedEnemy);
+            }
             //--maxAbilityUse;
 
             if (userName4 != null && !(userName4.Equals("")))
@@ -717,6 +806,16 @@ public class PlayerAbilities : MonoBehaviour
             {
                 enemy2.interactable = true;
             }
+
+            if (enemy3 != null)
+            {
+                enemy3.interactable = true;
+            }
+
+            if (enemy4 != null)
+            {
+                enemy4.interactable = true;
+            }
         }
     }
 
@@ -744,6 +843,18 @@ public class PlayerAbilities : MonoBehaviour
             {
                 enemy2.interactable = false;
             }
+
+            if (enemy3 != null)
+            {
+                enemy3.interactable = false;
+            }
+
+            if (enemy4 != null)
+            {
+                enemy4.interactable = false;
+            }
+
+            selectedEnemy = -1;
         }
 
         if (attackAgainTimer == 5)
@@ -755,23 +866,48 @@ public class PlayerAbilities : MonoBehaviour
 
     public void unlockAttacks()
     {
-        AttackButton1.interactable = true;
-        AttackButton2.interactable = true;
-        AttackButton3.interactable = true;
-        AttackButton4.interactable = true;
+        if(healthMina.getValue() > 0)
+        {
+            AttackButton1.interactable = true;
+            AttackButton2.interactable = true;
+        }
+
+        if (healthJager.getValue() > 0)
+        {
+            AttackButton3.interactable = true;
+            AttackButton4.interactable = true;
+        }
     }
 
     public void selectEnemy1()
     {
         healthEnemySelected = healthEnemy01;
+        selectedEnemy = 0;
         activateAttack();
     }
 
     public void selectEnemy2()
     {
         healthEnemySelected = healthEnemy02;
+        selectedEnemy = 1;
         activateAttack();
     }
+
+    public void selectEnemy3()
+    {
+        healthEnemySelected = healthEnemy03;
+        selectedEnemy = 2;
+        activateAttack();
+    }
+
+    public void selectEnemy4()
+    {
+        healthEnemySelected = healthEnemy04;
+        selectedEnemy = 3;
+        activateAttack();
+    }
+
+    private int selectedEnemy = -1;
 
     private void activateAttack()
     {
