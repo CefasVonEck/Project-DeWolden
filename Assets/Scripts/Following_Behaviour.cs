@@ -6,56 +6,88 @@ public class Following_Behaviour : MonoBehaviour
 {
     public GameObject player;
     public float distanceMaxFollowing = 5F;
+    [SerializeField]
+    private float distanceMinFollowing = 1.1F;
 
-    // Start is called before the first frame update
+    public float speed = 10.0f; // Speed of movement
+
+    private Vector3 startPosition;
+
+    private float journeyLength;
+
     void Start()
     {
-        
+        startPosition = transform.position;
+        journeyLength = Vector3.Distance(this.transform.position, player.transform.position);
     }
 
-    // Update is called once per frame
+    bool stopMoving = false;
+
     void FixedUpdate()
     {
-        float distance = Vector3.Distance(player.transform.position, this.transform.position);
-
-        if (distance < distanceMaxFollowing)
+        // Start the movement coroutine
+        if (!stopMoving)
         {
+            StartCoroutine(MoveObject());
+        }
+        journeyLength = Vector3.Distance(this.transform.position, player.transform.position);
+    }
 
-            float distanceX = Vector3.Distance(new Vector3(player.transform.position.x, 0, 0), new Vector3(this.transform.position.x, 0, 0));
-            float distanceZ = Vector3.Distance(new Vector3(0, 0, player.transform.position.y), new Vector3(0, 0, this.transform.position.y));
+    void Update()
+    {
+        if (Vector3.Distance(this.transform.position, player.transform.position) >= 0.35f && Vector3.Distance(this.transform.position, player.transform.position) < distanceMaxFollowing)
+        {
+            stopMoving = false;
+        }
+        else
+        {
+            stopMoving = true;
+        }
+    }
 
-            float speed = (0.025f * distance);
+    IEnumerator MoveObject()
+    {
+        float distCovered = 1f;
+        float fracJourney = 0;
 
-            Vector3 thisEntity = this.transform.position;
+        while (!stopMoving && fracJourney < 1)
+        {
+            // Calculate the fraction of the journey completed
+            distCovered += speed * 1000f;
+            fracJourney = distCovered / journeyLength;
 
-            if (distance > 0.5F && distanceX > distanceZ)
+            Vector2 distanceMinnFollowing = new Vector2(distanceMinFollowing, distanceMinFollowing);
+
+            if (player.transform.position.x > this.transform.position.x)
             {
-                if (player.transform.position.x > this.transform.position.x)
-                {
-                    thisEntity = new Vector3(thisEntity.x + speed, thisEntity.y, thisEntity.z);
-                }
-                else if (player.transform.position.x < this.transform.position.x)
-                {
-                    thisEntity = new Vector3(thisEntity.x - speed, thisEntity.y, thisEntity.z);
-                }
+                distanceMinnFollowing.x = 1 - (distanceMinFollowing - 1);
             }
-            else if (distance > 0.5F)
+            else if (player.transform.position.x < this.transform.position.x)
             {
-                if (player.transform.position.y > this.transform.position.y)
-                {
-                    thisEntity = new Vector3(thisEntity.x, thisEntity.y + speed, thisEntity.z);
-                }
-                else if (player.transform.position.y < this.transform.position.y)
-                {
-                    thisEntity = new Vector3(thisEntity.x, thisEntity.y - speed, thisEntity.z);
-                }
+                distanceMinnFollowing.x = distanceMinFollowing;
+            }
+            
+            if (player.transform.position.y > this.transform.position.y)
+            {
+                distanceMinnFollowing.y = 1 - (distanceMinFollowing - 1);
+            }
+            else if (player.transform.position.y < this.transform.position.y)
+            {
+                distanceMinnFollowing.y = distanceMinFollowing;
             }
 
-            this.transform.position = thisEntity;
 
-            //this.transform.position = new Vector3(thisEntity.x - 0.5f, thisEntity.y, thisEntity.z);
+            if(fracJourney > 0.00001f)
+            {
+                fracJourney = 0.00001f;
+            }
 
-            Debug.Log(" dfgdffdgfydsfhyudfuifeyygrus");
+            for (int i = 0; i < 8; ++i)
+            {
+                // Move the object smoothly towards the target position
+                transform.position = Vector3.Lerp(this.transform.position, new Vector3(player.transform.position.x * distanceMinnFollowing.x, player.transform.position.y * distanceMinnFollowing.y, 0), fracJourney);
+            }
+            yield return null;
         }
     }
 }

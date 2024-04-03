@@ -212,7 +212,7 @@ public class AbilitySets : MonoBehaviour
             }
             else
             {
-                if (UnityEngine.Random.Range(0, 100) <= 50)
+                if (healthMina.getValue() > 0 && UnityEngine.Random.Range(0, 100) <= 50)
                 {
                     healthMina.SetSliderValue(attackDamage1 + countExtraDamage);
                 }
@@ -268,7 +268,7 @@ public class AbilitySets : MonoBehaviour
             }
             else
             {
-                if (UnityEngine.Random.Range(0, 100) <= 50)
+                if (healthMina.getValue() > 0 && UnityEngine.Random.Range(0, 100) <= 50)
                 {
                     healthMina.SetSliderValue(attackDamage1 + countExtraDamage);
                 }
@@ -323,7 +323,7 @@ public class AbilitySets : MonoBehaviour
             }
             else
             {
-                if (UnityEngine.Random.Range(0, 100) <= 50)
+                if (healthMina.getValue() > 0 && UnityEngine.Random.Range(0, 100) <= 50)
                 {
                     healthMina.SetSliderValue(attackDamageLast + countExtraDamage);
                 }

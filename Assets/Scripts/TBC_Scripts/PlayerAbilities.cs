@@ -1,13 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
-using System.Text.RegularExpressions;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerAbilities : MonoBehaviour
 {
+    [SerializeField]
+    private string returnToMainSceneName;
+    
     [SerializeField]
     private SliderController healthEnemySelected;
     [SerializeField]
@@ -59,7 +60,6 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField]
     private int agileDamageTeammate = 0;
 
-
     [SerializeField]
     private String abilityName2 = "";
     [SerializeField]
@@ -70,6 +70,10 @@ public class PlayerAbilities : MonoBehaviour
     private int attackDamageBoost2 = 0;
     [SerializeField]
     private String attackUseMessage2 = null;
+    [SerializeField]
+    private int maxAbilityUse2 = 0;
+    [SerializeField]
+    private int changeBeingUsed2 = 0;
     [SerializeField]
     private String userName2 = "";
     [SerializeField]
@@ -93,6 +97,10 @@ public class PlayerAbilities : MonoBehaviour
     private int attackDamageBoost3 = 0;
     [SerializeField]
     private String attackUseMessage3 = null;
+    [SerializeField]
+    private static int maxAbilityUse3 = 0;
+    [SerializeField]
+    private static int changeBeingUsed3 = 0;
     [SerializeField]
     private String userName3 = "";
     [SerializeField]
@@ -156,7 +164,6 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField]
     private Button AttackButton4;
 
-
     [SerializeField]
     private Button enemy1;
     [SerializeField]
@@ -168,34 +175,54 @@ public class PlayerAbilities : MonoBehaviour
 
     private int missAbiblityChangesMina = 0;
     private int missAbiblityChangesJager = 0;
+    private AbilityList abilityList = new AbilityList();
 
     // Start is called before the first frame update
     void Start()
     {
-        if (abilityName != null && !abilityName.Equals(""))
+        abilityName = abilityList.abilityName[0];
+        attackDamage1 = abilityList.attackDamage1[0];
+        agileDamage1 = abilityList.agileDamage1[0];
+        attackDamageBoost1 = abilityList.attackDamageBoost1[0];
+        maxAbilityUse = abilityList.maxAbilityUse[0];
+        changeBeingUsed = abilityList.changeBeingUsed[0];
+        attackUseMessage = abilityList.attackUseMessage[0];
+        userName1 = abilityList.userName1[0];
+        hitAll = abilityList.hitAll[0];
+        canMiss = abilityList.canMiss[0];
+        harmTeammate = abilityList.harmTeammate[0];
+        damageTeammate = abilityList.damageTeammate[0];
+        agileDamageTeammate = abilityList.agileDamageTeammate[0];
+
+
+        if (Attack1 != null && abilityName != null && !abilityName.Equals(""))
         {
             Attack1.text = abilityName;
         }
 
-        if (abilityName2 != null && !abilityName2.Equals(""))
+        if (Attack2 != null && abilityName2 != null && !abilityName2.Equals(""))
         {
             Attack2.text = abilityName2;
         }
 
-        if(abilityName3 != null && !abilityName3.Equals(""))
+        if(Attack3 != null && abilityName3 != null && !abilityName3.Equals(""))
         {
             Attack3.text = abilityName3;
         }
 
-        if (abilityName4 != null && !abilityName4.Equals(""))
+        if (Attack4 != null && abilityName4 != null && !abilityName4.Equals(""))
         {
             Attack4.text = abilityName4;
         }
 
-        AttackButton1.interactable = false;
-        AttackButton2.interactable = false;
-        AttackButton3.interactable = false;
-        AttackButton4.interactable = false;
+        if(AttackButton1 != null)
+        {
+            AttackButton1.interactable = false;
+            AttackButton2.interactable = false;
+            AttackButton3.interactable = false;
+            AttackButton4.interactable = false;
+        }
+       
 
         if (enemy1 != null)
         {
@@ -479,7 +506,7 @@ public class PlayerAbilities : MonoBehaviour
                 }
             }
 
-            if (this.harmTeammate)
+            if (harmTeammate)
             {
                 healthJager.SetSliderValue(damageTeammate);
                 if (attackDamageBoostJager - agileDamageTeammate >= 0)
@@ -488,7 +515,7 @@ public class PlayerAbilities : MonoBehaviour
                 }
             }
 
-            if(this.hitAll)
+            if(hitAll)
             {
                 enemyAbilities.reduceAttackSpeed(-agileDamage1, 0);
                 enemyAbilities.reduceAttackSpeed(-agileDamage1, 1);
@@ -565,7 +592,7 @@ public class PlayerAbilities : MonoBehaviour
                 }
             }
 
-            if (this.harmTeammate2)
+            if (harmTeammate2)
             {
                 healthJager.SetSliderValue(damageTeammate2);
                 if (attackDamageBoostJager - agileDamageTeammate2 >= 0)
@@ -574,7 +601,7 @@ public class PlayerAbilities : MonoBehaviour
                 }
             }
 
-            if (this.hitAll)
+            if (hitAll)
             {
                 enemyAbilities.reduceAttackSpeed(-agileDamage2, 0);
                 enemyAbilities.reduceAttackSpeed(-agileDamage2, 1);
@@ -660,7 +687,7 @@ public class PlayerAbilities : MonoBehaviour
                 }
             }
 
-            if (this.hitAll)
+            if (hitAll)
             {
                 enemyAbilities.reduceAttackSpeed(-agileDamage3, 0);
                 enemyAbilities.reduceAttackSpeed(-agileDamage3, 1);
@@ -736,7 +763,7 @@ public class PlayerAbilities : MonoBehaviour
                 }
             }
 
-            if (this.harmTeammate4)
+            if (harmTeammate4)
             {
                 healthMina.SetSliderValue(damageTeammate4);
                 if (attackDamageBoostMina - agileDamageTeammate4 >= 0)
@@ -745,7 +772,7 @@ public class PlayerAbilities : MonoBehaviour
                 }
             }
 
-            if (this.hitAll)
+            if (hitAll)
             {
                 enemyAbilities.reduceAttackSpeed(-agileDamage4, 0);
                 enemyAbilities.reduceAttackSpeed(-agileDamage4, 1);
@@ -861,6 +888,29 @@ public class PlayerAbilities : MonoBehaviour
         {
             AbilitySets.afterPlayerAttacked();
             UseMessage.text = "...";
+        }
+        
+
+        if(healthMina != null && (healthMina.getValue() <= 0 && healthJager.getValue() <= 0))
+        {
+            SceneManager.LoadScene(returnToMainSceneName);
+        }
+
+        if (healthEnemy01 != null && healthEnemy01.getValue() == 0)
+        {
+            SceneManager.LoadScene(returnToMainSceneName);
+        }
+        else if (healthEnemy01 != null && healthEnemy02 != null && (healthEnemy01.getValue() == 0 && healthEnemy02.getValue() == 0))
+        {
+            SceneManager.LoadScene(returnToMainSceneName);
+        }
+        else if (healthEnemy01 != null && healthEnemy02 != null && healthEnemy03 != null && (healthEnemy01.getValue() == 0 && healthEnemy02.getValue() == 0 && healthEnemy03.getValue() == 0))
+        {
+            SceneManager.LoadScene(returnToMainSceneName);
+        }
+        else if (healthEnemy01 != null && healthEnemy02 != null && healthEnemy03 != null && healthEnemy04 != null && (healthEnemy01.getValue() == 0 && healthEnemy02.getValue() == 0)&& healthEnemy03.getValue() == 0 && healthEnemy04.getValue() == 0)
+        {
+            SceneManager.LoadScene(returnToMainSceneName);
         }
     }
 

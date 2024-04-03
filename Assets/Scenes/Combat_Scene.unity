@@ -1165,6 +1165,7 @@ GameObject:
   - component: {fileID: 471842173}
   - component: {fileID: 471842175}
   - component: {fileID: 471842176}
+  - component: {fileID: 471842177}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1244,6 +1245,46 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+--- !u!114 &471842177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471842171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18ebbd5b75319d14c86ee918114b3a42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityName:
+  - Earpiercing Scream
+  - 
+  - 
+  - 
+  - 
+  attackDamage1: 0c00000000000000000000000000000000000000
+  agileDamage1: 0500000000000000000000000000000000000000
+  attackDamageBoost1: 0c00000000000000000000000000000000000000
+  maxAbilityUse: a086010000000000000000000000000000000000
+  changeBeingUsed: 0000000000000000000000000000000000000000
+  attackUseMessage:
+  - ' and damaged everyone!'
+  - 
+  - 
+  - 
+  - 
+  userName1:
+  - 
+  - 
+  - 
+  - 
+  - 
+  hitAll: 0101010101
+  canMiss: 0101010101
+  harmTeammate: 0100000000
+  damageTeammate: 0a00000000000000000000000000000000000000
+  agileDamageTeammate: 0a00000000000000000000000000000000000000
 --- !u!1 &505752741
 GameObject:
   m_ObjectHideFlags: 0
@@ -4878,6 +4919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6132d26d4f5ce16418edb2fdd3493548, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  returnToMainSceneName: TestLevelScene
   healthEnemySelected: {fileID: 0}
   healthEnemy01: {fileID: 1072037603}
   healthEnemy02: {fileID: 2136888902}
@@ -4905,6 +4947,8 @@ MonoBehaviour:
   agileDamage2: 20
   attackDamageBoost2: 0
   attackUseMessage2: ' and enemy accuracy was lowered!'
+  maxAbilityUse2: 0
+  changeBeingUsed2: 0
   userName2: Mina
   hitAll2: 1
   canMiss2: 1
