@@ -7464,31 +7464,30 @@ MonoBehaviour:
   enemyThreeName: Wolf 2
   enemyFourName: 
   abilityName: Claw Attack
-  attackDamage1: 3
+  attackDamage1: 5
   accurcyDamage1: 0
   attackDamageBoost1: 0
   accurcyBoost1: 0
   maxAbilityUse: 100
-  changeBeingUsed: 60
+  changeBeingUsed: 80
   attackUseMessage: 
   boostAllAccurcy1: 0
   canMiss: 1
-  abilityName2: Headbutt
-  attackDamage2: 5
-  accurcyDamage2: 3
-  attackDamageBoost2: 0
+  abilityName2: Howl
+  attackDamage2: 0
+  accurcyDamage2: 0
+  attackDamageBoost2: 6
   accurcyBoost2: 0
   maxAbilityUse2: 2
-  changeBeingUsed2: 65
+  changeBeingUsed2: 60
   attackUseMessage2: ' and all Damage Output was boosted..'
   boostAllAccurcy2: 0
   canMiss2: 0
   abilityNameLast: Growl
   attackDamageLast: 0
-  accurcyDamageLast: 2
+  accurcyDamageLast: 0
   boostAllAccurcyLast: 0
-  attackDamageBoostLast: 4
-  attackUseMessageLast: ' and all Damage Output was boosted..'
+  attackDamageBoostLast: 1
   UseMessage: {fileID: 1149140857}
   startBattleMessage: A pack of Wolfs jumped from behind a Boulder and attacked you!
 --- !u!114 &1928170629

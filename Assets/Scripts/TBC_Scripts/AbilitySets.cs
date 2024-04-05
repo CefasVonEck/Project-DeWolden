@@ -106,6 +106,8 @@ public class AbilitySets : MonoBehaviour
     private bool boostAllAccurcyLast = false;
     [SerializeField]
     private int attackDamageBoostLast = 0;
+    [SerializeField]
+    private String attackUseMessageLast = null;
 
     [SerializeField]
     private TextMeshProUGUI UseMessage;
@@ -351,7 +353,15 @@ public class AbilitySets : MonoBehaviour
 
             usedAbilitySpeed = accurcyDamageLast;
 
-            UseMessage.text = enemyName + " Used <i>" + abilityNameLast + "</i>" + " and it hit!";
+            if (attackUseMessageLast != null && !(attackUseMessageLast.Equals("")))
+            {
+                UseMessage.text = enemyName + " Used <i>" + abilityName2 + "</i>" + attackUseMessageLast;
+            }
+            else
+            {
+                UseMessage.text = enemyName + " Used <i>" + abilityName2 + "</i>" + " and it hit!";
+            }
+            
 
             waitingMessage = 100;
         }

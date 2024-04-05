@@ -180,19 +180,19 @@ public class PlayerAbilities : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        abilityName = abilityList.abilityName[0];
-        attackDamage1 = abilityList.attackDamage1[0];
-        agileDamage1 = abilityList.agileDamage1[0];
-        attackDamageBoost1 = abilityList.attackDamageBoost1[0];
-        maxAbilityUse = abilityList.maxAbilityUse[0];
-        changeBeingUsed = abilityList.changeBeingUsed[0];
-        attackUseMessage = abilityList.attackUseMessage[0];
-        userName1 = abilityList.userName1[0];
-        hitAll = abilityList.hitAll[0];
-        canMiss = abilityList.canMiss[0];
-        harmTeammate = abilityList.harmTeammate[0];
-        damageTeammate = abilityList.damageTeammate[0];
-        agileDamageTeammate = abilityList.agileDamageTeammate[0];
+        //abilityName = abilityList.abilityName[0];
+        //attackDamage1 = abilityList.attackDamage1[0];
+        //agileDamage1 = abilityList.agileDamage1[0];
+        //attackDamageBoost1 = abilityList.attackDamageBoost1[0];
+        //maxAbilityUse = abilityList.maxAbilityUse[0];
+        //changeBeingUsed = abilityList.changeBeingUsed[0];
+        //attackUseMessage = abilityList.attackUseMessage[0];
+        //userName1 = abilityList.userName1[0];
+        //hitAll = abilityList.hitAll[0];
+        //canMiss = abilityList.canMiss[0];
+        //harmTeammate = abilityList.harmTeammate[0];
+        //damageTeammate = abilityList.damageTeammate[0];
+        //agileDamageTeammate = abilityList.agileDamageTeammate[0];
 
 
         if (Attack1 != null && abilityName != null && !abilityName.Equals(""))
@@ -889,26 +889,25 @@ public class PlayerAbilities : MonoBehaviour
             AbilitySets.afterPlayerAttacked();
             UseMessage.text = "...";
         }
-        
 
-        if(healthMina != null && (healthMina.getValue() <= 0 && healthJager.getValue() <= 0))
-        {
-            SceneManager.LoadScene(returnToMainSceneName);
-        }
 
-        if (healthEnemy01 != null && healthEnemy01.getValue() == 0)
+        if (healthEnemy01 != null && healthEnemy02 != null && healthEnemy03 != null && healthEnemy04 != null && (healthEnemy01.getValue() <= 0 && healthEnemy02.getValue() <= 0) && healthEnemy03.getValue() <= 0 && healthEnemy04.getValue() <= 0)
         {
             SceneManager.LoadScene(returnToMainSceneName);
         }
-        else if (healthEnemy01 != null && healthEnemy02 != null && (healthEnemy01.getValue() == 0 && healthEnemy02.getValue() == 0))
+        else if (healthEnemy01 != null && healthEnemy02 != null && healthEnemy03 != null && (healthEnemy01.getValue() <= 0 && healthEnemy02.getValue() <= 0 && healthEnemy03.getValue() <= 0))
         {
             SceneManager.LoadScene(returnToMainSceneName);
         }
-        else if (healthEnemy01 != null && healthEnemy02 != null && healthEnemy03 != null && (healthEnemy01.getValue() == 0 && healthEnemy02.getValue() == 0 && healthEnemy03.getValue() == 0))
+        else if (healthEnemy01 != null && healthEnemy02 != null && (healthEnemy01.getValue() <= 0 && healthEnemy02.getValue() <= 0))
         {
             SceneManager.LoadScene(returnToMainSceneName);
         }
-        else if (healthEnemy01 != null && healthEnemy02 != null && healthEnemy03 != null && healthEnemy04 != null && (healthEnemy01.getValue() == 0 && healthEnemy02.getValue() == 0)&& healthEnemy03.getValue() == 0 && healthEnemy04.getValue() == 0)
+        else if (healthEnemy01 != null && healthEnemy01.getValue() <= 0)
+        {
+            SceneManager.LoadScene(returnToMainSceneName);
+        }
+        else if (healthMina != null && (healthMina.getValue() <= 0 && healthJager.getValue() <= 0))
         {
             SceneManager.LoadScene(returnToMainSceneName);
         }
