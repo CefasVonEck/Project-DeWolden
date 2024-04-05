@@ -137,6 +137,98 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField]
     private int agileDamageTeammate4 = 0;
 
+    [SerializeField]
+    private String abilityName5 = "";
+    [SerializeField]
+    private int attackDamage5 = 0;
+    [SerializeField]
+    private int agileDamage5 = 0;
+    [SerializeField]
+    private int attackDamageBoost5 = 0;
+    [SerializeField]
+    private String attackUseMessage5 = null;
+    [SerializeField]
+    private String userName5 = "";
+    [SerializeField]
+    private bool hitAll5 = true;
+    [SerializeField]
+    private bool canMiss5 = true;
+    [SerializeField]
+    private bool harmTeammate5 = true;
+    [SerializeField]
+    private int damageTeammate5 = 0;
+    [SerializeField]
+    private int agileDamageTeammate5 = 0;
+
+    [SerializeField]
+    private String abilityName6 = "";
+    [SerializeField]
+    private int attackDamage6 = 0;
+    [SerializeField]
+    private int agileDamage6 = 0;
+    [SerializeField]
+    private int attackDamageBoost6 = 0;
+    [SerializeField]
+    private String attackUseMessage6 = null;
+    [SerializeField]
+    private String userName6 = "";
+    [SerializeField]
+    private bool hitAll6 = true;
+    [SerializeField]
+    private bool canMiss6 = true;
+    [SerializeField]
+    private bool harmTeammate6 = true;
+    [SerializeField]
+    private int damageTeammate6 = 0;
+    [SerializeField]
+    private int agileDamageTeammate6 = 0;
+
+    [SerializeField]
+    private String abilityName7 = "";
+    [SerializeField]
+    private int attackDamage7 = 0;
+    [SerializeField]
+    private int agileDamage7 = 0;
+    [SerializeField]
+    private int attackDamageBoost7 = 0;
+    [SerializeField]
+    private String attackUseMessage7 = null;
+    [SerializeField]
+    private String userName7 = "";
+    [SerializeField]
+    private bool hitAll7 = true;
+    [SerializeField]
+    private bool canMiss7 = true;
+    [SerializeField]
+    private bool harmTeammate7 = true;
+    [SerializeField]
+    private int damageTeammate7 = 0;
+    [SerializeField]
+    private int agileDamageTeammate7 = 0;
+
+    [SerializeField]
+    private String abilityName8 = "";
+    [SerializeField]
+    private int attackDamage8 = 0;
+    [SerializeField]
+    private int agileDamage8 = 0;
+    [SerializeField]
+    private int attackDamageBoost8 = 0;
+    [SerializeField]
+    private String attackUseMessage8 = null;
+    [SerializeField]
+    private String userName8 = "";
+    [SerializeField]
+    private bool hitAll8 = true;
+    [SerializeField]
+    private bool canMiss8 = true;
+    [SerializeField]
+    private bool harmTeammate8 = true;
+    [SerializeField]
+    private int damageTeammate8 = 0;
+    [SerializeField]
+    private int agileDamageTeammate8 = 0;
+
     private int attackDamageBoostMina = 0;
     private int attackDamageBoostJager = 0;
 
@@ -148,21 +240,37 @@ public class PlayerAbilities : MonoBehaviour
     private TextMeshProUGUI Attack1;
     [SerializeField]
     private TextMeshProUGUI Attack2;
+    [SerializeField]
+    private TextMeshProUGUI Attack5;
+    [SerializeField]
+    private TextMeshProUGUI Attack6;
 
     [SerializeField]
     private TextMeshProUGUI Attack3;
     [SerializeField]
     private TextMeshProUGUI Attack4;
+    [SerializeField]
+    private TextMeshProUGUI Attack7;
+    [SerializeField]
+    private TextMeshProUGUI Attack8;
 
     [SerializeField]
     private Button AttackButton1;
     [SerializeField]
     private Button AttackButton2;
+    [SerializeField]
+    private Button AttackButton5;
+    [SerializeField]
+    private Button AttackButton6;
 
     [SerializeField]
     private Button AttackButton3;
     [SerializeField]
     private Button AttackButton4;
+    [SerializeField]
+    private Button AttackButton7;
+    [SerializeField]
+    private Button AttackButton8;
 
     [SerializeField]
     private Button enemy1;
@@ -215,12 +323,36 @@ public class PlayerAbilities : MonoBehaviour
             Attack4.text = abilityName4;
         }
 
-        if(AttackButton1 != null)
+        if (Attack5 != null && abilityName5 != null && !abilityName5.Equals(""))
+        {
+            Attack5.text = abilityName5;
+        }
+
+        if (Attack6 != null && abilityName6 != null && !abilityName6.Equals(""))
+        {
+            Attack6.text = abilityName6;
+        }
+
+        if (Attack7 != null && abilityName7 != null && !abilityName7.Equals(""))
+        {
+            Attack7.text = abilityName7;
+        }
+
+        if (Attack8 != null && abilityName8 != null && !abilityName8.Equals(""))
+        {
+            Attack8.text = abilityName8;
+        }
+
+        if (AttackButton1 != null)
         {
             AttackButton1.interactable = false;
             AttackButton2.interactable = false;
             AttackButton3.interactable = false;
             AttackButton4.interactable = false;
+            AttackButton5.interactable = false;
+            AttackButton6.interactable = false;
+            AttackButton7.interactable = false;
+            AttackButton8.interactable = false;
         }
        
 
@@ -293,7 +425,7 @@ public class PlayerAbilities : MonoBehaviour
             Attack1.text = modifiedString;
         }
     }
-    
+
     public void abilityInfo2()
     {
         if (!(Attack2.text.Contains(":")))
@@ -340,6 +472,104 @@ public class PlayerAbilities : MonoBehaviour
             string modifiedString = parts[0];
 
             Attack2.text = modifiedString;
+        }
+    }
+
+    public void abilityInfo5()
+    {
+        if (!(Attack5.text.Contains(":")))
+        {
+            if (attackDamage5 > 0 && agileDamage5 > 0 && attackDamageBoost5 > 0)
+            {
+                Attack5.text += ":  <i> Att. " + (attackDamage5 + attackDamageBoostMina) + "  Accur. -" + agileDamage5 + "  DMG+ " + attackDamageBoost5;
+            }
+            else if (agileDamage5 > 0 && attackDamageBoost5 > 0)
+            {
+                Attack5.text += ":  <i> Accur. -" + agileDamage5 + "  DMG+ " + attackDamageBoost5;
+            }
+            else if (attackDamage5 > 0 && attackDamageBoost5 > 0)
+            {
+                Attack5.text += ":  <i> Att. " + (attackDamage5 + attackDamageBoostMina) + "  DMG+ " + attackDamageBoost5;
+            }
+            else if (attackDamage5 > 0 && attackDamageBoost5 > 0)
+            {
+                Attack5.text += ":  <i> Att. " + (attackDamage5 + attackDamageBoostMina) + "  Accur. -" + agileDamage5;
+            }
+            else if (attackDamageBoost5 > 0 && agileDamage5 <= 0 && attackDamage5 <= 0)
+            {
+                Attack5.text += ":  <i>DMG+ " + attackDamageBoost5;
+            }
+            else if (attackDamageBoost5 <= 0 && agileDamage5 > 0 && attackDamage5 <= 0)
+            {
+                Attack5.text += ":  <i>Accur. -" + agileDamage5;
+            }
+            else
+            {
+                Attack5.text += ":  <i> Att. " + (attackDamage5 + attackDamageBoostMina);
+            }
+
+            if (damageTeammate5 > 0)
+            {
+                Attack5.text += " PID: " + damageTeammate5;
+            }
+        }
+        else if (Attack5.text.Contains(":"))
+        {
+            string[] parts = Attack5.text.Split(':');
+
+            // Take the first part (before the colon)
+            string modifiedString = parts[0];
+
+            Attack5.text = modifiedString;
+        }
+    }
+
+    public void abilityInfo6()
+    {
+        if (!(Attack6.text.Contains(":")))
+        {
+            if (attackDamage6 > 0 && agileDamage6 > 0 && attackDamageBoost6 > 0)
+            {
+                Attack6.text += ":  <i> Att. " + (attackDamage6 + attackDamageBoostMina) + "  Accur. -" + agileDamage6 + "  DMG+ " + attackDamageBoost6;
+            }
+            else if (agileDamage6 > 0 && attackDamageBoost6 > 0)
+            {
+                Attack6.text += ":  <i> Accur. -" + agileDamage6 + "  DMG+ " + attackDamageBoost6;
+            }
+            else if (attackDamage6 > 0 && attackDamageBoost6 > 0)
+            {
+                Attack6.text += ":  <i> Att. " + (attackDamage6 + attackDamageBoostMina) + "  DMG+ " + attackDamageBoost6;
+            }
+            else if (attackDamage6 > 0 && attackDamageBoost6 > 0)
+            {
+                Attack6.text += ":  <i> Att. " + (attackDamage6 + attackDamageBoostMina) + "  Accur. -" + agileDamage6;
+            }
+            else if (attackDamageBoost6 > 0 && agileDamage6 <= 0 && attackDamage6 <= 0)
+            {
+                Attack6.text += ":  <i>DMG+ " + attackDamageBoost6;
+            }
+            else if (attackDamageBoost6 <= 0 && agileDamage6 > 0 && attackDamage6 <= 0)
+            {
+                Attack6.text += ":  <i>Accur. -" + agileDamage6;
+            }
+            else
+            {
+                Attack6.text += ":  <i> Att. " + (attackDamage6 + attackDamageBoostMina);
+            }
+
+            if (damageTeammate6 > 0)
+            {
+                Attack6.text += " PID: " + damageTeammate6;
+            }
+        }
+        else if (Attack6.text.Contains(":"))
+        {
+            string[] parts = Attack6.text.Split(':');
+
+            // Take the first part (before the colon)
+            string modifiedString = parts[0];
+
+            Attack6.text = modifiedString;
         }
     }
 
@@ -438,6 +668,104 @@ public class PlayerAbilities : MonoBehaviour
             string modifiedString = parts[0];
 
             Attack4.text = modifiedString;
+        }
+    }
+
+    public void abilityInfo7()
+    {
+        if (!(Attack7.text.Contains(":")))
+        {
+            if (attackDamage7 > 0 && agileDamage7 > 0 && attackDamageBoost7 > 0)
+            {
+                Attack7.text += ":  <i> Att. " + (attackDamage7 + attackDamageBoostJager) + "  Accur. -" + agileDamage7 + "  DMG+ " + attackDamageBoost7;
+            }
+            else if (agileDamage7 > 0 && attackDamageBoost7 > 0)
+            {
+                Attack7.text += ":  <i> Accur. -" + agileDamage7 + "  DMG+ " + attackDamageBoost7;
+            }
+            else if (attackDamage7 > 0 && attackDamageBoost7 > 0)
+            {
+                Attack7.text += ":  <i> Att. " + (attackDamage7 + attackDamageBoostJager) + "  DMG+ " + attackDamageBoost7;
+            }
+            else if (attackDamage7 > 0 && attackDamageBoost7 > 0)
+            {
+                Attack7.text += ":  <i> Att. " + (attackDamage7 + attackDamageBoostJager) + "  Accur. -" + agileDamage7;
+            }
+            else if (attackDamageBoost7 > 0 && agileDamage7 <= 0 && attackDamage7 <= 0)
+            {
+                Attack7.text += ":  <i>DMG+ " + attackDamageBoost7;
+            }
+            else if (attackDamageBoost7 <= 0 && agileDamage7 > 0 && attackDamage7 <= 0)
+            {
+                Attack7.text += ":  <i>Accur. -" + agileDamage7;
+            }
+            else
+            {
+                Attack7.text += ":  <i> Att. " + (attackDamage7 + attackDamageBoostJager);
+            }
+
+            if (damageTeammate7 > 0)
+            {
+                Attack7.text += " PID: " + damageTeammate7;
+            }
+        }
+        else if (Attack7.text.Contains(":"))
+        {
+            string[] parts = Attack7.text.Split(':');
+
+            // Take the first part (before the colon)
+            string modifiedString = parts[0];
+
+            Attack7.text = modifiedString;
+        }
+    }
+
+    public void abilityInfo8()
+    {
+        if (!(Attack8.text.Contains(":")))
+        {
+            if (attackDamage8 > 0 && agileDamage8 > 0 && attackDamageBoost8 > 0)
+            {
+                Attack8.text += ":  <i> Att. " + (attackDamage8 + attackDamageBoostJager) + "  Accur. -" + agileDamage8 + "  DMG+ " + attackDamageBoost8;
+            }
+            else if (agileDamage8 > 0 && attackDamageBoost8 > 0)
+            {
+                Attack8.text += ":  <i> Accur. -" + agileDamage8 + "  DMG+ " + attackDamageBoost8;
+            }
+            else if (attackDamage8 > 0 && attackDamageBoost8 > 0)
+            {
+                Attack8.text += ":  <i> Att. " + (attackDamage8 + attackDamageBoostJager) + "  DMG+ " + attackDamageBoost8;
+            }
+            else if (attackDamage8 > 0 && attackDamageBoost8 > 0)
+            {
+                Attack8.text += ":  <i> Att. " + (attackDamage8 + attackDamageBoostJager) + "  Accur. -" + agileDamage8;
+            }
+            else if (attackDamageBoost8 > 0 && agileDamage8 <= 0 && attackDamage8 <= 0)
+            {
+                Attack8.text += ":  <i>DMG+ " + attackDamageBoost8;
+            }
+            else if (attackDamageBoost8 <= 0 && agileDamage8 > 0 && attackDamage8 <= 0)
+            {
+                Attack8.text += ":  <i>Accur. -" + agileDamage8;
+            }
+            else
+            {
+                Attack8.text += ":  <i> Att. " + (attackDamage8 + attackDamageBoostJager);
+            }
+
+            if (damageTeammate8 > 0)
+            {
+                Attack8.text += " PID: " + damageTeammate8;
+            }
+        }
+        else if (Attack8.text.Contains(":"))
+        {
+            string[] parts = Attack8.text.Split(':');
+
+            // Take the first part (before the colon)
+            string modifiedString = parts[0];
+
+            Attack8.text = modifiedString;
         }
     }
 
@@ -631,6 +959,92 @@ public class PlayerAbilities : MonoBehaviour
         }
     }
 
+    private void PlayerAttacked5()
+    {
+        int shouldGoFirst = -2;
+
+        if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss5)
+        {
+            if (userName2 != null && !(userName2.Equals("")))
+            {
+                enemyName = userName2;
+            }
+
+            UseMessage.text = enemyName + " tried to attack and missed!";
+
+            attackAgainTimer = 70;
+        }
+        else if (enemyAbilities.getWaitingTime() + this.getWaitingTime() == 0)
+        {
+            attackAgainTimer = 70;
+
+            if (hitAll5)
+            {
+                if (attackDamage5 > 0)
+                {
+                    healthEnemy01.SetSliderValue(attackDamage5 + attackDamageBoostMina);
+                    if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage5 + attackDamageBoostMina); }
+                    if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage5 + attackDamageBoostMina); }
+                    if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage5 + attackDamageBoostMina); }
+                }
+
+                if (attackDamageBoost5 > 0)
+                {
+                    attackDamageBoostMina += attackDamageBoost5;
+                }
+            }
+            else
+            {
+                if (attackDamage5 > 0)
+                {
+                    healthEnemySelected.SetSliderValue(attackDamage5 + attackDamageBoostMina);
+                }
+
+                if (attackDamageBoost5 > 0)
+                {
+                    attackDamageBoostMina += attackDamageBoost5;
+                }
+            }
+
+            if (harmTeammate5)
+            {
+                healthJager.SetSliderValue(damageTeammate5);
+                if (attackDamageBoostJager - agileDamageTeammate5 >= 0)
+                {
+                    attackDamageBoostJager -= agileDamageTeammate5;
+                }
+            }
+
+            if (hitAll)
+            {
+                enemyAbilities.reduceAttackSpeed(-agileDamage5, 0);
+                enemyAbilities.reduceAttackSpeed(-agileDamage5, 1);
+                enemyAbilities.reduceAttackSpeed(-agileDamage5, 2);
+                enemyAbilities.reduceAttackSpeed(-agileDamage5, 3);
+            }
+            else
+            {
+                enemyAbilities.reduceAttackSpeed(-agileDamage5, selectedEnemy);
+            }
+
+            //--maxAbilityUse;
+
+            if (userName5 != null && !(userName5.Equals("")))
+            {
+                enemyName = userName5;
+            }
+
+            if (attackUseMessage5 != null && !(attackUseMessage5.Equals("")))
+            {
+                UseMessage.text = enemyName + " Used <i>" + abilityName5 + "</i>" + attackUseMessage5;
+            }
+            else
+            {
+                UseMessage.text = enemyName + " Used <i>" + abilityName5 + "</i>" + " and it hit!";
+            }
+        }
+    }
+
     private void PlayerAttacked3()
     {
         int shouldGoFirst = -2;
@@ -801,6 +1215,261 @@ public class PlayerAbilities : MonoBehaviour
         }
     }
 
+    private void PlayerAttacked6()
+    {
+        int shouldGoFirst = -2;
+
+        if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss6)
+        {
+            if (userName6 != null && !(userName6.Equals("")))
+            {
+                enemyName = userName6;
+            }
+
+            UseMessage.text = enemyName + " tried to attack and missed!";
+
+            attackAgainTimer = 70;
+        }
+        else if (enemyAbilities.getWaitingTime() + this.getWaitingTime() == 0)
+        {
+            attackAgainTimer = 70;
+
+            if (hitAll6)
+            {
+                if (attackDamage6 > 0)
+                {
+                    healthEnemy01.SetSliderValue(attackDamage6 + attackDamageBoostJager);
+                    if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage6 + attackDamageBoostJager); }
+                    if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage6 + attackDamageBoostJager); }
+                    if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage6 + attackDamageBoostJager); }
+                }
+
+                if (attackDamageBoost6 > 0)
+                {
+                    attackDamageBoostJager += attackDamageBoost6;
+                }
+            }
+            else
+            {
+                if (attackDamage6 > 0)
+                {
+                    healthEnemySelected.SetSliderValue(attackDamage6 + attackDamageBoostJager);
+                }
+
+                if (attackDamageBoost6 > 0)
+                {
+                    attackDamageBoostJager += attackDamageBoost6;
+                }
+            }
+
+            if (this.harmTeammate6)
+            {
+                healthMina.SetSliderValue(damageTeammate6);
+                if (attackDamageBoostMina - agileDamageTeammate6 >= 0)
+                {
+                    attackDamageBoostMina -= agileDamageTeammate6;
+                }
+            }
+
+            if (hitAll)
+            {
+                enemyAbilities.reduceAttackSpeed(-agileDamage6, 0);
+                enemyAbilities.reduceAttackSpeed(-agileDamage6, 1);
+                enemyAbilities.reduceAttackSpeed(-agileDamage6, 2);
+                enemyAbilities.reduceAttackSpeed(-agileDamage6, 3);
+            }
+            else
+            {
+                enemyAbilities.reduceAttackSpeed(-agileDamage6, selectedEnemy);
+            }
+            //--maxAbilityUse;
+
+            if (userName6 != null && !(userName6.Equals("")))
+            {
+                enemyName = userName6;
+            }
+
+            if (attackUseMessage6 != null && !(attackUseMessage6.Equals("")))
+            {
+                UseMessage.text = enemyName + " Used <i>" + abilityName6 + "</i>" + attackUseMessage6;
+            }
+            else
+            {
+                UseMessage.text = enemyName + " Used <i>" + abilityName6 + "</i>" + " and it hit!";
+            }
+        }
+    }
+
+    private void PlayerAttacked7()
+    {
+        int shouldGoFirst = -2;
+
+        if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss7)
+        {
+            if (userName6 != null && !(userName6.Equals("")))
+            {
+                enemyName = userName6;
+            }
+
+            UseMessage.text = enemyName + " tried to attack and missed!";
+
+            attackAgainTimer = 70;
+        }
+        else if (enemyAbilities.getWaitingTime() + this.getWaitingTime() == 0)
+        {
+            attackAgainTimer = 70;
+
+            if (hitAll7)
+            {
+                if (attackDamage7 > 0)
+                {
+                    healthEnemy01.SetSliderValue(attackDamage7 + attackDamageBoostJager);
+                    if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage7 + attackDamageBoostJager); }
+                    if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage7 + attackDamageBoostJager); }
+                    if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage7 + attackDamageBoostJager); }
+                }
+
+                if (attackDamageBoost7 > 0)
+                {
+                    attackDamageBoostJager += attackDamageBoost7;
+                }
+            }
+            else
+            {
+                if (attackDamage7 > 0)
+                {
+                    healthEnemySelected.SetSliderValue(attackDamage7 + attackDamageBoostJager);
+                }
+
+                if (attackDamageBoost7 > 0)
+                {
+                    attackDamageBoostJager += attackDamageBoost7;
+                }
+            }
+
+            if (this.harmTeammate7)
+            {
+                healthMina.SetSliderValue(damageTeammate7);
+                if (attackDamageBoostMina - agileDamageTeammate7 >= 0)
+                {
+                    attackDamageBoostMina -= agileDamageTeammate7;
+                }
+            }
+
+            if (hitAll)
+            {
+                enemyAbilities.reduceAttackSpeed(-agileDamage7, 0);
+                enemyAbilities.reduceAttackSpeed(-agileDamage7, 1);
+                enemyAbilities.reduceAttackSpeed(-agileDamage7, 2);
+                enemyAbilities.reduceAttackSpeed(-agileDamage7, 3);
+            }
+            else
+            {
+                enemyAbilities.reduceAttackSpeed(-agileDamage7, selectedEnemy);
+            }
+            //--maxAbilityUse;
+
+            if (userName7 != null && !(userName7.Equals("")))
+            {
+                enemyName = userName7;
+            }
+
+            if (attackUseMessage7 != null && !(attackUseMessage7.Equals("")))
+            {
+                UseMessage.text = enemyName + " Used <i>" + abilityName7 + "</i>" + attackUseMessage7;
+            }
+            else
+            {
+                UseMessage.text = enemyName + " Used <i>" + abilityName7 + "</i>" + " and it hit!";
+            }
+        }
+    }
+
+    private void PlayerAttacked8()
+    {
+        int shouldGoFirst = -2;
+
+        if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss8)
+        {
+            if (userName8 != null && !(userName8.Equals("")))
+            {
+                enemyName = userName8;
+            }
+
+            UseMessage.text = enemyName + " tried to attack and missed!";
+
+            attackAgainTimer = 70;
+        }
+        else if (enemyAbilities.getWaitingTime() + this.getWaitingTime() == 0)
+        {
+            attackAgainTimer = 70;
+
+            if (hitAll8)
+            {
+                if (attackDamage8 > 0)
+                {
+                    healthEnemy01.SetSliderValue(attackDamage8 + attackDamageBoostJager);
+                    if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage8 + attackDamageBoostJager); }
+                    if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage8 + attackDamageBoostJager); }
+                    if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage8 + attackDamageBoostJager); }
+                }
+
+                if (attackDamageBoost8 > 0)
+                {
+                    attackDamageBoostJager += attackDamageBoost8;
+                }
+            }
+            else
+            {
+                if (attackDamage8 > 0)
+                {
+                    healthEnemySelected.SetSliderValue(attackDamage8 + attackDamageBoostJager);
+                }
+
+                if (attackDamageBoost8 > 0)
+                {
+                    attackDamageBoostJager += attackDamageBoost8;
+                }
+            }
+
+            if (this.harmTeammate8)
+            {
+                healthMina.SetSliderValue(damageTeammate8);
+                if (attackDamageBoostMina - agileDamageTeammate8 >= 0)
+                {
+                    attackDamageBoostMina -= agileDamageTeammate8;
+                }
+            }
+
+            if (hitAll)
+            {
+                enemyAbilities.reduceAttackSpeed(-agileDamage8, 0);
+                enemyAbilities.reduceAttackSpeed(-agileDamage8, 1);
+                enemyAbilities.reduceAttackSpeed(-agileDamage8, 2);
+                enemyAbilities.reduceAttackSpeed(-agileDamage8, 3);
+            }
+            else
+            {
+                enemyAbilities.reduceAttackSpeed(-agileDamage8, selectedEnemy);
+            }
+            //--maxAbilityUse;
+
+            if (userName8 != null && !(userName8.Equals("")))
+            {
+                enemyName = userName8;
+            }
+
+            if (attackUseMessage8 != null && !(attackUseMessage8.Equals("")))
+            {
+                UseMessage.text = enemyName + " Used <i>" + abilityName8 + "</i>" + attackUseMessage8;
+            }
+            else
+            {
+                UseMessage.text = enemyName + " Used <i>" + abilityName8 + "</i>" + " and it hit!";
+            }
+        }
+    }
+
     private int abilityChosen = -1;
     public void chooseAbility(int id)
     {
@@ -821,6 +1490,22 @@ public class PlayerAbilities : MonoBehaviour
         else if (id == 3 && hitAll4)
         {
             this.PlayerAttacked4();
+        }
+        else if (id == 4 && hitAll5)
+        {
+            this.PlayerAttacked5();
+        }
+        else if (id == 5 && hitAll6)
+        {
+            this.PlayerAttacked6();
+        }
+        else if (id == 6 && hitAll7)
+        {
+            this.PlayerAttacked7();
+        }
+        else if (id == 7 && hitAll8)
+        {
+            this.PlayerAttacked8();
         }
         else
         {
@@ -860,6 +1545,10 @@ public class PlayerAbilities : MonoBehaviour
             AttackButton2.interactable = false;
             AttackButton3.interactable = false;
             AttackButton4.interactable = false;
+            AttackButton5.interactable = false;
+            AttackButton6.interactable = false;
+            AttackButton7.interactable = false;
+            AttackButton8.interactable = false;
 
             if (enemy1 != null)
             {
@@ -919,12 +1608,16 @@ public class PlayerAbilities : MonoBehaviour
         {
             AttackButton1.interactable = true;
             AttackButton2.interactable = true;
+            AttackButton5.interactable = true;
+            AttackButton6.interactable = true;
         }
 
         if (healthJager.getValue() > 0)
         {
             AttackButton3.interactable = true;
             AttackButton4.interactable = true;
+            AttackButton7.interactable = true;
+            AttackButton8.interactable = true;
         }
     }
 
@@ -975,6 +1668,22 @@ public class PlayerAbilities : MonoBehaviour
         else if (abilityChosen == 3)
         {
             this.PlayerAttacked4();
+        }
+        else if (abilityChosen == 4)
+        {
+            this.PlayerAttacked5();
+        }
+        else if (abilityChosen == 5)
+        {
+            this.PlayerAttacked6();
+        }
+        else if (abilityChosen == 6)
+        {
+            this.PlayerAttacked7();
+        }
+        else if (abilityChosen == 7)
+        {
+            this.PlayerAttacked8();
         }
     }
 }
