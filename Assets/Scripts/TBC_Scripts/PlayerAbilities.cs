@@ -30,9 +30,22 @@ public class PlayerAbilities : MonoBehaviour
 
     private int attackAgainTimer = 0;
 
+    private bool switchINCdamage = false;
+
+    public bool getDamageSwitch()
+    {
+        return switchINCdamage;
+    }
+
+    [SerializeField]
+    private bool[] recieveToPartnerDamage = new bool[] {false ,false ,false, false, false, false, false, false };
+
+    [SerializeField]
+    private int[] damageBhealthMulti = new int[8];
+
+
     [SerializeField]
     private String enemyName = "";
-
     [SerializeField]
     private String abilityName = "";
     [SerializeField]
@@ -383,7 +396,7 @@ public class PlayerAbilities : MonoBehaviour
         {
             if(attackDamage1 > 0 && agileDamage1 > 0 && attackDamageBoost1 > 0)
             {
-                Attack1.text += ":  <i> Att. " + (attackDamage1 + attackDamageBoostMina) + "  Accur. -" + agileDamage1 + "  DMG+ " + attackDamageBoost1;
+                Attack1.text += ":  <i> Att. " + (attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)(healthMina.getValue() / 50))) + "  Accur. -" + agileDamage1 + "  DMG+ " + attackDamageBoost1;
             }
             else if (agileDamage1 > 0 && attackDamageBoost1 > 0)
             {
@@ -391,11 +404,11 @@ public class PlayerAbilities : MonoBehaviour
             }
             else if (attackDamage1 > 0 && attackDamageBoost1 > 0)
             {
-                Attack1.text += ":  <i> Att. " + (attackDamage1 + attackDamageBoostMina) + "  DMG+ " + attackDamageBoost1;
+                Attack1.text += ":  <i> Att. " + (attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)(healthMina.getValue() / 50))) + "  DMG+ " + attackDamageBoost1;
             }
             else if (attackDamage1 > 0 && attackDamageBoost1 > 0)
             {
-                Attack1.text += ":  <i> Att. " + (attackDamage1 + attackDamageBoostMina) + "  Accur. -" + agileDamage1;
+                Attack1.text += ":  <i> Att. " + (attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)(healthMina.getValue() / 50))) + "  Accur. -" + agileDamage1;
             }
             else if (attackDamageBoost1 > 0 && agileDamage1 <= 0 && attackDamage1 <= 0)
             {
@@ -407,7 +420,7 @@ public class PlayerAbilities : MonoBehaviour
             }
             else
             {
-                Attack1.text += ":  <i> Att. " + (attackDamage1 + attackDamageBoostMina);
+                Attack1.text += ":  <i> Att. " + (attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)(healthMina.getValue() / 50)));
             }
 
             if(damageTeammate > 0)
@@ -432,7 +445,7 @@ public class PlayerAbilities : MonoBehaviour
         {
             if (attackDamage2 > 0 && agileDamage2 > 0 && attackDamageBoost2 > 0)
             {
-                Attack2.text += ":  <i> Att. " + (attackDamage2 + attackDamageBoostMina) + "  Accur. -" + agileDamage2 + "  DMG+ " + attackDamageBoost2;
+                Attack2.text += ":  <i> Att. " + (attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)(healthMina.getValue() / 50))) + "  Accur. -" + agileDamage2 + "  DMG+ " + attackDamageBoost2;
             }
             else if (agileDamage2 > 0 && attackDamageBoost2 > 0)
             {
@@ -440,11 +453,11 @@ public class PlayerAbilities : MonoBehaviour
             }
             else if (attackDamage2 > 0 && attackDamageBoost2 > 0)
             {
-                Attack2.text += ":  <i> Att. " + (attackDamage2 + attackDamageBoostMina) + "  DMG+ " + attackDamageBoost2;
+                Attack2.text += ":  <i> Att. " + (attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)(healthMina.getValue() / 50))) + "  DMG+ " + attackDamageBoost2;
             }
             else if (attackDamage2 > 0 && attackDamageBoost2 > 0)
             {
-                Attack2.text += ":  <i> Att. " + (attackDamage2 + attackDamageBoostMina) + "  Accur. -" + agileDamage2;
+                Attack2.text += ":  <i> Att. " + (attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)(healthMina.getValue() / 50))) + "  Accur. -" + agileDamage2;
             }
             else if (attackDamageBoost2 > 0 && agileDamage2 <= 0 && attackDamage2 <= 0)
             {
@@ -456,7 +469,7 @@ public class PlayerAbilities : MonoBehaviour
             }
             else
             {
-                Attack2.text += ":  <i> Att. " + (attackDamage2 + attackDamageBoostMina);
+                Attack2.text += ":  <i> Att. " + (attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)(healthMina.getValue() / 50)));
             }
 
             if (damageTeammate2 > 0)
@@ -481,7 +494,7 @@ public class PlayerAbilities : MonoBehaviour
         {
             if (attackDamage5 > 0 && agileDamage5 > 0 && attackDamageBoost5 > 0)
             {
-                Attack5.text += ":  <i> Att. " + (attackDamage5 + attackDamageBoostMina) + "  Accur. -" + agileDamage5 + "  DMG+ " + attackDamageBoost5;
+                Attack5.text += ":  <i> Att. " + (attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)(healthMina.getValue() / 50))) + "  Accur. -" + agileDamage5 + "  DMG+ " + attackDamageBoost5;
             }
             else if (agileDamage5 > 0 && attackDamageBoost5 > 0)
             {
@@ -489,11 +502,11 @@ public class PlayerAbilities : MonoBehaviour
             }
             else if (attackDamage5 > 0 && attackDamageBoost5 > 0)
             {
-                Attack5.text += ":  <i> Att. " + (attackDamage5 + attackDamageBoostMina) + "  DMG+ " + attackDamageBoost5;
+                Attack5.text += ":  <i> Att. " + (attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)(healthMina.getValue() / 50))) + "  DMG+ " + attackDamageBoost5;
             }
             else if (attackDamage5 > 0 && attackDamageBoost5 > 0)
             {
-                Attack5.text += ":  <i> Att. " + (attackDamage5 + attackDamageBoostMina) + "  Accur. -" + agileDamage5;
+                Attack5.text += ":  <i> Att. " + (attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)(healthMina.getValue() / 50))) + "  Accur. -" + agileDamage5;
             }
             else if (attackDamageBoost5 > 0 && agileDamage5 <= 0 && attackDamage5 <= 0)
             {
@@ -505,7 +518,7 @@ public class PlayerAbilities : MonoBehaviour
             }
             else
             {
-                Attack5.text += ":  <i> Att. " + (attackDamage5 + attackDamageBoostMina);
+                Attack5.text += ":  <i> Att. " + (attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)(healthMina.getValue() / 50)));
             }
 
             if (damageTeammate5 > 0)
@@ -530,7 +543,7 @@ public class PlayerAbilities : MonoBehaviour
         {
             if (attackDamage6 > 0 && agileDamage6 > 0 && attackDamageBoost6 > 0)
             {
-                Attack6.text += ":  <i> Att. " + (attackDamage6 + attackDamageBoostMina) + "  Accur. -" + agileDamage6 + "  DMG+ " + attackDamageBoost6;
+                Attack6.text += ":  <i> Att. " + (attackDamage6 + attackDamageBoostMina + ((float)damageBhealthMulti[3] * (float)(healthMina.getValue() / 50))) + "  Accur. -" + agileDamage6 + "  DMG+ " + attackDamageBoost6;
             }
             else if (agileDamage6 > 0 && attackDamageBoost6 > 0)
             {
@@ -538,11 +551,11 @@ public class PlayerAbilities : MonoBehaviour
             }
             else if (attackDamage6 > 0 && attackDamageBoost6 > 0)
             {
-                Attack6.text += ":  <i> Att. " + (attackDamage6 + attackDamageBoostMina) + "  DMG+ " + attackDamageBoost6;
+                Attack6.text += ":  <i> Att. " + (attackDamage6 + attackDamageBoostMina + ((float)damageBhealthMulti[3] * (float)(healthMina.getValue() / 50))) + "  DMG+ " + attackDamageBoost6;
             }
             else if (attackDamage6 > 0 && attackDamageBoost6 > 0)
             {
-                Attack6.text += ":  <i> Att. " + (attackDamage6 + attackDamageBoostMina) + "  Accur. -" + agileDamage6;
+                Attack6.text += ":  <i> Att. " + (attackDamage6 + attackDamageBoostMina + ((float)damageBhealthMulti[3] * (float)(healthMina.getValue() / 50))) + "  Accur. -" + agileDamage6;
             }
             else if (attackDamageBoost6 > 0 && agileDamage6 <= 0 && attackDamage6 <= 0)
             {
@@ -554,7 +567,7 @@ public class PlayerAbilities : MonoBehaviour
             }
             else
             {
-                Attack6.text += ":  <i> Att. " + (attackDamage6 + attackDamageBoostMina);
+                Attack6.text += ":  <i> Att. " + (attackDamage6 + attackDamageBoostMina + ((float)damageBhealthMulti[3] * (float)(healthMina.getValue() / 50)));
             }
 
             if (damageTeammate6 > 0)
@@ -579,7 +592,7 @@ public class PlayerAbilities : MonoBehaviour
         {
             if (attackDamage3 > 0 && agileDamage3 > 0 && attackDamageBoost3 > 0)
             {
-                Attack3.text += ":  <i> Att. " + (attackDamage3 + attackDamageBoostJager) + "  Accur. -" + agileDamage3 + "  DMG+ " + attackDamageBoost3;
+                Attack3.text += ":  <i> Att. " + (attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)(healthJager.getValue() / 50))) + "  Accur. -" + agileDamage3 + "  DMG+ " + attackDamageBoost3;
             }
             else if (agileDamage3 > 0 && attackDamageBoost3 > 0)
             {
@@ -587,11 +600,11 @@ public class PlayerAbilities : MonoBehaviour
             }
             else if (attackDamage3 > 0 && attackDamageBoost3 > 0)
             {
-                Attack3.text += ":  <i> Att. " + (attackDamage3 + attackDamageBoostJager) + "  DMG+ " + attackDamageBoost3;
+                Attack3.text += ":  <i> Att. " + (attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)(healthJager.getValue() / 50))) + "  DMG+ " + attackDamageBoost3;
             }
             else if (attackDamage3 > 0 && attackDamageBoost3 > 0)
             {
-                Attack3.text += ":  <i> Att. " + (attackDamage3 + attackDamageBoostJager) + "  Accur. -" + agileDamage3;
+                Attack3.text += ":  <i> Att. " + (attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)(healthJager.getValue() / 50))) + "  Accur. -" + agileDamage3;
             }
             else if (attackDamageBoost3 > 0 && agileDamage3 <= 0 && attackDamage3 <= 0)
             {
@@ -603,7 +616,7 @@ public class PlayerAbilities : MonoBehaviour
             }
             else
             {
-                Attack3.text += ":  <i> Att. " + (attackDamage3 + attackDamageBoostJager);
+                Attack3.text += ":  <i> Att. " + (attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)(healthJager.getValue() / 50)));
             }
 
             if (damageTeammate3 > 0)
@@ -628,7 +641,7 @@ public class PlayerAbilities : MonoBehaviour
         {
             if (attackDamage4 > 0 && agileDamage4 > 0 && attackDamageBoost4 > 0)
             {
-                Attack4.text += ":  <i> Att. " + (attackDamage4 + attackDamageBoostJager) + "  Accur. -" + agileDamage4 + "  DMG+ " + attackDamageBoost4;
+                Attack4.text += ":  <i> Att. " + (attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[5] * (float)(healthJager.getValue() / 50))) + "  Accur. -" + agileDamage4 + "  DMG+ " + attackDamageBoost4;
             }
             else if (agileDamage4 > 0 && attackDamageBoost4 > 0)
             {
@@ -636,15 +649,15 @@ public class PlayerAbilities : MonoBehaviour
             }
             else if (attackDamage4 > 0 && attackDamageBoost4 > 0)
             {
-                Attack4.text += ":  <i> Att. " + (attackDamage4 + attackDamageBoostJager) + "  DMG+ " + attackDamageBoost4;
+                Attack4.text += ":  <i> Att. " + (attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[5] * (float)(healthJager.getValue() / 50))) + "  DMG+ " + attackDamageBoost4;
             }
             else if (attackDamage4 > 0 && attackDamageBoost4 > 0)
             {
-                Attack4.text += ":  <i> Att. " + attackDamage4 + attackDamageBoostJager + "  Accur. -" + agileDamage4;
+                Attack4.text += ":  <i> Att. " + (attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[5] * (float)(healthJager.getValue() / 50))) + "  Accur. -" + agileDamage4;
             }
             else if (attackDamageBoost4 > 0 && agileDamage4 <= 0 && attackDamage4 <= 0)
             {
-                Attack4.text += ":  <i>DMG+ " + (attackDamage4 + attackDamageBoostJager);
+                Attack4.text += ":  <i>DMG+ " + (attackDamageBoostJager);
             }
             else if (attackDamageBoost4 <= 0 && agileDamage4 > 0 && attackDamage4 <= 0)
             {
@@ -652,7 +665,7 @@ public class PlayerAbilities : MonoBehaviour
             }
             else
             {
-                Attack4.text += ":  <i> Att. " + (attackDamage4 + attackDamageBoostJager);
+                Attack4.text += ":  <i> Att. " + (attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[5] * (float)(healthJager.getValue() / 50)));
             }
 
             if (damageTeammate4 > 0)
@@ -677,7 +690,7 @@ public class PlayerAbilities : MonoBehaviour
         {
             if (attackDamage7 > 0 && agileDamage7 > 0 && attackDamageBoost7 > 0)
             {
-                Attack7.text += ":  <i> Att. " + (attackDamage7 + attackDamageBoostJager) + "  Accur. -" + agileDamage7 + "  DMG+ " + attackDamageBoost7;
+                Attack7.text += ":  <i> Att. " + (attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)(healthJager.getValue() / 50))) + "  Accur. -" + agileDamage7 + "  DMG+ " + attackDamageBoost7;
             }
             else if (agileDamage7 > 0 && attackDamageBoost7 > 0)
             {
@@ -685,11 +698,11 @@ public class PlayerAbilities : MonoBehaviour
             }
             else if (attackDamage7 > 0 && attackDamageBoost7 > 0)
             {
-                Attack7.text += ":  <i> Att. " + (attackDamage7 + attackDamageBoostJager) + "  DMG+ " + attackDamageBoost7;
+                Attack7.text += ":  <i> Att. " + (attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)(healthJager.getValue() / 50))) + "  DMG+ " + attackDamageBoost7;
             }
             else if (attackDamage7 > 0 && attackDamageBoost7 > 0)
             {
-                Attack7.text += ":  <i> Att. " + (attackDamage7 + attackDamageBoostJager) + "  Accur. -" + agileDamage7;
+                Attack7.text += ":  <i> Att. " + (attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)(healthJager.getValue() / 50))) + "  Accur. -" + agileDamage7;
             }
             else if (attackDamageBoost7 > 0 && agileDamage7 <= 0 && attackDamage7 <= 0)
             {
@@ -701,7 +714,7 @@ public class PlayerAbilities : MonoBehaviour
             }
             else
             {
-                Attack7.text += ":  <i> Att. " + (attackDamage7 + attackDamageBoostJager);
+                Attack7.text += ":  <i> Att. " + (attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)(healthJager.getValue() / 50)));
             }
 
             if (damageTeammate7 > 0)
@@ -726,7 +739,7 @@ public class PlayerAbilities : MonoBehaviour
         {
             if (attackDamage8 > 0 && agileDamage8 > 0 && attackDamageBoost8 > 0)
             {
-                Attack8.text += ":  <i> Att. " + (attackDamage8 + attackDamageBoostJager) + "  Accur. -" + agileDamage8 + "  DMG+ " + attackDamageBoost8;
+                Attack8.text += ":  <i> Att. " + (attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[7] * (float)(healthJager.getValue() / 50))) + "  Accur. -" + agileDamage8 + "  DMG+ " + attackDamageBoost8;
             }
             else if (agileDamage8 > 0 && attackDamageBoost8 > 0)
             {
@@ -734,11 +747,11 @@ public class PlayerAbilities : MonoBehaviour
             }
             else if (attackDamage8 > 0 && attackDamageBoost8 > 0)
             {
-                Attack8.text += ":  <i> Att. " + (attackDamage8 + attackDamageBoostJager) + "  DMG+ " + attackDamageBoost8;
+                Attack8.text += ":  <i> Att. " + (attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[7] * (float)(healthJager.getValue() / 50))) + "  DMG+ " + attackDamageBoost8;
             }
             else if (attackDamage8 > 0 && attackDamageBoost8 > 0)
             {
-                Attack8.text += ":  <i> Att. " + (attackDamage8 + attackDamageBoostJager) + "  Accur. -" + agileDamage8;
+                Attack8.text += ":  <i> Att. " + (attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[7] * (float)(healthJager.getValue() / 50))) + "  Accur. -" + agileDamage8;
             }
             else if (attackDamageBoost8 > 0 && agileDamage8 <= 0 && attackDamage8 <= 0)
             {
@@ -750,7 +763,7 @@ public class PlayerAbilities : MonoBehaviour
             }
             else
             {
-                Attack8.text += ":  <i> Att. " + (attackDamage8 + attackDamageBoostJager);
+                Attack8.text += ":  <i> Att. " + (attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[7] * (float)(healthJager.getValue() / 50)));
             }
 
             if (damageTeammate8 > 0)
@@ -793,14 +806,14 @@ public class PlayerAbilities : MonoBehaviour
     private void PlayerAttacked()
     {
         int shouldGoFirst = -2;
-        
+
+        if (userName1 != null && !(userName1.Equals("")))
+        {
+            enemyName = userName1;
+        }
+
         if (UnityEngine.Random.Range(0, 100 - missAbiblityChangesMina) <= 5 && canMiss)
         {
-            if (userName1 != null && !(userName1.Equals("")))
-            {
-                enemyName = userName1;
-            }
-
             UseMessage.text = enemyName + " tried to attack and missed!";
 
             attackAgainTimer = 70;
@@ -812,9 +825,9 @@ public class PlayerAbilities : MonoBehaviour
             if (hitAll)
             {
                 healthEnemy01.SetSliderValue(attackDamage1 + attackDamageBoostMina);
-                if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage1 + attackDamageBoostMina); }
-                if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage1 + attackDamageBoostMina); }
-                if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage1 + attackDamageBoostMina); }
+                if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)(healthMina.getValue() / 50))); }
+                if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)(healthMina.getValue() / 50))); }
+                if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)(healthMina.getValue() / 50))); }
 
                 if (attackDamageBoost1 > 0)
                 {
@@ -825,7 +838,7 @@ public class PlayerAbilities : MonoBehaviour
             {
                 if (attackDamage1 > 0)
                 {
-                    healthEnemySelected.SetSliderValue(attackDamage1 + attackDamageBoostMina);
+                    healthEnemySelected.SetSliderValue(attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)(healthMina.getValue() / 50)));
                 }
 
                 if (attackDamageBoost1 > 0)
@@ -841,6 +854,11 @@ public class PlayerAbilities : MonoBehaviour
                 {
                     attackDamageBoostJager -= agileDamageTeammate;
                 }
+            }
+
+            if (recieveToPartnerDamage[0])
+            {
+                switchINCdamage = true;
             }
 
             if(hitAll)
@@ -876,14 +894,14 @@ public class PlayerAbilities : MonoBehaviour
     private void PlayerAttacked2()
     {
         int shouldGoFirst = -2;
-        
+
+        if (userName2 != null && !(userName2.Equals("")))
+        {
+            enemyName = userName2;
+        }
+
         if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss2)
         {
-            if (userName2 != null && !(userName2.Equals("")))
-            {
-                enemyName = userName2;
-            }
-
             UseMessage.text = enemyName + " tried to attack and missed!";
 
             attackAgainTimer = 70;
@@ -897,9 +915,9 @@ public class PlayerAbilities : MonoBehaviour
                 if (attackDamage2 > 0)
                 {
                     healthEnemy01.SetSliderValue(attackDamage2 + attackDamageBoostMina);
-                    if (healthEnemy02 != null){healthEnemy02.SetSliderValue(attackDamage2 + attackDamageBoostMina);}
-                    if (healthEnemy03 != null){healthEnemy03.SetSliderValue(attackDamage2 + attackDamageBoostMina);}
-                    if (healthEnemy04 != null){healthEnemy04.SetSliderValue(attackDamage2 + attackDamageBoostMina);}
+                    if (healthEnemy02 != null){healthEnemy02.SetSliderValue(attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)(healthMina.getValue() / 50)));}
+                    if (healthEnemy03 != null){healthEnemy03.SetSliderValue(attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)(healthMina.getValue() / 50)));}
+                    if (healthEnemy04 != null){healthEnemy04.SetSliderValue(attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)(healthMina.getValue() / 50)));}
                 }
 
                 if (attackDamageBoost2 > 0)
@@ -911,7 +929,7 @@ public class PlayerAbilities : MonoBehaviour
             {
                 if (attackDamage2 > 0)
                 {
-                    healthEnemySelected.SetSliderValue(attackDamage2 + attackDamageBoostMina);
+                    healthEnemySelected.SetSliderValue(attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)(healthMina.getValue() / 50)));
                 }
 
                 if (attackDamageBoost2 > 0)
@@ -927,6 +945,11 @@ public class PlayerAbilities : MonoBehaviour
                 {
                     attackDamageBoostJager -= agileDamageTeammate2;
                 }
+            }
+
+            if (recieveToPartnerDamage[1])
+            {
+                switchINCdamage = true;
             }
 
             if (hitAll)
@@ -963,13 +986,13 @@ public class PlayerAbilities : MonoBehaviour
     {
         int shouldGoFirst = -2;
 
+        if (userName5 != null && !(userName5.Equals("")))
+        {
+            enemyName = userName5;
+        }
+
         if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss5)
         {
-            if (userName2 != null && !(userName2.Equals("")))
-            {
-                enemyName = userName2;
-            }
-
             UseMessage.text = enemyName + " tried to attack and missed!";
 
             attackAgainTimer = 70;
@@ -983,9 +1006,9 @@ public class PlayerAbilities : MonoBehaviour
                 if (attackDamage5 > 0)
                 {
                     healthEnemy01.SetSliderValue(attackDamage5 + attackDamageBoostMina);
-                    if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage5 + attackDamageBoostMina); }
-                    if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage5 + attackDamageBoostMina); }
-                    if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage5 + attackDamageBoostMina); }
+                    if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)(healthMina.getValue() / 50))); }
+                    if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)(healthMina.getValue() / 50))); }
+                    if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)(healthMina.getValue() / 50))); }
                 }
 
                 if (attackDamageBoost5 > 0)
@@ -997,7 +1020,7 @@ public class PlayerAbilities : MonoBehaviour
             {
                 if (attackDamage5 > 0)
                 {
-                    healthEnemySelected.SetSliderValue(attackDamage5 + attackDamageBoostMina);
+                    healthEnemySelected.SetSliderValue(attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)(healthMina.getValue() / 50)));
                 }
 
                 if (attackDamageBoost5 > 0)
@@ -1013,6 +1036,11 @@ public class PlayerAbilities : MonoBehaviour
                 {
                     attackDamageBoostJager -= agileDamageTeammate5;
                 }
+            }
+
+            if (recieveToPartnerDamage[2])
+            {
+                switchINCdamage = true;
             }
 
             if (hitAll)
@@ -1048,14 +1076,14 @@ public class PlayerAbilities : MonoBehaviour
     private void PlayerAttacked3()
     {
         int shouldGoFirst = -2;
-        
+
+        if (userName3 != null && !(userName3.Equals("")))
+        {
+            enemyName = userName3;
+        }
+
         if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss3)
         {
-            if (userName3 != null && !(userName3.Equals("")))
-            {
-                enemyName = userName3;
-            }
-
             UseMessage.text = enemyName + " tried to attack and missed!";
 
             attackAgainTimer = 70;
@@ -1069,9 +1097,9 @@ public class PlayerAbilities : MonoBehaviour
                 if (attackDamage3 > 0)
                 {
                     healthEnemy01.SetSliderValue(attackDamage3 + attackDamageBoostJager);
-                    if (healthEnemy02 != null){healthEnemy02.SetSliderValue(attackDamage3 + attackDamageBoostJager);}
-                    if (healthEnemy03 != null){healthEnemy03.SetSliderValue(attackDamage3 + attackDamageBoostJager);}
-                    if (healthEnemy04 != null){healthEnemy04.SetSliderValue(attackDamage3 + attackDamageBoostJager);}
+                    if (healthEnemy02 != null){healthEnemy02.SetSliderValue(attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[3] * (float)(healthJager.getValue() / 50)));}
+                    if (healthEnemy03 != null){healthEnemy03.SetSliderValue(attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[3] * (float)(healthJager.getValue() / 50)));}
+                    if (healthEnemy04 != null){healthEnemy04.SetSliderValue(attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[3] * (float)(healthJager.getValue() / 50)));}
                 }
 
                 if (attackDamageBoost3 > 0)
@@ -1083,7 +1111,7 @@ public class PlayerAbilities : MonoBehaviour
             {
                 if (attackDamage3 > 0)
                 {
-                    healthEnemySelected.SetSliderValue(attackDamage3 + attackDamageBoostJager);
+                    healthEnemySelected.SetSliderValue(attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[3] * (float)(healthJager.getValue() / 50)));
                 }
 
                 if (attackDamageBoost3 > 0)
@@ -1092,13 +1120,18 @@ public class PlayerAbilities : MonoBehaviour
                 }
             }
 
-            if (this.harmTeammate3)
+            if (harmTeammate3)
             {
                 healthMina.SetSliderValue(damageTeammate3);
                 if (attackDamageBoostMina - agileDamageTeammate3 >= 0)
                 {
                     attackDamageBoostMina -= agileDamageTeammate3;
                 }
+            }
+
+            if (recieveToPartnerDamage[3])
+            {
+                switchINCdamage = true;
             }
 
             if (hitAll)
@@ -1133,14 +1166,14 @@ public class PlayerAbilities : MonoBehaviour
     private void PlayerAttacked4()
     {
         int shouldGoFirst = -2;
-        
+
+        if (userName4 != null && !(userName4.Equals("")))
+        {
+            enemyName = userName4;
+        }
+
         if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss4)
         {
-            if (userName4 != null && !(userName4.Equals("")))
-            {
-                enemyName = userName4;
-            }
-
             UseMessage.text = enemyName + " tried to attack and missed!";
 
             attackAgainTimer = 70;
@@ -1154,9 +1187,9 @@ public class PlayerAbilities : MonoBehaviour
                 if (attackDamage4 > 0)
                 {
                     healthEnemy01.SetSliderValue(attackDamage4 + attackDamageBoostJager);
-                    if (healthEnemy02 != null){healthEnemy02.SetSliderValue(attackDamage4 + attackDamageBoostJager);}
-                    if (healthEnemy03 != null){healthEnemy03.SetSliderValue(attackDamage4 + attackDamageBoostJager);}
-                    if (healthEnemy04 != null){healthEnemy04.SetSliderValue(attackDamage4 + attackDamageBoostJager);}
+                    if (healthEnemy02 != null){healthEnemy02.SetSliderValue(attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)(healthJager.getValue() / 50)));}
+                    if (healthEnemy03 != null){healthEnemy03.SetSliderValue(attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)(healthJager.getValue() / 50)));}
+                    if (healthEnemy04 != null){healthEnemy04.SetSliderValue(attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)(healthJager.getValue() / 50)));}
                 }
 
                 if (attackDamageBoost4 > 0)
@@ -1168,7 +1201,7 @@ public class PlayerAbilities : MonoBehaviour
             {
                 if (attackDamage4 > 0)
                 {
-                    healthEnemySelected.SetSliderValue(attackDamage4 + attackDamageBoostJager);
+                    healthEnemySelected.SetSliderValue(attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)(healthJager.getValue() / 50)));
                 }
 
                 if (attackDamageBoost4 > 0)
@@ -1184,6 +1217,11 @@ public class PlayerAbilities : MonoBehaviour
                 {
                     attackDamageBoostMina -= agileDamageTeammate4;
                 }
+            }
+
+            if (recieveToPartnerDamage[4])
+            {
+                switchINCdamage = true;
             }
 
             if (hitAll)
@@ -1219,13 +1257,13 @@ public class PlayerAbilities : MonoBehaviour
     {
         int shouldGoFirst = -2;
 
+        if (userName6 != null && !(userName6.Equals("")))
+        {
+            enemyName = userName6;
+        }
+
         if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss6)
         {
-            if (userName6 != null && !(userName6.Equals("")))
-            {
-                enemyName = userName6;
-            }
-
             UseMessage.text = enemyName + " tried to attack and missed!";
 
             attackAgainTimer = 70;
@@ -1239,9 +1277,9 @@ public class PlayerAbilities : MonoBehaviour
                 if (attackDamage6 > 0)
                 {
                     healthEnemy01.SetSliderValue(attackDamage6 + attackDamageBoostJager);
-                    if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage6 + attackDamageBoostJager); }
-                    if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage6 + attackDamageBoostJager); }
-                    if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage6 + attackDamageBoostJager); }
+                    if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage6 + attackDamageBoostJager + ((float)damageBhealthMulti[5] * (float)(healthJager.getValue() / 50))); }
+                    if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage6 + attackDamageBoostJager + ((float)damageBhealthMulti[5] * (float)(healthJager.getValue() / 50))); }
+                    if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage6 + attackDamageBoostJager + ((float)damageBhealthMulti[5] * (float)(healthJager.getValue() / 50))); }
                 }
 
                 if (attackDamageBoost6 > 0)
@@ -1253,7 +1291,7 @@ public class PlayerAbilities : MonoBehaviour
             {
                 if (attackDamage6 > 0)
                 {
-                    healthEnemySelected.SetSliderValue(attackDamage6 + attackDamageBoostJager);
+                    healthEnemySelected.SetSliderValue(attackDamage6 + attackDamageBoostJager + ((float)damageBhealthMulti[5] * (float)(healthJager.getValue() / 50)));
                 }
 
                 if (attackDamageBoost6 > 0)
@@ -1262,13 +1300,18 @@ public class PlayerAbilities : MonoBehaviour
                 }
             }
 
-            if (this.harmTeammate6)
+            if (harmTeammate6)
             {
                 healthMina.SetSliderValue(damageTeammate6);
                 if (attackDamageBoostMina - agileDamageTeammate6 >= 0)
                 {
                     attackDamageBoostMina -= agileDamageTeammate6;
                 }
+            }
+
+            if (recieveToPartnerDamage[5])
+            {
+                switchINCdamage = true;
             }
 
             if (hitAll)
@@ -1304,13 +1347,13 @@ public class PlayerAbilities : MonoBehaviour
     {
         int shouldGoFirst = -2;
 
+        if (userName7 != null && !(userName7.Equals("")))
+        {
+            enemyName = userName7;
+        }
+
         if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss7)
         {
-            if (userName6 != null && !(userName6.Equals("")))
-            {
-                enemyName = userName6;
-            }
-
             UseMessage.text = enemyName + " tried to attack and missed!";
 
             attackAgainTimer = 70;
@@ -1324,9 +1367,9 @@ public class PlayerAbilities : MonoBehaviour
                 if (attackDamage7 > 0)
                 {
                     healthEnemy01.SetSliderValue(attackDamage7 + attackDamageBoostJager);
-                    if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage7 + attackDamageBoostJager); }
-                    if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage7 + attackDamageBoostJager); }
-                    if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage7 + attackDamageBoostJager); }
+                    if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)(healthJager.getValue() / 50))); }
+                    if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)(healthJager.getValue() / 50))); }
+                    if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)(healthJager.getValue() / 50))); }
                 }
 
                 if (attackDamageBoost7 > 0)
@@ -1338,7 +1381,7 @@ public class PlayerAbilities : MonoBehaviour
             {
                 if (attackDamage7 > 0)
                 {
-                    healthEnemySelected.SetSliderValue(attackDamage7 + attackDamageBoostJager);
+                    healthEnemySelected.SetSliderValue(attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)(healthJager.getValue() / 50)));
                 }
 
                 if (attackDamageBoost7 > 0)
@@ -1347,13 +1390,18 @@ public class PlayerAbilities : MonoBehaviour
                 }
             }
 
-            if (this.harmTeammate7)
+            if (harmTeammate7)
             {
                 healthMina.SetSliderValue(damageTeammate7);
                 if (attackDamageBoostMina - agileDamageTeammate7 >= 0)
                 {
                     attackDamageBoostMina -= agileDamageTeammate7;
                 }
+            }
+
+            if (recieveToPartnerDamage[6])
+            {
+                switchINCdamage = true;
             }
 
             if (hitAll)
@@ -1389,13 +1437,13 @@ public class PlayerAbilities : MonoBehaviour
     {
         int shouldGoFirst = -2;
 
+        if (userName8 != null && !(userName8.Equals("")))
+        {
+            enemyName = userName8;
+        }
+
         if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss8)
         {
-            if (userName8 != null && !(userName8.Equals("")))
-            {
-                enemyName = userName8;
-            }
-
             UseMessage.text = enemyName + " tried to attack and missed!";
 
             attackAgainTimer = 70;
@@ -1409,9 +1457,9 @@ public class PlayerAbilities : MonoBehaviour
                 if (attackDamage8 > 0)
                 {
                     healthEnemy01.SetSliderValue(attackDamage8 + attackDamageBoostJager);
-                    if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage8 + attackDamageBoostJager); }
-                    if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage8 + attackDamageBoostJager); }
-                    if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage8 + attackDamageBoostJager); }
+                    if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[7] * (float)(healthJager.getValue() / 50))); }
+                    if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[7] * (float)(healthJager.getValue() / 50))); }
+                    if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[7] * (float)(healthJager.getValue() / 50))); }
                 }
 
                 if (attackDamageBoost8 > 0)
@@ -1432,13 +1480,18 @@ public class PlayerAbilities : MonoBehaviour
                 }
             }
 
-            if (this.harmTeammate8)
+            if (harmTeammate8)
             {
                 healthMina.SetSliderValue(damageTeammate8);
                 if (attackDamageBoostMina - agileDamageTeammate8 >= 0)
                 {
                     attackDamageBoostMina -= agileDamageTeammate8;
                 }
+            }
+
+            if (recieveToPartnerDamage[7])
+            {
+                switchINCdamage = true;
             }
 
             if (hitAll)
@@ -1604,6 +1657,8 @@ public class PlayerAbilities : MonoBehaviour
 
     public void unlockAttacks()
     {
+        switchINCdamage = false;
+
         if(healthMina.getValue() > 0)
         {
             AttackButton1.interactable = true;
