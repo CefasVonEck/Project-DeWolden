@@ -26,6 +26,9 @@ public class PlayerAbilities : MonoBehaviour
     private SliderController healthJager;
 
     [SerializeField]
+    private TextMeshProUGUI abilityInfoText;
+
+    [SerializeField]
     private AbilitySets enemyAbilities;
 
     private int attackAgainTimer = 0;
@@ -41,8 +44,17 @@ public class PlayerAbilities : MonoBehaviour
     private bool[] recieveToPartnerDamage = new bool[] {false ,false ,false, false, false, false, false, false };
 
     [SerializeField]
-    private int[] damageBhealthMulti = new int[8];
+    private bool[] enemyHitPartner = new bool[] { false, false, false, false, false, false, false, false };
 
+    private bool enemyHitPartnerOnTurn = false;
+
+    public bool getEnemyHitPartner()
+    {
+        return enemyHitPartnerOnTurn;
+    }
+
+    [SerializeField]
+    private int[] damageBhealthMulti = new int[8];
 
     [SerializeField]
     private String enemyName = "";
@@ -392,393 +404,513 @@ public class PlayerAbilities : MonoBehaviour
 
     public void abilityInfo1()
     {
-        if(!(Attack1.text.Contains(":")))
+        int abilityButtonID = 0;
+
+        if(!(abilityInfoText.text.Contains(":")))
         {
-            if(attackDamage1 > 0 && agileDamage1 > 0 && attackDamageBoost1 > 0)
+            abilityInfoText.text += ": ";
+
+            if (attackDamage1 > 0)
             {
-                Attack1.text += ":  <i> Att. " + (attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)(healthMina.getValue() / 50))) + "  Accur. -" + agileDamage1 + "  DMG+ " + attackDamageBoost1;
-            }
-            else if (agileDamage1 > 0 && attackDamageBoost1 > 0)
-            {
-                Attack1.text += ":  <i> Accur. -" + agileDamage1 + "  DMG+ " + attackDamageBoost1;
-            }
-            else if (attackDamage1 > 0 && attackDamageBoost1 > 0)
-            {
-                Attack1.text += ":  <i> Att. " + (attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)(healthMina.getValue() / 50))) + "  DMG+ " + attackDamageBoost1;
-            }
-            else if (attackDamage1 > 0 && attackDamageBoost1 > 0)
-            {
-                Attack1.text += ":  <i> Att. " + (attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)(healthMina.getValue() / 50))) + "  Accur. -" + agileDamage1;
-            }
-            else if (attackDamageBoost1 > 0 && agileDamage1 <= 0 && attackDamage1 <= 0)
-            {
-                Attack1.text += ":  <i>DMG+ " + attackDamageBoost1;
-            }
-            else if (attackDamageBoost1 <= 0 && agileDamage1 > 0 && attackDamage1 <= 0)
-            {
-                Attack1.text += ":  <i>Accur. -" + agileDamage1;
-            }
-            else
-            {
-                Attack1.text += ":  <i> Att. " + (attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)(healthMina.getValue() / 50)));
+                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[abilityButtonID] * (float)(healthMina.getValue() / 50)));
             }
 
-            if(damageTeammate > 0)
+            if (agileDamage1 > 0)
             {
-                Attack1.text += " PID: " + damageTeammate;
+                abilityInfoText.text += "\n <i> Lower Enemy Accuracy -" + agileDamage1;
+            }
+
+            if (attackDamageBoost1 > 0)
+            {
+                abilityInfoText.text += "\n <i> Damage Boost " + attackDamageBoost1;
+            }
+
+            if (harmTeammate && damageTeammate > 0)
+            {
+                abilityInfoText.text += "\n <i> Partner Inflicted Damage " + damageTeammate;
+            }
+
+            if (hitAll)
+            {
+                abilityInfoText.text += "\n <i> Hit all Enemies";
+            }
+
+            if (agileDamageTeammate > 0)
+            {
+                abilityInfoText.text += "\n <i> Lower partner Accuracy -" + agileDamage1;
+            }
+
+            if (recieveToPartnerDamage[abilityButtonID])
+            {
+                abilityInfoText.text += "\n <i> Transfer Partner Damage active = " + getDamageSwitch();
+            }
+
+            if (enemyHitPartner[abilityButtonID])
+            {
+                abilityInfoText.text += "\n <i> Confuse Enemy active = " + getEnemyHitPartner();
+            }
+
+            if (damageBhealthMulti[abilityButtonID] > 0)
+            {
+                abilityInfoText.text += "\n <i> Lower health Damage multiplier = " + damageBhealthMulti[abilityButtonID];
             }
         }
-        else if (Attack1.text.Contains(":"))
+        else if (abilityInfoText.text.Contains(":"))
         {
-            string[] parts = Attack1.text.Split(':');
+            string[] parts = abilityInfoText.text.Split(':');
 
             // Take the first part (before the colon)
             string modifiedString = parts[0];
 
-            Attack1.text = modifiedString;
+            abilityInfoText.text = modifiedString;
         }
     }
 
     public void abilityInfo2()
     {
-        if (!(Attack2.text.Contains(":")))
+        int abilityButtonID = 1;
+
+        if (!(abilityInfoText.text.Contains(":")))
         {
-            if (attackDamage2 > 0 && agileDamage2 > 0 && attackDamageBoost2 > 0)
+            abilityInfoText.text += ": ";
+
+            if (attackDamage2 > 0)
             {
-                Attack2.text += ":  <i> Att. " + (attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)(healthMina.getValue() / 50))) + "  Accur. -" + agileDamage2 + "  DMG+ " + attackDamageBoost2;
-            }
-            else if (agileDamage2 > 0 && attackDamageBoost2 > 0)
-            {
-                Attack2.text += ":  <i> Accur. -" + agileDamage2 + "  DMG+ " + attackDamageBoost2;
-            }
-            else if (attackDamage2 > 0 && attackDamageBoost2 > 0)
-            {
-                Attack2.text += ":  <i> Att. " + (attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)(healthMina.getValue() / 50))) + "  DMG+ " + attackDamageBoost2;
-            }
-            else if (attackDamage2 > 0 && attackDamageBoost2 > 0)
-            {
-                Attack2.text += ":  <i> Att. " + (attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)(healthMina.getValue() / 50))) + "  Accur. -" + agileDamage2;
-            }
-            else if (attackDamageBoost2 > 0 && agileDamage2 <= 0 && attackDamage2 <= 0)
-            {
-                Attack2.text += ":  <i>DMG+ " + attackDamageBoost2;
-            }
-            else if (attackDamageBoost2 <= 0 && agileDamage2 > 0 && attackDamage2 <= 0)
-            {
-                Attack2.text += ":  <i>Accur. -" + agileDamage2;
-            }
-            else
-            {
-                Attack2.text += ":  <i> Att. " + (attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)(healthMina.getValue() / 50)));
+                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[abilityButtonID] * (float)(healthMina.getValue() / 50)));
             }
 
-            if (damageTeammate2 > 0)
+            if (agileDamage2 > 0)
             {
-                Attack2.text += " PID: " + damageTeammate2;
+                abilityInfoText.text += "\n <i> Lower Enemy Accuracy -" + agileDamage2;
+            }
+
+            if (attackDamageBoost2 > 0)
+            {
+                abilityInfoText.text += "\n <i> Damage Boost " + attackDamageBoost2;
+            }
+
+            if (harmTeammate2 && damageTeammate2 > 0)
+            {
+                abilityInfoText.text += "\n <i> Partner Inflicted Damage " + damageTeammate2;
+            }
+
+            if (hitAll2)
+            {
+                abilityInfoText.text += "\n <i> Hit all Enemies";
+            }
+
+            if (agileDamageTeammate2 > 0)
+            {
+                abilityInfoText.text += "\n <i> Lower partner Accuracy -" + agileDamage2;
+            }
+
+            if (recieveToPartnerDamage[abilityButtonID])
+            {
+                abilityInfoText.text += "\n <i> Transfer Partner Damage active = " + getDamageSwitch();
+            }
+
+            if (enemyHitPartner[abilityButtonID])
+            {
+                abilityInfoText.text += "\n <i> Confuse Enemy active = " + getEnemyHitPartner();
+            }
+
+            if (damageBhealthMulti[abilityButtonID] > 0)
+            {
+                abilityInfoText.text += "\n <i> Lower health Damage multiplier = " + damageBhealthMulti[abilityButtonID];
             }
         }
-        else if (Attack2.text.Contains(":"))
+        else if (abilityInfoText.text.Contains(":"))
         {
-            string[] parts = Attack2.text.Split(':');
+            string[] parts = abilityInfoText.text.Split(':');
 
             // Take the first part (before the colon)
             string modifiedString = parts[0];
 
-            Attack2.text = modifiedString;
+            abilityInfoText.text = modifiedString;
         }
     }
 
     public void abilityInfo5()
     {
-        if (!(Attack5.text.Contains(":")))
+        int abilityButtonID = 4;
+
+        if (!(abilityInfoText.text.Contains(":")))
         {
-            if (attackDamage5 > 0 && agileDamage5 > 0 && attackDamageBoost5 > 0)
+            abilityInfoText.text += ": ";
+
+            if (attackDamage5 > 0)
             {
-                Attack5.text += ":  <i> Att. " + (attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)(healthMina.getValue() / 50))) + "  Accur. -" + agileDamage5 + "  DMG+ " + attackDamageBoost5;
-            }
-            else if (agileDamage5 > 0 && attackDamageBoost5 > 0)
-            {
-                Attack5.text += ":  <i> Accur. -" + agileDamage5 + "  DMG+ " + attackDamageBoost5;
-            }
-            else if (attackDamage5 > 0 && attackDamageBoost5 > 0)
-            {
-                Attack5.text += ":  <i> Att. " + (attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)(healthMina.getValue() / 50))) + "  DMG+ " + attackDamageBoost5;
-            }
-            else if (attackDamage5 > 0 && attackDamageBoost5 > 0)
-            {
-                Attack5.text += ":  <i> Att. " + (attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)(healthMina.getValue() / 50))) + "  Accur. -" + agileDamage5;
-            }
-            else if (attackDamageBoost5 > 0 && agileDamage5 <= 0 && attackDamage5 <= 0)
-            {
-                Attack5.text += ":  <i>DMG+ " + attackDamageBoost5;
-            }
-            else if (attackDamageBoost5 <= 0 && agileDamage5 > 0 && attackDamage5 <= 0)
-            {
-                Attack5.text += ":  <i>Accur. -" + agileDamage5;
-            }
-            else
-            {
-                Attack5.text += ":  <i> Att. " + (attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)(healthMina.getValue() / 50)));
+                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[abilityButtonID] *(float)(healthMina.getValue() / 50)));
             }
 
-            if (damageTeammate5 > 0)
+            if (agileDamage5 > 0)
             {
-                Attack5.text += " PID: " + damageTeammate5;
+                abilityInfoText.text += "\n <i> Lower Enemy Accuracy -" + agileDamage5;
+            }
+
+            if (attackDamageBoost5 > 0)
+            {
+                abilityInfoText.text += "\n <i> Damage Boost " + attackDamageBoost5;
+            }
+
+            if (harmTeammate5 && damageTeammate5 > 0)
+            {
+                abilityInfoText.text += "\n <i> Partner Inflicted Damage " + damageTeammate5;
+            }
+
+            if (hitAll5)
+            {
+                abilityInfoText.text += "\n <i> Hit all Enemies";
+            }
+
+            if (agileDamageTeammate5 > 0)
+            {
+                abilityInfoText.text += "\n <i> Lower partner Accuracy -" + agileDamage5;
+            }
+
+            if (recieveToPartnerDamage[abilityButtonID])
+            {
+                abilityInfoText.text += "\n <i> Transfer Partner Damage active = " + getDamageSwitch();
+            }
+
+            if (enemyHitPartner[abilityButtonID])
+            {
+                abilityInfoText.text += "\n <i> Confuse Enemy active = " + getEnemyHitPartner();
+            }
+
+            if (damageBhealthMulti[abilityButtonID] > 0)
+            {
+                abilityInfoText.text += "\n <i> Lower health Damage multiplier = " + damageBhealthMulti[abilityButtonID];
             }
         }
-        else if (Attack5.text.Contains(":"))
+        else if (abilityInfoText.text.Contains(":"))
         {
-            string[] parts = Attack5.text.Split(':');
+            string[] parts = abilityInfoText.text.Split(':');
 
             // Take the first part (before the colon)
             string modifiedString = parts[0];
 
-            Attack5.text = modifiedString;
+            abilityInfoText.text = modifiedString;
         }
     }
 
     public void abilityInfo6()
     {
-        if (!(Attack6.text.Contains(":")))
+        int abilityButtonID = 5;
+
+        if (!(abilityInfoText.text.Contains(":")))
         {
-            if (attackDamage6 > 0 && agileDamage6 > 0 && attackDamageBoost6 > 0)
+            abilityInfoText.text += ": ";
+
+            if (attackDamage6 > 0)
             {
-                Attack6.text += ":  <i> Att. " + (attackDamage6 + attackDamageBoostMina + ((float)damageBhealthMulti[3] * (float)(healthMina.getValue() / 50))) + "  Accur. -" + agileDamage6 + "  DMG+ " + attackDamageBoost6;
-            }
-            else if (agileDamage6 > 0 && attackDamageBoost6 > 0)
-            {
-                Attack6.text += ":  <i> Accur. -" + agileDamage6 + "  DMG+ " + attackDamageBoost6;
-            }
-            else if (attackDamage6 > 0 && attackDamageBoost6 > 0)
-            {
-                Attack6.text += ":  <i> Att. " + (attackDamage6 + attackDamageBoostMina + ((float)damageBhealthMulti[3] * (float)(healthMina.getValue() / 50))) + "  DMG+ " + attackDamageBoost6;
-            }
-            else if (attackDamage6 > 0 && attackDamageBoost6 > 0)
-            {
-                Attack6.text += ":  <i> Att. " + (attackDamage6 + attackDamageBoostMina + ((float)damageBhealthMulti[3] * (float)(healthMina.getValue() / 50))) + "  Accur. -" + agileDamage6;
-            }
-            else if (attackDamageBoost6 > 0 && agileDamage6 <= 0 && attackDamage6 <= 0)
-            {
-                Attack6.text += ":  <i>DMG+ " + attackDamageBoost6;
-            }
-            else if (attackDamageBoost6 <= 0 && agileDamage6 > 0 && attackDamage6 <= 0)
-            {
-                Attack6.text += ":  <i>Accur. -" + agileDamage6;
-            }
-            else
-            {
-                Attack6.text += ":  <i> Att. " + (attackDamage6 + attackDamageBoostMina + ((float)damageBhealthMulti[3] * (float)(healthMina.getValue() / 50)));
+                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage6 + attackDamageBoostMina + ((float)damageBhealthMulti[abilityButtonID] * (float)(healthMina.getValue() / 50)));
             }
 
-            if (damageTeammate6 > 0)
+            if (agileDamage6 > 0)
             {
-                Attack6.text += " PID: " + damageTeammate6;
+                abilityInfoText.text += "\n <i> Lower Enemy Accuracy -" + agileDamage6;
+            }
+
+            if (attackDamageBoost6 > 0)
+            {
+                abilityInfoText.text += "\n <i> Damage Boost " + attackDamageBoost5;
+            }
+
+            if (harmTeammate6 && damageTeammate6 > 0)
+            {
+                abilityInfoText.text += "\n <i> Partner Inflicted Damage " + damageTeammate6;
+            }
+
+            if (hitAll6)
+            {
+                abilityInfoText.text += "\n <i> Hit all Enemies";
+            }
+
+            if (agileDamageTeammate6 > 0)
+            {
+                abilityInfoText.text += "\n <i> Lower partner Accuracy -" + agileDamage6;
+            }
+
+            if (recieveToPartnerDamage[abilityButtonID])
+            {
+                abilityInfoText.text += "\n <i> Transfer Partner Damage active = " + getDamageSwitch();
+            }
+
+            if (enemyHitPartner[abilityButtonID])
+            {
+                abilityInfoText.text += "\n <i> Confuse Enemy active = " + getEnemyHitPartner();
+            }
+
+            if (damageBhealthMulti[abilityButtonID] > 0)
+            {
+                abilityInfoText.text += "\n <i> Lower health Damage multiplier = " + damageBhealthMulti[abilityButtonID];
             }
         }
-        else if (Attack6.text.Contains(":"))
+        else if (abilityInfoText.text.Contains(":"))
         {
-            string[] parts = Attack6.text.Split(':');
+            string[] parts = abilityInfoText.text.Split(':');
 
             // Take the first part (before the colon)
             string modifiedString = parts[0];
 
-            Attack6.text = modifiedString;
+            abilityInfoText.text = modifiedString;
         }
     }
 
     public void abilityInfo3()
     {
-        if (!(Attack3.text.Contains(":")))
+        int abilityButtonID = 2;
+
+        if (!(abilityInfoText.text.Contains(":")))
         {
-            if (attackDamage3 > 0 && agileDamage3 > 0 && attackDamageBoost3 > 0)
+            abilityInfoText.text += ": ";
+
+            if (attackDamage3 > 0)
             {
-                Attack3.text += ":  <i> Att. " + (attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)(healthJager.getValue() / 50))) + "  Accur. -" + agileDamage3 + "  DMG+ " + attackDamageBoost3;
-            }
-            else if (agileDamage3 > 0 && attackDamageBoost3 > 0)
-            {
-                Attack3.text += ":  <i> Accur. -" + agileDamage3 + "  DMG+ " + attackDamageBoost3;
-            }
-            else if (attackDamage3 > 0 && attackDamageBoost3 > 0)
-            {
-                Attack3.text += ":  <i> Att. " + (attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)(healthJager.getValue() / 50))) + "  DMG+ " + attackDamageBoost3;
-            }
-            else if (attackDamage3 > 0 && attackDamageBoost3 > 0)
-            {
-                Attack3.text += ":  <i> Att. " + (attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)(healthJager.getValue() / 50))) + "  Accur. -" + agileDamage3;
-            }
-            else if (attackDamageBoost3 > 0 && agileDamage3 <= 0 && attackDamage3 <= 0)
-            {
-                Attack3.text += ":  <i>DMG+ " + attackDamageBoost3;
-            }
-            else if (attackDamageBoost3 <= 0 && agileDamage3 > 0 && attackDamage3 <= 0)
-            {
-                Attack3.text += ":  <i>Accur. -" + agileDamage3;
-            }
-            else
-            {
-                Attack3.text += ":  <i> Att. " + (attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)(healthJager.getValue() / 50)));
+                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[abilityButtonID] * (float)(healthJager.getValue() / 50)));
             }
 
-            if (damageTeammate3 > 0)
+            if (agileDamage3 > 0)
             {
-                Attack3.text += " PID: " + damageTeammate3;
+                abilityInfoText.text += "\n <i> Lower Enemy Accuracy -" + agileDamage3;
+            }
+
+            if (attackDamageBoost3 > 0)
+            {
+                abilityInfoText.text += "\n <i> Damage Boost " + attackDamageBoost3;
+            }
+
+            if (harmTeammate3 && damageTeammate3 > 0)
+            {
+                abilityInfoText.text += "\n <i> Partner Inflicted Damage " + damageTeammate3;
+            }
+
+            if (hitAll3)
+            {
+                abilityInfoText.text += "\n <i> Hit all Enemies";
+            }
+
+            if (agileDamageTeammate3 > 0)
+            {
+                abilityInfoText.text += "\n <i> Lower partner Accuracy -" + agileDamage3;
+            }
+
+            if (recieveToPartnerDamage[abilityButtonID])
+            {
+                abilityInfoText.text += "\n <i> Transfer Partner Damage active = " + getDamageSwitch();
+            }
+
+            if (enemyHitPartner[abilityButtonID])
+            {
+                abilityInfoText.text += "\n <i> Confuse Enemy active = " + getEnemyHitPartner();
+            }
+
+            if (damageBhealthMulti[abilityButtonID] > 0)
+            {
+                abilityInfoText.text += "\n <i> Lower health Damage multiplier = " + damageBhealthMulti[abilityButtonID];
             }
         }
-        else if (Attack3.text.Contains(":"))
+        else if (abilityInfoText.text.Contains(":"))
         {
-            string[] parts = Attack3.text.Split(':');
+            string[] parts = abilityInfoText.text.Split(':');
 
             // Take the first part (before the colon)
             string modifiedString = parts[0];
 
-            Attack3.text = modifiedString;
+            abilityInfoText.text = modifiedString;
         }
     }
 
     public void abilityInfo4()
     {
-        if (!(Attack4.text.Contains(":")))
+        int abilityButtonID = 3;
+
+        if (!(abilityInfoText.text.Contains(":")))
         {
-            if (attackDamage4 > 0 && agileDamage4 > 0 && attackDamageBoost4 > 0)
+            abilityInfoText.text += ": ";
+
+            if (attackDamage4 > 0)
             {
-                Attack4.text += ":  <i> Att. " + (attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[5] * (float)(healthJager.getValue() / 50))) + "  Accur. -" + agileDamage4 + "  DMG+ " + attackDamageBoost4;
-            }
-            else if (agileDamage4 > 0 && attackDamageBoost4 > 0)
-            {
-                Attack4.text += ":  <i> Accur. -" + agileDamage4 + "  DMG+ " + attackDamageBoost4;
-            }
-            else if (attackDamage4 > 0 && attackDamageBoost4 > 0)
-            {
-                Attack4.text += ":  <i> Att. " + (attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[5] * (float)(healthJager.getValue() / 50))) + "  DMG+ " + attackDamageBoost4;
-            }
-            else if (attackDamage4 > 0 && attackDamageBoost4 > 0)
-            {
-                Attack4.text += ":  <i> Att. " + (attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[5] * (float)(healthJager.getValue() / 50))) + "  Accur. -" + agileDamage4;
-            }
-            else if (attackDamageBoost4 > 0 && agileDamage4 <= 0 && attackDamage4 <= 0)
-            {
-                Attack4.text += ":  <i>DMG+ " + (attackDamageBoostJager);
-            }
-            else if (attackDamageBoost4 <= 0 && agileDamage4 > 0 && attackDamage4 <= 0)
-            {
-                Attack4.text += ":  <i>Accur. -" + agileDamage4;
-            }
-            else
-            {
-                Attack4.text += ":  <i> Att. " + (attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[5] * (float)(healthJager.getValue() / 50)));
+                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[abilityButtonID] * (float)(healthJager.getValue() / 50)));
             }
 
-            if (damageTeammate4 > 0)
+            if (agileDamage4 > 0)
             {
-                Attack4.text += " PID: " + damageTeammate4;
+                abilityInfoText.text += "\n <i> Lower Enemy Accuracy -" + agileDamage4;
+            }
+
+            if (attackDamageBoost4 > 0)
+            {
+                abilityInfoText.text += "\n <i> Damage Boost " + attackDamageBoost4;
+            }
+
+            if (harmTeammate4 && damageTeammate4 > 0)
+            {
+                abilityInfoText.text += "\n <i> Partner Inflicted Damage " + damageTeammate4;
+            }
+
+            if (hitAll4)
+            {
+                abilityInfoText.text += "\n <i> Hit all Enemies";
+            }
+
+            if (agileDamageTeammate4 > 0)
+            {
+                abilityInfoText.text += "\n <i> Lower partner Accuracy -" + agileDamage4;
+            }
+
+            if (recieveToPartnerDamage[abilityButtonID])
+            {
+                abilityInfoText.text += "\n <i> Transfer Partner Damage active = " + getDamageSwitch();
+            }
+
+            if (enemyHitPartner[abilityButtonID])
+            {
+                abilityInfoText.text += "\n <i> Confuse Enemy active = " + getEnemyHitPartner();
+            }
+
+            if (damageBhealthMulti[abilityButtonID] > 0)
+            {
+                abilityInfoText.text += "\n <i> Lower health Damage multiplier = " + damageBhealthMulti[abilityButtonID];
             }
         }
-        else if (Attack4.text.Contains(":"))
+        else if (abilityInfoText.text.Contains(":"))
         {
-            string[] parts = Attack4.text.Split(':');
+            string[] parts = abilityInfoText.text.Split(':');
 
             // Take the first part (before the colon)
             string modifiedString = parts[0];
 
-            Attack4.text = modifiedString;
+            abilityInfoText.text = modifiedString;
         }
     }
 
     public void abilityInfo7()
     {
-        if (!(Attack7.text.Contains(":")))
+        int abilityButtonID = 6;
+
+        if (!(abilityInfoText.text.Contains(":")))
         {
-            if (attackDamage7 > 0 && agileDamage7 > 0 && attackDamageBoost7 > 0)
+            abilityInfoText.text += ": ";
+
+            if (attackDamage7 > 0)
             {
-                Attack7.text += ":  <i> Att. " + (attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)(healthJager.getValue() / 50))) + "  Accur. -" + agileDamage7 + "  DMG+ " + attackDamageBoost7;
-            }
-            else if (agileDamage7 > 0 && attackDamageBoost7 > 0)
-            {
-                Attack7.text += ":  <i> Accur. -" + agileDamage7 + "  DMG+ " + attackDamageBoost7;
-            }
-            else if (attackDamage7 > 0 && attackDamageBoost7 > 0)
-            {
-                Attack7.text += ":  <i> Att. " + (attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)(healthJager.getValue() / 50))) + "  DMG+ " + attackDamageBoost7;
-            }
-            else if (attackDamage7 > 0 && attackDamageBoost7 > 0)
-            {
-                Attack7.text += ":  <i> Att. " + (attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)(healthJager.getValue() / 50))) + "  Accur. -" + agileDamage7;
-            }
-            else if (attackDamageBoost7 > 0 && agileDamage7 <= 0 && attackDamage7 <= 0)
-            {
-                Attack7.text += ":  <i>DMG+ " + attackDamageBoost7;
-            }
-            else if (attackDamageBoost7 <= 0 && agileDamage7 > 0 && attackDamage7 <= 0)
-            {
-                Attack7.text += ":  <i>Accur. -" + agileDamage7;
-            }
-            else
-            {
-                Attack7.text += ":  <i> Att. " + (attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)(healthJager.getValue() / 50)));
+                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[abilityButtonID] * (float)(healthJager.getValue() / 50)));
             }
 
-            if (damageTeammate7 > 0)
+            if (agileDamage7 > 0)
             {
-                Attack7.text += " PID: " + damageTeammate7;
+                abilityInfoText.text += "\n <i> Lower Enemy Accuracy -" + agileDamage7;
+            }
+
+            if (attackDamageBoost7 > 0)
+            {
+                abilityInfoText.text += "\n <i> Damage Boost " + attackDamageBoost7;
+            }
+
+            if (harmTeammate7 && damageTeammate7 > 0)
+            {
+                abilityInfoText.text += "\n <i> Partner Inflicted Damage " + damageTeammate7;
+            }
+
+            if (hitAll7)
+            {
+                abilityInfoText.text += "\n <i> Hit all Enemies";
+            }
+
+            if (agileDamageTeammate7 > 0)
+            {
+                abilityInfoText.text += "\n <i> Lower partner Accuracy -" + agileDamage7;
+            }
+
+            if (recieveToPartnerDamage[abilityButtonID])
+            {
+                abilityInfoText.text += "\n <i> Transfer Partner Damage active = " + getDamageSwitch();
+            }
+
+            if (enemyHitPartner[abilityButtonID])
+            {
+                abilityInfoText.text += "\n <i> Confuse Enemy active = " + getEnemyHitPartner();
+            }
+
+            if (damageBhealthMulti[abilityButtonID] > 0)
+            {
+                abilityInfoText.text += "\n <i> Lower health Damage multiplier = " + damageBhealthMulti[abilityButtonID];
             }
         }
-        else if (Attack7.text.Contains(":"))
+        else if (abilityInfoText.text.Contains(":"))
         {
-            string[] parts = Attack7.text.Split(':');
+            string[] parts = abilityInfoText.text.Split(':');
 
             // Take the first part (before the colon)
             string modifiedString = parts[0];
 
-            Attack7.text = modifiedString;
+            abilityInfoText.text = modifiedString;
         }
     }
 
     public void abilityInfo8()
     {
-        if (!(Attack8.text.Contains(":")))
+        int abilityButtonID = 7;
+
+        if (!(abilityInfoText.text.Contains(":")))
         {
-            if (attackDamage8 > 0 && agileDamage8 > 0 && attackDamageBoost8 > 0)
+            abilityInfoText.text += ": ";
+
+            if (attackDamage8 > 0)
             {
-                Attack8.text += ":  <i> Att. " + (attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[7] * (float)(healthJager.getValue() / 50))) + "  Accur. -" + agileDamage8 + "  DMG+ " + attackDamageBoost8;
-            }
-            else if (agileDamage8 > 0 && attackDamageBoost8 > 0)
-            {
-                Attack8.text += ":  <i> Accur. -" + agileDamage8 + "  DMG+ " + attackDamageBoost8;
-            }
-            else if (attackDamage8 > 0 && attackDamageBoost8 > 0)
-            {
-                Attack8.text += ":  <i> Att. " + (attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[7] * (float)(healthJager.getValue() / 50))) + "  DMG+ " + attackDamageBoost8;
-            }
-            else if (attackDamage8 > 0 && attackDamageBoost8 > 0)
-            {
-                Attack8.text += ":  <i> Att. " + (attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[7] * (float)(healthJager.getValue() / 50))) + "  Accur. -" + agileDamage8;
-            }
-            else if (attackDamageBoost8 > 0 && agileDamage8 <= 0 && attackDamage8 <= 0)
-            {
-                Attack8.text += ":  <i>DMG+ " + attackDamageBoost8;
-            }
-            else if (attackDamageBoost8 <= 0 && agileDamage8 > 0 && attackDamage8 <= 0)
-            {
-                Attack8.text += ":  <i>Accur. -" + agileDamage8;
-            }
-            else
-            {
-                Attack8.text += ":  <i> Att. " + (attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[7] * (float)(healthJager.getValue() / 50)));
+                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[abilityButtonID] * (float)(healthJager.getValue() / 50)));
             }
 
-            if (damageTeammate8 > 0)
+            if (agileDamage8 > 0)
             {
-                Attack8.text += " PID: " + damageTeammate8;
+                abilityInfoText.text += "\n <i> Lower Enemy Accuracy -" + agileDamage8;
+            }
+
+            if (attackDamageBoost8 > 0)
+            {
+                abilityInfoText.text += "\n <i> Damage Boost " + attackDamageBoost8;
+            }
+
+            if (harmTeammate8 && damageTeammate8 > 0)
+            {
+                abilityInfoText.text += "\n <i> Partner Inflicted Damage " + damageTeammate8;
+            }
+
+            if (hitAll8)
+            {
+                abilityInfoText.text += "\n <i> Hit all Enemies";
+            }
+
+            if (agileDamageTeammate8 > 0)
+            {
+                abilityInfoText.text += "\n <i> Lower partner Accuracy -" + agileDamage8;
+            }
+
+            if (recieveToPartnerDamage[abilityButtonID])
+            {
+                abilityInfoText.text += "\n <i> Transfer Partner Damage active = " + getDamageSwitch();
+            }
+
+            if (enemyHitPartner[abilityButtonID])
+            {
+                abilityInfoText.text += "\n <i> Confuse Enemy active = " + getEnemyHitPartner();
+            }
+
+            if (damageBhealthMulti[abilityButtonID] > 0)
+            {
+                abilityInfoText.text += "\n <i> Lower health Damage multiplier = " + damageBhealthMulti[abilityButtonID];
             }
         }
-        else if (Attack8.text.Contains(":"))
+        else if (abilityInfoText.text.Contains(":"))
         {
-            string[] parts = Attack8.text.Split(':');
+            string[] parts = abilityInfoText.text.Split(':');
 
             // Take the first part (before the colon)
             string modifiedString = parts[0];
 
-            Attack8.text = modifiedString;
+            abilityInfoText.text = modifiedString;
         }
     }
 
@@ -861,7 +993,12 @@ public class PlayerAbilities : MonoBehaviour
                 switchINCdamage = true;
             }
 
-            if(hitAll)
+            if (enemyHitPartner[0])
+            {
+                enemyHitPartnerOnTurn = true;
+            }
+
+            if (hitAll)
             {
                 enemyAbilities.reduceAttackSpeed(-agileDamage1, 0);
                 enemyAbilities.reduceAttackSpeed(-agileDamage1, 1);
@@ -950,6 +1087,11 @@ public class PlayerAbilities : MonoBehaviour
             if (recieveToPartnerDamage[1])
             {
                 switchINCdamage = true;
+            }
+
+            if (enemyHitPartner[1])
+            {
+                enemyHitPartnerOnTurn = true;
             }
 
             if (hitAll)
@@ -1043,6 +1185,11 @@ public class PlayerAbilities : MonoBehaviour
                 switchINCdamage = true;
             }
 
+            if (enemyHitPartner[2])
+            {
+                enemyHitPartnerOnTurn = true;
+            }
+
             if (hitAll)
             {
                 enemyAbilities.reduceAttackSpeed(-agileDamage5, 0);
@@ -1132,6 +1279,11 @@ public class PlayerAbilities : MonoBehaviour
             if (recieveToPartnerDamage[3])
             {
                 switchINCdamage = true;
+            }
+
+            if (enemyHitPartner[3])
+            {
+                enemyHitPartnerOnTurn = true;
             }
 
             if (hitAll)
@@ -1224,6 +1376,11 @@ public class PlayerAbilities : MonoBehaviour
                 switchINCdamage = true;
             }
 
+            if (enemyHitPartner[4])
+            {
+                enemyHitPartnerOnTurn = true;
+            }
+
             if (hitAll)
             {
                 enemyAbilities.reduceAttackSpeed(-agileDamage4, 0);
@@ -1312,6 +1469,11 @@ public class PlayerAbilities : MonoBehaviour
             if (recieveToPartnerDamage[5])
             {
                 switchINCdamage = true;
+            }
+
+            if (enemyHitPartner[5])
+            {
+                enemyHitPartnerOnTurn = true;
             }
 
             if (hitAll)
@@ -1404,6 +1566,11 @@ public class PlayerAbilities : MonoBehaviour
                 switchINCdamage = true;
             }
 
+            if (enemyHitPartner[6])
+            {
+                enemyHitPartnerOnTurn = true;
+            }
+
             if (hitAll)
             {
                 enemyAbilities.reduceAttackSpeed(-agileDamage7, 0);
@@ -1492,6 +1659,11 @@ public class PlayerAbilities : MonoBehaviour
             if (recieveToPartnerDamage[7])
             {
                 switchINCdamage = true;
+            }
+
+            if (enemyHitPartner[7])
+            {
+                enemyHitPartnerOnTurn = true;
             }
 
             if (hitAll)
@@ -1658,8 +1830,9 @@ public class PlayerAbilities : MonoBehaviour
     public void unlockAttacks()
     {
         switchINCdamage = false;
+        enemyHitPartnerOnTurn = false;
 
-        if(healthMina.getValue() > 0)
+        if (healthMina.getValue() > 0)
         {
             AttackButton1.interactable = true;
             AttackButton2.interactable = true;

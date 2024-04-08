@@ -1,9 +1,13 @@
 using UnityEngine;
 using TMPro;
 using System;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 public class AbilitySets : MonoBehaviour
 {
+    [SerializeField]
+    private SliderController[] enemyHealth = new SliderController[] { null, null, null, null };
+
     [SerializeField]
     public GameObject[] accuracyIcon = new GameObject[11];
 
@@ -269,7 +273,11 @@ public class AbilitySets : MonoBehaviour
             }
             else
             {
-                if (!PlayerAbilities.getDamageSwitch() && healthMina.getValue() > 0 && UnityEngine.Random.Range(0, 100) <= 50)
+                if(PlayerAbilities.getEnemyHitPartner() && enemyHealth[0] != null)
+                {
+                    enemyHealth[isEnemyPressence(enemyID)].SetSliderValue(attackDamage1 + countExtraDamage);
+                }
+                else if (!PlayerAbilities.getDamageSwitch() && healthMina.getValue() > 0 && UnityEngine.Random.Range(0, 100) <= 50)
                 {
                     healthMina.SetSliderValue(attackDamage1 + countExtraDamage);
                 }
@@ -325,7 +333,11 @@ public class AbilitySets : MonoBehaviour
             }
             else
             {
-                if (!PlayerAbilities.getDamageSwitch() && healthMina.getValue() > 0 && UnityEngine.Random.Range(0, 100) <= 50)
+                if (PlayerAbilities.getEnemyHitPartner() && enemyHealth[1] != null)
+                {
+                    enemyHealth[isEnemyPressence(enemyID)].SetSliderValue(attackDamage1 + countExtraDamage);
+                }
+                else if (!PlayerAbilities.getDamageSwitch() && healthMina.getValue() > 0 && UnityEngine.Random.Range(0, 100) <= 50)
                 {
                     healthMina.SetSliderValue(attackDamage1 + countExtraDamage);
                 }
@@ -380,7 +392,11 @@ public class AbilitySets : MonoBehaviour
             }
             else
             {
-                if (!PlayerAbilities.getDamageSwitch() && healthMina.getValue() > 0 && UnityEngine.Random.Range(0, 100) <= 50)
+                if (PlayerAbilities.getEnemyHitPartner() && enemyHealth[2] != null)
+                {
+                    enemyHealth[isEnemyPressence(enemyID)].SetSliderValue(attackDamage1 + countExtraDamage);
+                }
+                else if (!PlayerAbilities.getDamageSwitch() && healthMina.getValue() > 0 && UnityEngine.Random.Range(0, 100) <= 50)
                 {
                     healthMina.SetSliderValue(attackDamageLast + countExtraDamage);
                 }
@@ -495,5 +511,94 @@ public class AbilitySets : MonoBehaviour
                 PlayerAbilities.unlockAttacks();
             }
         }
-    }     
+    }   
+    
+    private int isEnemyPressence(int enemyID)
+    {
+        if (enemyID == 0 && (enemyHealth[1] != null || enemyHealth[2] != null || enemyHealth[3] != null))
+        {
+            int hitFriend = 0;
+
+            if(enemyHealth[1] != null && UnityEngine.Random.Range(0, 100) <= 80)
+            {
+                hitFriend = 1;
+            }
+
+            if (enemyHealth[2] != null && UnityEngine.Random.Range(0, 100) <= 80)
+            {
+                hitFriend = 2;
+            }
+
+            if (enemyHealth[3] != null && UnityEngine.Random.Range(0, 100) <= 80)
+            {
+                hitFriend = 3;
+            }
+
+            return hitFriend;
+        }
+        else if (enemyID == 1 && (enemyHealth[0] != null || enemyHealth[2] != null || enemyHealth[3] != null))
+        {
+            int hitFriend = 1;
+
+            if (enemyHealth[0] != null && UnityEngine.Random.Range(0, 100) <= 80)
+            {
+                hitFriend = 0;
+            }
+
+            if (enemyHealth[2] != null && UnityEngine.Random.Range(0, 100) <= 80)
+            {
+                hitFriend = 2;
+            }
+
+            if (enemyHealth[3] != null && UnityEngine.Random.Range(0, 100) <= 80)
+            {
+                hitFriend = 3;
+            }
+
+            return hitFriend;
+        }
+        else if (enemyID == 2 && (enemyHealth[0] != null || enemyHealth[1] != null || enemyHealth[3] != null))
+        {
+            int hitFriend = 1;
+
+            if (enemyHealth[0] != null && UnityEngine.Random.Range(0, 100) <= 80)
+            {
+                hitFriend = 0;
+            }
+
+            if (enemyHealth[1] != null && UnityEngine.Random.Range(0, 100) <= 80)
+            {
+                hitFriend = 1;
+            }
+
+            if (enemyHealth[3] != null && UnityEngine.Random.Range(0, 100) <= 80)
+            {
+                hitFriend = 3;
+            }
+
+            return hitFriend;
+        }
+        else if (enemyID == 3 && (enemyHealth[0] != null || enemyHealth[1] != null || enemyHealth[2] != null))
+        {
+            int hitFriend = 1;
+
+            if (enemyHealth[0] != null && UnityEngine.Random.Range(0, 100) <= 80)
+            {
+                hitFriend = 0;
+            }
+
+            if (enemyHealth[1] != null && UnityEngine.Random.Range(0, 100) <= 80)
+            {
+                hitFriend = 1;
+            }
+
+            if (enemyHealth[2] != null && UnityEngine.Random.Range(0, 100) <= 80)
+            {
+                hitFriend = 2;
+            }
+
+            return hitFriend;
+        }
+        else return -1; 
+    }
 }
