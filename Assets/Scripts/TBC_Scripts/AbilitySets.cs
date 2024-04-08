@@ -5,6 +5,9 @@ using System;
 public class AbilitySets : MonoBehaviour
 {
     [SerializeField]
+    public GameObject[] accuracyIcon = new GameObject[11];
+
+    [SerializeField]
     private int enemiesAtOnce = 0;
 
     [SerializeField]
@@ -106,6 +109,8 @@ public class AbilitySets : MonoBehaviour
     private bool boostAllAccurcyLast = false;
     [SerializeField]
     private int attackDamageBoostLast = 0;
+    [SerializeField]
+    private String attackUseMessageLast = null;
 
     [SerializeField]
     private TextMeshProUGUI UseMessage;
@@ -114,7 +119,8 @@ public class AbilitySets : MonoBehaviour
     private String startBattleMessage = "";
 
     private float countExtraDamage = 0;
-    
+
+
     // Start is called before the first frame update
     void Start() 
     {
@@ -135,21 +141,72 @@ public class AbilitySets : MonoBehaviour
 
     public void reduceAttackSpeed(float speed,int enemyID)
     {
-        if(enemyID == 0 && attackSpeedEnemy1 < 80)
+        if(enemiesAtOnce >= 1 && enemyID == 0 && attackSpeedEnemy1 < 80)
         {
             attackSpeedEnemy1 -= speed;
+            if(!accuracyIcon[0].active && attackSpeedEnemy1 < 30)
+            {
+                accuracyIcon[0].active = true;
+            }
+            else if (!accuracyIcon[1].active && attackSpeedEnemy1 < 60)
+            {
+                accuracyIcon[1].active = true;
+            }
+            else if (!accuracyIcon[2].active && attackSpeedEnemy1 < 80)
+            {
+                accuracyIcon[2].active = true;
+            }
         }
-        else if (enemyID == 1 && attackSpeedEnemy2 < 80)
+        
+        if (enemiesAtOnce >= 2 && enemyID == 1 && attackSpeedEnemy2 < 80)
         {
             attackSpeedEnemy2 -= speed;
+            if (!accuracyIcon[3].active && attackSpeedEnemy2 < 30)
+            {
+                accuracyIcon[3].active = true;
+            }
+            else if (!accuracyIcon[4].active && attackSpeedEnemy2 < 60)
+            {
+                accuracyIcon[4].active = true;
+            }
+            else if (!accuracyIcon[5].active && attackSpeedEnemy2 < 80)
+            {
+                accuracyIcon[5].active = true;
+            }
         }
-        else if (enemyID == 2 && attackSpeedEnemy3 < 80)
+        
+        if (enemiesAtOnce >= 3 && enemyID == 2 && attackSpeedEnemy3 < 80)
         {
             attackSpeedEnemy3 -= speed;
+            if (!accuracyIcon[6].active && attackSpeedEnemy3 < 30)
+            {
+                accuracyIcon[6].active = true;
+            }
+            else if (!accuracyIcon[7].active && attackSpeedEnemy3 < 60)
+            {
+                accuracyIcon[7].active = true;
+            }
+            else if (!accuracyIcon[8].active && attackSpeedEnemy3 < 80)
+            {
+                accuracyIcon[8].active = true;
+            }
         }
-        else if (enemyID == 3 && attackSpeedEnemy4 < 80)
+        
+        if (enemiesAtOnce >= 4 && enemyID == 3 && attackSpeedEnemy4 < 80)
         {
             attackSpeedEnemy4 -= speed;
+            if (!accuracyIcon[9].active && attackSpeedEnemy4 < 30)
+            {
+                accuracyIcon[9].active = true;
+            }
+            else if (!accuracyIcon[10].active && attackSpeedEnemy4 < 60)
+            {
+                accuracyIcon[10].active = true;
+            }
+            else if (!accuracyIcon[11].active && attackSpeedEnemy4 < 80)
+            {
+                accuracyIcon[11].active = true;
+            }
         }
     }
     public int useAttack(int abilityUse, int enemyID)
@@ -212,7 +269,7 @@ public class AbilitySets : MonoBehaviour
             }
             else
             {
-                if (healthMina.getValue() > 0 && UnityEngine.Random.Range(0, 100) <= 50)
+                if (!PlayerAbilities.getDamageSwitch() && healthMina.getValue() > 0 && UnityEngine.Random.Range(0, 100) <= 50)
                 {
                     healthMina.SetSliderValue(attackDamage1 + countExtraDamage);
                 }
@@ -268,7 +325,7 @@ public class AbilitySets : MonoBehaviour
             }
             else
             {
-                if (healthMina.getValue() > 0 && UnityEngine.Random.Range(0, 100) <= 50)
+                if (!PlayerAbilities.getDamageSwitch() && healthMina.getValue() > 0 && UnityEngine.Random.Range(0, 100) <= 50)
                 {
                     healthMina.SetSliderValue(attackDamage1 + countExtraDamage);
                 }
@@ -323,7 +380,7 @@ public class AbilitySets : MonoBehaviour
             }
             else
             {
-                if (healthMina.getValue() > 0 && UnityEngine.Random.Range(0, 100) <= 50)
+                if (!PlayerAbilities.getDamageSwitch() && healthMina.getValue() > 0 && UnityEngine.Random.Range(0, 100) <= 50)
                 {
                     healthMina.SetSliderValue(attackDamageLast + countExtraDamage);
                 }
@@ -351,7 +408,15 @@ public class AbilitySets : MonoBehaviour
 
             usedAbilitySpeed = accurcyDamageLast;
 
-            UseMessage.text = enemyName + " Used <i>" + abilityNameLast + "</i>" + " and it hit!";
+            if (attackUseMessageLast != null && !(attackUseMessageLast.Equals("")))
+            {
+                UseMessage.text = enemyName + " Used <i>" + abilityName2 + "</i>" + attackUseMessageLast;
+            }
+            else
+            {
+                UseMessage.text = enemyName + " Used <i>" + abilityName2 + "</i>" + " and it hit!";
+            }
+            
 
             waitingMessage = 100;
         }
@@ -369,7 +434,6 @@ public class AbilitySets : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
         if (enemiesAtOnce > 3 && attackAgainTimer == 250)
         {
             this.enemyName = enemyFourName;
