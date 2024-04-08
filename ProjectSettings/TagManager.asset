@@ -12,6 +12,11 @@ TagManager:
   - locpop
   - LocName
   - Over
+  - jour
+  - charp
+  - locp
+  - DesLocP
+  - DesCharP
   layers:
   - Default
   - TransparentFX
