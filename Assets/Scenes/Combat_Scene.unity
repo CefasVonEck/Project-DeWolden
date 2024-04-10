@@ -161,8 +161,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -76.35331, y: 211.04674}
-  m_SizeDelta: {x: 320.2778, y: 10.2689}
+  m_AnchoredPosition: {x: -76.35331, y: 207.99767}
+  m_SizeDelta: {x: 320.2778, y: 9.9786}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &10785668
 MonoBehaviour:
@@ -4528,8 +4528,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -323.72156, y: 134.55951}
-  m_SizeDelta: {x: 320.2778, y: 10.2689}
+  m_AnchoredPosition: {x: -323.72156, y: 138.04419}
+  m_SizeDelta: {x: 320.2778, y: 9.6881}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1101346516
 MonoBehaviour:
@@ -6302,6 +6302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   returnToMainSceneName: TestLevelScene
+  ailityMenu: {fileID: 1482458915}
   healthEnemySelected: {fileID: 0}
   healthEnemy01: {fileID: 1072037603}
   healthEnemy02: {fileID: 2136888902}
@@ -6313,10 +6314,10 @@ MonoBehaviour:
   enemyAbilities: {fileID: 1928170628}
   recieveToPartnerDamage: 0000000000000001
   enemyHitPartner: 0000000000010000
-  damageBhealthMulti: 0500000000000000000000000000000000000000000000000000000000000000
+  damageBhealthMulti: 0f00000000000000000000000000000000000000000000000000000000000000
   enemyName: Mina
   abilityName: Scream of Agony
-  attackDamage1: 10
+  attackDamage1: 15
   agileDamage1: 10
   attackDamageBoost1: 0
   maxAbilityUse: 1000
@@ -6326,35 +6327,41 @@ MonoBehaviour:
   hitAll: 0
   canMiss: 0
   harmTeammate: 1
+  attackTimes: 0
   damageTeammate: 13
   agileDamageTeammate: 13
-  abilityName2: Surrounded by Fog
+  thornDamageActive: 0
+  abilityName2: Healing Chant
   attackDamage2: 0
-  agileDamage2: 20
+  agileDamage2: 0
   attackDamageBoost2: 0
   attackUseMessage2: ' and enemy accuracy was lowered!'
   maxAbilityUse2: 0
   changeBeingUsed2: 0
   userName2: Mina
   hitAll2: 1
-  canMiss2: 1
-  harmTeammate2: 0
-  damageTeammate2: 0
+  canMiss2: 0
+  harmTeammate2: 1
+  attackTimes2: 0
+  damageTeammate2: -25
   agileDamageTeammate2: 0
+  thornDamageActive2: 0
   abilityName3: Devilish Charm
   attackDamage3: 0
-  agileDamage3: 0
-  attackDamageBoost3: 8
-  attackUseMessage3: ' and Enemy Accuracy was  a bit lowered and Damage Output was
+  agileDamage3: 4
+  attackDamageBoost3: 2
+  attackUseMessage3: ' and Enemy Accuracy was a bit lowered and Damage Output was
     increased!'
   userName3: Jager
   hitAll3: 1
   canMiss3: 0
   harmTeammate3: 0
+  attackTimes3: 1
   damageTeammate3: 0
-  agileDamageTeammate3: 0
+  agileDamageTeammate3: -3
+  thornDamageActive3: 0
   abilityName4: Fire Ball
-  attackDamage4: 10
+  attackDamage4: 7
   agileDamage4: 5
   attackDamageBoost4: 0
   attackUseMessage4: 
@@ -6362,41 +6369,49 @@ MonoBehaviour:
   hitAll4: 0
   canMiss4: 1
   harmTeammate4: 0
+  attackTimes4: 3
   damageTeammate4: 0
   agileDamageTeammate4: 0
+  thornDamageActive4: 0
   abilityName5: Chocking Mist
   attackDamage5: 25
   agileDamage5: 5
   attackDamageBoost5: 0
   attackUseMessage5: ' and everybody chocked!'
-  userName5: 
+  userName5: Mina
   hitAll5: 1
   canMiss5: 0
   harmTeammate5: 1
+  attackTimes5: 1
   damageTeammate5: 15
   agileDamageTeammate5: 5
+  thornDamageActive5: 0
   abilityName6: Song of Confusion
   attackDamage6: 0
   agileDamage6: 0
   attackDamageBoost6: 0
   attackUseMessage6: ' and the enemy is confused!'
-  userName6: 
+  userName6: Mina
   hitAll6: 0
   canMiss6: 1
   harmTeammate6: 0
+  attackTimes6: 0
   damageTeammate6: 0
   agileDamageTeammate6: 0
+  thornDamageActive6: 0
   abilityName7: Ring of Fire
   attackDamage7: 0
-  agileDamage7: 55
+  agileDamage7: 25
   attackDamageBoost7: 0
   attackUseMessage7: ' and you both are protected by fire!'
-  userName7: 
+  userName7: Jager
   hitAll7: 1
   canMiss7: 0
   harmTeammate7: 1
+  attackTimes7: 1
   damageTeammate7: 0
   agileDamageTeammate7: 0
+  thornDamageActive7: 15
   abilityName8: Soul Offering
   attackDamage8: 0
   agileDamage8: 0
@@ -6406,8 +6421,10 @@ MonoBehaviour:
   hitAll8: 1
   canMiss8: 0
   harmTeammate8: 0
-  damageTeammate8: -5
+  attackTimes8: 1
+  damageTeammate8: 0
   agileDamageTeammate8: 0
+  thornDamageActive8: 0
   UseMessage: {fileID: 1149140857}
   Attack1: {fileID: 451872265}
   Attack2: {fileID: 1684762517}
@@ -6429,6 +6446,7 @@ MonoBehaviour:
   enemy2: {fileID: 1914014085}
   enemy3: {fileID: 1635526073}
   enemy4: {fileID: 0}
+  thornDamage: 0
 --- !u!1 &1395232311
 GameObject:
   m_ObjectHideFlags: 0
@@ -8804,8 +8822,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -76.35331, y: 134.55951}
-  m_SizeDelta: {x: 320.2778, y: 10.2689}
+  m_AnchoredPosition: {x: -76.35331, y: 138.04419}
+  m_SizeDelta: {x: 320.2778, y: 9.6881}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1814813102
 MonoBehaviour:
@@ -10524,8 +10542,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -323.72156, y: 211.04674}
-  m_SizeDelta: {x: 320.2778, y: 10.2689}
+  m_AnchoredPosition: {x: -323.72156, y: 207.99767}
+  m_SizeDelta: {x: 320.2778, y: 9.9786}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2077517707
 MonoBehaviour:

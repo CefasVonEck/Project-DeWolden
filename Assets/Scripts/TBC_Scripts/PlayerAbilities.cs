@@ -8,7 +8,10 @@ public class PlayerAbilities : MonoBehaviour
 {
     [SerializeField]
     private string returnToMainSceneName;
-    
+
+    [SerializeField]
+    private GameObject ailityMenu;
+
     [SerializeField]
     private SliderController healthEnemySelected;
     [SerializeField]
@@ -34,6 +37,7 @@ public class PlayerAbilities : MonoBehaviour
     private int attackAgainTimer = 0;
 
     private bool switchINCdamage = false;
+    private int switchINCdamageTurns = 0;
 
     public bool getDamageSwitch()
     {
@@ -81,9 +85,13 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField]
     private bool harmTeammate = true;
     [SerializeField]
+    private int attackTimes = 1;
+    [SerializeField]
     private int damageTeammate = 0;
     [SerializeField]
     private int agileDamageTeammate = 0;
+    [SerializeField]
+    private float thornDamageActive = 0;
 
     [SerializeField]
     private String abilityName2 = "";
@@ -108,9 +116,13 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField]
     private bool harmTeammate2 = true;
     [SerializeField]
+    private int attackTimes2 = 1;
+    [SerializeField]
     private int damageTeammate2 = 0;
     [SerializeField]
     private int agileDamageTeammate2 = 0;
+    [SerializeField]
+    private float thornDamageActive2 = 0;
 
     [SerializeField]
     private String abilityName3 = "";
@@ -135,9 +147,13 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField]
     private bool harmTeammate3 = true;
     [SerializeField]
+    private int attackTimes3 = 1;
+    [SerializeField]
     private int damageTeammate3 = 0;
     [SerializeField]
     private int agileDamageTeammate3 = 0;
+    [SerializeField]
+    private float thornDamageActive3 = 0;
 
     [SerializeField]
     private String abilityName4 = "";
@@ -158,9 +174,13 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField]
     private bool harmTeammate4 = true;
     [SerializeField]
+    private int attackTimes4 = 1;
+    [SerializeField]
     private int damageTeammate4 = 0;
     [SerializeField]
     private int agileDamageTeammate4 = 0;
+    [SerializeField]
+    private float thornDamageActive4 = 0;
 
     [SerializeField]
     private String abilityName5 = "";
@@ -181,9 +201,13 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField]
     private bool harmTeammate5 = true;
     [SerializeField]
+    private int attackTimes5 = 1;
+    [SerializeField]
     private int damageTeammate5 = 0;
     [SerializeField]
     private int agileDamageTeammate5 = 0;
+    [SerializeField]
+    private float thornDamageActive5 = 0;
 
     [SerializeField]
     private String abilityName6 = "";
@@ -204,9 +228,13 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField]
     private bool harmTeammate6 = true;
     [SerializeField]
+    private int attackTimes6 = 1;
+    [SerializeField]
     private int damageTeammate6 = 0;
     [SerializeField]
     private int agileDamageTeammate6 = 0;
+    [SerializeField]
+    private float thornDamageActive6 = 0;
 
     [SerializeField]
     private String abilityName7 = "";
@@ -227,9 +255,13 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField]
     private bool harmTeammate7 = true;
     [SerializeField]
+    private int attackTimes7 = 1;
+    [SerializeField]
     private int damageTeammate7 = 0;
     [SerializeField]
     private int agileDamageTeammate7 = 0;
+    [SerializeField]
+    private float thornDamageActive7 = 0;
 
     [SerializeField]
     private String abilityName8 = "";
@@ -250,9 +282,13 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField]
     private bool harmTeammate8 = true;
     [SerializeField]
+    private int attackTimes8 = 1;
+    [SerializeField]
     private int damageTeammate8 = 0;
     [SerializeField]
     private int agileDamageTeammate8 = 0;
+    [SerializeField]
+    private float thornDamageActive8 = 0;
 
     private int attackDamageBoostMina = 0;
     private int attackDamageBoostJager = 0;
@@ -310,6 +346,9 @@ public class PlayerAbilities : MonoBehaviour
     private int missAbiblityChangesJager = 0;
     private AbilityList abilityList = new AbilityList();
 
+    private int attackOverAgain = 0;
+    public float thornDamage = 0;
+ 
     // Start is called before the first frame update
     void Start()
     {
@@ -405,14 +444,14 @@ public class PlayerAbilities : MonoBehaviour
     public void abilityInfo1()
     {
         int abilityButtonID = 0;
-
-        if(!(abilityInfoText.text.Contains(":")))
+        ailityMenu.SetActive(true);
+        if (!(abilityInfoText.text.Contains(":")))
         {
             abilityInfoText.text += ": ";
 
             if (attackDamage1 > 0)
             {
-                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[abilityButtonID] * (float)(healthMina.getValue() / 50)));
+                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[abilityButtonID] * (float)((100-healthMina.getValue()) /50)));
             }
 
             if (agileDamage1 > 0)
@@ -442,12 +481,12 @@ public class PlayerAbilities : MonoBehaviour
 
             if (recieveToPartnerDamage[abilityButtonID])
             {
-                abilityInfoText.text += "\n <i> Transfer Partner Damage active = " + getDamageSwitch();
+                abilityInfoText.text += "\n <i> Transfer Partner Damage. Turns active = " + this.switchINCdamageTurns;
             }
 
             if (enemyHitPartner[abilityButtonID])
             {
-                abilityInfoText.text += "\n <i> Confuse Enemy active = " + getEnemyHitPartner();
+                abilityInfoText.text += "\n <i> Make Enemy hit partner. Activated? " + getEnemyHitPartner();
             }
 
             if (damageBhealthMulti[abilityButtonID] > 0)
@@ -463,20 +502,21 @@ public class PlayerAbilities : MonoBehaviour
             string modifiedString = parts[0];
 
             abilityInfoText.text = modifiedString;
+            ailityMenu.SetActive(false);
         }
     }
 
     public void abilityInfo2()
     {
         int abilityButtonID = 1;
-
+        ailityMenu.SetActive(true);
         if (!(abilityInfoText.text.Contains(":")))
         {
             abilityInfoText.text += ": ";
 
             if (attackDamage2 > 0)
             {
-                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[abilityButtonID] * (float)(healthMina.getValue() / 50)));
+                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[abilityButtonID] * (float)((100-healthMina.getValue()) /50)));
             }
 
             if (agileDamage2 > 0)
@@ -506,12 +546,12 @@ public class PlayerAbilities : MonoBehaviour
 
             if (recieveToPartnerDamage[abilityButtonID])
             {
-                abilityInfoText.text += "\n <i> Transfer Partner Damage active = " + getDamageSwitch();
+                abilityInfoText.text += "\n <i> Transfer Partner Damage. Turns active = " + this.switchINCdamageTurns;
             }
 
             if (enemyHitPartner[abilityButtonID])
             {
-                abilityInfoText.text += "\n <i> Confuse Enemy active = " + getEnemyHitPartner();
+                abilityInfoText.text += "\n <i> Make Enemy hit partner. Activated? " + getEnemyHitPartner();
             }
 
             if (damageBhealthMulti[abilityButtonID] > 0)
@@ -527,20 +567,21 @@ public class PlayerAbilities : MonoBehaviour
             string modifiedString = parts[0];
 
             abilityInfoText.text = modifiedString;
+            ailityMenu.SetActive(false);
         }
     }
 
     public void abilityInfo5()
     {
         int abilityButtonID = 4;
-
+        ailityMenu.SetActive(true);
         if (!(abilityInfoText.text.Contains(":")))
         {
             abilityInfoText.text += ": ";
 
             if (attackDamage5 > 0)
             {
-                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[abilityButtonID] *(float)(healthMina.getValue() / 50)));
+                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[abilityButtonID] *(float)((100-healthMina.getValue()) /50)));
             }
 
             if (agileDamage5 > 0)
@@ -570,12 +611,12 @@ public class PlayerAbilities : MonoBehaviour
 
             if (recieveToPartnerDamage[abilityButtonID])
             {
-                abilityInfoText.text += "\n <i> Transfer Partner Damage active = " + getDamageSwitch();
+                abilityInfoText.text += "\n <i> Transfer Partner Damage. Turns active = " + this.switchINCdamageTurns;
             }
 
             if (enemyHitPartner[abilityButtonID])
             {
-                abilityInfoText.text += "\n <i> Confuse Enemy active = " + getEnemyHitPartner();
+                abilityInfoText.text += "\n <i> Make Enemy hit partner. Activated? " + getEnemyHitPartner();
             }
 
             if (damageBhealthMulti[abilityButtonID] > 0)
@@ -591,20 +632,21 @@ public class PlayerAbilities : MonoBehaviour
             string modifiedString = parts[0];
 
             abilityInfoText.text = modifiedString;
+            ailityMenu.SetActive(false);
         }
     }
 
     public void abilityInfo6()
     {
         int abilityButtonID = 5;
-
+        ailityMenu.SetActive(true);
         if (!(abilityInfoText.text.Contains(":")))
         {
             abilityInfoText.text += ": ";
 
             if (attackDamage6 > 0)
             {
-                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage6 + attackDamageBoostMina + ((float)damageBhealthMulti[abilityButtonID] * (float)(healthMina.getValue() / 50)));
+                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage6 + attackDamageBoostMina + ((float)damageBhealthMulti[abilityButtonID] * (float)((100-healthMina.getValue()) /50)));
             }
 
             if (agileDamage6 > 0)
@@ -634,12 +676,12 @@ public class PlayerAbilities : MonoBehaviour
 
             if (recieveToPartnerDamage[abilityButtonID])
             {
-                abilityInfoText.text += "\n <i> Transfer Partner Damage active = " + getDamageSwitch();
+                abilityInfoText.text += "\n <i> Transfer Partner Damage. Turns active = " + this.switchINCdamageTurns;
             }
 
             if (enemyHitPartner[abilityButtonID])
             {
-                abilityInfoText.text += "\n <i> Confuse Enemy active = " + getEnemyHitPartner();
+                abilityInfoText.text += "\n <i> Make Enemy hit partner. Activated? " + getEnemyHitPartner();
             }
 
             if (damageBhealthMulti[abilityButtonID] > 0)
@@ -655,20 +697,21 @@ public class PlayerAbilities : MonoBehaviour
             string modifiedString = parts[0];
 
             abilityInfoText.text = modifiedString;
+            ailityMenu.SetActive(false);
         }
     }
 
     public void abilityInfo3()
     {
         int abilityButtonID = 2;
-
+        ailityMenu.SetActive(true);
         if (!(abilityInfoText.text.Contains(":")))
         {
             abilityInfoText.text += ": ";
 
             if (attackDamage3 > 0)
             {
-                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[abilityButtonID] * (float)(healthJager.getValue() / 50)));
+                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[abilityButtonID] * (float)((100-healthJager.getValue()) /50)));
             }
 
             if (agileDamage3 > 0)
@@ -698,12 +741,12 @@ public class PlayerAbilities : MonoBehaviour
 
             if (recieveToPartnerDamage[abilityButtonID])
             {
-                abilityInfoText.text += "\n <i> Transfer Partner Damage active = " + getDamageSwitch();
+                abilityInfoText.text += "\n <i> Transfer Partner Damage. Turns active = " + this.switchINCdamageTurns;
             }
 
             if (enemyHitPartner[abilityButtonID])
             {
-                abilityInfoText.text += "\n <i> Confuse Enemy active = " + getEnemyHitPartner();
+                abilityInfoText.text += "\n <i> Make Enemy hit partner. Activated? " + getEnemyHitPartner();
             }
 
             if (damageBhealthMulti[abilityButtonID] > 0)
@@ -719,20 +762,21 @@ public class PlayerAbilities : MonoBehaviour
             string modifiedString = parts[0];
 
             abilityInfoText.text = modifiedString;
+            ailityMenu.SetActive(false);
         }
     }
 
     public void abilityInfo4()
     {
         int abilityButtonID = 3;
-
+        ailityMenu.SetActive(true);
         if (!(abilityInfoText.text.Contains(":")))
         {
             abilityInfoText.text += ": ";
 
             if (attackDamage4 > 0)
             {
-                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[abilityButtonID] * (float)(healthJager.getValue() / 50)));
+                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[abilityButtonID] * (float)((100-healthJager.getValue()) /50)));
             }
 
             if (agileDamage4 > 0)
@@ -762,12 +806,12 @@ public class PlayerAbilities : MonoBehaviour
 
             if (recieveToPartnerDamage[abilityButtonID])
             {
-                abilityInfoText.text += "\n <i> Transfer Partner Damage active = " + getDamageSwitch();
+                abilityInfoText.text += "\n <i> Transfer Partner Damage. Turns active = " + this.switchINCdamageTurns;
             }
 
             if (enemyHitPartner[abilityButtonID])
             {
-                abilityInfoText.text += "\n <i> Confuse Enemy active = " + getEnemyHitPartner();
+                abilityInfoText.text += "\n <i> Make Enemy hit partner. Activated? " + getEnemyHitPartner();
             }
 
             if (damageBhealthMulti[abilityButtonID] > 0)
@@ -783,20 +827,21 @@ public class PlayerAbilities : MonoBehaviour
             string modifiedString = parts[0];
 
             abilityInfoText.text = modifiedString;
+            ailityMenu.SetActive(false);
         }
     }
 
     public void abilityInfo7()
     {
         int abilityButtonID = 6;
-
+        ailityMenu.SetActive(true);
         if (!(abilityInfoText.text.Contains(":")))
         {
             abilityInfoText.text += ": ";
 
             if (attackDamage7 > 0)
             {
-                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[abilityButtonID] * (float)(healthJager.getValue() / 50)));
+                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[abilityButtonID] * (float)((100-healthJager.getValue()) /50)));
             }
 
             if (agileDamage7 > 0)
@@ -826,12 +871,12 @@ public class PlayerAbilities : MonoBehaviour
 
             if (recieveToPartnerDamage[abilityButtonID])
             {
-                abilityInfoText.text += "\n <i> Transfer Partner Damage active = " + getDamageSwitch();
+                abilityInfoText.text += "\n <i> Transfer Partner Damage. Turns active = " + this.switchINCdamageTurns;
             }
 
             if (enemyHitPartner[abilityButtonID])
             {
-                abilityInfoText.text += "\n <i> Confuse Enemy active = " + getEnemyHitPartner();
+                abilityInfoText.text += "\n <i> Make Enemy hit partner. Activated? " + getEnemyHitPartner();
             }
 
             if (damageBhealthMulti[abilityButtonID] > 0)
@@ -847,20 +892,21 @@ public class PlayerAbilities : MonoBehaviour
             string modifiedString = parts[0];
 
             abilityInfoText.text = modifiedString;
+            ailityMenu.SetActive(false);
         }
     }
 
     public void abilityInfo8()
     {
         int abilityButtonID = 7;
-
+        ailityMenu.SetActive(true);
         if (!(abilityInfoText.text.Contains(":")))
         {
             abilityInfoText.text += ": ";
 
             if (attackDamage8 > 0)
             {
-                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[abilityButtonID] * (float)(healthJager.getValue() / 50)));
+                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[abilityButtonID] * (float)((100-healthJager.getValue()) /50)));
             }
 
             if (agileDamage8 > 0)
@@ -890,12 +936,12 @@ public class PlayerAbilities : MonoBehaviour
 
             if (recieveToPartnerDamage[abilityButtonID])
             {
-                abilityInfoText.text += "\n <i> Transfer Partner Damage active = " + getDamageSwitch();
+                abilityInfoText.text += "\n <i> Transfer Partner Damage. Turns active = " + this.switchINCdamageTurns;
             }
 
             if (enemyHitPartner[abilityButtonID])
             {
-                abilityInfoText.text += "\n <i> Confuse Enemy active = " + getEnemyHitPartner();
+                abilityInfoText.text += "\n <i> Make Enemy hit partner. Activated? " + getEnemyHitPartner();
             }
 
             if (damageBhealthMulti[abilityButtonID] > 0)
@@ -911,6 +957,7 @@ public class PlayerAbilities : MonoBehaviour
             string modifiedString = parts[0];
 
             abilityInfoText.text = modifiedString;
+            ailityMenu.SetActive(false);
         }
     }
 
@@ -932,7 +979,11 @@ public class PlayerAbilities : MonoBehaviour
 
     public int getWaitingTime()
     {
-        return  attackAgainTimer;
+        if (attackOverAgain > 0)
+        {
+            return 0;
+        }
+        else return attackAgainTimer;
     }
 
     private void PlayerAttacked()
@@ -957,9 +1008,9 @@ public class PlayerAbilities : MonoBehaviour
             if (hitAll)
             {
                 healthEnemy01.SetSliderValue(attackDamage1 + attackDamageBoostMina);
-                if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)(healthMina.getValue() / 50))); }
-                if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)(healthMina.getValue() / 50))); }
-                if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)(healthMina.getValue() / 50))); }
+                if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)((100-healthMina.getValue()) /50))); }
+                if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)((100-healthMina.getValue()) /50))); }
+                if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)((100-healthMina.getValue()) /50))); }
 
                 if (attackDamageBoost1 > 0)
                 {
@@ -970,7 +1021,7 @@ public class PlayerAbilities : MonoBehaviour
             {
                 if (attackDamage1 > 0)
                 {
-                    healthEnemySelected.SetSliderValue(attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)(healthMina.getValue() / 50)));
+                    healthEnemySelected.SetSliderValue(attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)((100-healthMina.getValue()) /50)));
                 }
 
                 if (attackDamageBoost1 > 0)
@@ -991,6 +1042,7 @@ public class PlayerAbilities : MonoBehaviour
             if (recieveToPartnerDamage[0])
             {
                 switchINCdamage = true;
+                switchINCdamageTurns = 3;
             }
 
             if (enemyHitPartner[0])
@@ -1009,7 +1061,17 @@ public class PlayerAbilities : MonoBehaviour
             {
                 enemyAbilities.reduceAttackSpeed(-agileDamage1, selectedEnemy);
             }
-            
+
+            if(attackOverAgain == 0 && attackTimes > 1)
+            {
+                attackOverAgain = attackTimes;
+            }
+
+            if(thornDamageActive > 0)
+            {
+                thornDamage = thornDamageActive;
+            }
+
             //--maxAbilityUse;
 
             if (userName1 != null && !(userName1.Equals("")))
@@ -1052,9 +1114,9 @@ public class PlayerAbilities : MonoBehaviour
                 if (attackDamage2 > 0)
                 {
                     healthEnemy01.SetSliderValue(attackDamage2 + attackDamageBoostMina);
-                    if (healthEnemy02 != null){healthEnemy02.SetSliderValue(attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)(healthMina.getValue() / 50)));}
-                    if (healthEnemy03 != null){healthEnemy03.SetSliderValue(attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)(healthMina.getValue() / 50)));}
-                    if (healthEnemy04 != null){healthEnemy04.SetSliderValue(attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)(healthMina.getValue() / 50)));}
+                    if (healthEnemy02 != null){healthEnemy02.SetSliderValue(attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)((100-healthMina.getValue()) /50)));}
+                    if (healthEnemy03 != null){healthEnemy03.SetSliderValue(attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)((100-healthMina.getValue()) /50)));}
+                    if (healthEnemy04 != null){healthEnemy04.SetSliderValue(attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)((100-healthMina.getValue()) /50)));}
                 }
 
                 if (attackDamageBoost2 > 0)
@@ -1066,7 +1128,7 @@ public class PlayerAbilities : MonoBehaviour
             {
                 if (attackDamage2 > 0)
                 {
-                    healthEnemySelected.SetSliderValue(attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)(healthMina.getValue() / 50)));
+                    healthEnemySelected.SetSliderValue(attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)((100-healthMina.getValue()) /50)));
                 }
 
                 if (attackDamageBoost2 > 0)
@@ -1087,6 +1149,7 @@ public class PlayerAbilities : MonoBehaviour
             if (recieveToPartnerDamage[1])
             {
                 switchINCdamage = true;
+                switchINCdamageTurns = 3;
             }
 
             if (enemyHitPartner[1])
@@ -1104,6 +1167,16 @@ public class PlayerAbilities : MonoBehaviour
             else
             {
                 enemyAbilities.reduceAttackSpeed(-agileDamage2, selectedEnemy);
+            }
+
+            if (attackOverAgain == 0 && attackTimes2 > 1)
+            {
+                attackOverAgain = attackTimes2;
+            }
+
+            if (thornDamageActive2 > 0)
+            {
+                thornDamage = thornDamageActive2;
             }
 
             //--maxAbilityUse;
@@ -1148,9 +1221,9 @@ public class PlayerAbilities : MonoBehaviour
                 if (attackDamage5 > 0)
                 {
                     healthEnemy01.SetSliderValue(attackDamage5 + attackDamageBoostMina);
-                    if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)(healthMina.getValue() / 50))); }
-                    if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)(healthMina.getValue() / 50))); }
-                    if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)(healthMina.getValue() / 50))); }
+                    if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)((100-healthMina.getValue()) /50))); }
+                    if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)((100-healthMina.getValue()) /50))); }
+                    if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)((100-healthMina.getValue()) /50))); }
                 }
 
                 if (attackDamageBoost5 > 0)
@@ -1162,7 +1235,7 @@ public class PlayerAbilities : MonoBehaviour
             {
                 if (attackDamage5 > 0)
                 {
-                    healthEnemySelected.SetSliderValue(attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)(healthMina.getValue() / 50)));
+                    healthEnemySelected.SetSliderValue(attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)((100-healthMina.getValue()) /50)));
                 }
 
                 if (attackDamageBoost5 > 0)
@@ -1183,6 +1256,7 @@ public class PlayerAbilities : MonoBehaviour
             if (recieveToPartnerDamage[2])
             {
                 switchINCdamage = true;
+                switchINCdamageTurns = 3;
             }
 
             if (enemyHitPartner[2])
@@ -1200,6 +1274,16 @@ public class PlayerAbilities : MonoBehaviour
             else
             {
                 enemyAbilities.reduceAttackSpeed(-agileDamage5, selectedEnemy);
+            }
+
+            if (attackOverAgain == 0 && attackTimes5 > 1)
+            {
+                attackOverAgain = attackTimes5;
+            }
+
+            if (thornDamageActive5 > 0)
+            {
+                thornDamage = thornDamageActive5;
             }
 
             //--maxAbilityUse;
@@ -1244,9 +1328,9 @@ public class PlayerAbilities : MonoBehaviour
                 if (attackDamage3 > 0)
                 {
                     healthEnemy01.SetSliderValue(attackDamage3 + attackDamageBoostJager);
-                    if (healthEnemy02 != null){healthEnemy02.SetSliderValue(attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[3] * (float)(healthJager.getValue() / 50)));}
-                    if (healthEnemy03 != null){healthEnemy03.SetSliderValue(attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[3] * (float)(healthJager.getValue() / 50)));}
-                    if (healthEnemy04 != null){healthEnemy04.SetSliderValue(attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[3] * (float)(healthJager.getValue() / 50)));}
+                    if (healthEnemy02 != null){healthEnemy02.SetSliderValue(attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[3] * (float)((100-healthJager.getValue()) /50)));}
+                    if (healthEnemy03 != null){healthEnemy03.SetSliderValue(attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[3] * (float)((100-healthJager.getValue()) /50)));}
+                    if (healthEnemy04 != null){healthEnemy04.SetSliderValue(attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[3] * (float)((100-healthJager.getValue()) /50)));}
                 }
 
                 if (attackDamageBoost3 > 0)
@@ -1258,7 +1342,7 @@ public class PlayerAbilities : MonoBehaviour
             {
                 if (attackDamage3 > 0)
                 {
-                    healthEnemySelected.SetSliderValue(attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[3] * (float)(healthJager.getValue() / 50)));
+                    healthEnemySelected.SetSliderValue(attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[3] * (float)((100-healthJager.getValue()) /50)));
                 }
 
                 if (attackDamageBoost3 > 0)
@@ -1279,6 +1363,7 @@ public class PlayerAbilities : MonoBehaviour
             if (recieveToPartnerDamage[3])
             {
                 switchINCdamage = true;
+                switchINCdamageTurns = 3;
             }
 
             if (enemyHitPartner[3])
@@ -1297,6 +1382,17 @@ public class PlayerAbilities : MonoBehaviour
             {
                 enemyAbilities.reduceAttackSpeed(-agileDamage3, selectedEnemy);
             }
+
+            if (attackOverAgain == 0 && attackTimes3 > 1)
+            {
+                attackOverAgain = attackTimes3;
+            }
+
+            if (thornDamageActive3 > 0)
+            {
+                thornDamage = thornDamageActive3;
+            }
+
             //--maxAbilityUse;
 
             if (userName3 != null && !(userName3.Equals("")))
@@ -1339,9 +1435,9 @@ public class PlayerAbilities : MonoBehaviour
                 if (attackDamage4 > 0)
                 {
                     healthEnemy01.SetSliderValue(attackDamage4 + attackDamageBoostJager);
-                    if (healthEnemy02 != null){healthEnemy02.SetSliderValue(attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)(healthJager.getValue() / 50)));}
-                    if (healthEnemy03 != null){healthEnemy03.SetSliderValue(attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)(healthJager.getValue() / 50)));}
-                    if (healthEnemy04 != null){healthEnemy04.SetSliderValue(attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)(healthJager.getValue() / 50)));}
+                    if (healthEnemy02 != null){healthEnemy02.SetSliderValue(attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)((100-healthJager.getValue()) /50)));}
+                    if (healthEnemy03 != null){healthEnemy03.SetSliderValue(attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)((100-healthJager.getValue()) /50)));}
+                    if (healthEnemy04 != null){healthEnemy04.SetSliderValue(attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)((100-healthJager.getValue()) /50)));}
                 }
 
                 if (attackDamageBoost4 > 0)
@@ -1353,7 +1449,7 @@ public class PlayerAbilities : MonoBehaviour
             {
                 if (attackDamage4 > 0)
                 {
-                    healthEnemySelected.SetSliderValue(attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)(healthJager.getValue() / 50)));
+                    healthEnemySelected.SetSliderValue(attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)((100-healthJager.getValue()) /50)));
                 }
 
                 if (attackDamageBoost4 > 0)
@@ -1374,6 +1470,7 @@ public class PlayerAbilities : MonoBehaviour
             if (recieveToPartnerDamage[4])
             {
                 switchINCdamage = true;
+                switchINCdamageTurns = 3;
             }
 
             if (enemyHitPartner[4])
@@ -1391,6 +1488,16 @@ public class PlayerAbilities : MonoBehaviour
             else
             {
                 enemyAbilities.reduceAttackSpeed(-agileDamage4, selectedEnemy);
+            }
+
+            if (attackOverAgain == 0 && attackTimes4 > 1)
+            {
+                attackOverAgain = attackTimes4;
+            }
+
+            if (thornDamageActive4 > 0)
+            {
+                thornDamage = thornDamageActive4;
             }
             //--maxAbilityUse;
 
@@ -1434,41 +1541,42 @@ public class PlayerAbilities : MonoBehaviour
                 if (attackDamage6 > 0)
                 {
                     healthEnemy01.SetSliderValue(attackDamage6 + attackDamageBoostJager);
-                    if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage6 + attackDamageBoostJager + ((float)damageBhealthMulti[5] * (float)(healthJager.getValue() / 50))); }
-                    if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage6 + attackDamageBoostJager + ((float)damageBhealthMulti[5] * (float)(healthJager.getValue() / 50))); }
-                    if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage6 + attackDamageBoostJager + ((float)damageBhealthMulti[5] * (float)(healthJager.getValue() / 50))); }
+                    if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage6 + attackDamageBoostMina + ((float)damageBhealthMulti[5] * (float)((100-healthMina.getValue()) /50))); }
+                    if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage6 + attackDamageBoostMina + ((float)damageBhealthMulti[5] * (float)((100-healthMina.getValue()) /50))); }
+                    if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage6 + attackDamageBoostMina + ((float)damageBhealthMulti[5] * (float)((100-healthMina.getValue()) /50))); }
                 }
 
                 if (attackDamageBoost6 > 0)
                 {
-                    attackDamageBoostJager += attackDamageBoost6;
+                    attackDamageBoostMina += attackDamageBoost6;
                 }
             }
             else
             {
                 if (attackDamage6 > 0)
                 {
-                    healthEnemySelected.SetSliderValue(attackDamage6 + attackDamageBoostJager + ((float)damageBhealthMulti[5] * (float)(healthJager.getValue() / 50)));
+                    healthEnemySelected.SetSliderValue(attackDamage6 + attackDamageBoostMina + ((float)damageBhealthMulti[5] * (float)((100-healthJager.getValue()) /50)));
                 }
 
                 if (attackDamageBoost6 > 0)
                 {
-                    attackDamageBoostJager += attackDamageBoost6;
+                    attackDamageBoostMina += attackDamageBoost6;
                 }
             }
 
             if (harmTeammate6)
             {
-                healthMina.SetSliderValue(damageTeammate6);
-                if (attackDamageBoostMina - agileDamageTeammate6 >= 0)
+                healthJager.SetSliderValue(damageTeammate6);
+                if (attackDamageBoostJager - agileDamageTeammate6 >= 0)
                 {
-                    attackDamageBoostMina -= agileDamageTeammate6;
+                    attackDamageBoostJager -= agileDamageTeammate6;
                 }
             }
 
             if (recieveToPartnerDamage[5])
             {
                 switchINCdamage = true;
+                switchINCdamageTurns = 3;
             }
 
             if (enemyHitPartner[5])
@@ -1487,6 +1595,17 @@ public class PlayerAbilities : MonoBehaviour
             {
                 enemyAbilities.reduceAttackSpeed(-agileDamage6, selectedEnemy);
             }
+
+            if (attackOverAgain == 0 && attackTimes6 > 1)
+            {
+                attackOverAgain = attackTimes6;
+            }
+
+            if (thornDamageActive6 > 0)
+            {
+                thornDamage = thornDamageActive6;
+            }
+
             //--maxAbilityUse;
 
             if (userName6 != null && !(userName6.Equals("")))
@@ -1529,9 +1648,9 @@ public class PlayerAbilities : MonoBehaviour
                 if (attackDamage7 > 0)
                 {
                     healthEnemy01.SetSliderValue(attackDamage7 + attackDamageBoostJager);
-                    if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)(healthJager.getValue() / 50))); }
-                    if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)(healthJager.getValue() / 50))); }
-                    if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)(healthJager.getValue() / 50))); }
+                    if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)((100-healthJager.getValue()) /50))); }
+                    if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)((100-healthJager.getValue()) /50))); }
+                    if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)((100-healthJager.getValue()) /50))); }
                 }
 
                 if (attackDamageBoost7 > 0)
@@ -1543,7 +1662,7 @@ public class PlayerAbilities : MonoBehaviour
             {
                 if (attackDamage7 > 0)
                 {
-                    healthEnemySelected.SetSliderValue(attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)(healthJager.getValue() / 50)));
+                    healthEnemySelected.SetSliderValue(attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)((100-healthJager.getValue()) /50)));
                 }
 
                 if (attackDamageBoost7 > 0)
@@ -1564,6 +1683,7 @@ public class PlayerAbilities : MonoBehaviour
             if (recieveToPartnerDamage[6])
             {
                 switchINCdamage = true;
+                switchINCdamageTurns = 3;
             }
 
             if (enemyHitPartner[6])
@@ -1582,6 +1702,17 @@ public class PlayerAbilities : MonoBehaviour
             {
                 enemyAbilities.reduceAttackSpeed(-agileDamage7, selectedEnemy);
             }
+
+            if (attackOverAgain == 0 && attackTimes7 > 1)
+            {
+                attackOverAgain = attackTimes7;
+            }
+
+            if (thornDamageActive7 > 0)
+            {
+                thornDamage = thornDamageActive7;
+            }
+
             //--maxAbilityUse;
 
             if (userName7 != null && !(userName7.Equals("")))
@@ -1624,9 +1755,9 @@ public class PlayerAbilities : MonoBehaviour
                 if (attackDamage8 > 0)
                 {
                     healthEnemy01.SetSliderValue(attackDamage8 + attackDamageBoostJager);
-                    if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[7] * (float)(healthJager.getValue() / 50))); }
-                    if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[7] * (float)(healthJager.getValue() / 50))); }
-                    if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[7] * (float)(healthJager.getValue() / 50))); }
+                    if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[7] * (float)((100-healthJager.getValue()) /50))); }
+                    if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[7] * (float)((100-healthJager.getValue()) /50))); }
+                    if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[7] * (float)((100-healthJager.getValue()) /50))); }
                 }
 
                 if (attackDamageBoost8 > 0)
@@ -1659,6 +1790,7 @@ public class PlayerAbilities : MonoBehaviour
             if (recieveToPartnerDamage[7])
             {
                 switchINCdamage = true;
+                switchINCdamageTurns = 3;
             }
 
             if (enemyHitPartner[7])
@@ -1677,6 +1809,17 @@ public class PlayerAbilities : MonoBehaviour
             {
                 enemyAbilities.reduceAttackSpeed(-agileDamage8, selectedEnemy);
             }
+
+            if (attackOverAgain == 0 && attackTimes8 > 1)
+            {
+                attackOverAgain = attackTimes8;
+            }
+
+            if (thornDamageActive8 > 0)
+            {
+                thornDamage = thornDamageActive8;
+            }
+
             //--maxAbilityUse;
 
             if (userName8 != null && !(userName8.Equals("")))
@@ -1756,11 +1899,20 @@ public class PlayerAbilities : MonoBehaviour
         }
     }
 
+
     void FixedUpdate()
     {
         if (attackAgainTimer > 0)
         {
             --attackAgainTimer;
+
+            if (attackOverAgain > 0 && attackAgainTimer == 15)
+            {
+                --attackOverAgain;
+                attackAgainTimer = 80;
+                activateAttack();
+            }
+
             //Debug.Log(attackAgainTimer);
         }
 
@@ -1805,23 +1957,33 @@ public class PlayerAbilities : MonoBehaviour
         }
 
 
-        if (healthEnemy01 != null && healthEnemy02 != null && healthEnemy03 != null && healthEnemy04 != null && (healthEnemy01.getValue() <= 0 && healthEnemy02.getValue() <= 0) && healthEnemy03.getValue() <= 0 && healthEnemy04.getValue() <= 0)
+        if (healthEnemy01 != null && healthEnemy02 != null && healthEnemy03 != null && healthEnemy04 != null)
         {
-            SceneManager.LoadScene(returnToMainSceneName);
+            if (healthEnemy01.getValue() <= 0 && healthEnemy02.getValue() <= 0 && healthEnemy03.getValue() <= 0 && healthEnemy04.getValue() <= 0)
+            {
+                SceneManager.LoadScene(returnToMainSceneName);
+            }
         }
-        else if (healthEnemy01 != null && healthEnemy02 != null && healthEnemy03 != null && (healthEnemy01.getValue() <= 0 && healthEnemy02.getValue() <= 0 && healthEnemy03.getValue() <= 0))
+        else if (healthEnemy01 != null && healthEnemy02 != null && healthEnemy03 != null)
         {
-            SceneManager.LoadScene(returnToMainSceneName);
+            if (healthEnemy01.getValue() <= 0 && healthEnemy02.getValue() <= 0 && healthEnemy03.getValue() <= 0)
+            {
+                SceneManager.LoadScene(returnToMainSceneName);
+            }
         }
-        else if (healthEnemy01 != null && healthEnemy02 != null && (healthEnemy01.getValue() <= 0 && healthEnemy02.getValue() <= 0))
+        else if (healthEnemy01 != null && healthEnemy02 != null)
         {
-            SceneManager.LoadScene(returnToMainSceneName);
+            if(healthEnemy01.getValue() <= 0 && healthEnemy02.getValue() <= 0)
+            {
+                SceneManager.LoadScene(returnToMainSceneName);
+            }
         }
         else if (healthEnemy01 != null && healthEnemy01.getValue() <= 0)
         {
             SceneManager.LoadScene(returnToMainSceneName);
         }
-        else if (healthMina != null && (healthMina.getValue() <= 0 && healthJager.getValue() <= 0))
+        
+        if (healthMina != null && (healthMina.getValue() <= 0 && healthJager.getValue() <= 0))
         {
             SceneManager.LoadScene(returnToMainSceneName);
         }
@@ -1829,8 +1991,18 @@ public class PlayerAbilities : MonoBehaviour
 
     public void unlockAttacks()
     {
-        switchINCdamage = false;
+        if(switchINCdamageTurns > 0)
+        {
+            --switchINCdamageTurns;
+        }
+        else
+        {
+            switchINCdamage = false;
+        }
+
         enemyHitPartnerOnTurn = false;
+
+        this.thornDamage = 0;
 
         if (healthMina.getValue() > 0)
         {

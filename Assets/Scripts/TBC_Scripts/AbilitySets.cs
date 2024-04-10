@@ -285,6 +285,9 @@ public class AbilitySets : MonoBehaviour
                 {
                     healthJager.SetSliderValue(attackDamage1 + countExtraDamage);
                 }
+
+                enemyHealth[0].SetSliderValue(PlayerAbilities.thornDamage);
+                
             }
 
             if (accurcyBoost1 > 0)
@@ -345,6 +348,9 @@ public class AbilitySets : MonoBehaviour
                 {
                     healthJager.SetSliderValue(attackDamage1 + countExtraDamage);
                 }
+
+                enemyHealth[1].SetSliderValue(PlayerAbilities.thornDamage);
+                
             }
 
             if (accurcyBoost2 > 0)
@@ -404,6 +410,9 @@ public class AbilitySets : MonoBehaviour
                 {
                     healthJager.SetSliderValue(attackDamageLast + countExtraDamage);
                 }
+
+                enemyHealth[2].SetSliderValue(PlayerAbilities.thornDamage);
+                
             }
 
             if (boostAllAccurcyLast)
@@ -450,25 +459,25 @@ public class AbilitySets : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (enemiesAtOnce > 3 && attackAgainTimer == 250)
+        if (enemiesAtOnce > 3 && attackAgainTimer == 250 && this.enemyHealth[3] != null && this.enemyHealth[3].getValue() > 0)
         {
             this.enemyName = enemyFourName;
             useAttack(-2, 0);
         }
 
-        if (enemiesAtOnce > 2 && attackAgainTimer == 150)
+        if (enemiesAtOnce > 2 && attackAgainTimer == 150 && this.enemyHealth[2] != null && this.enemyHealth[2].getValue() > 0)
         {
             this.enemyName = enemyThreeName;
             useAttack(-2, 1);
         }
 
-        if (enemiesAtOnce > 1 && attackAgainTimer == 80)
+        if (enemiesAtOnce > 1 && attackAgainTimer == 80 && this.enemyHealth[1] != null && this.enemyHealth[1].getValue() > 0)
         {
             this.enemyName = enemyTwoName;
             useAttack(-2, 2);
         }
 
-        if (attackAgainTimer == 1)
+        if (attackAgainTimer == 1 && this.enemyHealth[0] != null && this.enemyHealth[0].getValue() > 0)
         {
             this.enemyName = enemyOneName;
             useAttack(-2, 3);
