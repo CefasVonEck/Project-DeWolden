@@ -267,13 +267,22 @@ public class AbilitySets : MonoBehaviour
         }
         else if (abilityUse == 2)
         {
+            if (attackUseMessage != null && !(attackUseMessage.Equals("")))
+            {
+                UseMessage.text = enemyName + " Used <i>" + abilityName + "</i>" + attackUseMessage;
+            }
+            else
+            {
+                UseMessage.text = enemyName + " Used <i>" + abilityName + "</i>" + " and it hit!";
+            }
+
             if (attackDamageBoost1 > 0)
             {
                 countExtraDamage += attackDamageBoost1;
             }
             else
             {
-                if(PlayerAbilities.getEnemyHitPartner() && enemyHealth[0] != null)
+                if (PlayerAbilities.getEnemyHitPartner() && enemyHealth[enemyID] != null)
                 {
                     enemyHealth[isEnemyPressence(enemyID)].SetSliderValue(attackDamage1 + countExtraDamage);
                 }
@@ -286,8 +295,7 @@ public class AbilitySets : MonoBehaviour
                     healthJager.SetSliderValue(attackDamage1 + countExtraDamage);
                 }
 
-                enemyHealth[0].SetSliderValue(PlayerAbilities.thornDamage);
-                
+                enemyHealth[enemyID].SetSliderValue(PlayerAbilities.thornDamage);
             }
 
             if (accurcyBoost1 > 0)
@@ -312,17 +320,7 @@ public class AbilitySets : MonoBehaviour
                 PlayerAbilities.decreaseHittingAbilityJager(accurcyDamage1);
             }
 
-
             --maxAbilityUse;
-
-            if (attackUseMessage != null && !(attackUseMessage.Equals("")))
-            {
-                UseMessage.text = enemyName + " Used <i>" + abilityName + "</i>" + attackUseMessage;
-            }
-            else
-            {
-                UseMessage.text = enemyName + " Used <i>" + abilityName + "</i>" + " and it hit!";
-            }
 
             usedAbilitySpeed = accurcyDamage1;
 
@@ -330,27 +328,35 @@ public class AbilitySets : MonoBehaviour
         }
         else if (abilityUse == 3)
         {
+            if (attackUseMessage2 != null && !(attackUseMessage2.Equals("")))
+            {
+                UseMessage.text = enemyName + " Used <i>" + abilityName2 + "</i>" + attackUseMessage2;
+            }
+            else
+            {
+                UseMessage.text = enemyName + " Used <i>" + abilityName2 + "</i>" + " and it hit!";
+            }
+
             if (attackDamageBoost2 > 0)
             {
                 countExtraDamage += attackDamageBoost2;
             }
             else
             {
-                if (PlayerAbilities.getEnemyHitPartner() && enemyHealth[1] != null)
+                if (PlayerAbilities.getEnemyHitPartner() && enemyHealth[enemyID] != null)
                 {
-                    enemyHealth[isEnemyPressence(enemyID)].SetSliderValue(attackDamage1 + countExtraDamage);
+                    enemyHealth[isEnemyPressence(enemyID)].SetSliderValue(attackDamage2 + countExtraDamage);
                 }
                 else if (!PlayerAbilities.getDamageSwitch() && healthMina.getValue() > 0 && UnityEngine.Random.Range(0, 100) <= 50)
                 {
-                    healthMina.SetSliderValue(attackDamage1 + countExtraDamage);
+                    healthMina.SetSliderValue(attackDamage2 + countExtraDamage);
                 }
                 else
                 {
-                    healthJager.SetSliderValue(attackDamage1 + countExtraDamage);
+                    healthJager.SetSliderValue(attackDamage2 + countExtraDamage);
                 }
 
-                enemyHealth[1].SetSliderValue(PlayerAbilities.thornDamage);
-                
+                enemyHealth[enemyID].SetSliderValue(PlayerAbilities.thornDamage);
             }
 
             if (accurcyBoost2 > 0)
@@ -377,30 +383,30 @@ public class AbilitySets : MonoBehaviour
 
             --maxAbilityUse2;
 
-            if (attackUseMessage2 != null && !(attackUseMessage2.Equals("")))
-            {
-                UseMessage.text = enemyName + " Used <i>" + abilityName2 + "</i>" + attackUseMessage2;
-            }
-            else
-            {
-                UseMessage.text = enemyName + " Used <i>" + abilityName2 + "</i>" + " and it hit!";
-            }
-
             usedAbilitySpeed = accurcyDamage2;
 
             waitingMessage = 100;
         }
         else if(abilityUse == 4)
         {
+            if (attackUseMessageLast != null && !(attackUseMessageLast.Equals("")))
+            {
+                UseMessage.text = enemyName + " Used <i>" + abilityName2 + "</i>" + attackUseMessageLast;
+            }
+            else
+            {
+                UseMessage.text = enemyName + " Used <i>" + abilityName2 + "</i>" + " and it hit!";
+            }
+
             if (attackDamageBoostLast > 0)
             {
                 countExtraDamage += attackDamageBoostLast;
             }
             else
             {
-                if (PlayerAbilities.getEnemyHitPartner() && enemyHealth[2] != null)
+                if (PlayerAbilities.getEnemyHitPartner() && enemyHealth[enemyID] != null)
                 {
-                    enemyHealth[isEnemyPressence(enemyID)].SetSliderValue(attackDamage1 + countExtraDamage);
+                    enemyHealth[isEnemyPressence(enemyID)].SetSliderValue(attackDamageLast + countExtraDamage);
                 }
                 else if (!PlayerAbilities.getDamageSwitch() && healthMina.getValue() > 0 && UnityEngine.Random.Range(0, 100) <= 50)
                 {
@@ -411,7 +417,7 @@ public class AbilitySets : MonoBehaviour
                     healthJager.SetSliderValue(attackDamageLast + countExtraDamage);
                 }
 
-                enemyHealth[2].SetSliderValue(PlayerAbilities.thornDamage);
+                enemyHealth[enemyID].SetSliderValue(PlayerAbilities.thornDamage);
                 
             }
 
@@ -430,18 +436,7 @@ public class AbilitySets : MonoBehaviour
                 PlayerAbilities.decreaseHittingAbilityJager(accurcyDamageLast);
             }
 
-
             usedAbilitySpeed = accurcyDamageLast;
-
-            if (attackUseMessageLast != null && !(attackUseMessageLast.Equals("")))
-            {
-                UseMessage.text = enemyName + " Used <i>" + abilityName2 + "</i>" + attackUseMessageLast;
-            }
-            else
-            {
-                UseMessage.text = enemyName + " Used <i>" + abilityName2 + "</i>" + " and it hit!";
-            }
-            
 
             waitingMessage = 100;
         }
@@ -462,25 +457,25 @@ public class AbilitySets : MonoBehaviour
         if (enemiesAtOnce > 3 && attackAgainTimer == 250 && this.enemyHealth[3] != null && this.enemyHealth[3].getValue() > 0)
         {
             this.enemyName = enemyFourName;
-            useAttack(-2, 0);
+            useAttack(-2, 3);
         }
 
         if (enemiesAtOnce > 2 && attackAgainTimer == 150 && this.enemyHealth[2] != null && this.enemyHealth[2].getValue() > 0)
         {
             this.enemyName = enemyThreeName;
-            useAttack(-2, 1);
+            useAttack(-2, 2);
         }
 
         if (enemiesAtOnce > 1 && attackAgainTimer == 80 && this.enemyHealth[1] != null && this.enemyHealth[1].getValue() > 0)
         {
             this.enemyName = enemyTwoName;
-            useAttack(-2, 2);
+            useAttack(-2, 1);
         }
 
         if (attackAgainTimer == 1 && this.enemyHealth[0] != null && this.enemyHealth[0].getValue() > 0)
         {
             this.enemyName = enemyOneName;
-            useAttack(-2, 3);
+            useAttack(-2, 0);
         }
 
         if(attackSpeedEnemy1 > attackSpeedEnemy1)
@@ -528,20 +523,22 @@ public class AbilitySets : MonoBehaviour
         {
             int hitFriend = 0;
 
-            if(enemyHealth[1] != null && UnityEngine.Random.Range(0, 100) <= 80)
+            if(enemyHealth[1] != null && UnityEngine.Random.Range(0, 100) <= 90)
             {
                 hitFriend = 1;
             }
 
-            if (enemyHealth[2] != null && UnityEngine.Random.Range(0, 100) <= 80)
+            if (enemyHealth[2] != null && UnityEngine.Random.Range(0, 100) <= 90)
             {
                 hitFriend = 2;
             }
 
-            if (enemyHealth[3] != null && UnityEngine.Random.Range(0, 100) <= 80)
+            if (enemyHealth[3] != null && UnityEngine.Random.Range(0, 100) <= 90)
             {
                 hitFriend = 3;
             }
+
+            UseMessage.text = enemyName + " hit partner in self confusion!";
 
             return hitFriend;
         }
@@ -549,62 +546,68 @@ public class AbilitySets : MonoBehaviour
         {
             int hitFriend = 1;
 
-            if (enemyHealth[0] != null && UnityEngine.Random.Range(0, 100) <= 80)
+            if (enemyHealth[0] != null && UnityEngine.Random.Range(0, 100) <= 90)
             {
                 hitFriend = 0;
             }
 
-            if (enemyHealth[2] != null && UnityEngine.Random.Range(0, 100) <= 80)
+            if (enemyHealth[2] != null && UnityEngine.Random.Range(0, 100) <= 90)
             {
                 hitFriend = 2;
             }
 
-            if (enemyHealth[3] != null && UnityEngine.Random.Range(0, 100) <= 80)
+            if (enemyHealth[3] != null && UnityEngine.Random.Range(0, 100) <= 90)
             {
                 hitFriend = 3;
             }
+
+            UseMessage.text = enemyName + " hit partner in self confusion!";
 
             return hitFriend;
         }
         else if (enemyID == 2 && (enemyHealth[0] != null || enemyHealth[1] != null || enemyHealth[3] != null))
         {
-            int hitFriend = 1;
+            int hitFriend = 2;
 
-            if (enemyHealth[0] != null && UnityEngine.Random.Range(0, 100) <= 80)
+            if (enemyHealth[0] != null && UnityEngine.Random.Range(0, 100) <= 90)
             {
                 hitFriend = 0;
             }
 
-            if (enemyHealth[1] != null && UnityEngine.Random.Range(0, 100) <= 80)
+            if (enemyHealth[1] != null && UnityEngine.Random.Range(0, 100) <= 90)
             {
                 hitFriend = 1;
             }
 
-            if (enemyHealth[3] != null && UnityEngine.Random.Range(0, 100) <= 80)
+            if (enemyHealth[3] != null && UnityEngine.Random.Range(0, 100) <= 90)
             {
                 hitFriend = 3;
             }
+
+            UseMessage.text = enemyName + " hit partner in self confusion!";
 
             return hitFriend;
         }
         else if (enemyID == 3 && (enemyHealth[0] != null || enemyHealth[1] != null || enemyHealth[2] != null))
         {
-            int hitFriend = 1;
+            int hitFriend = 3;
 
-            if (enemyHealth[0] != null && UnityEngine.Random.Range(0, 100) <= 80)
+            if (enemyHealth[0] != null && UnityEngine.Random.Range(0, 100) <= 90)
             {
                 hitFriend = 0;
             }
 
-            if (enemyHealth[1] != null && UnityEngine.Random.Range(0, 100) <= 80)
+            if (enemyHealth[1] != null && UnityEngine.Random.Range(0, 100) <= 90)
             {
                 hitFriend = 1;
             }
 
-            if (enemyHealth[2] != null && UnityEngine.Random.Range(0, 100) <= 80)
+            if (enemyHealth[2] != null && UnityEngine.Random.Range(0, 100) <= 90)
             {
                 hitFriend = 2;
             }
+
+            UseMessage.text = enemyName + " hit partner in self confusion!";
 
             return hitFriend;
         }

@@ -1906,7 +1906,12 @@ public class PlayerAbilities : MonoBehaviour
         {
             --attackAgainTimer;
 
-            if (attackOverAgain > 0 && attackAgainTimer == 15)
+
+            if (attackOverAgain > 0 && attackAgainTimer == 45)
+            {
+                UseMessage.text = enemyName + " attacked again!";
+            }
+            else if (attackOverAgain > 0 && attackAgainTimer == 15)
             {
                 --attackOverAgain;
                 attackAgainTimer = 80;

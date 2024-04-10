@@ -1533,9 +1533,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1914014082}
-  - {fileID: 1922959550}
-  - {fileID: 1956361540}
   - {fileID: 1933012113}
+  - {fileID: 1956361540}
+  - {fileID: 1922959550}
   - {fileID: 980382046}
   - {fileID: 2136888898}
   - {fileID: 1304315509}
@@ -6795,9 +6795,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1635526070}
-  - {fileID: 1750624576}
-  - {fileID: 812558975}
   - {fileID: 388731384}
+  - {fileID: 812558975}
+  - {fileID: 1750624576}
   - {fileID: 1514136695}
   - {fileID: 1805309725}
   - {fileID: 599396982}
@@ -7389,8 +7389,8 @@ RectTransform:
   - {fileID: 1339860887}
   - {fileID: 1640792630}
   - {fileID: 1928170624}
-  - {fileID: 332595627}
   - {fileID: 1451978044}
+  - {fileID: 332595627}
   - {fileID: 603351958}
   - {fileID: 2077517706}
   - {fileID: 1166998010}
@@ -9830,9 +9830,9 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 670177706}
-  - {fileID: 229691242}
-  - {fileID: 26408732}
   - {fileID: 1744514397}
+  - {fileID: 26408732}
+  - {fileID: 229691242}
   - {fileID: 1206162307}
   - {fileID: 1072037599}
   - {fileID: 1124186941}
@@ -9911,7 +9911,7 @@ MonoBehaviour:
   attackDamageBoost2: 0
   accurcyBoost2: 0
   maxAbilityUse2: 2
-  changeBeingUsed2: 65
+  changeBeingUsed2: 100
   attackUseMessage2: ' and all Damage Output was boosted..'
   boostAllAccurcy2: 0
   canMiss2: 0
