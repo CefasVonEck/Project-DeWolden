@@ -92,6 +92,8 @@ public class PlayerAbilities : MonoBehaviour
     private int agileDamageTeammate = 0;
     [SerializeField]
     private float thornDamageActive = 0;
+    [SerializeField]
+    private String abilityMessage = "";
 
     [SerializeField]
     private String abilityName2 = "";
@@ -123,6 +125,8 @@ public class PlayerAbilities : MonoBehaviour
     private int agileDamageTeammate2 = 0;
     [SerializeField]
     private float thornDamageActive2 = 0;
+    [SerializeField]
+    private String abilityMessage2 = "";
 
     [SerializeField]
     private String abilityName3 = "";
@@ -154,6 +158,8 @@ public class PlayerAbilities : MonoBehaviour
     private int agileDamageTeammate3 = 0;
     [SerializeField]
     private float thornDamageActive3 = 0;
+    [SerializeField]
+    private String abilityMessage3 = "";
 
     [SerializeField]
     private String abilityName4 = "";
@@ -181,6 +187,8 @@ public class PlayerAbilities : MonoBehaviour
     private int agileDamageTeammate4 = 0;
     [SerializeField]
     private float thornDamageActive4 = 0;
+    [SerializeField]
+    private String abilityMessage4 = "";
 
     [SerializeField]
     private String abilityName5 = "";
@@ -208,6 +216,8 @@ public class PlayerAbilities : MonoBehaviour
     private int agileDamageTeammate5 = 0;
     [SerializeField]
     private float thornDamageActive5 = 0;
+    [SerializeField]
+    private String abilityMessage5 = "";
 
     [SerializeField]
     private String abilityName6 = "";
@@ -235,6 +245,8 @@ public class PlayerAbilities : MonoBehaviour
     private int agileDamageTeammate6 = 0;
     [SerializeField]
     private float thornDamageActive6 = 0;
+    [SerializeField]
+    private String abilityMessage6 = "";
 
     [SerializeField]
     private String abilityName7 = "";
@@ -262,6 +274,8 @@ public class PlayerAbilities : MonoBehaviour
     private int agileDamageTeammate7 = 0;
     [SerializeField]
     private float thornDamageActive7 = 0;
+    [SerializeField]
+    private String abilityMessage7 = "";
 
     [SerializeField]
     private String abilityName8 = "";
@@ -289,6 +303,8 @@ public class PlayerAbilities : MonoBehaviour
     private int agileDamageTeammate8 = 0;
     [SerializeField]
     private float thornDamageActive8 = 0;
+    [SerializeField]
+    private String abilityMessage8 = "";
 
     private int attackDamageBoostMina = 0;
     private int attackDamageBoostJager = 0;
@@ -417,6 +433,16 @@ public class PlayerAbilities : MonoBehaviour
             AttackButton6.interactable = false;
             AttackButton7.interactable = false;
             AttackButton8.interactable = false;
+
+            jagerSelected = true;
+            AttackButton1.gameObject.SetActive(true);
+            AttackButton2.gameObject.SetActive(true);
+            AttackButton5.gameObject.SetActive(true);
+            AttackButton6.gameObject.SetActive(true);
+            AttackButton3.gameObject.SetActive(false);
+            AttackButton4.gameObject.SetActive(false);
+            AttackButton7.gameObject.SetActive(false);
+            AttackButton8.gameObject.SetActive(false);
         }
        
 
@@ -447,52 +473,7 @@ public class PlayerAbilities : MonoBehaviour
         ailityMenu.SetActive(true);
         if (!(abilityInfoText.text.Contains(":")))
         {
-            abilityInfoText.text += ": ";
-
-            if (attackDamage1 > 0)
-            {
-                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[abilityButtonID] * (float)((100-healthMina.getValue()) /50)));
-            }
-
-            if (agileDamage1 > 0)
-            {
-                abilityInfoText.text += "\n <i> Lower Enemy Accuracy -" + agileDamage1;
-            }
-
-            if (attackDamageBoost1 > 0)
-            {
-                abilityInfoText.text += "\n <i> Damage Boost " + attackDamageBoost1;
-            }
-
-            if (harmTeammate && damageTeammate > 0)
-            {
-                abilityInfoText.text += "\n <i> Partner Inflicted Damage " + damageTeammate;
-            }
-
-            if (hitAll)
-            {
-                abilityInfoText.text += "\n <i> Hit all Enemies";
-            }
-
-            if (agileDamageTeammate > 0)
-            {
-                abilityInfoText.text += "\n <i> Lower partner Accuracy -" + agileDamage1;
-            }
-
-            if (recieveToPartnerDamage[abilityButtonID])
-            {
-                abilityInfoText.text += "\n <i> Transfer Partner Damage. Turns active = " + this.switchINCdamageTurns;
-            }
-
-            if (enemyHitPartner[abilityButtonID])
-            {
-                abilityInfoText.text += "\n <i> Make Enemy hit partner. Activated? " + getEnemyHitPartner();
-            }
-
-            if (damageBhealthMulti[abilityButtonID] > 0)
-            {
-                abilityInfoText.text += "\n <i> Lower health Damage multiplier = " + damageBhealthMulti[abilityButtonID];
-            }
+            abilityInfoText.text += ": " + abilityMessage;
         }
         else if (abilityInfoText.text.Contains(":"))
         {
@@ -512,52 +493,7 @@ public class PlayerAbilities : MonoBehaviour
         ailityMenu.SetActive(true);
         if (!(abilityInfoText.text.Contains(":")))
         {
-            abilityInfoText.text += ": ";
-
-            if (attackDamage2 > 0)
-            {
-                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[abilityButtonID] * (float)((100-healthMina.getValue()) /50)));
-            }
-
-            if (agileDamage2 > 0)
-            {
-                abilityInfoText.text += "\n <i> Lower Enemy Accuracy -" + agileDamage2;
-            }
-
-            if (attackDamageBoost2 > 0)
-            {
-                abilityInfoText.text += "\n <i> Damage Boost " + attackDamageBoost2;
-            }
-
-            if (harmTeammate2 && damageTeammate2 > 0)
-            {
-                abilityInfoText.text += "\n <i> Partner Inflicted Damage " + damageTeammate2;
-            }
-
-            if (hitAll2)
-            {
-                abilityInfoText.text += "\n <i> Hit all Enemies";
-            }
-
-            if (agileDamageTeammate2 > 0)
-            {
-                abilityInfoText.text += "\n <i> Lower partner Accuracy -" + agileDamage2;
-            }
-
-            if (recieveToPartnerDamage[abilityButtonID])
-            {
-                abilityInfoText.text += "\n <i> Transfer Partner Damage. Turns active = " + this.switchINCdamageTurns;
-            }
-
-            if (enemyHitPartner[abilityButtonID])
-            {
-                abilityInfoText.text += "\n <i> Make Enemy hit partner. Activated? " + getEnemyHitPartner();
-            }
-
-            if (damageBhealthMulti[abilityButtonID] > 0)
-            {
-                abilityInfoText.text += "\n <i> Lower health Damage multiplier = " + damageBhealthMulti[abilityButtonID];
-            }
+            abilityInfoText.text += ": " + abilityMessage2;
         }
         else if (abilityInfoText.text.Contains(":"))
         {
@@ -577,52 +513,7 @@ public class PlayerAbilities : MonoBehaviour
         ailityMenu.SetActive(true);
         if (!(abilityInfoText.text.Contains(":")))
         {
-            abilityInfoText.text += ": ";
-
-            if (attackDamage5 > 0)
-            {
-                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[abilityButtonID] *(float)((100-healthMina.getValue()) /50)));
-            }
-
-            if (agileDamage5 > 0)
-            {
-                abilityInfoText.text += "\n <i> Lower Enemy Accuracy -" + agileDamage5;
-            }
-
-            if (attackDamageBoost5 > 0)
-            {
-                abilityInfoText.text += "\n <i> Damage Boost " + attackDamageBoost5;
-            }
-
-            if (harmTeammate5 && damageTeammate5 > 0)
-            {
-                abilityInfoText.text += "\n <i> Partner Inflicted Damage " + damageTeammate5;
-            }
-
-            if (hitAll5)
-            {
-                abilityInfoText.text += "\n <i> Hit all Enemies";
-            }
-
-            if (agileDamageTeammate5 > 0)
-            {
-                abilityInfoText.text += "\n <i> Lower partner Accuracy -" + agileDamage5;
-            }
-
-            if (recieveToPartnerDamage[abilityButtonID])
-            {
-                abilityInfoText.text += "\n <i> Transfer Partner Damage. Turns active = " + this.switchINCdamageTurns;
-            }
-
-            if (enemyHitPartner[abilityButtonID])
-            {
-                abilityInfoText.text += "\n <i> Make Enemy hit partner. Activated? " + getEnemyHitPartner();
-            }
-
-            if (damageBhealthMulti[abilityButtonID] > 0)
-            {
-                abilityInfoText.text += "\n <i> Lower health Damage multiplier = " + damageBhealthMulti[abilityButtonID];
-            }
+            abilityInfoText.text += ": " + abilityMessage5;
         }
         else if (abilityInfoText.text.Contains(":"))
         {
@@ -642,52 +533,7 @@ public class PlayerAbilities : MonoBehaviour
         ailityMenu.SetActive(true);
         if (!(abilityInfoText.text.Contains(":")))
         {
-            abilityInfoText.text += ": ";
-
-            if (attackDamage6 > 0)
-            {
-                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage6 + attackDamageBoostMina + ((float)damageBhealthMulti[abilityButtonID] * (float)((100-healthMina.getValue()) /50)));
-            }
-
-            if (agileDamage6 > 0)
-            {
-                abilityInfoText.text += "\n <i> Lower Enemy Accuracy -" + agileDamage6;
-            }
-
-            if (attackDamageBoost6 > 0)
-            {
-                abilityInfoText.text += "\n <i> Damage Boost " + attackDamageBoost5;
-            }
-
-            if (harmTeammate6 && damageTeammate6 > 0)
-            {
-                abilityInfoText.text += "\n <i> Partner Inflicted Damage " + damageTeammate6;
-            }
-
-            if (hitAll6)
-            {
-                abilityInfoText.text += "\n <i> Hit all Enemies";
-            }
-
-            if (agileDamageTeammate6 > 0)
-            {
-                abilityInfoText.text += "\n <i> Lower partner Accuracy -" + agileDamage6;
-            }
-
-            if (recieveToPartnerDamage[abilityButtonID])
-            {
-                abilityInfoText.text += "\n <i> Transfer Partner Damage. Turns active = " + this.switchINCdamageTurns;
-            }
-
-            if (enemyHitPartner[abilityButtonID])
-            {
-                abilityInfoText.text += "\n <i> Make Enemy hit partner. Activated? " + getEnemyHitPartner();
-            }
-
-            if (damageBhealthMulti[abilityButtonID] > 0)
-            {
-                abilityInfoText.text += "\n <i> Lower health Damage multiplier = " + damageBhealthMulti[abilityButtonID];
-            }
+            abilityInfoText.text += ": " + abilityMessage6;
         }
         else if (abilityInfoText.text.Contains(":"))
         {
@@ -707,52 +553,7 @@ public class PlayerAbilities : MonoBehaviour
         ailityMenu.SetActive(true);
         if (!(abilityInfoText.text.Contains(":")))
         {
-            abilityInfoText.text += ": ";
-
-            if (attackDamage3 > 0)
-            {
-                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[abilityButtonID] * (float)((100-healthJager.getValue()) /50)));
-            }
-
-            if (agileDamage3 > 0)
-            {
-                abilityInfoText.text += "\n <i> Lower Enemy Accuracy -" + agileDamage3;
-            }
-
-            if (attackDamageBoost3 > 0)
-            {
-                abilityInfoText.text += "\n <i> Damage Boost " + attackDamageBoost3;
-            }
-
-            if (harmTeammate3 && damageTeammate3 > 0)
-            {
-                abilityInfoText.text += "\n <i> Partner Inflicted Damage " + damageTeammate3;
-            }
-
-            if (hitAll3)
-            {
-                abilityInfoText.text += "\n <i> Hit all Enemies";
-            }
-
-            if (agileDamageTeammate3 > 0)
-            {
-                abilityInfoText.text += "\n <i> Lower partner Accuracy -" + agileDamage3;
-            }
-
-            if (recieveToPartnerDamage[abilityButtonID])
-            {
-                abilityInfoText.text += "\n <i> Transfer Partner Damage. Turns active = " + this.switchINCdamageTurns;
-            }
-
-            if (enemyHitPartner[abilityButtonID])
-            {
-                abilityInfoText.text += "\n <i> Make Enemy hit partner. Activated? " + getEnemyHitPartner();
-            }
-
-            if (damageBhealthMulti[abilityButtonID] > 0)
-            {
-                abilityInfoText.text += "\n <i> Lower health Damage multiplier = " + damageBhealthMulti[abilityButtonID];
-            }
+            abilityInfoText.text += ": " + abilityMessage3;
         }
         else if (abilityInfoText.text.Contains(":"))
         {
@@ -772,52 +573,7 @@ public class PlayerAbilities : MonoBehaviour
         ailityMenu.SetActive(true);
         if (!(abilityInfoText.text.Contains(":")))
         {
-            abilityInfoText.text += ": ";
-
-            if (attackDamage4 > 0)
-            {
-                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[abilityButtonID] * (float)((100-healthJager.getValue()) /50)));
-            }
-
-            if (agileDamage4 > 0)
-            {
-                abilityInfoText.text += "\n <i> Lower Enemy Accuracy -" + agileDamage4;
-            }
-
-            if (attackDamageBoost4 > 0)
-            {
-                abilityInfoText.text += "\n <i> Damage Boost " + attackDamageBoost4;
-            }
-
-            if (harmTeammate4 && damageTeammate4 > 0)
-            {
-                abilityInfoText.text += "\n <i> Partner Inflicted Damage " + damageTeammate4;
-            }
-
-            if (hitAll4)
-            {
-                abilityInfoText.text += "\n <i> Hit all Enemies";
-            }
-
-            if (agileDamageTeammate4 > 0)
-            {
-                abilityInfoText.text += "\n <i> Lower partner Accuracy -" + agileDamage4;
-            }
-
-            if (recieveToPartnerDamage[abilityButtonID])
-            {
-                abilityInfoText.text += "\n <i> Transfer Partner Damage. Turns active = " + this.switchINCdamageTurns;
-            }
-
-            if (enemyHitPartner[abilityButtonID])
-            {
-                abilityInfoText.text += "\n <i> Make Enemy hit partner. Activated? " + getEnemyHitPartner();
-            }
-
-            if (damageBhealthMulti[abilityButtonID] > 0)
-            {
-                abilityInfoText.text += "\n <i> Lower health Damage multiplier = " + damageBhealthMulti[abilityButtonID];
-            }
+            abilityInfoText.text += ": " + abilityMessage4;
         }
         else if (abilityInfoText.text.Contains(":"))
         {
@@ -837,52 +593,7 @@ public class PlayerAbilities : MonoBehaviour
         ailityMenu.SetActive(true);
         if (!(abilityInfoText.text.Contains(":")))
         {
-            abilityInfoText.text += ": ";
-
-            if (attackDamage7 > 0)
-            {
-                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[abilityButtonID] * (float)((100-healthJager.getValue()) /50)));
-            }
-
-            if (agileDamage7 > 0)
-            {
-                abilityInfoText.text += "\n <i> Lower Enemy Accuracy -" + agileDamage7;
-            }
-
-            if (attackDamageBoost7 > 0)
-            {
-                abilityInfoText.text += "\n <i> Damage Boost " + attackDamageBoost7;
-            }
-
-            if (harmTeammate7 && damageTeammate7 > 0)
-            {
-                abilityInfoText.text += "\n <i> Partner Inflicted Damage " + damageTeammate7;
-            }
-
-            if (hitAll7)
-            {
-                abilityInfoText.text += "\n <i> Hit all Enemies";
-            }
-
-            if (agileDamageTeammate7 > 0)
-            {
-                abilityInfoText.text += "\n <i> Lower partner Accuracy -" + agileDamage7;
-            }
-
-            if (recieveToPartnerDamage[abilityButtonID])
-            {
-                abilityInfoText.text += "\n <i> Transfer Partner Damage. Turns active = " + this.switchINCdamageTurns;
-            }
-
-            if (enemyHitPartner[abilityButtonID])
-            {
-                abilityInfoText.text += "\n <i> Make Enemy hit partner. Activated? " + getEnemyHitPartner();
-            }
-
-            if (damageBhealthMulti[abilityButtonID] > 0)
-            {
-                abilityInfoText.text += "\n <i> Lower health Damage multiplier = " + damageBhealthMulti[abilityButtonID];
-            }
+            abilityInfoText.text += ": " + abilityMessage7;
         }
         else if (abilityInfoText.text.Contains(":"))
         {
@@ -902,52 +613,7 @@ public class PlayerAbilities : MonoBehaviour
         ailityMenu.SetActive(true);
         if (!(abilityInfoText.text.Contains(":")))
         {
-            abilityInfoText.text += ": ";
-
-            if (attackDamage8 > 0)
-            {
-                abilityInfoText.text += "\n <i> Attack Damage " + (attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[abilityButtonID] * (float)((100-healthJager.getValue()) /50)));
-            }
-
-            if (agileDamage8 > 0)
-            {
-                abilityInfoText.text += "\n <i> Lower Enemy Accuracy -" + agileDamage8;
-            }
-
-            if (attackDamageBoost8 > 0)
-            {
-                abilityInfoText.text += "\n <i> Damage Boost " + attackDamageBoost8;
-            }
-
-            if (harmTeammate8 && damageTeammate8 > 0)
-            {
-                abilityInfoText.text += "\n <i> Partner Inflicted Damage " + damageTeammate8;
-            }
-
-            if (hitAll8)
-            {
-                abilityInfoText.text += "\n <i> Hit all Enemies";
-            }
-
-            if (agileDamageTeammate8 > 0)
-            {
-                abilityInfoText.text += "\n <i> Lower partner Accuracy -" + agileDamage8;
-            }
-
-            if (recieveToPartnerDamage[abilityButtonID])
-            {
-                abilityInfoText.text += "\n <i> Transfer Partner Damage. Turns active = " + this.switchINCdamageTurns;
-            }
-
-            if (enemyHitPartner[abilityButtonID])
-            {
-                abilityInfoText.text += "\n <i> Make Enemy hit partner. Activated? " + getEnemyHitPartner();
-            }
-
-            if (damageBhealthMulti[abilityButtonID] > 0)
-            {
-                abilityInfoText.text += "\n <i> Lower health Damage multiplier = " + damageBhealthMulti[abilityButtonID];
-            }
+            abilityInfoText.text += ": " + abilityMessage8;
         }
         else if (abilityInfoText.text.Contains(":"))
         {
@@ -2089,6 +1755,41 @@ public class PlayerAbilities : MonoBehaviour
         else if (abilityChosen == 7)
         {
             this.PlayerAttacked8();
+        }
+    }
+
+    public void fleeBattle()
+    {
+        SceneManager.LoadScene("TestLevelScene");
+    }
+
+    private bool jagerSelected;
+
+    public void switchAbilities()
+    {
+        if (!jagerSelected)
+        {
+            jagerSelected = true;
+            AttackButton1.gameObject.SetActive(true);
+            AttackButton2.gameObject.SetActive(true);
+            AttackButton5.gameObject.SetActive(true);
+            AttackButton6.gameObject.SetActive(true);
+            AttackButton3.gameObject.SetActive(false);
+            AttackButton4.gameObject.SetActive(false);
+            AttackButton7.gameObject.SetActive(false);
+            AttackButton8.gameObject.SetActive(false);
+        }
+        else
+        {
+            jagerSelected = false;
+            AttackButton1.gameObject.SetActive(false);
+            AttackButton2.gameObject.SetActive(false);
+            AttackButton5.gameObject.SetActive(false);
+            AttackButton6.gameObject.SetActive(false);
+            AttackButton3.gameObject.SetActive(true);
+            AttackButton4.gameObject.SetActive(true);
+            AttackButton7.gameObject.SetActive(true);
+            AttackButton8.gameObject.SetActive(true);
         }
     }
 }
