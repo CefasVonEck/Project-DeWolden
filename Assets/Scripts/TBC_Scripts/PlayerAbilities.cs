@@ -10,7 +10,7 @@ public class PlayerAbilities : MonoBehaviour
     private string returnToMainSceneName;
 
     [SerializeField]
-    private GameObject ailityMenu;
+    private GameObject abilityMenu;
 
     [SerializeField]
     private SliderController healthEnemySelected;
@@ -465,12 +465,17 @@ public class PlayerAbilities : MonoBehaviour
         {
             enemy4.interactable = false;
         }
+
+        if (abilityMenu != null)
+        {
+            abilityMenu.SetActive(false);
+        }
     }
 
     public void abilityInfo1()
     {
         int abilityButtonID = 0;
-        ailityMenu.SetActive(true);
+        abilityMenu.SetActive(true);
         if (!(abilityInfoText.text.Contains(":")))
         {
             abilityInfoText.text += ": " + abilityMessage;
@@ -483,14 +488,14 @@ public class PlayerAbilities : MonoBehaviour
             string modifiedString = parts[0];
 
             abilityInfoText.text = modifiedString;
-            ailityMenu.SetActive(false);
+            abilityMenu.SetActive(false);
         }
     }
 
     public void abilityInfo2()
     {
         int abilityButtonID = 1;
-        ailityMenu.SetActive(true);
+        abilityMenu.SetActive(true);
         if (!(abilityInfoText.text.Contains(":")))
         {
             abilityInfoText.text += ": " + abilityMessage2;
@@ -503,14 +508,14 @@ public class PlayerAbilities : MonoBehaviour
             string modifiedString = parts[0];
 
             abilityInfoText.text = modifiedString;
-            ailityMenu.SetActive(false);
+            abilityMenu.SetActive(false);
         }
     }
 
     public void abilityInfo5()
     {
         int abilityButtonID = 4;
-        ailityMenu.SetActive(true);
+        abilityMenu.SetActive(true);
         if (!(abilityInfoText.text.Contains(":")))
         {
             abilityInfoText.text += ": " + abilityMessage5;
@@ -523,14 +528,14 @@ public class PlayerAbilities : MonoBehaviour
             string modifiedString = parts[0];
 
             abilityInfoText.text = modifiedString;
-            ailityMenu.SetActive(false);
+            abilityMenu.SetActive(false);
         }
     }
 
     public void abilityInfo6()
     {
         int abilityButtonID = 5;
-        ailityMenu.SetActive(true);
+        abilityMenu.SetActive(true);
         if (!(abilityInfoText.text.Contains(":")))
         {
             abilityInfoText.text += ": " + abilityMessage6;
@@ -543,14 +548,14 @@ public class PlayerAbilities : MonoBehaviour
             string modifiedString = parts[0];
 
             abilityInfoText.text = modifiedString;
-            ailityMenu.SetActive(false);
+            abilityMenu.SetActive(false);
         }
     }
 
     public void abilityInfo3()
     {
         int abilityButtonID = 2;
-        ailityMenu.SetActive(true);
+        abilityMenu.SetActive(true);
         if (!(abilityInfoText.text.Contains(":")))
         {
             abilityInfoText.text += ": " + abilityMessage3;
@@ -563,14 +568,14 @@ public class PlayerAbilities : MonoBehaviour
             string modifiedString = parts[0];
 
             abilityInfoText.text = modifiedString;
-            ailityMenu.SetActive(false);
+            abilityMenu.SetActive(false);
         }
     }
 
     public void abilityInfo4()
     {
         int abilityButtonID = 3;
-        ailityMenu.SetActive(true);
+        abilityMenu.SetActive(true);
         if (!(abilityInfoText.text.Contains(":")))
         {
             abilityInfoText.text += ": " + abilityMessage4;
@@ -583,14 +588,14 @@ public class PlayerAbilities : MonoBehaviour
             string modifiedString = parts[0];
 
             abilityInfoText.text = modifiedString;
-            ailityMenu.SetActive(false);
+            abilityMenu.SetActive(false);
         }
     }
 
     public void abilityInfo7()
     {
         int abilityButtonID = 6;
-        ailityMenu.SetActive(true);
+        abilityMenu.SetActive(true);
         if (!(abilityInfoText.text.Contains(":")))
         {
             abilityInfoText.text += ": " + abilityMessage7;
@@ -603,14 +608,14 @@ public class PlayerAbilities : MonoBehaviour
             string modifiedString = parts[0];
 
             abilityInfoText.text = modifiedString;
-            ailityMenu.SetActive(false);
+            abilityMenu.SetActive(false);
         }
     }
 
     public void abilityInfo8()
     {
         int abilityButtonID = 7;
-        ailityMenu.SetActive(true);
+        abilityMenu.SetActive(true);
         if (!(abilityInfoText.text.Contains(":")))
         {
             abilityInfoText.text += ": " + abilityMessage8;
@@ -623,7 +628,7 @@ public class PlayerAbilities : MonoBehaviour
             string modifiedString = parts[0];
 
             abilityInfoText.text = modifiedString;
-            ailityMenu.SetActive(false);
+            abilityMenu.SetActive(false);
         }
     }
 
@@ -1565,7 +1570,6 @@ public class PlayerAbilities : MonoBehaviour
         }
     }
 
-
     void FixedUpdate()
     {
         if (attackAgainTimer > 0)
@@ -1758,6 +1762,7 @@ public class PlayerAbilities : MonoBehaviour
         }
     }
 
+    //Leave this scene, go back
     public void fleeBattle()
     {
         SceneManager.LoadScene("TestLevelScene");
@@ -1765,6 +1770,7 @@ public class PlayerAbilities : MonoBehaviour
 
     private bool jagerSelected;
 
+    //Switch abilities in Box from Partner to Partner
     public void switchAbilities()
     {
         if (!jagerSelected)

@@ -5,7 +5,7 @@ using UnityEngine;
 public class ChangeSpritesAnimations : MonoBehaviour
 {
     [SerializeField]
-    private GameObject thisCanvas;
+    private GameObject animationCanvas;
     [SerializeField]
     private GameObject battleCanvas;
 
@@ -19,6 +19,11 @@ public class ChangeSpritesAnimations : MonoBehaviour
     [SerializeField]
     private GameObject spriteTwo;
 
+    [SerializeField]
+    private GameObject jagerTaunting;
+    [SerializeField]
+    private GameObject jagerBlocking;
+    
     private int switchSpriteTimer = 0;
     private Vector3 orgPosition = new Vector3(0,0,0);
 
@@ -35,6 +40,12 @@ public class ChangeSpritesAnimations : MonoBehaviour
             spriteTwo.SetActive(false);
         }
 
+        if(jagerTaunting != null && jagerBlocking != null)
+        {
+            jagerTaunting.SetActive(true);
+            jagerBlocking.SetActive(false);
+        }
+
         if (followScript != null && orgObject != null)
         {
             orgPosition = orgObject.transform.position;
@@ -43,18 +54,24 @@ public class ChangeSpritesAnimations : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (switchSpriteTimer < 650)
+        if (switchSpriteTimer < 150)
         {
             ++switchSpriteTimer;
+
+            if (switchSpriteTimer == 1 && animationCanvas != null && battleCanvas != null)
+            {
+                animationCanvas.SetActive(true);
+                battleCanvas.SetActive(false);
+            }
 
             if (followScript != null && switchSpriteTimer == 5)
             {
                 followScript.distanceMaxFollowing = 5000f;
             }
 
-            if (switchSpriteTimer == 150)
+            if (switchSpriteTimer == 50)
             {
                 if (spriteOne != null)
                 {
@@ -65,11 +82,17 @@ public class ChangeSpritesAnimations : MonoBehaviour
                 {
                     spriteTwo.SetActive(true);
                 }
+
+                if (jagerTaunting != null && jagerBlocking != null)
+                {
+                    jagerTaunting.SetActive(false);
+                    jagerBlocking.SetActive(true);
+                }
             }
 
 
 
-            if (switchSpriteTimer == 649)
+            if (switchSpriteTimer == 149)
             {
                 if (spriteOne != null)
                 {
@@ -93,9 +116,15 @@ public class ChangeSpritesAnimations : MonoBehaviour
 
                 switchSpriteTimer = 0;
 
-                if(thisCanvas != null && battleCanvas != null)
+                if (jagerTaunting != null && jagerBlocking != null)
                 {
-                    thisCanvas.SetActive(false);
+                    jagerTaunting.SetActive(true);
+                    jagerBlocking.SetActive(false);
+                }
+
+                if (animationCanvas != null && battleCanvas != null)
+                {
+                    animationCanvas.SetActive(false);
                     battleCanvas.SetActive(true);
                 }
             }

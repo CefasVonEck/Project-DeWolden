@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Following_Behaviour : MonoBehaviour
 {
+    [SerializeField]
+    private int doubleSpeed = 1;
+
     public GameObject player;
     public float distanceMaxFollowing = 5F;
     [SerializeField]
@@ -52,40 +55,43 @@ public class Following_Behaviour : MonoBehaviour
 
         while (!stopMoving && fracJourney < 1)
         {
-            // Calculate the fraction of the journey completed
-            distCovered += speed * 1000f;
-            fracJourney = distCovered / journeyLength;
+            for (int i = 0; i < doubleSpeed; ++i)
+            {
+                // Calculate the fraction of the journey completed
+                distCovered += speed * 1000f;
+                fracJourney = distCovered / journeyLength;
 
-            Vector2 distanceMinnFollowing = new Vector2(distanceMinFollowing, distanceMinFollowing);
+                Vector2 distanceMinnFollowing = new Vector2(distanceMinFollowing, distanceMinFollowing);
 
-            if (player.transform.position.x > this.transform.position.x)
-            {
-                distanceMinnFollowing.x = 1 - (distanceMinFollowing - 1);
-            }
-            else if (player.transform.position.x < this.transform.position.x)
-            {
-                distanceMinnFollowing.x = distanceMinFollowing;
-            }
-            
-            if (player.transform.position.y > this.transform.position.y)
-            {
-                distanceMinnFollowing.y = 1 - (distanceMinFollowing - 1);
-            }
-            else if (player.transform.position.y < this.transform.position.y)
-            {
-                distanceMinnFollowing.y = distanceMinFollowing;
-            }
+                if (player.transform.position.x > this.transform.position.x)
+                {
+                    distanceMinnFollowing.x = 1 - (distanceMinFollowing - 1);
+                }
+                else if (player.transform.position.x < this.transform.position.x)
+                {
+                    distanceMinnFollowing.x = distanceMinFollowing;
+                }
+
+                if (player.transform.position.y > this.transform.position.y)
+                {
+                    distanceMinnFollowing.y = 1 - (distanceMinFollowing - 1);
+                }
+                else if (player.transform.position.y < this.transform.position.y)
+                {
+                    distanceMinnFollowing.y = distanceMinFollowing;
+                }
 
 
-            if(fracJourney > 0.00001f)
-            {
-                fracJourney = 0.00001f;
-            }
+                if (fracJourney > 0.00001f)
+                {
+                    fracJourney = 0.00001f;
+                }
 
-            for (int i = 0; i < 8; ++i)
-            {
-                // Move the object smoothly towards the target position
-                transform.position = Vector3.Lerp(this.transform.position, new Vector3(player.transform.position.x * distanceMinnFollowing.x, player.transform.position.y * distanceMinnFollowing.y, 0), fracJourney);
+                for (int j = 0; j < 8; ++j)
+                {
+                    // Move the object smoothly towards the target position
+                    transform.position = Vector3.Lerp(this.transform.position, new Vector3(player.transform.position.x * distanceMinnFollowing.x, player.transform.position.y * distanceMinnFollowing.y, 0), fracJourney);
+                }
             }
             yield return null;
         }
