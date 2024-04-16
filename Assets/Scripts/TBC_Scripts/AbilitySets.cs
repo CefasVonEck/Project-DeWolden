@@ -500,7 +500,8 @@ public class AbilitySets : MonoBehaviour
 
             if(attack != 1)
             {
-                enableAnimationScene(3);
+                //Do animation stuff here!
+                //enableAnimationScene(3);
             }
 
             useAttack(attack, 3);
@@ -514,7 +515,8 @@ public class AbilitySets : MonoBehaviour
 
             if (attack != 1)
             {
-                enableAnimationScene(2);
+                //Do animation stuff here!
+                //enableAnimationScene(2);
             }
 
             useAttack(attack, 2);
@@ -528,7 +530,8 @@ public class AbilitySets : MonoBehaviour
 
             if (attack != 1)
             {
-                enableAnimationScene(1);
+                //Do animation stuff here!
+                //enableAnimationScene(1);
             }
 
             useAttack(attack, 1);
@@ -542,13 +545,15 @@ public class AbilitySets : MonoBehaviour
 
             if (attack != 1)
             {
-                enableAnimationScene(0);
+                //Do animation stuff here!
+                //enableAnimationScene(0);
             }
 
             useAttack(attack, 0);
         }
 
-        if(attackSpeedEnemy1 > attackSpeedEnemy1)
+        //Decrease Accuracy overtime
+        if (attackSpeedEnemy1 > attackSpeedEnemy1)
         {
             attackSpeedEnemy1 -= 0.0005f;
         }
@@ -567,6 +572,7 @@ public class AbilitySets : MonoBehaviour
         {
             attackSpeedEnemy4 -= 0.0005f;
         }
+        //End
 
         //accuracyMe.SetSliderValue(attackSpeedEnemy1);
 
