@@ -66,9 +66,6 @@ TagManager:
   - name: Underlaying_Terrain
     uniqueID: 4071362045
     locked: 0
-  - name: Player
-    uniqueID: 758866313
-    locked: 0
   - name: Hiding Enemies
     uniqueID: 124635901
     locked: 0
