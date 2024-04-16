@@ -17,6 +17,15 @@ TagManager:
   - locp
   - DesLocP
   - DesCharP
+  - Smin
+  - Sjager
+  - Jager
+  - dia
+  - Sspin
+  - bright
+  - allboxes
+  - Swolf
+  - jourh
   layers:
   - Default
   - TransparentFX

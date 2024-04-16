@@ -19,6 +19,12 @@ public class journalhandler : MonoBehaviour
     [SerializeField]
     private GameObject DesLocP;
 
+    [SerializeField]
+    private dialouge check;
+
+    [SerializeField]
+    private GameObject hin;
+
 
     private void Awake()
     {
@@ -27,21 +33,30 @@ public class journalhandler : MonoBehaviour
         locpage = GameObject.FindWithTag("locp");
         DesCharP = GameObject.FindWithTag("DesCharP");
         DesLocP = GameObject.FindWithTag("DesLocP");
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
+
+        hin = GameObject.FindWithTag("jourh");
+
         DesCharP.SetActive(false);
         DesLocP.SetActive(false);
         charpage.SetActive(false);
         locpage.SetActive(false);
         jour.SetActive(false);
+        hin.SetActive(false);
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("j"))
+        if(check.hastalked == true)
+        {
+            hin.SetActive(true);
+        }
+
+        if (Input.GetKeyDown("j") && check.hastalked == true)
         {
             if (jour.activeInHierarchy == false)
             {
@@ -67,6 +82,12 @@ public class journalhandler : MonoBehaviour
         // unpause the game
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
+
+        DesCharP.SetActive(false);
+        DesLocP.SetActive(false);
+        charpage.SetActive(false);
+        locpage.SetActive(false);
+
     }
 
     public void Charopen()
@@ -74,6 +95,9 @@ public class journalhandler : MonoBehaviour
         // have the character page open
         charpage.SetActive(true);
         locpage.SetActive(false);
+
+        DesCharP.SetActive(false);
+        DesLocP.SetActive(false);
     }
 
     public void Locopen()
@@ -81,15 +105,24 @@ public class journalhandler : MonoBehaviour
         // have the location page open
         charpage.SetActive(false);
         locpage.SetActive(true);
+
+        DesCharP.SetActive(false);
+        DesLocP.SetActive(false);
     }
 
     public void OpenChar()
     {
-
+        DesCharP.SetActive(true);
+        charpage.SetActive(false);
+        locpage.SetActive(false);
+        DesLocP.SetActive(false);
     }
 
     public void OpenLoc()
     {
-
+        DesCharP.SetActive(false);
+        charpage.SetActive(false);
+        locpage.SetActive(false);
+        DesLocP.SetActive(true);
     }
 }
