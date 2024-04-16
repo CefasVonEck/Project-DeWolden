@@ -9,6 +9,7 @@ public class pagehandler : MonoBehaviour
     public TextMeshProUGUI DetailTxt;
     public TextMeshProUGUI StoryTxt;
 
+    public GameObject pict;
 
     // Start is called before the first frame update
     void Start()
