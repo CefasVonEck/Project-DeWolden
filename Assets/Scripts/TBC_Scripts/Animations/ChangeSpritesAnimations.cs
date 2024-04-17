@@ -6,6 +6,7 @@ public class ChangeSpritesAnimations : MonoBehaviour
 {
     [SerializeField]
     private GameObject animationCanvas;
+
     [SerializeField]
     private GameObject battleCanvas;
 
@@ -60,9 +61,9 @@ public class ChangeSpritesAnimations : MonoBehaviour
         {
             ++switchSpriteTimer;
 
-            if (switchSpriteTimer == 1 && animationCanvas != null && battleCanvas != null)
+            if (switchSpriteTimer == 1  && animationCanvas != null && battleCanvas != null)
             {
-                animationCanvas.SetActive(true);
+                 animationCanvas.SetActive(true);
                 battleCanvas.SetActive(false);
             }
 
