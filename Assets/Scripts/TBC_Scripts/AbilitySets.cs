@@ -6,14 +6,6 @@ using System.Runtime.InteropServices.WindowsRuntime;
 public class AbilitySets : MonoBehaviour
 {
     [SerializeField]
-<<<<<<< HEAD
-    private GameObject animationScene;
-    [SerializeField]
-    private GameObject battleScene;
-
-    [SerializeField]
-=======
->>>>>>> origin/dialouge
     private AnimationBehaviour animationBehaviourScript;
 
     [SerializeField]
@@ -512,7 +504,7 @@ public class AbilitySets : MonoBehaviour
             if(attack != 1)
             {
                 //Do animation stuff here!
-                enableAnimationScene(3);
+                //enableAnimationScene(3);
             }
 
             useAttack(attack, 3);
@@ -527,7 +519,7 @@ public class AbilitySets : MonoBehaviour
             if (attack != 1)
             {
                 //Do animation stuff here!
-                enableAnimationScene(2);
+                //enableAnimationScene(2);
             }
 
             useAttack(attack, 2);
@@ -542,7 +534,7 @@ public class AbilitySets : MonoBehaviour
             if (attack != 1)
             {
                 //Do animation stuff here!
-                enableAnimationScene(1);
+                //enableAnimationScene(1);
             }
 
             useAttack(attack, 1);
@@ -557,7 +549,7 @@ public class AbilitySets : MonoBehaviour
             if (attack != 1)
             {
                 //Do animation stuff here!
-                enableAnimationScene(0);
+                //enableAnimationScene(0);
             }
 
             useAttack(attack, 0);

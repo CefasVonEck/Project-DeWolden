@@ -5751,12 +5751,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ddfd73a970e0f4582248b8fe8540ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  animationCanvas: {fileID: 0}
-=======
   animationCanvas: {fileID: 1253421474}
   battleCanvas: {fileID: 0}
->>>>>>> origin/dialouge
   followScript: {fileID: 1046680288}
   orgObject: {fileID: 1046680286}
   spriteOne: {fileID: 789945473}
@@ -6078,7 +6074,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1086933460
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7249,7 +7245,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1188302415
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7669,7 +7665,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1253421475
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7763,7 +7759,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1253421474}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -7791,12 +7787,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ddfd73a970e0f4582248b8fe8540ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  animationCanvas: {fileID: 0}
-=======
   animationCanvas: {fileID: 1253421474}
   battleCanvas: {fileID: 0}
->>>>>>> origin/dialouge
   followScript: {fileID: 1046680288}
   orgObject: {fileID: 1006597886}
   spriteOne: {fileID: 789945473}
@@ -12572,10 +12564,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c4556599aa4e614eb3b2175b3eb3016, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  animationScene: {fileID: 1253421474}
-=======
->>>>>>> origin/dialouge
   animationBehaviourScript: {fileID: 1006597890}
   enemyHealth:
   - {fileID: 1072037603}
