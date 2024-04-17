@@ -3,6 +3,7 @@ using TMPro;
 using System;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class PlayerAbilities : MonoBehaviour
 {
@@ -364,10 +365,34 @@ public class PlayerAbilities : MonoBehaviour
 
     private int attackOverAgain = 0;
     public float thornDamage = 0;
- 
+
+
+    [SerializeField]
+    private Animator animateAbilityOne;
+    
+    [SerializeField]
+    private Animator enemyOne;
+    [SerializeField]
+    private Animator enemyTwo;
+    [SerializeField]
+    private Animator enemyThree;
+    [SerializeField]
+    private Animator enemyFour;
+
+    [SerializeField]
+    private Animator cameraFocus;
+
     // Start is called before the first frame update
     void Start()
     {
+        this.rememberSelectedEnemy = -1;
+        this.selectedEnemy = -1;
+
+        animateAbilityOne.speed = 0;
+        enemyOne.speed = 0;
+        enemyTwo.speed = 0;
+        enemyThree.speed = 0;
+        cameraFocus.speed = 0;
         //abilityName = abilityList.abilityName[0];
         //attackDamage1 = abilityList.attackDamage1[0];
         //agileDamage1 = abilityList.agileDamage1[0];
@@ -669,7 +694,7 @@ public class PlayerAbilities : MonoBehaviour
         if (UnityEngine.Random.Range(0, 100 - missAbiblityChangesMina) <= 5 && canMiss)
         {
             UseMessage.text = enemyName + " tried to attack and missed!";
-
+            attackMissed = true;
             attackAgainTimer = 70;
         }
         else if (enemyAbilities.getWaitingTime() + this.getWaitingTime() == 0)
@@ -742,7 +767,7 @@ public class PlayerAbilities : MonoBehaviour
             {
                 thornDamage = thornDamageActive;
             }
-
+          
             //--maxAbilityUse;
 
             if (userName1 != null && !(userName1.Equals("")))
@@ -773,7 +798,7 @@ public class PlayerAbilities : MonoBehaviour
         if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss2)
         {
             UseMessage.text = enemyName + " tried to attack and missed!";
-
+            attackMissed = true;
             attackAgainTimer = 70;
         }
         else if (enemyAbilities.getWaitingTime() + this.getWaitingTime() == 0)
@@ -880,7 +905,7 @@ public class PlayerAbilities : MonoBehaviour
         if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss5)
         {
             UseMessage.text = enemyName + " tried to attack and missed!";
-
+            attackMissed = true;
             attackAgainTimer = 70;
         }
         else if (enemyAbilities.getWaitingTime() + this.getWaitingTime() == 0)
@@ -987,7 +1012,7 @@ public class PlayerAbilities : MonoBehaviour
         if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss3)
         {
             UseMessage.text = enemyName + " tried to attack and missed!";
-
+            attackMissed = true;
             attackAgainTimer = 70;
         }
         else if (enemyAbilities.getWaitingTime() + this.getWaitingTime() == 0)
@@ -1094,7 +1119,7 @@ public class PlayerAbilities : MonoBehaviour
         if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss4)
         {
             UseMessage.text = enemyName + " tried to attack and missed!";
-
+            attackMissed = true;
             attackAgainTimer = 70;
         }
         else if (enemyAbilities.getWaitingTime() + this.getWaitingTime() == 0)
@@ -1200,7 +1225,7 @@ public class PlayerAbilities : MonoBehaviour
         if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss6)
         {
             UseMessage.text = enemyName + " tried to attack and missed!";
-
+            attackMissed = true;
             attackAgainTimer = 70;
         }
         else if (enemyAbilities.getWaitingTime() + this.getWaitingTime() == 0)
@@ -1307,7 +1332,7 @@ public class PlayerAbilities : MonoBehaviour
         if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss7)
         {
             UseMessage.text = enemyName + " tried to attack and missed!";
-
+            attackMissed = true;
             attackAgainTimer = 70;
         }
         else if (enemyAbilities.getWaitingTime() + this.getWaitingTime() == 0)
@@ -1414,7 +1439,7 @@ public class PlayerAbilities : MonoBehaviour
         if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss8)
         {
             UseMessage.text = enemyName + " tried to attack and missed!";
-
+            attackMissed = true;
             attackAgainTimer = 70;
         }
         else if (enemyAbilities.getWaitingTime() + this.getWaitingTime() == 0)
@@ -1585,11 +1610,12 @@ public class PlayerAbilities : MonoBehaviour
             {
                 --attackOverAgain;
                 attackAgainTimer = 80;
-                activateAttack();
+                activateAttack(false);
             }
 
             //Debug.Log(attackAgainTimer);
         }
+
 
         if (attackAgainTimer == 45)
         {
@@ -1621,14 +1647,18 @@ public class PlayerAbilities : MonoBehaviour
             {
                 enemy4.interactable = false;
             }
-
             selectedEnemy = -1;
         }
+
 
         if (attackAgainTimer == 5)
         {
             AbilitySets.afterPlayerAttacked();
             UseMessage.text = "...";
+            this.rememberSelectedEnemy = -1;
+            this.selectedEnemy = -1;
+            abilityChosen = -1;
+            playOnClick = true;
         }
 
 
@@ -1661,6 +1691,14 @@ public class PlayerAbilities : MonoBehaviour
         if (healthMina != null && (healthMina.getValue() <= 0 && healthJager.getValue() <= 0))
         {
             SceneManager.LoadScene(returnToMainSceneName);
+        }
+    }
+
+    private void stopWhenFinished(Animator animation)
+    {
+        if (animation.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        {
+            animation.speed = 0;
         }
     }
 
@@ -1698,36 +1736,105 @@ public class PlayerAbilities : MonoBehaviour
 
     public void selectEnemy1()
     {
-        healthEnemySelected = healthEnemy01;
-        selectedEnemy = 0;
-        activateAttack();
+        if (playOnClick)
+        {
+            healthEnemySelected = healthEnemy01;
+            selectedEnemy = 0;
+            activateAttack(true);
+        }
     }
 
     public void selectEnemy2()
     {
-        healthEnemySelected = healthEnemy02;
-        selectedEnemy = 1;
-        activateAttack();
+        if (playOnClick)
+        {
+            healthEnemySelected = healthEnemy02;
+            selectedEnemy = 1;
+            activateAttack(true);
+        }
     }
 
     public void selectEnemy3()
     {
-        healthEnemySelected = healthEnemy03;
-        selectedEnemy = 2;
-        activateAttack();
+        if (playOnClick)
+        {
+            healthEnemySelected = healthEnemy03;
+            selectedEnemy = 2;
+            activateAttack(true);
+        }
     }
 
     public void selectEnemy4()
     {
-        healthEnemySelected = healthEnemy04;
-        selectedEnemy = 3;
-        activateAttack();
+        if(playOnClick)
+        {
+            healthEnemySelected = healthEnemy04;
+            selectedEnemy = 3;
+            activateAttack(true);
+        }
     }
 
+    private bool playOnClick = true;
     private int selectedEnemy = -1;
+    private int rememberSelectedEnemy = -1;
+    private bool attackMissed = false;
 
-    private void activateAttack()
+
+    //Play the attack AND enemy getting hit animations
+    private void playAnimations(int attack,bool play)
     {
+        if (!attackMissed && attack > -1 && (!play || playOnClick))
+        {
+            playOnClick = false;
+            if (this.selectedEnemy != -1)
+            {
+                this.rememberSelectedEnemy = this.selectedEnemy;
+            }
+
+            if (attack == 3)
+            {
+                cameraFocus.speed = 1;
+                cameraFocus.Play(cameraFocus.GetCurrentAnimatorStateInfo(0).fullPathHash, -1, 0f);
+
+                if (this.selectedEnemy == 2 || this.rememberSelectedEnemy == 2)
+                {
+                    enemyOne.speed = 1;
+                    enemyOne.Play(enemyOne.GetCurrentAnimatorStateInfo(0).fullPathHash, -1, 0f);
+                }
+                if (this.selectedEnemy == 1 || this.rememberSelectedEnemy == 1)
+                {
+                    enemyTwo.speed = 1;
+                    enemyTwo.Play(enemyTwo.GetCurrentAnimatorStateInfo(0).fullPathHash, -1, 0f);
+                }
+                if (this.selectedEnemy == 0 || this.rememberSelectedEnemy == 0)
+                {
+                    enemyThree.speed = 1;
+                    enemyThree.Play(enemyThree.GetCurrentAnimatorStateInfo(0).fullPathHash, -1, 0f);
+                }
+            }
+
+            if (attack == 3)
+            {
+                animateAbilityOne.speed = 1;
+                animateAbilityOne.Play(animateAbilityOne.GetCurrentAnimatorStateInfo(0).fullPathHash, -1, 0f);
+            }
+
+            attackMissed = false;
+        }
+        else if(attackMissed)
+        {
+            if (this.selectedEnemy != -1)
+            {
+                this.rememberSelectedEnemy = this.selectedEnemy;
+            }
+            attackMissed = false;
+        }
+    }
+
+    private void activateAttack(bool play)
+    {
+        playAnimations(abilityChosen, play);
+
         if (abilityChosen == 0)
         {
             this.PlayerAttacked();

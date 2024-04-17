@@ -6,10 +6,6 @@ using System.Runtime.InteropServices.WindowsRuntime;
 public class AbilitySets : MonoBehaviour
 {
     [SerializeField]
-    private GameObject animationScene;
-    [SerializeField]
-    private GameObject battleScene;
-    [SerializeField]
     private AnimationBehaviour animationBehaviourScript;
 
     [SerializeField]
@@ -136,12 +132,19 @@ public class AbilitySets : MonoBehaviour
     private float countExtraDamage = 0;
 
 
+    //Change sprite sword > idle > sword again
+
+
+    [SerializeField]
+    private Animator animateAbilityOne;
+
+
     // Start is called before the first frame update
     void Start() 
     {
         attackAgainTimer = 350;
-
-        UseMessage.text = enemyName + " " + startBattleMessage;
+        
+        //UseMessage.text = enemyName + " " + startBattleMessage;
     }
 
     public int getWaitingTime()
@@ -673,12 +676,6 @@ public class AbilitySets : MonoBehaviour
             {
                 animationBehaviourScript.enemy4SpriteObject.SetActive(true);
             }
-        }
-
-        if (animationScene != null && battleScene != null)
-        {
-            animationScene.SetActive(true);
-            battleScene.SetActive(false);
         }
     }
 
