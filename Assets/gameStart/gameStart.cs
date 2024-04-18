@@ -68,6 +68,8 @@ public class gameStart : MonoBehaviour
 
     public GameObject SMan;
 
+    public GameObject cam;
+
     [Header("the dialouge scripts for the start dialouges")]
     public Dialouge1Start script;
 
@@ -85,6 +87,8 @@ public class gameStart : MonoBehaviour
         Swolf = GameObject.FindWithTag("Swolf");
 
         NPC = GameObject.FindWithTag("dia");
+
+        cam.SetActive(false);
 
         if (gamecheck.finishedcom == true)
         {
@@ -229,6 +233,8 @@ public class gameStart : MonoBehaviour
     {
         Jager.SetActive(true);
         Mina.SetActive(true);
+
+        cam.SetActive(true);
 
         Destroy(SMan);
 

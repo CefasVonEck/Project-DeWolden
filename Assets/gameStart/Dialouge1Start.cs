@@ -631,7 +631,7 @@ public class Dialouge1Start : MonoBehaviour
             NpcRen.SetBool("comin", false);
 
             // having the right box show up
-            aniMain.SetBool("main", true);
+            aniMain.SetBool("side", true);
             aniNPC.SetBool("side", false);
 
 
@@ -665,7 +665,7 @@ public class Dialouge1Start : MonoBehaviour
             if (checkMain.rengone == true)
             {
                 // having the right box show up
-                aniMain.SetBool("main", false);
+                aniMain.SetBool("side", false);
                 aniNPC.SetBool("side", true);
             }
 
@@ -702,7 +702,7 @@ public class Dialouge1Start : MonoBehaviour
             if (checkNpc.rengone == true)
             {
                 // have the right box show up
-                aniMain.SetBool("main", true);
+                aniMain.SetBool("side", true);
                 aniNPC.SetBool("side", false);
             }
 
@@ -738,7 +738,7 @@ public class Dialouge1Start : MonoBehaviour
             if (checkMain.rengone == true)
             {
                 // having the right box show up
-                aniMain.SetBool("main", false);
+                aniMain.SetBool("side", false);
                 aniNPC.SetBool("side", true);
             }
 
@@ -773,7 +773,7 @@ public class Dialouge1Start : MonoBehaviour
             if (checkNpc.rengone == true)
             {
                 // have the right box show up
-                aniMain.SetBool("main", true);
+                aniMain.SetBool("side", true);
                 aniNPC.SetBool("side", false);
             }
 
@@ -808,7 +808,7 @@ public class Dialouge1Start : MonoBehaviour
             if (checkMain.rengone == true)
             {
                 // having the right box show up
-                aniMain.SetBool("main", false);
+                aniMain.SetBool("side", false);
                 aniNPC.SetBool("side", true);
             }
 
@@ -844,7 +844,7 @@ public class Dialouge1Start : MonoBehaviour
             if (checkNpc.rengone == true)
             {
                 // have the right box show up
-                aniMain.SetBool("main", true);
+                aniMain.SetBool("side", true);
                 aniNPC.SetBool("side", false);
             }
 
@@ -881,8 +881,8 @@ public class Dialouge1Start : MonoBehaviour
             NpcRen2.SetBool("comin2", false);
 
             // having the right box show up
-            aniMain2.SetBool("main2", true);
-            aniNPC2.SetBool("side2", false);
+            aniMain2.SetBool("side", true);
+            aniNPC2.SetBool("side", false);
 
 
             //right text showing
@@ -915,8 +915,8 @@ public class Dialouge1Start : MonoBehaviour
             if (checkMain2.rengone == true)
             {
                 // having the right box show up
-                aniMain2.SetBool("main2", false);
-                aniNPC2.SetBool("side2", true);
+                aniMain2.SetBool("side", false);
+                aniNPC2.SetBool("side", true);
             }
 
             //right text showing
@@ -952,8 +952,8 @@ public class Dialouge1Start : MonoBehaviour
             if (checkNpc2.rengone == true)
             {
                 // have the right box show up
-                aniMain2.SetBool("main2", true);
-                aniNPC2.SetBool("side2", false);
+                aniMain2.SetBool("side", true);
+                aniNPC2.SetBool("side", false);
             }
 
             //right text showing
@@ -968,7 +968,7 @@ public class Dialouge1Start : MonoBehaviour
             nameChar2 = NameNPC22;
 
             //right render showing
-            if (checkMain.boxinplace == true)
+            if (checkMain2.boxinplace == true)
             {
                 // have the right render showing up
                 playRen2.SetBool("coming2", true);
@@ -988,8 +988,8 @@ public class Dialouge1Start : MonoBehaviour
             if (checkMain2.rengone == true)
             {
                 // having the right box show up
-                aniMain2.SetBool("main2", false);
-                aniNPC2.SetBool("side2", true);
+                aniMain2.SetBool("side", false);
+                aniNPC2.SetBool("side", true);
             }
 
             //right text showing
@@ -1023,8 +1023,8 @@ public class Dialouge1Start : MonoBehaviour
             if (checkNpc2.rengone == true)
             {
                 // have the right box show up
-                aniMain2.SetBool("main2", true);
-                aniNPC2.SetBool("side2", false);
+                aniMain2.SetBool("side", true);
+                aniNPC2.SetBool("side", false);
             }
 
             //right text showing
@@ -1058,8 +1058,8 @@ public class Dialouge1Start : MonoBehaviour
             if (checkMain2.rengone == true)
             {
                 // having the right box show up
-                aniMain2.SetBool("main2", false);
-                aniNPC2.SetBool("side2", true);
+                aniMain2.SetBool("side", false);
+                aniNPC2.SetBool("side", true);
             }
 
             //right text showing
@@ -1096,8 +1096,8 @@ public class Dialouge1Start : MonoBehaviour
             if (checkNpc2.rengone == true)
             {
                 // have the right box show up
-                aniMain2.SetBool("main2", true);
-                aniNPC2.SetBool("side2", false);
+                aniMain2.SetBool("side", true);
+                aniNPC2.SetBool("side", false);
             }
 
             //right text showing
@@ -1134,7 +1134,7 @@ public class Dialouge1Start : MonoBehaviour
             NpcRen3.SetBool("comin", false);
 
             // having the right box show up
-            aniMain3.SetBool("main", true);
+            aniMain3.SetBool("side", true);
             aniNPC3.SetBool("side", false);
 
 
@@ -1168,7 +1168,7 @@ public class Dialouge1Start : MonoBehaviour
             if (checkMain3.rengone == true)
             {
                 // having the right box show up
-                aniMain3.SetBool("main", false);
+                aniMain3.SetBool("side", false);
                 aniNPC3.SetBool("side", true);
             }
 
@@ -1205,7 +1205,7 @@ public class Dialouge1Start : MonoBehaviour
             if (checkNpc3.rengone == true)
             {
                 // have the right box show up
-                aniMain3.SetBool("main", true);
+                aniMain3.SetBool("side", true);
                 aniNPC3.SetBool("side", false);
             }
 
@@ -1241,7 +1241,7 @@ public class Dialouge1Start : MonoBehaviour
             if (checkMain3.rengone == true)
             {
                 // having the right box show up
-                aniMain3.SetBool("main", false);
+                aniMain3.SetBool("side", false);
                 aniNPC3.SetBool("side", true);
             }
 
@@ -1276,7 +1276,7 @@ public class Dialouge1Start : MonoBehaviour
             if (checkNpc3.rengone == true)
             {
                 // have the right box show up
-                aniMain3.SetBool("main", true);
+                aniMain3.SetBool("side", true);
                 aniNPC3.SetBool("side", false);
             }
 
@@ -1311,7 +1311,7 @@ public class Dialouge1Start : MonoBehaviour
             if (checkMain3.rengone == true)
             {
                 // having the right box show up
-                aniMain3.SetBool("main", false);
+                aniMain3.SetBool("side", false);
                 aniNPC3.SetBool("side", true);
             }
 
@@ -1349,7 +1349,7 @@ public class Dialouge1Start : MonoBehaviour
             if (checkNpc3.rengone == true)
             {
                 // have the right box show up
-                aniMain3.SetBool("main", true);
+                aniMain3.SetBool("side", true);
                 aniNPC3.SetBool("side", false);
             }
 
