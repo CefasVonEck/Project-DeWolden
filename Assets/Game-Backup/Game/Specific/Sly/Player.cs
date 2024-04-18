@@ -41,6 +41,19 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask NPCLayer;
 
 
+    [SerializeField]
+    private Animator Ani;
+
+    [SerializeField]
+    private Animator AniJ;
+
+    [SerializeField]
+    private SpriteRenderer ren;
+
+    [SerializeField]
+    private SpriteRenderer renJ;
+
+
     [Header("Dash")]
     [SerializeField] private DashState dashState;
     [SerializeField] private float dashSpeed = 15f;
@@ -107,6 +120,8 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+
+        //Ani = GetComponent<Animator>();
     }
 
     private void Start()
@@ -123,19 +138,38 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             direction += Vector2.up;
+            Ani.SetInteger("AniState", 4);
+            AniJ.SetInteger("AniState", 4);
         }
         if (Input.GetKey(KeyCode.S))
         {
             direction += Vector2.down;
+            Ani.SetInteger("AniState", 1);
+            AniJ.SetInteger("AniState", 1);
         }
         if (Input.GetKey(KeyCode.A))
         {
             direction += Vector2.left;
+            Ani.SetInteger("AniState", 3);
+            AniJ.SetInteger("AniState", 3);
+            ren.flipX = true;
+            renJ.flipX = true;
         }
         if (Input.GetKey(KeyCode.D))
         {
             direction += Vector2.right;
+            Ani.SetInteger("AniState", 2);
+            AniJ.SetInteger("AniState", 2);
+            ren.flipX = false;
+            renJ.flipX = false;
         }
+
+        if (isWalking == false)
+        {
+            Ani.SetInteger("AniState", 0);
+            AniJ.SetInteger("AniState", 0);
+        }
+
 
         // Normalize the direction to keep consistent speed
         direction.Normalize();
