@@ -459,13 +459,14 @@ public class PlayerAbilities : MonoBehaviour
             AttackButton7.interactable = false;
             AttackButton8.interactable = false;
 
-            jagerSelected = true;
-            AttackButton1.gameObject.SetActive(true);
-            AttackButton2.gameObject.SetActive(true);
-            AttackButton5.gameObject.SetActive(true);
-            AttackButton6.gameObject.SetActive(true);
+            jagerSelected = false;
+            AttackButton1.gameObject.SetActive(false);
+            AttackButton2.gameObject.SetActive(false);
+            AttackButton5.gameObject.SetActive(false);
+            AttackButton6.gameObject.SetActive(false);
+
             AttackButton3.gameObject.SetActive(false);
-            AttackButton4.gameObject.SetActive(false);
+            AttackButton4.gameObject.SetActive(true);
             AttackButton7.gameObject.SetActive(false);
             AttackButton8.gameObject.SetActive(false);
         }
@@ -1196,6 +1197,11 @@ public class PlayerAbilities : MonoBehaviour
                 thornDamage = thornDamageActive4;
             }
             //--maxAbilityUse;
+
+
+            AttackButton3.gameObject.SetActive(true);
+            AttackButton7.gameObject.SetActive(true);
+            AttackButton8.gameObject.SetActive(true);
 
             if (userName4 != null && !(userName4.Equals("")))
             {
