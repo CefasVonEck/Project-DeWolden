@@ -51,16 +51,22 @@ public class journalhandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(check.hastalked == true)
+        //if(check.hastalked == true)
         {
             hin.SetActive(true);
         }
 
-        if (Input.GetKeyDown("j") && check.hastalked == true)
+// && check.hastalked == true
+
+        if (Input.GetKeyDown("j"))
         {
             if (jour.activeInHierarchy == false)
             {
                 OpenJour();
+            }
+            else if (jour.activeInHierarchy == true)
+            {
+                CloseJour();
             }
         }
     }
