@@ -387,7 +387,7 @@ public class Player : MonoBehaviour
         }
 
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius, fireLayer);
-        Debug.Log(hitColliders.Length);
+//Debug.Log(hitColliders.Length);
         if (hitColliders.Length > 0)
         {
             foreach (Collider _collider in hitColliders)
