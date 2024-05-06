@@ -21,22 +21,30 @@ public class Intro : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        ++timer;
-        if(timer == 250)
+        if (timer < 1500)
         {
-            popupText[0].active = true;
-        }
-        else if (timer == 450)
-        {
-            popupText[0].active = false;
-        }
-        else if (timer == 500)
-        {
-            popupText[1].active = true;
-        }
-        else if (timer == 750)
-        {
-            popupText[1].active = false;
+            ++timer;
+            if (timer == 250)
+            {
+                popupText[0].active = true;
+            }
+            else if (timer == 450)
+            {
+                popupText[0].active = false;
+            }
+            else if (timer == 501)
+            {
+                popupText[1].active = true;
+            }
+            else if (timer == 750)
+            {
+                popupText[1].active = false;
+            }
+
+            if (timer == 1499)
+            {
+                timer = 500;
+            }
         }
     }
 }
