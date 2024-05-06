@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class UnlockJournal : MonoBehaviour
 {
+    //The Player
     [SerializeField]
     private Transform pointA;
 
+    //The Object itself(Stick Object without Render, Render(Stick Texture) is just a Tile)
     [SerializeField]
     private Transform pointB;
 
+    //In the Journal's case, it unlocks the whole Journal. For encountering other Landmarks & Characters, it would be an Item inside the Journal(picture that now is just a Black square)
     [SerializeField]
     private GameObject unlockable;
 
+    //This Object is a "Text" Cloud that will be visable for a short while
     [SerializeField]
     private GameObject showUpdate;
     private int showTimer = 0;
@@ -20,18 +24,28 @@ public class UnlockJournal : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        unlockable.SetActive(false);
+        if (unlockable != null)
+        {
+            unlockable.SetActive(false);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         float distance = Vector3.Distance(pointA.position, pointB.position);
-        if (!unlockable.active && distance < 0.5f)
+        if (distance < 0.5f)
         {
-            unlockable.SetActive(true);
-            showUpdate.SetActive(true);
-            showTimer = 250;
+            if ((unlockable != null && !unlockable.active))
+            {
+                unlockable.SetActive(true);
+            }
+
+            if (showTimer == 0) 
+            { 
+                showUpdate.SetActive(true); 
+                showTimer = 250; 
+            }
         }
     }
 
