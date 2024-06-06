@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Combat_Scene.unity
     guid: c34e994a136710b4d9a0efb7d62e16b6
   - enabled: 1
-    path: Assets/Scenes/Sevs Trash/Level One.unity
+    path: Assets/Scenes/Sevs Trash/Placeholder Menu.unity
     guid: fccd599f9c310ad4da2f3990740a9742
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
