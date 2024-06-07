@@ -21,8 +21,6 @@ public class writer : MonoBehaviour
     // we have it public since this is going to be changed all the time
     public TextMeshProUGUI Towrite;
 
-    //public bool cancon = false;
-
 
     private void Awake()
     {
@@ -49,15 +47,7 @@ public class writer : MonoBehaviour
         {
             partialtext += text[partialtext.Length];
             DeltaTime -= writeSpeed;
-
-            //cancon = false;
         }
-
-        //if (partialtext.Length == text.Length)
-        //{
-            //cancon = true;
-        //}
-
 
         Towrite.text = partialtext;
     }

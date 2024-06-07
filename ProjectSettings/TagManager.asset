@@ -17,15 +17,8 @@ TagManager:
   - locp
   - DesLocP
   - DesCharP
-  - Smin
-  - Sjager
-  - Jager
-  - dia
-  - Sspin
-  - bright
-  - allboxes
-  - Swolf
   - jourh
+  - HintObj
   layers:
   - Default
   - TransparentFX
@@ -65,9 +58,6 @@ TagManager:
     locked: 0
   - name: Underlaying_Terrain
     uniqueID: 4071362045
-    locked: 0
-  - name: Player
-    uniqueID: 675663693
     locked: 0
   - name: Hiding Enemies
     uniqueID: 124635901

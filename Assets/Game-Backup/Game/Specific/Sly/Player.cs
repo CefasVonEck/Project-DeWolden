@@ -41,19 +41,6 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask NPCLayer;
 
 
-    [SerializeField]
-    private Animator Ani;
-
-    [SerializeField]
-    private Animator AniJ;
-
-    [SerializeField]
-    private SpriteRenderer ren;
-
-    [SerializeField]
-    private SpriteRenderer renJ;
-
-
     [Header("Dash")]
     [SerializeField] private DashState dashState;
     [SerializeField] private float dashSpeed = 15f;
@@ -120,8 +107,6 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-
-        //Ani = GetComponent<Animator>();
     }
 
     private void Start()
@@ -130,150 +115,32 @@ public class Player : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    private int walkingDirection = -1;
-    private int switchWalkingTimer = 0;
-
-    void FixedUpdate()
-    {
-        if(switchWalkingTimer > 0)
-        {
-            --switchWalkingTimer;
-        }
-
-        if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
-        {
-            walkingDirection = -1;
-        }
-    }
-
 
     void Update()
     {
         Vector2 direction = Vector2.zero;
-      
-        if (walkingDirection == -1 && Input.GetKey(KeyCode.W))
-        {
-            walkingDirection = 0;
-            //Ani.SetInteger("AniState", 4);
-            ren.flipX = false;
-        }
-        else if (walkingDirection == -1 && Input.GetKey(KeyCode.S))
-        {
-            walkingDirection = 1;
-            //Ani.SetInteger("AniState", 1);
-            ren.flipX = false;
-        }
-        else if (walkingDirection == -1 && Input.GetKey(KeyCode.A))
-        {
-            walkingDirection = 2;
-            Ani.SetInteger("AniState", 3);
-            ren.flipX = true;
-        }
-        else if (walkingDirection == -1 && Input.GetKey(KeyCode.D))
-        {
-            walkingDirection = 3;
-            Ani.SetInteger("AniState", 2);
-            ren.flipX = false;
-        }
 
-     
-        if (walkingDirection == 0)
+        if (Input.GetKey(KeyCode.W))
         {
             direction += Vector2.up;
-            //Ani.SetInteger("AniState", 4);
         }
-        else if (walkingDirection == 1)
+        if (Input.GetKey(KeyCode.S))
         {
             direction += Vector2.down;
-            //Ani.SetInteger("AniState", 1);
         }
-        
-        if (walkingDirection == 2)
+        if (Input.GetKey(KeyCode.A))
         {
             direction += Vector2.left;
-            //AniJ.SetInteger("AniState", 3);
-            //renJ.flipX = true;
         }
-        
-        if (walkingDirection == 3)
+        if (Input.GetKey(KeyCode.D))
         {
             direction += Vector2.right;
-            //AniJ.SetInteger("AniState", 2);
-            //renJ.flipX = false;
-        }
-
-        if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
-        {
-            walkingDirection = -1;
-        }
-        else if ((walkingDirection == 2 || walkingDirection == 3) && (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)))
-        {
-            if (switchWalkingTimer == 0)
-            {
-                switchWalkingTimer = 10;
-            }
-
-            if (switchWalkingTimer == 1 && Input.GetKey(KeyCode.A) && walkingDirection == 3)
-            {
-                direction += Vector2.right;
-                walkingDirection = 2;
-                Ani.SetInteger("AniState", 3);
-                ren.flipX = true;
-            }
-            else if (switchWalkingTimer == 1 && Input.GetKey(KeyCode.D) && walkingDirection == 2)
-            {
-                direction += Vector2.left;
-                walkingDirection = 3;
-                Ani.SetInteger("AniState", 2);
-                ren.flipX = false;
-            }
-        }
-        else if ((walkingDirection == 0 || walkingDirection == 1) && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)))
-        {
-            if (switchWalkingTimer == 0)
-            {
-                switchWalkingTimer = 10;
-            }
-
-            if (switchWalkingTimer == 1 && Input.GetKey(KeyCode.S) && walkingDirection == 0)
-            {
-                walkingDirection = 1;
-                //Ani.SetInteger("AniState", 4);
-                ren.flipX = false;
-                direction += Vector2.up;
-            }
-            else if (switchWalkingTimer == 1 && Input.GetKey(KeyCode.W) && walkingDirection == 1)
-            {
-                walkingDirection = 0;
-                //Ani.SetInteger("AniState", 1);
-                ren.flipX = false;
-                direction += Vector2.down;
-            }
-        }
-
-        if (isWalking == false)
-        {
-            Ani.SetInteger("AniState", 0);
-            //AniJ.SetInteger("AniState", 0);
         }
 
         // Normalize the direction to keep consistent speed
         direction.Normalize();
 
         Vector3 moveDir = new Vector3(direction.x, direction.y, 0);
-
-        if(Ani.GetInteger("AniState") != 4 || Ani.GetInteger("AniState") != 1)
-        {
-            if (new Vector3(0, moveDir.y * movementSpeed, 0).y > 0)
-            {
-                Ani.SetInteger("AniState", 4);
-            }
-            else if(new Vector3(0,moveDir.y * movementSpeed,0).y < 0)
-            {
-                Ani.SetInteger("AniState", 1);
-            }
-        }
-
         transform.position += moveDir * movementSpeed * Time.deltaTime;
 
         isWalking = moveDir != Vector3.zero;
@@ -387,7 +254,7 @@ public class Player : MonoBehaviour
         }
 
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius, fireLayer);
-//Debug.Log(hitColliders.Length);
+        Debug.Log(hitColliders.Length);
         if (hitColliders.Length > 0)
         {
             foreach (Collider _collider in hitColliders)

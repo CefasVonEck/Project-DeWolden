@@ -6,10 +6,6 @@ using UnityEngine.UI;
 
 public class dialouge : MonoBehaviour
 {
-    public Sprite Min;
-    public Sprite NPC;
-
-    
     public writer write;
 
 
@@ -26,7 +22,7 @@ public class dialouge : MonoBehaviour
 
     // a boolean to stop the dialouge from being repeated all the time
     [SerializeField]
-    public bool hastalked = false;
+    private bool hastalked = false;
 
     // the animator used for showing textbox maincharacter
     [SerializeField]
@@ -96,9 +92,6 @@ public class dialouge : MonoBehaviour
     private string Dia3M = "bye";
 
     [SerializeField]
-    private string Dia4M = "bye";
-
-    [SerializeField]
     private string Dia1N = "Hey";
 
     [SerializeField]
@@ -146,7 +139,6 @@ public class dialouge : MonoBehaviour
     private bool india = false;
 
 
-
     private void Awake()
     {
         Player = GameObject.FindWithTag("Player");
@@ -160,6 +152,11 @@ public class dialouge : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // disable textbox
+        txtboxmain.SetActive(false);
+        txtboxNPC.SetActive(false);
+        NPCRen.SetActive(false);
+        PlayerRen.SetActive(false);
     }
 
     // Update is called once per frame
@@ -227,13 +224,9 @@ public class dialouge : MonoBehaviour
                 indi.SetActive(true);
             }
 
-            else
-            {
-                indi.SetActive(false);
-            }
 
             // if e is pressed
-            if (Input.GetKeyDown("e") && hastalked == false)
+            if (Input.GetKeyDown("e"))
             {
                 // the player is in a dialouge
                 india = true;
@@ -280,10 +273,11 @@ public class dialouge : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             write.DeltaTime = 0f;
-            write.partialtext = "";
+            //write.partialtext = "";
 
             // go to next text
             curdiaMain += 1;
+            //write.partialtext = "";
 
             // make sure the text isn't shown yet (did it since it looked weird otherwise
             checkMain.canshowtext = false;
@@ -313,14 +307,12 @@ public class dialouge : MonoBehaviour
 
         txtboxmain.SetActive(false);
         txtboxNPC.SetActive(false);
-        write.partialtext = "";
+        //write.partialtext = "";
     }
 
     // for setting the right dialouge active
     void DiatrackMain()
     {
-        PlayerRen.GetComponent<Image>().sprite = Min;
-
         // setting first dia right
         if (curdiaMain == 1)
         {
@@ -354,8 +346,6 @@ public class dialouge : MonoBehaviour
 
         else if (curdiaMain == 3)
         {
-            PlayerRen.GetComponent<Image>().sprite = Min;
-
             write.text = Dia2M;
             // have the render going away first
             NpcRen.SetBool("comin", false);
@@ -374,6 +364,8 @@ public class dialouge : MonoBehaviour
                 write.Towrite = diaMain;
                 write.StartWriting();
 
+                //diaNPC.gameObject.SetActive(false);
+                //diaMain.gameObject.SetActive(true);
             }
 
 
@@ -390,10 +382,7 @@ public class dialouge : MonoBehaviour
         }
 
         else if (curdiaMain == 5)
-        {
-
-            PlayerRen.GetComponent<Image>().sprite = Min;
-
+        {                
             write.text = Dia3M;
             // have the render going away first
             NpcRen.SetBool("comin", false);
@@ -412,6 +401,8 @@ public class dialouge : MonoBehaviour
                 write.Towrite = diaMain;
                 write.StartWriting();
 
+                //diaNPC.gameObject.SetActive(false);
+                //diaMain.gameObject.SetActive(true);
             }
 
 
@@ -426,39 +417,6 @@ public class dialouge : MonoBehaviour
             }
 
         }
-
-        // setting first dia right
-        if (curdiaMain == 7)
-        {
-            PlayerRen.GetComponent<Image>().sprite = Min;
-
-            write.text = Dia4M;
-            // getting the NPC Render away (just to be sure)
-            NpcRen.SetBool("comin", false);
-
-            // having the right box show up
-            aniMain.SetBool("main", true);
-            aniNPC.SetBool("side", false);
-
-
-            //right text showing
-            if (checkMain.canshowtext == true)
-            {
-                write.Towrite = diaMain;
-                write.StartWriting();
-            }
-
-            // set the name right
-            nameChar = NameMain;
-
-            if (checkMain.boxinplace == true)
-            {
-                // have the right render showing up
-                playRen.SetBool("coming", true);
-            }
-
-
-        }
     }
 
     void DiatrackNPC()
@@ -466,10 +424,6 @@ public class dialouge : MonoBehaviour
         // setting first dia right
         if (curdiaMain == 2)
         {
-
-
-            NpcRen.GetComponent<Image>().sprite = NPC;
-
             write.text = Dia1N;
             // have the render going away first
             playRen.SetBool("coming", false);
@@ -487,6 +441,10 @@ public class dialouge : MonoBehaviour
             {
                 write.Towrite = diaNPC;
                 write.StartWriting();
+
+
+                //diaNPC.gameObject.SetActive(true);
+                //diaMain.gameObject.SetActive(false);
             }
 
 
@@ -503,10 +461,6 @@ public class dialouge : MonoBehaviour
 
         else if (curdiaMain == 4)
         {
-
-
-            NpcRen.GetComponent<Image>().sprite = NPC;
-
             write.text = Dia2N;
             // have the right render showing up
             playRen.SetBool("coming", false);
@@ -524,6 +478,9 @@ public class dialouge : MonoBehaviour
             {
                 write.Towrite = diaNPC;
                 write.StartWriting();
+
+                //diaNPC.gameObject.SetActive(true);
+                //diaMain.gameObject.SetActive(false);
             }
 
 
@@ -541,9 +498,6 @@ public class dialouge : MonoBehaviour
 
         else if (curdiaMain == 6)
         {
-
-            NpcRen.GetComponent<Image>().sprite = NPC;
-
             write.text = Dia3N;
             // have the right render showing up
             playRen.SetBool("coming", false);
