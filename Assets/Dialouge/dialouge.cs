@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class dialouge : MonoBehaviour
 {
+<<<<<<< HEAD
     public writer write;
 
 
@@ -92,6 +93,90 @@ public class dialouge : MonoBehaviour
     private string Dia3M = "bye";
 
     [SerializeField]
+=======
+    [SerializeField]
+    private GameObject bright;
+
+
+    [SerializeField]
+    private Texthandler checkMain;
+
+    [SerializeField]
+    private Texthandler checkNpc;
+
+    // a boolean to stop the dialouge from being repeated all the time
+    [SerializeField]
+    private bool hastalked = false;
+
+    // the animator used for showing textbox maincharacter
+    [SerializeField]
+    private Animator aniMain;
+
+    // the animator used for showing textbox NPC
+    [SerializeField]
+    private Animator aniNPC;
+
+    // the text in game for the character to say
+    [SerializeField]
+    private TextMeshProUGUI diaMain;
+    
+    // the name in game for the character
+    [SerializeField]
+    private TextMeshProUGUI nameMain;
+
+
+    // the text in game for the character to say
+    [SerializeField]
+    private TextMeshProUGUI diaNPC;
+
+    // the name in game for the character
+    [SerializeField]
+    private TextMeshProUGUI nameNPC;
+
+    //current dia for Character
+    [SerializeField]
+    private int curdiaMain = 1;
+
+    // max dia for Character
+    [SerializeField]
+    private int maxdiaMain;
+
+    // the string variable for the character to say
+    [SerializeField]
+    private string textChar;
+
+    // the string variable for the name of the character
+    [SerializeField]
+    private string nameChar;
+
+    // the string variable for the NPC to say
+    [SerializeField]
+    private string textNpc;
+
+    // the string variable for the name of the NPC
+    [SerializeField]
+    private string nameNpc;
+
+    // the textbox object
+    [SerializeField]
+    private GameObject txtboxmain;
+
+    // the textbox object
+    [SerializeField]
+    private GameObject txtboxNPC;
+
+    // all dia strings and names can be easily changed in inspector this is just for testing
+    [SerializeField]
+    private string Dia1M = "Hey";
+
+    [SerializeField]
+    private string Dia2M = "how u doing";
+
+    [SerializeField]
+    private string Dia3M = "bye";
+
+    [SerializeField]
+>>>>>>> origin/Sevdrake
     private string Dia1N = "Hey";
 
     [SerializeField]
@@ -272,12 +357,18 @@ public class dialouge : MonoBehaviour
         // if space is pressed
         if (Input.GetKeyDown(KeyCode.Space))
         {
+<<<<<<< HEAD
             write.DeltaTime = 0f;
             //write.partialtext = "";
 
             // go to next text
             curdiaMain += 1;
             //write.partialtext = "";
+=======
+
+            // go to next text
+            curdiaMain += 1;
+>>>>>>> origin/Sevdrake
 
             // make sure the text isn't shown yet (did it since it looked weird otherwise
             checkMain.canshowtext = false;
@@ -307,7 +398,10 @@ public class dialouge : MonoBehaviour
 
         txtboxmain.SetActive(false);
         txtboxNPC.SetActive(false);
+<<<<<<< HEAD
         //write.partialtext = "";
+=======
+>>>>>>> origin/Sevdrake
     }
 
     // for setting the right dialouge active
@@ -316,7 +410,10 @@ public class dialouge : MonoBehaviour
         // setting first dia right
         if (curdiaMain == 1)
         {
+<<<<<<< HEAD
             write.text = Dia1M;
+=======
+>>>>>>> origin/Sevdrake
             // getting the NPC Render away (just to be sure)
             NpcRen.SetBool("comin", false);
 
@@ -328,8 +425,14 @@ public class dialouge : MonoBehaviour
             //right text showing
             if (checkMain.canshowtext == true)
             {
+<<<<<<< HEAD
                 write.Towrite = diaMain;
                 write.StartWriting();
+=======
+                textChar = Dia1M;
+                diaNPC.gameObject.SetActive(false);
+                diaMain.gameObject.SetActive(true);
+>>>>>>> origin/Sevdrake
             }
 
             // set the name right
@@ -346,7 +449,10 @@ public class dialouge : MonoBehaviour
 
         else if (curdiaMain == 3)
         {
+<<<<<<< HEAD
             write.text = Dia2M;
+=======
+>>>>>>> origin/Sevdrake
             // have the render going away first
             NpcRen.SetBool("comin", false);
 
@@ -361,11 +467,17 @@ public class dialouge : MonoBehaviour
             //right text showing
             if (checkMain.canshowtext == true)
             {
+<<<<<<< HEAD
                 write.Towrite = diaMain;
                 write.StartWriting();
 
                 //diaNPC.gameObject.SetActive(false);
                 //diaMain.gameObject.SetActive(true);
+=======
+                textChar = Dia2M;
+                diaNPC.gameObject.SetActive(false);
+                diaMain.gameObject.SetActive(true);
+>>>>>>> origin/Sevdrake
             }
 
 
@@ -382,8 +494,12 @@ public class dialouge : MonoBehaviour
         }
 
         else if (curdiaMain == 5)
+<<<<<<< HEAD
         {                
             write.text = Dia3M;
+=======
+        {
+>>>>>>> origin/Sevdrake
             // have the render going away first
             NpcRen.SetBool("comin", false);
 
@@ -398,11 +514,17 @@ public class dialouge : MonoBehaviour
             //right text showing
             if (checkMain.canshowtext == true)
             {
+<<<<<<< HEAD
                 write.Towrite = diaMain;
                 write.StartWriting();
 
                 //diaNPC.gameObject.SetActive(false);
                 //diaMain.gameObject.SetActive(true);
+=======
+                textChar = Dia3M;
+                diaNPC.gameObject.SetActive(false);
+                diaMain.gameObject.SetActive(true);
+>>>>>>> origin/Sevdrake
             }
 
 
@@ -424,7 +546,10 @@ public class dialouge : MonoBehaviour
         // setting first dia right
         if (curdiaMain == 2)
         {
+<<<<<<< HEAD
             write.text = Dia1N;
+=======
+>>>>>>> origin/Sevdrake
             // have the render going away first
             playRen.SetBool("coming", false);
 
@@ -439,12 +564,18 @@ public class dialouge : MonoBehaviour
             //right text showing
             if (checkNpc.canshowtext == true)
             {
+<<<<<<< HEAD
                 write.Towrite = diaNPC;
                 write.StartWriting();
 
 
                 //diaNPC.gameObject.SetActive(true);
                 //diaMain.gameObject.SetActive(false);
+=======
+                textNpc = Dia1N;
+                diaNPC.gameObject.SetActive(true);
+                diaMain.gameObject.SetActive(false);
+>>>>>>> origin/Sevdrake
             }
 
 
@@ -461,7 +592,10 @@ public class dialouge : MonoBehaviour
 
         else if (curdiaMain == 4)
         {
+<<<<<<< HEAD
             write.text = Dia2N;
+=======
+>>>>>>> origin/Sevdrake
             // have the right render showing up
             playRen.SetBool("coming", false);
 
@@ -476,11 +610,17 @@ public class dialouge : MonoBehaviour
             //right text showing
             if (checkNpc.canshowtext == true)
             {
+<<<<<<< HEAD
                 write.Towrite = diaNPC;
                 write.StartWriting();
 
                 //diaNPC.gameObject.SetActive(true);
                 //diaMain.gameObject.SetActive(false);
+=======
+                textNpc = Dia2N;
+                diaNPC.gameObject.SetActive(true);
+                diaMain.gameObject.SetActive(false);
+>>>>>>> origin/Sevdrake
             }
 
 
@@ -498,7 +638,10 @@ public class dialouge : MonoBehaviour
 
         else if (curdiaMain == 6)
         {
+<<<<<<< HEAD
             write.text = Dia3N;
+=======
+>>>>>>> origin/Sevdrake
             // have the right render showing up
             playRen.SetBool("coming", false);
 
@@ -513,11 +656,17 @@ public class dialouge : MonoBehaviour
             //right text showing
             if (checkNpc.canshowtext == true)
             {
+<<<<<<< HEAD
                 write.Towrite = diaNPC;
                 write.StartWriting();
 
                 //diaNPC.gameObject.SetActive(true);
                 //diaMain.gameObject.SetActive(false);
+=======
+                textNpc = Dia3N;
+                diaNPC.gameObject.SetActive(true);
+                diaMain.gameObject.SetActive(false);
+>>>>>>> origin/Sevdrake
             }
 
 
@@ -534,6 +683,7 @@ public class dialouge : MonoBehaviour
         }
     }
 
+<<<<<<< HEAD
     void Textup()
     {
         // constantly update the text 
@@ -542,12 +692,26 @@ public class dialouge : MonoBehaviour
         nameMain.text = nameChar.ToString();
 
         diaNPC.text = write.partialtext.ToString();
+=======
+
+    void Textup()
+    {
+        // constantly update the text 
+        diaMain.text = textChar.ToString();
+        
+        nameMain.text = nameChar.ToString();
+
+        diaNPC.text = textNpc.ToString();
+>>>>>>> origin/Sevdrake
 
         nameNPC.text = nameNpc.ToString();
     }
 
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> origin/Sevdrake
 }
