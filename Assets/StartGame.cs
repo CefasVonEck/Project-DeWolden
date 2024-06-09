@@ -175,15 +175,13 @@ public class StartGame : MonoBehaviour
     void nexttxt1()
     {
         // if space is pressed
-        if (Input.GetKeyDown(KeyCode.Space)) //&& write.cancon == true)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             write.DeltaTime = 0f;
             write.partialtext = "";
 
             // go to next text
             curdiaMain1 += 1;
-
-            //write.cancon = false;
 
             // make sure the text isn't shown yet (did it since it looked weird otherwise
             checkMain.canshowtext = false;
