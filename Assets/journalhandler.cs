@@ -19,6 +19,9 @@ public class journalhandler : MonoBehaviour
     [SerializeField]
     private GameObject DesLocP;
 
+    [SerializeField]
+    private GameObject EmptyPages;
+
     public bool unlocked;
 
 
@@ -48,6 +51,14 @@ public class journalhandler : MonoBehaviour
             if (jour.activeInHierarchy == false)
             {
                 OpenJour();
+                EmptyPages.SetActive(true);
+
+                charpage.SetActive(false);
+                locpage.SetActive(false);
+
+                DesCharP.SetActive(false);
+                DesLocP.SetActive(false);
+
             }
         }
 
@@ -97,6 +108,8 @@ public class journalhandler : MonoBehaviour
 
         DesCharP.SetActive(false);
         DesLocP.SetActive(false);
+
+        
     }
 
     public void OpenChar()
