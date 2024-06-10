@@ -1794,6 +1794,7 @@ RectTransform:
   m_SizeDelta: {x: 42.3391, y: 10.5435}
   m_Pivot: {x: 0.5, y: 0.5}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &403670876
 GameObject:
   m_ObjectHideFlags: 0
@@ -1826,6 +1827,8 @@ Transform:
   - {fileID: 503872532}
   m_Father: {fileID: 1609774725}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
 --- !u!1 &451872263
@@ -2095,6 +2098,7 @@ MonoBehaviour:
   damageTeammate: 0a00000000000000000000000000000000000000
   agileDamageTeammate: 0a00000000000000000000000000000000000000
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &483919486
 GameObject:
   m_ObjectHideFlags: 0
@@ -2253,6 +2257,8 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
 --- !u!1 &505752741
@@ -4045,6 +4051,7 @@ CanvasRenderer:
   m_GameObject: {fileID: 1028531450}
   m_CullTransparentMesh: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1029144738
 GameObject:
   m_ObjectHideFlags: 0
@@ -4205,6 +4212,8 @@ MonoBehaviour:
   spriteTwo: {fileID: 1134293517}
   jagerTaunting: {fileID: 1734577384}
   jagerBlocking: {fileID: 1503688588}
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
 --- !u!1 &1054960570
@@ -6018,6 +6027,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_GameObject: {fileID: 1230746234}
   m_CullTransparentMesh: 1
 --- !u!1 &1253421474
@@ -6305,6 +6315,9 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1284048301}
+=======
+  m_GameObject: {fileID: 1223871163}
+>>>>>>> origin/CombatBranch
 =======
   m_GameObject: {fileID: 1223871163}
 >>>>>>> origin/CombatBranch
@@ -6684,7 +6697,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   returnToMainSceneName: TestLevelScene
 <<<<<<< HEAD
+<<<<<<< HEAD
   abilityMenu: {fileID: 260135466}
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
   healthEnemySelected: {fileID: 0}
@@ -6695,11 +6711,17 @@ MonoBehaviour:
   healthMina: {fileID: 224170721}
   healthJager: {fileID: 97801025}
 <<<<<<< HEAD
+<<<<<<< HEAD
   abilityInfoText: {fileID: 0}
   enemyAbilities: {fileID: 1928170628}
   recieveToPartnerDamage: 0000000000000001
   enemyHitPartner: 0000000000000000
   damageBhealthMulti: 0f00000000000000000000000000000000000000000000000000000000000000
+=======
+  enemyAbilities: {fileID: 1928170628}
+  recieveToPartnerDamage: 0000000000000001
+  damageBhealthMulti: 0500000000000000000000000000000000000000000000000000000000000000
+>>>>>>> origin/CombatBranch
 =======
   enemyAbilities: {fileID: 1928170628}
   recieveToPartnerDamage: 0000000000000001
@@ -6718,12 +6740,18 @@ MonoBehaviour:
   canMiss: 0
   harmTeammate: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
   attackTimes: 1
   damageTeammate: 13
   agileDamageTeammate: 13
   thornDamageActive: 0
   abilityMessage: 
   abilityName2: Healing Chant
+=======
+  damageTeammate: 13
+  agileDamageTeammate: 13
+  abilityName2: Surrounded by Fog
+>>>>>>> origin/CombatBranch
 =======
   damageTeammate: 13
   agileDamageTeammate: 13
@@ -6738,6 +6766,7 @@ MonoBehaviour:
   userName2: Mina
   hitAll2: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
   canMiss2: 0
   harmTeammate2: 1
   attackTimes2: 1
@@ -6745,6 +6774,12 @@ MonoBehaviour:
   agileDamageTeammate2: 0
   thornDamageActive2: 0
   abilityMessage2: 
+=======
+  canMiss2: 1
+  harmTeammate2: 0
+  damageTeammate2: 0
+  agileDamageTeammate2: 0
+>>>>>>> origin/CombatBranch
 =======
   canMiss2: 1
   harmTeammate2: 0
@@ -6763,11 +6798,17 @@ MonoBehaviour:
   harmTeammate3: 0
   damageTeammate3: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
   agileDamageTeammate3: -2
   thornDamageActive3: 0
   abilityMessage3: 
   abilityName4: Relentless Slash
   attackDamage4: 7
+=======
+  agileDamageTeammate3: 0
+  abilityName4: Fire Ball
+  attackDamage4: 10
+>>>>>>> origin/CombatBranch
 =======
   agileDamageTeammate3: 0
   abilityName4: Fire Ball
@@ -6781,11 +6822,16 @@ MonoBehaviour:
   canMiss4: 1
   harmTeammate4: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
   attackTimes4: 1
   damageTeammate4: 0
   agileDamageTeammate4: 0
   thornDamageActive4: 0
   abilityMessage4: 
+=======
+  damageTeammate4: 0
+  agileDamageTeammate4: 0
+>>>>>>> origin/CombatBranch
 =======
   damageTeammate4: 0
   agileDamageTeammate4: 0
@@ -6802,10 +6848,15 @@ MonoBehaviour:
   damageTeammate5: 15
   agileDamageTeammate5: 5
 <<<<<<< HEAD
+<<<<<<< HEAD
   thornDamageActive5: 0
   abilityMessage5: 
   abilityName6: Song of Confusion
   attackDamage6: 0
+=======
+  abilityName6: Healing Song
+  attackDamage6: -5
+>>>>>>> origin/CombatBranch
 =======
   abilityName6: Healing Song
   attackDamage6: -5
@@ -6817,12 +6868,18 @@ MonoBehaviour:
   hitAll6: 1
   canMiss6: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
   harmTeammate6: 0
   attackTimes6: 1
   damageTeammate6: 0
   agileDamageTeammate6: 0
   thornDamageActive6: 0
   abilityMessage6: 
+=======
+  harmTeammate6: 1
+  damageTeammate6: -15
+  agileDamageTeammate6: 0
+>>>>>>> origin/CombatBranch
 =======
   harmTeammate6: 1
   damageTeammate6: -15
@@ -6840,8 +6897,11 @@ MonoBehaviour:
   damageTeammate7: 0
   agileDamageTeammate7: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
   thornDamageActive7: 0
   abilityMessage7: 
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
   abilityName8: Soul Offering
@@ -6856,8 +6916,11 @@ MonoBehaviour:
   damageTeammate8: -5
   agileDamageTeammate8: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
   thornDamageActive8: 0
   abilityMessage8: 
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
   UseMessage: {fileID: 1149140857}
@@ -6881,6 +6944,7 @@ MonoBehaviour:
   enemy2: {fileID: 1914014085}
   enemy3: {fileID: 1635526073}
   enemy4: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
   thornDamage: 0
   animateAbilityOne: {fileID: 0}
@@ -7025,6 +7089,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1366773990}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
 --- !u!1 &1395232311
@@ -8117,6 +8183,7 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1625862360
 GameObject:
   m_ObjectHideFlags: 0
@@ -8313,6 +8380,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1629396121}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
 --- !u!1 &1634990104
@@ -9292,6 +9361,7 @@ RectTransform:
   m_SizeDelta: {x: 42.3391, y: 10.5435}
   m_Pivot: {x: 0.5, y: 0.5}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1778937691
 GameObject:
   m_ObjectHideFlags: 0
@@ -9515,6 +9585,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1790674364}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
 --- !u!1 &1805309723
@@ -10746,12 +10818,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 <<<<<<< HEAD
+<<<<<<< HEAD
   animationBehaviourScript: {fileID: 0}
   enemyHealth:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
   accuracyIcon:
@@ -10809,7 +10884,10 @@ MonoBehaviour:
   attackUseMessageLast: ' and all Damage Output was boosted..'
   UseMessage: {fileID: 1149140857}
 <<<<<<< HEAD
+<<<<<<< HEAD
   UseMessageAnimationScene: {fileID: 0}
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
   startBattleMessage: A pack of Wolfs jumped from behind a Boulder and attacked you!

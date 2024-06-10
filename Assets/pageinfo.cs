@@ -30,7 +30,10 @@ public class Pageinfo : MonoBehaviour
     public bool isunlocked = false;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
     [SerializeField]

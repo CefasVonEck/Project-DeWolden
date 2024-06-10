@@ -3524,7 +3524,10 @@ CanvasRenderer:
   m_GameObject: {fileID: 146080237}
   m_CullTransparentMesh: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/CombatBranch
 --- !u!1 &149209188
 GameObject:
   m_ObjectHideFlags: 0
@@ -3627,6 +3630,9 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0.3, y: 0.3}
   m_Pivot: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
+>>>>>>> origin/CombatBranch
+=======
 >>>>>>> origin/CombatBranch
 --- !u!1001 &149876542
 PrefabInstance:
@@ -3893,7 +3899,11 @@ GameObject:
   - component: {fileID: 184537419}
   - component: {fileID: 184537418}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Layer: 3
+=======
+  m_Layer: 0
+>>>>>>> origin/CombatBranch
 =======
   m_Layer: 0
 >>>>>>> origin/CombatBranch
@@ -3903,7 +3913,11 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_IsActive: 0
+=======
+  m_IsActive: 1
+>>>>>>> origin/CombatBranch
 =======
   m_IsActive: 1
 >>>>>>> origin/CombatBranch
@@ -3920,6 +3934,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Father: {fileID: 1454286295}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3928,6 +3943,8 @@ RectTransform:
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0}
 =======
+=======
+>>>>>>> origin/CombatBranch
   m_Father: {fileID: 149209192}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -3935,6 +3952,9 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0.3, y: 0.3}
   m_Pivot: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
+>>>>>>> origin/CombatBranch
+=======
 >>>>>>> origin/CombatBranch
 --- !u!114 &184537418
 MonoBehaviour:
@@ -3984,8 +4004,13 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_fontSize: 125
   m_fontSizeBase: 125
+=======
+  m_fontSize: 0.21
+  m_fontSizeBase: 0.21
+>>>>>>> origin/CombatBranch
 =======
   m_fontSize: 0.21
   m_fontSizeBase: 0.21
@@ -3995,7 +4020,11 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_fontStyle: 16
+=======
+  m_fontStyle: 0
+>>>>>>> origin/CombatBranch
 =======
   m_fontStyle: 0
 >>>>>>> origin/CombatBranch
@@ -4162,7 +4191,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_text: Taak
+=======
+  m_text: Locaties
+>>>>>>> origin/CombatBranch
 =======
   m_text: Locaties
 >>>>>>> origin/CombatBranch
@@ -4584,6 +4617,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
 <<<<<<< HEAD
+<<<<<<< HEAD
       - m_Target: {fileID: 223943588}
         m_TargetAssemblyTypeName: Pageinfo, Assembly-CSharp
         m_MethodName: setinfo
@@ -4592,6 +4626,8 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
 =======
+=======
+>>>>>>> origin/CombatBranch
       - m_Target: {fileID: 223943583}
         m_TargetAssemblyTypeName: 
         m_MethodName: 
@@ -4599,6 +4635,9 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: 
+<<<<<<< HEAD
+>>>>>>> origin/CombatBranch
+=======
 >>>>>>> origin/CombatBranch
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -8086,6 +8125,7 @@ MonoBehaviour:
   m_Flags: 3
   m_ColliderType: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &531942204
 GameObject:
   m_ObjectHideFlags: 0
@@ -8220,6 +8260,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 531942204}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
 --- !u!1001 &548250091
@@ -9087,6 +9129,7 @@ Transform:
   m_PrefabInstance: {fileID: 1570544678}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &613464221
 GameObject:
   m_ObjectHideFlags: 0
@@ -9178,6 +9221,8 @@ CanvasRenderer:
   m_CullTransparentMesh: 1
 =======
 >>>>>>> origin/CombatBranch
+=======
+>>>>>>> origin/CombatBranch
 --- !u!1001 &617048850
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9264,7 +9309,10 @@ MonoBehaviour:
   hasdug: 0
   scrip: {fileID: 1454286298}
 <<<<<<< HEAD
+<<<<<<< HEAD
   pop: {fileID: 613464221}
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
 --- !u!1001 &633076586
@@ -9537,17 +9585,23 @@ PrefabInstance:
     - target: {fileID: 5948575364846755625, guid: 47e7403f46a0536489b9cac50f21f8b2, type: 3}
       propertyPath: m_LocalPosition.x
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 1.98
       objectReference: {fileID: 0}
     - target: {fileID: 5948575364846755625, guid: 47e7403f46a0536489b9cac50f21f8b2, type: 3}
       propertyPath: m_LocalPosition.y
       value: 4.87
 =======
+=======
+>>>>>>> origin/CombatBranch
       value: 1.88
       objectReference: {fileID: 0}
     - target: {fileID: 5948575364846755625, guid: 47e7403f46a0536489b9cac50f21f8b2, type: 3}
       propertyPath: m_LocalPosition.y
       value: 4.83
+<<<<<<< HEAD
+>>>>>>> origin/CombatBranch
+=======
 >>>>>>> origin/CombatBranch
       objectReference: {fileID: 0}
     - target: {fileID: 5948575364846755625, guid: 47e7403f46a0536489b9cac50f21f8b2, type: 3}
@@ -10499,7 +10553,11 @@ MonoBehaviour:
   pointA: {fileID: 749614309}
   pointB: {fileID: 1256639132}
 <<<<<<< HEAD
+<<<<<<< HEAD
   scrip: {fileID: 1405911163}
+=======
+  scrip: {fileID: 0}
+>>>>>>> origin/CombatBranch
 =======
   scrip: {fileID: 0}
 >>>>>>> origin/CombatBranch
@@ -10508,7 +10566,11 @@ MonoBehaviour:
   showUpdate: {fileID: 414082430}
   forjournal: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
   hint: {fileID: 1966557168}
+=======
+  hint: {fileID: 0}
+>>>>>>> origin/CombatBranch
 =======
   hint: {fileID: 0}
 >>>>>>> origin/CombatBranch
@@ -10987,7 +11049,11 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_IsActive: 0
+=======
+  m_IsActive: 1
+>>>>>>> origin/CombatBranch
 =======
   m_IsActive: 1
 >>>>>>> origin/CombatBranch
@@ -11812,8 +11878,11 @@ RectTransform:
   - {fileID: 1786856833}
   - {fileID: 1096355055}
 <<<<<<< HEAD
+<<<<<<< HEAD
   - {fileID: 1383606263}
   - {fileID: 1822527609}
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
   - {fileID: 903513584}
@@ -14550,8 +14619,13 @@ MonoBehaviour:
     offering
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     Breng beide offeringen naar een meer bij de rand, leg de offeringen
     in het water. Mocht de Spinwiefen de offeringen accepteren is het ritueel gelukt.'
+=======
+    Breng beide offeringen naar een meer en bij een glinsterend puntje,
+    leg de offeringen in het water.'
+>>>>>>> origin/CombatBranch
 =======
     Breng beide offeringen naar een meer en bij een glinsterend puntje,
     leg de offeringen in het water.'
@@ -15279,6 +15353,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
 <<<<<<< HEAD
+<<<<<<< HEAD
       - m_Target: {fileID: 961046118}
         m_TargetAssemblyTypeName: Pageinfo, Assembly-CSharp
         m_MethodName: setinfo
@@ -15287,6 +15362,8 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
 =======
+=======
+>>>>>>> origin/CombatBranch
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: 
@@ -15294,6 +15371,9 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: 
+<<<<<<< HEAD
+>>>>>>> origin/CombatBranch
+=======
 >>>>>>> origin/CombatBranch
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -17038,7 +17118,11 @@ MonoBehaviour:
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_margin: {x: 0, y: 0, z: 0, w: 102.87335}
+=======
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+>>>>>>> origin/CombatBranch
 =======
   m_margin: {x: 0, y: 0, z: 0, w: 0}
 >>>>>>> origin/CombatBranch
@@ -17266,8 +17350,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SMina: {fileID: 21300000, guid: e0defbda6c5da9f45b22dcc8e39020f0, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
   SJag: {fileID: 21300000, guid: b6d393b36fdb5194cba04ae5e0dad79e, type: 3}
   SSpin: {fileID: 21300000, guid: 019e4c935a23d524b8b2036ec47ad7d0, type: 3}
+=======
+  SJag: {fileID: 21300000, guid: 019e4c935a23d524b8b2036ec47ad7d0, type: 3}
+>>>>>>> origin/CombatBranch
 =======
   SJag: {fileID: 21300000, guid: 019e4c935a23d524b8b2036ec47ad7d0, type: 3}
 >>>>>>> origin/CombatBranch
@@ -17278,7 +17366,11 @@ MonoBehaviour:
   checkNpc: {fileID: 1058012946}
   curdiaMain1: 1
 <<<<<<< HEAD
+<<<<<<< HEAD
   maxdiaMain1: 5
+=======
+  maxdiaMain1: 4
+>>>>>>> origin/CombatBranch
 =======
   maxdiaMain1: 4
 >>>>>>> origin/CombatBranch
@@ -17306,7 +17398,10 @@ MonoBehaviour:
   Dia4M: Remmelt, dus hij was het, Spinwiefen bedankt ik ga op pad. Wacht wolven,
     hier?
 <<<<<<< HEAD
+<<<<<<< HEAD
   Dia5M: Zij er iemand wolfen jagen?
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
   NameMain: Spinwiefen
@@ -17319,8 +17414,11 @@ MonoBehaviour:
   forJag: 0
   jag: {fileID: 552126464}
 <<<<<<< HEAD
+<<<<<<< HEAD
   pop: {fileID: 0}
   pop2: {fileID: 0}
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
 --- !u!4 &1111783923
@@ -17864,7 +17962,10 @@ MonoBehaviour:
   SMina: {fileID: 21300000, guid: e0defbda6c5da9f45b22dcc8e39020f0, type: 3}
   SJag: {fileID: 21300000, guid: b6d393b36fdb5194cba04ae5e0dad79e, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
   SSpin: {fileID: 0}
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
   india: 0
@@ -17895,7 +17996,10 @@ MonoBehaviour:
     zou betalen.
   Dia4M: Wacht, wie ben jij? En hij is weg, ik heb tenminste weer een stukje erbij..
 <<<<<<< HEAD
+<<<<<<< HEAD
   Dia5M: how u doing
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
   NameMain: ???
@@ -17908,8 +18012,11 @@ MonoBehaviour:
   forJag: 1
   jag: {fileID: 552126464}
 <<<<<<< HEAD
+<<<<<<< HEAD
   pop: {fileID: 1966557168}
   pop2: {fileID: 613464221}
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
 --- !u!4 &1168461867
@@ -18494,7 +18601,10 @@ MonoBehaviour:
   hasdug: 0
   scrip: {fileID: 1454286298}
 <<<<<<< HEAD
+<<<<<<< HEAD
   pop: {fileID: 613464221}
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
 --- !u!1001 &1248298828
@@ -20237,7 +20347,10 @@ MonoBehaviour:
   hasdug: 0
   scrip: {fileID: 1454286298}
 <<<<<<< HEAD
+<<<<<<< HEAD
   pop: {fileID: 613464221}
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
 --- !u!1001 &1375418330
@@ -20302,6 +20415,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3238307098447409765, guid: fe1025172a4257541a4e7b096690301c, type: 3}
   m_PrefabInstance: {fileID: 1375418330}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!1 &1383606262
 GameObject:
@@ -20437,6 +20551,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1383606262}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
 --- !u!1 &1390129144
@@ -20693,7 +20809,11 @@ MonoBehaviour:
   Storyrel: Spinwiefen
   scrip: {fileID: 4687811158959425799}
 <<<<<<< HEAD
+<<<<<<< HEAD
   isunlocked: 1
+=======
+  isunlocked: 0
+>>>>>>> origin/CombatBranch
 =======
   isunlocked: 0
 >>>>>>> origin/CombatBranch
@@ -20975,7 +21095,11 @@ MonoBehaviour:
       - m_Target: {fileID: 3307557639323973021}
         m_TargetAssemblyTypeName: journalhandler, Assembly-CSharp
 <<<<<<< HEAD
+<<<<<<< HEAD
         m_MethodName: OpenTask
+=======
+        m_MethodName: Locopen
+>>>>>>> origin/CombatBranch
 =======
         m_MethodName: Locopen
 >>>>>>> origin/CombatBranch
@@ -21571,11 +21695,17 @@ RectTransform:
   - {fileID: 1463903393}
   - {fileID: 1966557169}
 <<<<<<< HEAD
+<<<<<<< HEAD
   - {fileID: 613464222}
   - {fileID: 6093912695568023729}
   - {fileID: 1431448155}
   - {fileID: 970922919}
   - {fileID: 184537417}
+=======
+  - {fileID: 6093912695568023729}
+  - {fileID: 1431448155}
+  - {fileID: 970922919}
+>>>>>>> origin/CombatBranch
 =======
   - {fileID: 6093912695568023729}
   - {fileID: 1431448155}
@@ -21644,7 +21774,10 @@ MonoBehaviour:
   Startdone: 0
   pieces: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
   piec: {fileID: 1822527610}
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
 --- !u!1001 &1455912853
@@ -25363,7 +25496,10 @@ MonoBehaviour:
   hasdug: 0
   scrip: {fileID: 1454286298}
 <<<<<<< HEAD
+<<<<<<< HEAD
   pop: {fileID: 613464221}
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
 --- !u!1 &1616348027
@@ -45491,7 +45627,10 @@ MonoBehaviour:
   hasdug: 0
   scrip: {fileID: 1454286298}
 <<<<<<< HEAD
+<<<<<<< HEAD
   pop: {fileID: 613464221}
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
 --- !u!1001 &1630710488
@@ -47947,6 +48086,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
 <<<<<<< HEAD
+<<<<<<< HEAD
       - m_Target: {fileID: 1793545006}
         m_TargetAssemblyTypeName: Pageinfo, Assembly-CSharp
         m_MethodName: setinfo
@@ -47955,6 +48095,8 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
 =======
+=======
+>>>>>>> origin/CombatBranch
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: 
@@ -47962,6 +48104,9 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: 
+<<<<<<< HEAD
+>>>>>>> origin/CombatBranch
+=======
 >>>>>>> origin/CombatBranch
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -49993,6 +50138,7 @@ Transform:
   m_PrefabInstance: {fileID: 1814349152}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &1822527608
 GameObject:
   m_ObjectHideFlags: 0
@@ -50127,6 +50273,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1822527608}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
 --- !u!1001 &1826074679
@@ -50723,7 +50871,10 @@ MonoBehaviour:
   hasdug: 0
   scrip: {fileID: 1454286298}
 <<<<<<< HEAD
+<<<<<<< HEAD
   pop: {fileID: 613464221}
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
 --- !u!4 &1871877157 stripped
@@ -51811,7 +51962,11 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_IsActive: 0
+=======
+  m_IsActive: 1
+>>>>>>> origin/CombatBranch
 =======
   m_IsActive: 1
 >>>>>>> origin/CombatBranch
@@ -51909,7 +52064,10 @@ MonoBehaviour:
   hasdug: 0
   scrip: {fileID: 1454286298}
 <<<<<<< HEAD
+<<<<<<< HEAD
   pop: {fileID: 613464221}
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
 --- !u!1001 &1979702042
@@ -52144,7 +52302,10 @@ MonoBehaviour:
   hasdug: 0
   scrip: {fileID: 1454286298}
 <<<<<<< HEAD
+<<<<<<< HEAD
   pop: {fileID: 613464221}
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
 --- !u!1 &1986248817
@@ -52420,7 +52581,10 @@ MonoBehaviour:
   Spin: {fileID: 1743390458}
   play: {fileID: 1996574892}
 <<<<<<< HEAD
+<<<<<<< HEAD
   Pop: {fileID: 1966557168}
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
 --- !u!4 &2003290563
@@ -52438,6 +52602,10 @@ Transform:
   m_Children:
   - {fileID: 1743390460}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  - {fileID: 149209192}
+>>>>>>> origin/CombatBranch
 =======
   - {fileID: 149209192}
 >>>>>>> origin/CombatBranch
@@ -52710,7 +52878,10 @@ MonoBehaviour:
   hasdug: 0
   scrip: {fileID: 1454286298}
 <<<<<<< HEAD
+<<<<<<< HEAD
   pop: {fileID: 613464221}
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
 --- !u!1001 &2042703343
@@ -53616,7 +53787,10 @@ MonoBehaviour:
   hasdug: 0
   scrip: {fileID: 1454286298}
 <<<<<<< HEAD
+<<<<<<< HEAD
   pop: {fileID: 613464221}
+=======
+>>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
 --- !u!222 &10496160935190333
@@ -59999,7 +60173,11 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_IsActive: 1
+=======
+  m_IsActive: 0
+>>>>>>> origin/CombatBranch
 =======
   m_IsActive: 0
 >>>>>>> origin/CombatBranch
