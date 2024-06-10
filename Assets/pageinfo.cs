@@ -21,6 +21,7 @@ public class Pageinfo : MonoBehaviour
     public string Storyrel;
 
 
+
     [Header("settings and stuff")]
     // the page the info needs to be on
     [SerializeField]
@@ -33,6 +34,7 @@ public class Pageinfo : MonoBehaviour
 
     [SerializeField]
     private journalhandler jour;
+
 
     //[SerializeField]
     //private GameObject pop;
@@ -72,6 +74,8 @@ public class Pageinfo : MonoBehaviour
             scrip.NameTxt.text = Name.ToString();
             scrip.StoryTxt.text = Storyrel.ToString();
             scrip.DetailTxt.text = Info.ToString();
+
+            scrip.pict.sprite = picture;
         }
     }
 }

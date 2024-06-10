@@ -68,6 +68,8 @@ public class Player : MonoBehaviour
 
     private GameObject HeldCivilian;
 
+    public Animator ani;
+
     public int Health 
     {
         get => healthBackingField;
@@ -123,18 +125,22 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             direction += Vector2.up;
+
         }
         if (Input.GetKey(KeyCode.S))
         {
             direction += Vector2.down;
+
         }
         if (Input.GetKey(KeyCode.A))
         {
             direction += Vector2.left;
+
         }
         if (Input.GetKey(KeyCode.D))
         {
             direction += Vector2.right;
+
         }
 
         // Normalize the direction to keep consistent speed
@@ -144,6 +150,7 @@ public class Player : MonoBehaviour
         transform.position += moveDir * movementSpeed * Time.deltaTime;
 
         isWalking = moveDir != Vector3.zero;
+
 
         switch (dashState)
         {

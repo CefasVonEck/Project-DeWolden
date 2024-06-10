@@ -30,12 +30,13 @@ public class UnlockJournal : MonoBehaviour
     private GameObject showUpdate;
 
 
-
     [SerializeField]
     private bool forjournal = false;
 
     [SerializeField]
     private GameObject hint;
+
+    public GameObject jourdia;
 
 
     private void Awake()
@@ -63,6 +64,7 @@ public class UnlockJournal : MonoBehaviour
                 {
                     scrip2.unlocked = true;
                     hint.SetActive(true);
+                    jourdia.SetActive(true);
                     Destroy(this.gameObject);
                 }
                 else
@@ -83,15 +85,13 @@ public class UnlockJournal : MonoBehaviour
 
             }
 
-            else if (Input.GetKeyDown("p"))
-            {
-                //scrip2.isunlocked = true;
-            }
 
-
-            if (showUpdate.activeInHierarchy == true)
+            if (forjournal == true)
             {
-                Invoke("hintdis", 3);
+                if (showUpdate.activeInHierarchy == true && scrip2.unlocked == false)
+                {
+                    Invoke("hintdis", 3);
+                }
             }
 
         }

@@ -34,6 +34,9 @@ public class StartGame : MonoBehaviour
     [SerializeField]
     private UnlockJournal scrip;
 
+    [SerializeField]
+    private GameChecker check;
+
 
     [Header("animators")]
     // the animator used for showing textbox maincharacter
@@ -84,6 +87,9 @@ public class StartGame : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI nameMain;
 
+    public GameObject play;
+
+    public bool dia2;
 
     // Start is called before the first frame update
     void Start()
@@ -94,6 +100,8 @@ public class StartGame : MonoBehaviour
 
         MinaAppear();
         india = false;
+
+        play.GetComponent<Player>().enabled = false;
     }
 
     // Update is called once per frame
@@ -212,6 +220,13 @@ public class StartGame : MonoBehaviour
 
         curdiaMain1 = 0;
         Invoke("Delthis", 1);
+
+        if(dia2 == true)
+        {
+            check.Startdone = true;
+        }
+
+        play.GetComponent<Player>().enabled = true;
 
     }
 
