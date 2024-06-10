@@ -12,22 +12,14 @@ public class UnlockJournal : MonoBehaviour
     [SerializeField]
     private Transform pointB;
 
-    // setting it active on the 
-    [SerializeField]
-    private Pageinfo scrip;
-
-    // setting it active on the 
-    [SerializeField]
-    private journalhandler scrip2;
-
     //In the Journal's case, it unlocks the whole Journal. For encountering other Landmarks & Characters, it would be an Item inside the Journal(picture that now is just a Black square)
     [SerializeField]
     private GameObject unlockable;
 
-
     //This Object is a "Text" Cloud that will be visable for a short while
     [SerializeField]
     private GameObject showUpdate;
+<<<<<<< HEAD
 
 
     [SerializeField]
@@ -49,17 +41,16 @@ public class UnlockJournal : MonoBehaviour
 
         pointA = this.gameObject.transform;
     }
+=======
+    private int showTimer = 0;
+>>>>>>> parent of bd80bc4 (Final working version)
 
     // Start is called before the first frame update
     void Start()
-        { 
-            hint.SetActive(false);
-            showUpdate.SetActive(false);
-        }
-
-        // Update is called once per frame
-        void Update()
+    {
+        if (unlockable != null)
         {
+<<<<<<< HEAD
 
             float distance = Vector2.Distance(pointA.position, pointB.position);
             if (distance <= 1f)
@@ -100,19 +91,42 @@ public class UnlockJournal : MonoBehaviour
                 }
             }
 
+=======
+            unlockable.SetActive(false);
+>>>>>>> parent of bd80bc4 (Final working version)
         }
-
-     void hintdis()
-    {
-        showUpdate.SetActive(false);
-        Invoke("hinten", 10);
     }
 
-    public void hinten()
+    // Update is called once per frame
+    void Update()
     {
-        showUpdate.SetActive(true);
+        float distance = Vector3.Distance(pointA.position, pointB.position);
+        if (distance < 0.5f)
+        {
+            if ((unlockable != null && !unlockable.active))
+            {
+                unlockable.SetActive(true);
+            }
+
+            if (showTimer == 0) 
+            { 
+                showUpdate.SetActive(true); 
+                showTimer = 250; 
+            }
+        }
     }
 
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        if(showTimer > 0)
+        {
+            --showTimer;
+
+            if(showTimer == 1)
+            {
+                showUpdate.SetActive(false);
+            }
+        }
+    }
 }
-
-

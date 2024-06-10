@@ -433,10 +433,7 @@ GameObject:
   - component: {fileID: 3467661034969165193}
   - component: {fileID: 5336758368412930397}
   - component: {fileID: 4454448208007426973}
-<<<<<<< HEAD
-=======
   - component: {fileID: 5861973866389064483}
->>>>>>> origin/Sevdrakeee
   m_Layer: 0
   m_Name: "PlayerC\xE9fas"
   m_TagString: Player
@@ -590,8 +587,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
-<<<<<<< HEAD
-=======
 --- !u!212 &5861973866389064483
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -644,7 +639,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
->>>>>>> origin/Sevdrakeee
 --- !u!1 &5931706380158370506
 GameObject:
   m_ObjectHideFlags: 0

@@ -1821,7 +1821,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 320.27008, y: 192.874, z: -0.30578214}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 503872532}
@@ -2165,7 +2165,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1629396122}
   - {fileID: 1883248356}
   m_Father: {fileID: 403670877}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4179,7 +4178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8748baff51702b443875c4a8950da3d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doubleSpeed: 1
+  doubleSpeed: 8
   player: {fileID: 1006597886}
   distanceMaxFollowing: 500
   distanceMinFollowing: 1
@@ -6058,8 +6057,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1253421474}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.6622297}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6698,11 +6697,15 @@ MonoBehaviour:
   returnToMainSceneName: TestLevelScene
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   abilityMenu: {fileID: 260135466}
 =======
 >>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
+=======
+  abilityMenu: {fileID: 1482458915}
+>>>>>>> parent of bd80bc4 (Final working version)
   healthEnemySelected: {fileID: 0}
   healthEnemy01: {fileID: 1072037603}
   healthEnemy02: {fileID: 2136888902}
@@ -6712,10 +6715,14 @@ MonoBehaviour:
   healthJager: {fileID: 97801025}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   abilityInfoText: {fileID: 0}
+=======
+  abilityInfoText: {fileID: 857621869}
+>>>>>>> parent of bd80bc4 (Final working version)
   enemyAbilities: {fileID: 1928170628}
   recieveToPartnerDamage: 0000000000000001
-  enemyHitPartner: 0000000000000000
+  enemyHitPartner: 0000000000010000
   damageBhealthMulti: 0f00000000000000000000000000000000000000000000000000000000000000
 =======
   enemyAbilities: {fileID: 1928170628}
@@ -6741,11 +6748,16 @@ MonoBehaviour:
   harmTeammate: 1
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   attackTimes: 1
+=======
+  attackTimes: 0
+>>>>>>> parent of bd80bc4 (Final working version)
   damageTeammate: 13
   agileDamageTeammate: 13
   thornDamageActive: 0
-  abilityMessage: 
+  abilityMessage: Hurts everybody and the lower your health, the more powerful it
+    is!
   abilityName2: Healing Chant
 =======
   damageTeammate: 13
@@ -6769,10 +6781,11 @@ MonoBehaviour:
 <<<<<<< HEAD
   canMiss2: 0
   harmTeammate2: 1
-  attackTimes2: 1
+  attackTimes2: 0
   damageTeammate2: -25
   agileDamageTeammate2: 0
   thornDamageActive2: 0
+<<<<<<< HEAD
   abilityMessage2: 
 =======
   canMiss2: 1
@@ -6786,6 +6799,9 @@ MonoBehaviour:
   damageTeammate2: 0
   agileDamageTeammate2: 0
 >>>>>>> origin/CombatBranch
+=======
+  abilityMessage2: Used to heal your partner.
+>>>>>>> parent of bd80bc4 (Final working version)
   abilityName3: Devilish Charm
   attackDamage3: 0
   agileDamage3: 0
@@ -6801,7 +6817,7 @@ MonoBehaviour:
 <<<<<<< HEAD
   agileDamageTeammate3: -2
   thornDamageActive3: 0
-  abilityMessage3: 
+  abilityMessage3: The confidence makes enemies more scared to attack you
   abilityName4: Relentless Slash
   attackDamage4: 7
 =======
@@ -6823,6 +6839,7 @@ MonoBehaviour:
   harmTeammate4: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   attackTimes4: 1
   damageTeammate4: 0
   agileDamageTeammate4: 0
@@ -6836,6 +6853,13 @@ MonoBehaviour:
   damageTeammate4: 0
   agileDamageTeammate4: 0
 >>>>>>> origin/CombatBranch
+=======
+  attackTimes4: 3
+  damageTeammate4: 0
+  agileDamageTeammate4: 0
+  thornDamageActive4: 0
+  abilityMessage4: Hits the enemy multiple times if you are lucky!
+>>>>>>> parent of bd80bc4 (Final working version)
   abilityName5: Chocking Mist
   attackDamage5: 25
   agileDamage5: 5
@@ -6850,7 +6874,7 @@ MonoBehaviour:
 <<<<<<< HEAD
 <<<<<<< HEAD
   thornDamageActive5: 0
-  abilityMessage5: 
+  abilityMessage5: Hurts everybody, including your partner!
   abilityName6: Song of Confusion
   attackDamage6: 0
 =======
@@ -6870,10 +6894,11 @@ MonoBehaviour:
 <<<<<<< HEAD
 <<<<<<< HEAD
   harmTeammate6: 0
-  attackTimes6: 1
+  attackTimes6: 0
   damageTeammate6: 0
   agileDamageTeammate6: 0
   thornDamageActive6: 0
+<<<<<<< HEAD
   abilityMessage6: 
 =======
   harmTeammate6: 1
@@ -6885,6 +6910,9 @@ MonoBehaviour:
   damageTeammate6: -15
   agileDamageTeammate6: 0
 >>>>>>> origin/CombatBranch
+=======
+  abilityMessage6: In confusion, the enemy will target their partner(s)
+>>>>>>> parent of bd80bc4 (Final working version)
   abilityName7: Ring of Fire
   attackDamage7: 0
   agileDamage7: 55
@@ -6898,12 +6926,17 @@ MonoBehaviour:
   agileDamageTeammate7: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   thornDamageActive7: 0
   abilityMessage7: 
 =======
 >>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
+=======
+  thornDamageActive7: 15
+  abilityMessage7: Inflicts damage upon physical attacks from enemies!
+>>>>>>> parent of bd80bc4 (Final working version)
   abilityName8: Soul Offering
   attackDamage8: 0
   agileDamage8: 0
@@ -6918,11 +6951,15 @@ MonoBehaviour:
 <<<<<<< HEAD
 <<<<<<< HEAD
   thornDamageActive8: 0
+<<<<<<< HEAD
   abilityMessage8: 
 =======
 >>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
+=======
+  abilityMessage8: Tranfers Damage inflicted on Mina for 3 Turns!
+>>>>>>> parent of bd80bc4 (Final working version)
   UseMessage: {fileID: 1149140857}
   Attack1: {fileID: 451872265}
   Attack2: {fileID: 1684762517}
@@ -6947,12 +6984,12 @@ MonoBehaviour:
 <<<<<<< HEAD
 <<<<<<< HEAD
   thornDamage: 0
-  animateAbilityOne: {fileID: 0}
-  enemyOne: {fileID: 0}
-  enemyTwo: {fileID: 0}
-  enemyThree: {fileID: 0}
+  animateAbilityOne: {fileID: 843393625}
+  enemyOne: {fileID: 1415737813}
+  enemyTwo: {fileID: 363576354}
+  enemyThree: {fileID: 582629242}
   enemyFour: {fileID: 0}
-  cameraFocus: {fileID: 0}
+  cameraFocus: {fileID: 1883248357}
 --- !u!1 &1366773990
 GameObject:
   m_ObjectHideFlags: 0
@@ -8305,6 +8342,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1625862360}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 --- !u!1 &1629396121
 GameObject:
   m_ObjectHideFlags: 0
@@ -8384,6 +8422,8 @@ CanvasRenderer:
 >>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
+=======
+>>>>>>> parent of bd80bc4 (Final working version)
 --- !u!1 &1634990104
 GameObject:
   m_ObjectHideFlags: 0
@@ -9542,7 +9582,7 @@ PlayableDirector:
   m_GameObject: {fileID: 1790674364}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 0}
+  m_PlayableAsset: {fileID: 11400000, guid: dfe5bdb64364c9b4aa2f32d60f0add73, type: 2}
   m_InitialState: 1
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -10819,11 +10859,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   animationBehaviourScript: {fileID: 0}
+=======
+  animationBehaviourScript: {fileID: 1006597890}
+>>>>>>> parent of bd80bc4 (Final working version)
   enemyHealth:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1072037603}
+  - {fileID: 1805309724}
+  - {fileID: 2136888902}
   - {fileID: 0}
 =======
 >>>>>>> origin/CombatBranch
@@ -10885,11 +10929,15 @@ MonoBehaviour:
   UseMessage: {fileID: 1149140857}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   UseMessageAnimationScene: {fileID: 0}
 =======
 >>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
+=======
+  UseMessageAnimationScene: {fileID: 1149140857}
+>>>>>>> parent of bd80bc4 (Final working version)
   startBattleMessage: A pack of Wolfs jumped from behind a Boulder and attacked you!
 --- !u!114 &1928170629
 MonoBehaviour:
