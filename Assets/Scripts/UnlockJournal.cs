@@ -33,8 +33,18 @@ public class UnlockJournal : MonoBehaviour
 
     private void Awake()
     {
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/CombatBranch
         hint = GameObject.FindWithTag("HintObj");
+>>>>>>> origin/CombatBranch
+=======
+        hint = GameObject.FindWithTag("HintObj");
+>>>>>>> origin/CombatBranch
 
         hint = GameObject.FindWithTag("HintObj");
 
@@ -60,8 +70,18 @@ public class UnlockJournal : MonoBehaviour
                     scrip2.unlocked = true;
                     hint.SetActive(true);
                     jourdia.SetActive(true);
+<<<<<<< HEAD
                     Destroy(showUpdate.gameObject);
 
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+                    Destroy(showUpdate.gameObject);
+=======
+>>>>>>> origin/CombatBranch
+=======
+>>>>>>> origin/CombatBranch
+>>>>>>> origin/CombatBranch
                     Destroy(this.gameObject);
                 }
                 else

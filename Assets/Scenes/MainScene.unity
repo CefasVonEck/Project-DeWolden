@@ -15653,6 +15653,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConversationManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3900108755062758285, guid: d9fa78e8c3c4f2b4b8f7f77ca8426cca, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3900108755196472087, guid: d9fa78e8c3c4f2b4b8f7f77ca8426cca, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -55187,10 +55191,13 @@ MonoBehaviour:
 >>>>>>> origin/CombatBranch
 =======
 >>>>>>> origin/CombatBranch
+<<<<<<< HEAD
 =======
   check: {fileID: 0}
   hin: {fileID: 4292359579476176513}
 >>>>>>> parent of bd80bc4 (Final working version)
+=======
+>>>>>>> origin/CombatBranch
 --- !u!1 &3334865966096860150
 GameObject:
   m_ObjectHideFlags: 0
@@ -58124,43 +58131,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9eeed845c8f5ee47bc92ee1f72f34f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Min: {fileID: 0}
-  NPC: {fileID: 0}
-  write: {fileID: 1454286297}
-  bright: {fileID: 685512067}
-  checkMain: {fileID: 304287211}
-  checkNpc: {fileID: 1058012946}
-  hastalked: 0
-  aniMain: {fileID: 304287210}
-  aniNPC: {fileID: 1058012943}
-  diaMain: {fileID: 1719531147}
-  nameMain: {fileID: 280571941}
-  diaNPC: {fileID: 1599253200}
-  nameNPC: {fileID: 275198556}
-  curdiaMain: 1
-  maxdiaMain: 6
-  nameChar: 
-  textNpc: 
-  nameNpc: 
-  txtboxmain: {fileID: 0}
-  txtboxNPC: {fileID: 0}
-  Dia1M: What are you?
-  Dia2M: Oh.... wow!
-  Dia3M: I need your help.....
-  Dia4M: bye
-  Dia1N: The spirit of the first Wolf
-  Dia2N: For what do you need my wisdom?
-  Dia3N: Sure thing....
-  NameMain: Mina
-  NameNPC: Omega Wolf
-  indi: {fileID: 0}
-  Player: {fileID: 0}
-  PlayerRen: {fileID: 0}
-  NPCRen: {fileID: 0}
-  playRen: {fileID: 605317278}
-  NpcRen: {fileID: 1721758333}
-  inrange: 0
-  india: 0
 --- !u!1 &5288578965795151308
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,7 +4,15 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 26
+<<<<<<< HEAD
   productGUID: 1b668792bd5f97540b819ecf1c26bbc6
+=======
+<<<<<<< HEAD
+  productGUID: 7540b033e67aea146844e1581f28387f
+=======
+  productGUID: f7c1f20025d52584199e59338eeaa379
+>>>>>>> origin/CombatBranch
+>>>>>>> origin/CombatBranch
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -155,17 +163,21 @@ PlayerSettings:
   useHDRDisplay: 0
   hdrBitDepth: 0
   m_ColorGamuts: 00000000
-  targetPixelDensity: 30
+  targetPixelDensity: 0
   resolutionScalingMode: 0
   resetResolutionOnWindowResize: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier: {}
+<<<<<<< HEAD
+  buildNumber: {}
+=======
   buildNumber:
     Standalone: 0
     VisionOS: 0
     iPhone: 0
     tvOS: 0
+>>>>>>> origin/CombatBranch
   overrideDefaultApplicationIdentifier: 0
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 22
@@ -184,12 +196,12 @@ PlayerSettings:
   strictShaderVariantMatching: 0
   VertexChannelCompressionMask: 4054
   iPhoneSdkVersion: 988
-  iOSTargetOSVersionString: 12.0
+  iOSTargetOSVersionString: 
   tvOSSdkVersion: 0
   tvOSRequireExtendedGameController: 0
-  tvOSTargetOSVersionString: 12.0
+  tvOSTargetOSVersionString: 
   VisionOSSdkVersion: 0
-  VisionOSTargetOSVersionString: 1.0
+  VisionOSTargetOSVersionString: 
   uIPrerenderedIcon: 0
   uIRequiresPersistentWiFi: 0
   uIRequiresFullScreen: 1
@@ -316,7 +328,7 @@ PlayerSettings:
   locationUsageDescription: 
   microphoneUsageDescription: 
   bluetoothUsageDescription: 
-  macOSTargetOSVersion: 10.13.0
+  macOSTargetOSVersion: 
   switchNMETAOverride: 
   switchNetLibKey: 
   switchSocketMemoryPoolSize: 6144
@@ -563,7 +575,11 @@ PlayerSettings:
   webGLMemoryGeometricGrowthStep: 0.2
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
+<<<<<<< HEAD
+  scriptingDefineSymbols: {}
+=======
   scriptingDefineSymbols:
+<<<<<<< HEAD
     Android: UNITY_POST_PROCESSING_STACK_V2
     EmbeddedLinux: UNITY_POST_PROCESSING_STACK_V2
     GameCoreXboxOne: UNITY_POST_PROCESSING_STACK_V2
@@ -577,6 +593,26 @@ PlayerSettings:
     WebGL: UNITY_POST_PROCESSING_STACK_V2
     XboxOne: UNITY_POST_PROCESSING_STACK_V2
     tvOS: UNITY_POST_PROCESSING_STACK_V2
+=======
+    Android: DOTWEEN;UNITY_POST_PROCESSING_STACK_V2
+    EmbeddedLinux: DOTWEEN;UNITY_POST_PROCESSING_STACK_V2
+    GameCoreScarlett: DOTWEEN
+    GameCoreXboxOne: DOTWEEN;UNITY_POST_PROCESSING_STACK_V2
+    LinuxHeadlessSimulation: DOTWEEN
+    Nintendo Switch: DOTWEEN;UNITY_POST_PROCESSING_STACK_V2
+    PS4: DOTWEEN;UNITY_POST_PROCESSING_STACK_V2
+    PS5: DOTWEEN;UNITY_POST_PROCESSING_STACK_V2
+    QNX: DOTWEEN;UNITY_POST_PROCESSING_STACK_V2
+    Stadia: DOTWEEN;UNITY_POST_PROCESSING_STACK_V2
+    Standalone: DOTWEEN;UNITY_POST_PROCESSING_STACK_V2
+    VisionOS: DOTWEEN;UNITY_POST_PROCESSING_STACK_V2
+    WebGL: DOTWEEN;UNITY_POST_PROCESSING_STACK_V2
+    Windows Store Apps: DOTWEEN
+    XboxOne: DOTWEEN;UNITY_POST_PROCESSING_STACK_V2
+    iPhone: DOTWEEN
+    tvOS: DOTWEEN;UNITY_POST_PROCESSING_STACK_V2
+>>>>>>> origin/CombatBranch
+>>>>>>> origin/CombatBranch
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
@@ -667,7 +703,7 @@ PlayerSettings:
   hmiLogStartupTiming: 0
   hmiCpuConfiguration: 
   apiCompatibilityLevel: 6
-  activeInputHandler: 2
+  activeInputHandler: 0
   windowsGamepadBackendHint: 0
   cloudProjectId: 
   framebufferDepthMemorylessMode: 0

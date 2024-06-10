@@ -209,10 +209,18 @@ public class StartGame : MonoBehaviour
         india = false;
 
 
+<<<<<<< HEAD
 
         bright.SetActive(false);
 
 
+=======
+<<<<<<< HEAD
+        bright.SetActive(false);
+
+=======
+>>>>>>> origin/CombatBranch
+>>>>>>> origin/CombatBranch
         // having the right box show up
         aniMain.SetBool("main", false);
         playRen.SetBool("coming", false);
@@ -232,9 +240,18 @@ public class StartGame : MonoBehaviour
 
         play.GetComponent<Player>().enabled = true;
 
+<<<<<<< HEAD
         Destroy(this);
 
 
+=======
+<<<<<<< HEAD
+        Destroy(this);
+
+
+=======
+>>>>>>> origin/CombatBranch
+>>>>>>> origin/CombatBranch
     }
 
     void MinaAppear()

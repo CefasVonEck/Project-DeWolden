@@ -4,11 +4,20 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
+<<<<<<< HEAD
 
 using UnityEngine.SceneManagement;
 
 
 
+=======
+<<<<<<< HEAD
+using UnityEngine.SceneManagement;
+
+
+=======
+>>>>>>> origin/CombatBranch
+>>>>>>> origin/CombatBranch
 public class Dialouge2 : MonoBehaviour
 {
     [Header("character renders")]
@@ -18,11 +27,23 @@ public class Dialouge2 : MonoBehaviour
     [SerializeField]
     private Sprite SJag;
 
+<<<<<<< HEAD
 
     [SerializeField]
     private Sprite SSpin;
 
 
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+    [SerializeField]
+    private Sprite SSpin;
+
+=======
+>>>>>>> origin/CombatBranch
+=======
+>>>>>>> origin/CombatBranch
+>>>>>>> origin/CombatBranch
     [Header("game control")]
     // to check if the player is in dialouge
     [SerializeField]
@@ -114,11 +135,23 @@ public class Dialouge2 : MonoBehaviour
     private string Dia4M = "how u doing";
 
     [SerializeField]
+<<<<<<< HEAD
 
     private string Dia5M = "how u doing";
 
     [SerializeField]
 
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+    private string Dia5M = "how u doing";
+
+    [SerializeField]
+=======
+>>>>>>> origin/CombatBranch
+=======
+>>>>>>> origin/CombatBranch
+>>>>>>> origin/CombatBranch
     private string NameMain = "Mina";
 
     [SerializeField]
@@ -149,8 +182,19 @@ public class Dialouge2 : MonoBehaviour
 
     public GameObject jag;
 
+<<<<<<< HEAD
     public GameObject pop;
     public GameObject pop2;
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+    public GameObject pop;
+    public GameObject pop2;
+=======
+>>>>>>> origin/CombatBranch
+=======
+>>>>>>> origin/CombatBranch
+>>>>>>> origin/CombatBranch
 
     // Start is called before the first frame update
     void Start()
@@ -188,11 +232,22 @@ public class Dialouge2 : MonoBehaviour
         // setting first dia right
         if (curdiaMain1 == 1)
         {
+<<<<<<< HEAD
 
 
             PlayerRen.GetComponent<Image>().sprite = SSpin;
 
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+            PlayerRen.GetComponent<Image>().sprite = SSpin;
+=======
+>>>>>>> origin/CombatBranch
             PlayerRen.GetComponent<Image>().sprite = SJag;
+>>>>>>> origin/CombatBranch
+=======
+            PlayerRen.GetComponent<Image>().sprite = SJag;
+>>>>>>> origin/CombatBranch
 
             PlayerRen.GetComponent<Image>().sprite = SJag;
 
@@ -260,10 +315,21 @@ public class Dialouge2 : MonoBehaviour
         // setting first dia right
         if (curdiaMain1 == 3)
         {
+<<<<<<< HEAD
 
             PlayerRen.GetComponent<Image>().sprite = SSpin;
 
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+            PlayerRen.GetComponent<Image>().sprite = SSpin;
+=======
+>>>>>>> origin/CombatBranch
             PlayerRen.GetComponent<Image>().sprite = SJag;
+>>>>>>> origin/CombatBranch
+=======
+            PlayerRen.GetComponent<Image>().sprite = SJag;
+>>>>>>> origin/CombatBranch
 
 
             PlayerRen.GetComponent<Image>().sprite = SJag;
@@ -328,7 +394,12 @@ public class Dialouge2 : MonoBehaviour
             }
         }
 
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> origin/CombatBranch
         // setting first dia right
         if (curdiaMain1 == 5)
         {
@@ -362,7 +433,14 @@ public class Dialouge2 : MonoBehaviour
             }
         }
 
+<<<<<<< HEAD
 
+=======
+=======
+>>>>>>> origin/CombatBranch
+=======
+>>>>>>> origin/CombatBranch
+>>>>>>> origin/CombatBranch
     }
 
     void nexttxt1()
@@ -390,12 +468,27 @@ public class Dialouge2 : MonoBehaviour
     }
 
     void fintxt1()
+<<<<<<< HEAD
+<<<<<<< HEAD
+    { 
+
+
+        if (forJag == true)
+        {
+            pop.SetActive(true);
+            jag.SetActive(false);
+            check.pieces += 1;
+            pop2.SetActive(true);
+=======
+=======
+>>>>>>> origin/CombatBranch
     {
         if (forJag == true)
         {
             pop.SetActive(true);
             jag.SetActive(false);
             check.pieces += 1;
+<<<<<<< HEAD
             pop2.SetActive(true);
 
 
@@ -444,5 +537,44 @@ public class Dialouge2 : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+=======
+<<<<<<< HEAD
+>>>>>>> origin/CombatBranch
+=======
+>>>>>>> origin/CombatBranch
+        }
+
+        bright.SetActive(false);
+
+        india = false;
+
+
+        // having the right box show up
+        aniMain.SetBool("main", false);
+        playRen.SetBool("coming", false);
+
+        NPCRen.SetActive(false);
+        txtboxNPC.SetActive(false);
+
+        // reset everything
+        write.DeltaTime = 0f;
+
+        write.partialtext = "";
+
+        curdiaMain1 = 0;
+        Invoke("Delthis", 1);
+
+        scrip.isunlocked = true;
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+        SceneManager.LoadScene("Combat"); 
+=======
+
+>>>>>>> origin/CombatBranch
+=======
+
+>>>>>>> origin/CombatBranch
+>>>>>>> origin/CombatBranch
     }
 

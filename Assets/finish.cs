@@ -20,10 +20,21 @@ public class finish : MonoBehaviour
 
     public GameObject play;
 
+<<<<<<< HEAD
 
     public GameObject Pop;
 
 
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+    public GameObject Pop;
+
+=======
+>>>>>>> origin/CombatBranch
+=======
+>>>>>>> origin/CombatBranch
+>>>>>>> origin/CombatBranch
     // Start is called before the first frame update
     void Start()
     {
@@ -34,8 +45,20 @@ public class finish : MonoBehaviour
     void Update()
     {
         float distance = Vector2.Distance(PointA.position, PointB.position);
+<<<<<<< HEAD
 
         if (distance <= 1f)
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+        if (distance <= 1f)
+=======
+        if (distance <= 0.5f)
+>>>>>>> origin/CombatBranch
+=======
+        if (distance <= 0.5f)
+>>>>>>> origin/CombatBranch
+>>>>>>> origin/CombatBranch
         {
             if (scrip.pieces == 2)
             {
@@ -63,9 +86,19 @@ public class finish : MonoBehaviour
     {
         play.GetComponent<Player>().enabled = true;
         bright.SetActive(false);
+<<<<<<< HEAD
 
         Pop.SetActive(true);
 
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+        Pop.SetActive(true);
+=======
+>>>>>>> origin/CombatBranch
+=======
+>>>>>>> origin/CombatBranch
+>>>>>>> origin/CombatBranch
         Destroy(this);
 
     }
