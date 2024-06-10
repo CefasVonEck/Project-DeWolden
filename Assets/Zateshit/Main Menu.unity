@@ -853,7 +853,15 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
+<<<<<<< HEAD
+  m_AnchoredPosition: {x: -5, y: 65}
+=======
   m_AnchoredPosition: {x: 0, y: 65}
+>>>>>>> origin/CombatBranch
+=======
+  m_AnchoredPosition: {x: 0, y: 65}
+>>>>>>> origin/CombatBranch
   m_SizeDelta: {x: 750, y: 550}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1076297057
@@ -889,10 +897,21 @@ MonoBehaviour:
     Cefas
 
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+    Gemaakt
+    in combinatie met Biblionet de Wolden:'
+=======
+=======
+>>>>>>> origin/CombatBranch
     made
     in combination with:
 
     Biblionet de Wolden:'
+<<<<<<< HEAD
+>>>>>>> origin/CombatBranch
+=======
+>>>>>>> origin/CombatBranch
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1689,7 +1708,15 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
+<<<<<<< HEAD
+  m_AnchoredPosition: {x: -5, y: 385}
+=======
   m_AnchoredPosition: {x: 0, y: 385}
+>>>>>>> origin/CombatBranch
+=======
+  m_AnchoredPosition: {x: 0, y: 385}
+>>>>>>> origin/CombatBranch
   m_SizeDelta: {x: 280, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1445314306
@@ -1949,7 +1976,15 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
+<<<<<<< HEAD
+  m_AnchoredPosition: {x: -5, y: -250}
+=======
   m_AnchoredPosition: {x: 0, y: -250}
+>>>>>>> origin/CombatBranch
+=======
+  m_AnchoredPosition: {x: 0, y: -250}
+>>>>>>> origin/CombatBranch
   m_SizeDelta: {x: 250, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1486236794
@@ -2368,7 +2403,15 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
+<<<<<<< HEAD
+<<<<<<< HEAD
+  m_IsActive: 1
+=======
   m_IsActive: 0
+>>>>>>> origin/CombatBranch
+=======
+  m_IsActive: 0
+>>>>>>> origin/CombatBranch
 --- !u!224 &1735848362
 RectTransform:
   m_ObjectHideFlags: 0

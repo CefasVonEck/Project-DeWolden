@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+
 
 public class GameChecker : MonoBehaviour
 {
@@ -14,6 +16,8 @@ public class GameChecker : MonoBehaviour
     public bool Startdone;
 
     public int pieces;
+
+    public TextMeshProUGUI piec;
 
     // Start is called before the first frame update
     void Start()
@@ -37,5 +41,9 @@ public class GameChecker : MonoBehaviour
             jag.SetActive(false);
             Spin.SetActive(false);
         }
+
+
+        piec.text = pieces.ToString();
+
     }
 }

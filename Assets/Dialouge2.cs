@@ -4,6 +4,11 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
+
+using UnityEngine.SceneManagement;
+
+
+
 public class Dialouge2 : MonoBehaviour
 {
     [Header("character renders")]
@@ -12,6 +17,11 @@ public class Dialouge2 : MonoBehaviour
 
     [SerializeField]
     private Sprite SJag;
+
+
+    [SerializeField]
+    private Sprite SSpin;
+
 
     [Header("game control")]
     // to check if the player is in dialouge
@@ -104,6 +114,11 @@ public class Dialouge2 : MonoBehaviour
     private string Dia4M = "how u doing";
 
     [SerializeField]
+
+    private string Dia5M = "how u doing";
+
+    [SerializeField]
+
     private string NameMain = "Mina";
 
     [SerializeField]
@@ -134,10 +149,12 @@ public class Dialouge2 : MonoBehaviour
 
     public GameObject jag;
 
+    public GameObject pop;
+    public GameObject pop2;
 
     // Start is called before the first frame update
     void Start()
-    { 
+    {
 
         india = true;
     }
@@ -171,7 +188,14 @@ public class Dialouge2 : MonoBehaviour
         // setting first dia right
         if (curdiaMain1 == 1)
         {
+
+
+            PlayerRen.GetComponent<Image>().sprite = SSpin;
+
             PlayerRen.GetComponent<Image>().sprite = SJag;
+
+            PlayerRen.GetComponent<Image>().sprite = SJag;
+
 
             write.text = Dia1M;
             bright.SetActive(true);
@@ -236,7 +260,14 @@ public class Dialouge2 : MonoBehaviour
         // setting first dia right
         if (curdiaMain1 == 3)
         {
+
+            PlayerRen.GetComponent<Image>().sprite = SSpin;
+
             PlayerRen.GetComponent<Image>().sprite = SJag;
+
+
+            PlayerRen.GetComponent<Image>().sprite = SJag;
+
 
             NpcRen.SetBool("comin", false);
 
@@ -297,6 +328,41 @@ public class Dialouge2 : MonoBehaviour
             }
         }
 
+
+        // setting first dia right
+        if (curdiaMain1 == 5)
+        {
+            write.text = Dia5M;
+            write.Towrite = diaNPC;
+            write.StartWriting();
+
+            NPCRen.GetComponent<Image>().sprite = SJag;
+
+            // have the render going away first
+            playRen.SetBool("coming", false);
+
+
+            //right text showing
+            if (checkMain.canshowtext == true)
+            {
+                write.Towrite = diaMain;
+                write.StartWriting();
+
+            }
+
+
+            // set the name right
+            nameChar = NameNPC;
+
+            //right render showing
+            if (checkMain.boxinplace == true)
+            {
+                // have the right render showing up
+                NpcRen.SetBool("comin", true);
+            }
+        }
+
+
     }
 
     void nexttxt1()
@@ -327,42 +393,56 @@ public class Dialouge2 : MonoBehaviour
     {
         if (forJag == true)
         {
+            pop.SetActive(true);
             jag.SetActive(false);
             check.pieces += 1;
+            pop2.SetActive(true);
+
+
+            if (forJag == true)
+            {
+                jag.SetActive(false);
+                check.pieces += 1;
+
+
+            }
+
+            bright.SetActive(false);
+
+            india = false;
+
+
+            // having the right box show up
+            aniMain.SetBool("main", false);
+            playRen.SetBool("coming", false);
+
+            NPCRen.SetActive(false);
+            txtboxNPC.SetActive(false);
+
+            // reset everything
+            write.DeltaTime = 0f;
+
+            write.partialtext = "";
+
+            curdiaMain1 = 0;
+            Invoke("Delthis", 1);
+
+            scrip.isunlocked = true;
+
+
+            SceneManager.LoadScene("Combat");
+
+        }
+    }
+
+        void startdia()
+        {
+            india = true;
         }
 
-        bright.SetActive(false);
-
-        india = false;
-
-
-        // having the right box show up
-        aniMain.SetBool("main", false);
-        playRen.SetBool("coming", false);
-
-        NPCRen.SetActive(false);
-        txtboxNPC.SetActive(false);
-
-        // reset everything
-        write.DeltaTime = 0f;
-
-        write.partialtext = "";
-
-        curdiaMain1 = 0;
-        Invoke("Delthis", 1);
-
-        scrip.isunlocked = true;
-
-
+        void Delthis()
+        {
+            Destroy(this.gameObject);
+        }
     }
 
-    void startdia()
-    {
-        india = true;
-    }
-
-    void Delthis()
-    {
-        Destroy(this.gameObject);
-    }
-}

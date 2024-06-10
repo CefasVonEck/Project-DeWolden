@@ -29,6 +29,7 @@ public class Pageinfo : MonoBehaviour
 
     public bool isunlocked = false;
 
+
     [SerializeField]
     private GameObject page;
 

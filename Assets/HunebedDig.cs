@@ -15,6 +15,10 @@ public class HunebedDig : MonoBehaviour
 
     public GameChecker scrip;
 
+
+    public GameObject pop;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +41,9 @@ public class HunebedDig : MonoBehaviour
                 if (haspiece == true)
                 {
                     scrip.pieces += 1;
+
+                    pop.SetActive(true);
+
                 }
             }
         }

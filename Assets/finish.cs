@@ -20,6 +20,10 @@ public class finish : MonoBehaviour
 
     public GameObject play;
 
+
+    public GameObject Pop;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +34,8 @@ public class finish : MonoBehaviour
     void Update()
     {
         float distance = Vector2.Distance(PointA.position, PointB.position);
-        if (distance <= 0.5f)
+
+        if (distance <= 1f)
         {
             if (scrip.pieces == 2)
             {
@@ -58,6 +63,9 @@ public class finish : MonoBehaviour
     {
         play.GetComponent<Player>().enabled = true;
         bright.SetActive(false);
+
+        Pop.SetActive(true);
+
         Destroy(this);
 
     }
