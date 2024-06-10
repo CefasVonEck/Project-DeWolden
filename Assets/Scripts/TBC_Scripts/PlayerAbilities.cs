@@ -3,12 +3,16 @@ using TMPro;
 using System;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class PlayerAbilities : MonoBehaviour
 {
     [SerializeField]
     private string returnToMainSceneName;
-    
+
+    [SerializeField]
+    private GameObject abilityMenu;
+
     [SerializeField]
     private SliderController healthEnemySelected;
     [SerializeField]
@@ -26,11 +30,15 @@ public class PlayerAbilities : MonoBehaviour
     private SliderController healthJager;
 
     [SerializeField]
+    private TextMeshProUGUI abilityInfoText;
+
+    [SerializeField]
     private AbilitySets enemyAbilities;
 
     private int attackAgainTimer = 0;
 
     private bool switchINCdamage = false;
+    private int switchINCdamageTurns = 0;
 
     public bool getDamageSwitch()
     {
@@ -41,8 +49,17 @@ public class PlayerAbilities : MonoBehaviour
     private bool[] recieveToPartnerDamage = new bool[] {false ,false ,false, false, false, false, false, false };
 
     [SerializeField]
-    private int[] damageBhealthMulti = new int[8];
+    private bool[] enemyHitPartner = new bool[] { false, false, false, false, false, false, false, false };
 
+    private bool enemyHitPartnerOnTurn = false;
+
+    public bool getEnemyHitPartner()
+    {
+        return enemyHitPartnerOnTurn;
+    }
+
+    [SerializeField]
+    private int[] damageBhealthMulti = new int[8];
 
     [SerializeField]
     private String enemyName = "";
@@ -69,9 +86,15 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField]
     private bool harmTeammate = true;
     [SerializeField]
+    private int attackTimes = 1;
+    [SerializeField]
     private int damageTeammate = 0;
     [SerializeField]
     private int agileDamageTeammate = 0;
+    [SerializeField]
+    private float thornDamageActive = 0;
+    [SerializeField]
+    private String abilityMessage = "";
 
     [SerializeField]
     private String abilityName2 = "";
@@ -96,9 +119,15 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField]
     private bool harmTeammate2 = true;
     [SerializeField]
+    private int attackTimes2 = 1;
+    [SerializeField]
     private int damageTeammate2 = 0;
     [SerializeField]
     private int agileDamageTeammate2 = 0;
+    [SerializeField]
+    private float thornDamageActive2 = 0;
+    [SerializeField]
+    private String abilityMessage2 = "";
 
     [SerializeField]
     private String abilityName3 = "";
@@ -123,9 +152,15 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField]
     private bool harmTeammate3 = true;
     [SerializeField]
+    private int attackTimes3 = 1;
+    [SerializeField]
     private int damageTeammate3 = 0;
     [SerializeField]
     private int agileDamageTeammate3 = 0;
+    [SerializeField]
+    private float thornDamageActive3 = 0;
+    [SerializeField]
+    private String abilityMessage3 = "";
 
     [SerializeField]
     private String abilityName4 = "";
@@ -146,9 +181,15 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField]
     private bool harmTeammate4 = true;
     [SerializeField]
+    private int attackTimes4 = 1;
+    [SerializeField]
     private int damageTeammate4 = 0;
     [SerializeField]
     private int agileDamageTeammate4 = 0;
+    [SerializeField]
+    private float thornDamageActive4 = 0;
+    [SerializeField]
+    private String abilityMessage4 = "";
 
     [SerializeField]
     private String abilityName5 = "";
@@ -169,9 +210,15 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField]
     private bool harmTeammate5 = true;
     [SerializeField]
+    private int attackTimes5 = 1;
+    [SerializeField]
     private int damageTeammate5 = 0;
     [SerializeField]
     private int agileDamageTeammate5 = 0;
+    [SerializeField]
+    private float thornDamageActive5 = 0;
+    [SerializeField]
+    private String abilityMessage5 = "";
 
     [SerializeField]
     private String abilityName6 = "";
@@ -192,9 +239,15 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField]
     private bool harmTeammate6 = true;
     [SerializeField]
+    private int attackTimes6 = 1;
+    [SerializeField]
     private int damageTeammate6 = 0;
     [SerializeField]
     private int agileDamageTeammate6 = 0;
+    [SerializeField]
+    private float thornDamageActive6 = 0;
+    [SerializeField]
+    private String abilityMessage6 = "";
 
     [SerializeField]
     private String abilityName7 = "";
@@ -215,9 +268,15 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField]
     private bool harmTeammate7 = true;
     [SerializeField]
+    private int attackTimes7 = 1;
+    [SerializeField]
     private int damageTeammate7 = 0;
     [SerializeField]
     private int agileDamageTeammate7 = 0;
+    [SerializeField]
+    private float thornDamageActive7 = 0;
+    [SerializeField]
+    private String abilityMessage7 = "";
 
     [SerializeField]
     private String abilityName8 = "";
@@ -238,9 +297,15 @@ public class PlayerAbilities : MonoBehaviour
     [SerializeField]
     private bool harmTeammate8 = true;
     [SerializeField]
+    private int attackTimes8 = 1;
+    [SerializeField]
     private int damageTeammate8 = 0;
     [SerializeField]
     private int agileDamageTeammate8 = 0;
+    [SerializeField]
+    private float thornDamageActive8 = 0;
+    [SerializeField]
+    private String abilityMessage8 = "";
 
     private int attackDamageBoostMina = 0;
     private int attackDamageBoostJager = 0;
@@ -298,9 +363,36 @@ public class PlayerAbilities : MonoBehaviour
     private int missAbiblityChangesJager = 0;
     private AbilityList abilityList = new AbilityList();
 
+    private int attackOverAgain = 0;
+    public float thornDamage = 0;
+
+
+    [SerializeField]
+    private Animator animateAbilityOne;
+    
+    [SerializeField]
+    private Animator enemyOne;
+    [SerializeField]
+    private Animator enemyTwo;
+    [SerializeField]
+    private Animator enemyThree;
+    [SerializeField]
+    private Animator enemyFour;
+
+    [SerializeField]
+    private Animator cameraFocus;
+
     // Start is called before the first frame update
     void Start()
     {
+        this.rememberSelectedEnemy = -1;
+        this.selectedEnemy = -1;
+
+        animateAbilityOne.speed = 0;
+        enemyOne.speed = 0;
+        enemyTwo.speed = 0;
+        enemyThree.speed = 0;
+        cameraFocus.speed = 0;
         //abilityName = abilityList.abilityName[0];
         //attackDamage1 = abilityList.attackDamage1[0];
         //agileDamage1 = abilityList.agileDamage1[0];
@@ -366,6 +458,17 @@ public class PlayerAbilities : MonoBehaviour
             AttackButton6.interactable = false;
             AttackButton7.interactable = false;
             AttackButton8.interactable = false;
+
+            jagerSelected = false;
+            AttackButton1.gameObject.SetActive(false);
+            AttackButton2.gameObject.SetActive(false);
+            AttackButton5.gameObject.SetActive(false);
+            AttackButton6.gameObject.SetActive(false);
+
+            AttackButton3.gameObject.SetActive(false);
+            AttackButton4.gameObject.SetActive(true);
+            AttackButton7.gameObject.SetActive(false);
+            AttackButton8.gameObject.SetActive(false);
         }
        
 
@@ -388,397 +491,170 @@ public class PlayerAbilities : MonoBehaviour
         {
             enemy4.interactable = false;
         }
+
+        if (abilityMenu != null)
+        {
+            abilityMenu.SetActive(false);
+        }
     }
 
     public void abilityInfo1()
     {
-        if(!(Attack1.text.Contains(":")))
+        int abilityButtonID = 0;
+        abilityMenu.SetActive(true);
+        if (!(abilityInfoText.text.Contains(":")))
         {
-            if(attackDamage1 > 0 && agileDamage1 > 0 && attackDamageBoost1 > 0)
-            {
-                Attack1.text += ":  <i> Att. " + (attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)(healthMina.getValue() / 50))) + "  Accur. -" + agileDamage1 + "  DMG+ " + attackDamageBoost1;
-            }
-            else if (agileDamage1 > 0 && attackDamageBoost1 > 0)
-            {
-                Attack1.text += ":  <i> Accur. -" + agileDamage1 + "  DMG+ " + attackDamageBoost1;
-            }
-            else if (attackDamage1 > 0 && attackDamageBoost1 > 0)
-            {
-                Attack1.text += ":  <i> Att. " + (attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)(healthMina.getValue() / 50))) + "  DMG+ " + attackDamageBoost1;
-            }
-            else if (attackDamage1 > 0 && attackDamageBoost1 > 0)
-            {
-                Attack1.text += ":  <i> Att. " + (attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)(healthMina.getValue() / 50))) + "  Accur. -" + agileDamage1;
-            }
-            else if (attackDamageBoost1 > 0 && agileDamage1 <= 0 && attackDamage1 <= 0)
-            {
-                Attack1.text += ":  <i>DMG+ " + attackDamageBoost1;
-            }
-            else if (attackDamageBoost1 <= 0 && agileDamage1 > 0 && attackDamage1 <= 0)
-            {
-                Attack1.text += ":  <i>Accur. -" + agileDamage1;
-            }
-            else
-            {
-                Attack1.text += ":  <i> Att. " + (attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)(healthMina.getValue() / 50)));
-            }
-
-            if(damageTeammate > 0)
-            {
-                Attack1.text += " PID: " + damageTeammate;
-            }
+            abilityInfoText.text += ": " + abilityMessage;
         }
-        else if (Attack1.text.Contains(":"))
+        else if (abilityInfoText.text.Contains(":"))
         {
-            string[] parts = Attack1.text.Split(':');
+            string[] parts = abilityInfoText.text.Split(':');
 
             // Take the first part (before the colon)
             string modifiedString = parts[0];
 
-            Attack1.text = modifiedString;
+            abilityInfoText.text = modifiedString;
+            abilityMenu.SetActive(false);
         }
     }
 
     public void abilityInfo2()
     {
-        if (!(Attack2.text.Contains(":")))
+        int abilityButtonID = 1;
+        abilityMenu.SetActive(true);
+        if (!(abilityInfoText.text.Contains(":")))
         {
-            if (attackDamage2 > 0 && agileDamage2 > 0 && attackDamageBoost2 > 0)
-            {
-                Attack2.text += ":  <i> Att. " + (attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)(healthMina.getValue() / 50))) + "  Accur. -" + agileDamage2 + "  DMG+ " + attackDamageBoost2;
-            }
-            else if (agileDamage2 > 0 && attackDamageBoost2 > 0)
-            {
-                Attack2.text += ":  <i> Accur. -" + agileDamage2 + "  DMG+ " + attackDamageBoost2;
-            }
-            else if (attackDamage2 > 0 && attackDamageBoost2 > 0)
-            {
-                Attack2.text += ":  <i> Att. " + (attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)(healthMina.getValue() / 50))) + "  DMG+ " + attackDamageBoost2;
-            }
-            else if (attackDamage2 > 0 && attackDamageBoost2 > 0)
-            {
-                Attack2.text += ":  <i> Att. " + (attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)(healthMina.getValue() / 50))) + "  Accur. -" + agileDamage2;
-            }
-            else if (attackDamageBoost2 > 0 && agileDamage2 <= 0 && attackDamage2 <= 0)
-            {
-                Attack2.text += ":  <i>DMG+ " + attackDamageBoost2;
-            }
-            else if (attackDamageBoost2 <= 0 && agileDamage2 > 0 && attackDamage2 <= 0)
-            {
-                Attack2.text += ":  <i>Accur. -" + agileDamage2;
-            }
-            else
-            {
-                Attack2.text += ":  <i> Att. " + (attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)(healthMina.getValue() / 50)));
-            }
-
-            if (damageTeammate2 > 0)
-            {
-                Attack2.text += " PID: " + damageTeammate2;
-            }
+            abilityInfoText.text += ": " + abilityMessage2;
         }
-        else if (Attack2.text.Contains(":"))
+        else if (abilityInfoText.text.Contains(":"))
         {
-            string[] parts = Attack2.text.Split(':');
+            string[] parts = abilityInfoText.text.Split(':');
 
             // Take the first part (before the colon)
             string modifiedString = parts[0];
 
-            Attack2.text = modifiedString;
+            abilityInfoText.text = modifiedString;
+            abilityMenu.SetActive(false);
         }
     }
 
     public void abilityInfo5()
     {
-        if (!(Attack5.text.Contains(":")))
+        int abilityButtonID = 4;
+        abilityMenu.SetActive(true);
+        if (!(abilityInfoText.text.Contains(":")))
         {
-            if (attackDamage5 > 0 && agileDamage5 > 0 && attackDamageBoost5 > 0)
-            {
-                Attack5.text += ":  <i> Att. " + (attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)(healthMina.getValue() / 50))) + "  Accur. -" + agileDamage5 + "  DMG+ " + attackDamageBoost5;
-            }
-            else if (agileDamage5 > 0 && attackDamageBoost5 > 0)
-            {
-                Attack5.text += ":  <i> Accur. -" + agileDamage5 + "  DMG+ " + attackDamageBoost5;
-            }
-            else if (attackDamage5 > 0 && attackDamageBoost5 > 0)
-            {
-                Attack5.text += ":  <i> Att. " + (attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)(healthMina.getValue() / 50))) + "  DMG+ " + attackDamageBoost5;
-            }
-            else if (attackDamage5 > 0 && attackDamageBoost5 > 0)
-            {
-                Attack5.text += ":  <i> Att. " + (attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)(healthMina.getValue() / 50))) + "  Accur. -" + agileDamage5;
-            }
-            else if (attackDamageBoost5 > 0 && agileDamage5 <= 0 && attackDamage5 <= 0)
-            {
-                Attack5.text += ":  <i>DMG+ " + attackDamageBoost5;
-            }
-            else if (attackDamageBoost5 <= 0 && agileDamage5 > 0 && attackDamage5 <= 0)
-            {
-                Attack5.text += ":  <i>Accur. -" + agileDamage5;
-            }
-            else
-            {
-                Attack5.text += ":  <i> Att. " + (attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)(healthMina.getValue() / 50)));
-            }
-
-            if (damageTeammate5 > 0)
-            {
-                Attack5.text += " PID: " + damageTeammate5;
-            }
+            abilityInfoText.text += ": " + abilityMessage5;
         }
-        else if (Attack5.text.Contains(":"))
+        else if (abilityInfoText.text.Contains(":"))
         {
-            string[] parts = Attack5.text.Split(':');
+            string[] parts = abilityInfoText.text.Split(':');
 
             // Take the first part (before the colon)
             string modifiedString = parts[0];
 
-            Attack5.text = modifiedString;
+            abilityInfoText.text = modifiedString;
+            abilityMenu.SetActive(false);
         }
     }
 
     public void abilityInfo6()
     {
-        if (!(Attack6.text.Contains(":")))
+        int abilityButtonID = 5;
+        abilityMenu.SetActive(true);
+        if (!(abilityInfoText.text.Contains(":")))
         {
-            if (attackDamage6 > 0 && agileDamage6 > 0 && attackDamageBoost6 > 0)
-            {
-                Attack6.text += ":  <i> Att. " + (attackDamage6 + attackDamageBoostMina + ((float)damageBhealthMulti[3] * (float)(healthMina.getValue() / 50))) + "  Accur. -" + agileDamage6 + "  DMG+ " + attackDamageBoost6;
-            }
-            else if (agileDamage6 > 0 && attackDamageBoost6 > 0)
-            {
-                Attack6.text += ":  <i> Accur. -" + agileDamage6 + "  DMG+ " + attackDamageBoost6;
-            }
-            else if (attackDamage6 > 0 && attackDamageBoost6 > 0)
-            {
-                Attack6.text += ":  <i> Att. " + (attackDamage6 + attackDamageBoostMina + ((float)damageBhealthMulti[3] * (float)(healthMina.getValue() / 50))) + "  DMG+ " + attackDamageBoost6;
-            }
-            else if (attackDamage6 > 0 && attackDamageBoost6 > 0)
-            {
-                Attack6.text += ":  <i> Att. " + (attackDamage6 + attackDamageBoostMina + ((float)damageBhealthMulti[3] * (float)(healthMina.getValue() / 50))) + "  Accur. -" + agileDamage6;
-            }
-            else if (attackDamageBoost6 > 0 && agileDamage6 <= 0 && attackDamage6 <= 0)
-            {
-                Attack6.text += ":  <i>DMG+ " + attackDamageBoost6;
-            }
-            else if (attackDamageBoost6 <= 0 && agileDamage6 > 0 && attackDamage6 <= 0)
-            {
-                Attack6.text += ":  <i>Accur. -" + agileDamage6;
-            }
-            else
-            {
-                Attack6.text += ":  <i> Att. " + (attackDamage6 + attackDamageBoostMina + ((float)damageBhealthMulti[3] * (float)(healthMina.getValue() / 50)));
-            }
-
-            if (damageTeammate6 > 0)
-            {
-                Attack6.text += " PID: " + damageTeammate6;
-            }
+            abilityInfoText.text += ": " + abilityMessage6;
         }
-        else if (Attack6.text.Contains(":"))
+        else if (abilityInfoText.text.Contains(":"))
         {
-            string[] parts = Attack6.text.Split(':');
+            string[] parts = abilityInfoText.text.Split(':');
 
             // Take the first part (before the colon)
             string modifiedString = parts[0];
 
-            Attack6.text = modifiedString;
+            abilityInfoText.text = modifiedString;
+            abilityMenu.SetActive(false);
         }
     }
 
     public void abilityInfo3()
     {
-        if (!(Attack3.text.Contains(":")))
+        int abilityButtonID = 2;
+        abilityMenu.SetActive(true);
+        if (!(abilityInfoText.text.Contains(":")))
         {
-            if (attackDamage3 > 0 && agileDamage3 > 0 && attackDamageBoost3 > 0)
-            {
-                Attack3.text += ":  <i> Att. " + (attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)(healthJager.getValue() / 50))) + "  Accur. -" + agileDamage3 + "  DMG+ " + attackDamageBoost3;
-            }
-            else if (agileDamage3 > 0 && attackDamageBoost3 > 0)
-            {
-                Attack3.text += ":  <i> Accur. -" + agileDamage3 + "  DMG+ " + attackDamageBoost3;
-            }
-            else if (attackDamage3 > 0 && attackDamageBoost3 > 0)
-            {
-                Attack3.text += ":  <i> Att. " + (attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)(healthJager.getValue() / 50))) + "  DMG+ " + attackDamageBoost3;
-            }
-            else if (attackDamage3 > 0 && attackDamageBoost3 > 0)
-            {
-                Attack3.text += ":  <i> Att. " + (attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)(healthJager.getValue() / 50))) + "  Accur. -" + agileDamage3;
-            }
-            else if (attackDamageBoost3 > 0 && agileDamage3 <= 0 && attackDamage3 <= 0)
-            {
-                Attack3.text += ":  <i>DMG+ " + attackDamageBoost3;
-            }
-            else if (attackDamageBoost3 <= 0 && agileDamage3 > 0 && attackDamage3 <= 0)
-            {
-                Attack3.text += ":  <i>Accur. -" + agileDamage3;
-            }
-            else
-            {
-                Attack3.text += ":  <i> Att. " + (attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)(healthJager.getValue() / 50)));
-            }
-
-            if (damageTeammate3 > 0)
-            {
-                Attack3.text += " PID: " + damageTeammate3;
-            }
+            abilityInfoText.text += ": " + abilityMessage3;
         }
-        else if (Attack3.text.Contains(":"))
+        else if (abilityInfoText.text.Contains(":"))
         {
-            string[] parts = Attack3.text.Split(':');
+            string[] parts = abilityInfoText.text.Split(':');
 
             // Take the first part (before the colon)
             string modifiedString = parts[0];
 
-            Attack3.text = modifiedString;
+            abilityInfoText.text = modifiedString;
+            abilityMenu.SetActive(false);
         }
     }
 
     public void abilityInfo4()
     {
-        if (!(Attack4.text.Contains(":")))
+        int abilityButtonID = 3;
+        abilityMenu.SetActive(true);
+        if (!(abilityInfoText.text.Contains(":")))
         {
-            if (attackDamage4 > 0 && agileDamage4 > 0 && attackDamageBoost4 > 0)
-            {
-                Attack4.text += ":  <i> Att. " + (attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[5] * (float)(healthJager.getValue() / 50))) + "  Accur. -" + agileDamage4 + "  DMG+ " + attackDamageBoost4;
-            }
-            else if (agileDamage4 > 0 && attackDamageBoost4 > 0)
-            {
-                Attack4.text += ":  <i> Accur. -" + agileDamage4 + "  DMG+ " + attackDamageBoost4;
-            }
-            else if (attackDamage4 > 0 && attackDamageBoost4 > 0)
-            {
-                Attack4.text += ":  <i> Att. " + (attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[5] * (float)(healthJager.getValue() / 50))) + "  DMG+ " + attackDamageBoost4;
-            }
-            else if (attackDamage4 > 0 && attackDamageBoost4 > 0)
-            {
-                Attack4.text += ":  <i> Att. " + (attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[5] * (float)(healthJager.getValue() / 50))) + "  Accur. -" + agileDamage4;
-            }
-            else if (attackDamageBoost4 > 0 && agileDamage4 <= 0 && attackDamage4 <= 0)
-            {
-                Attack4.text += ":  <i>DMG+ " + (attackDamageBoostJager);
-            }
-            else if (attackDamageBoost4 <= 0 && agileDamage4 > 0 && attackDamage4 <= 0)
-            {
-                Attack4.text += ":  <i>Accur. -" + agileDamage4;
-            }
-            else
-            {
-                Attack4.text += ":  <i> Att. " + (attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[5] * (float)(healthJager.getValue() / 50)));
-            }
-
-            if (damageTeammate4 > 0)
-            {
-                Attack4.text += " PID: " + damageTeammate4;
-            }
+            abilityInfoText.text += ": " + abilityMessage4;
         }
-        else if (Attack4.text.Contains(":"))
+        else if (abilityInfoText.text.Contains(":"))
         {
-            string[] parts = Attack4.text.Split(':');
+            string[] parts = abilityInfoText.text.Split(':');
 
             // Take the first part (before the colon)
             string modifiedString = parts[0];
 
-            Attack4.text = modifiedString;
+            abilityInfoText.text = modifiedString;
+            abilityMenu.SetActive(false);
         }
     }
 
     public void abilityInfo7()
     {
-        if (!(Attack7.text.Contains(":")))
+        int abilityButtonID = 6;
+        abilityMenu.SetActive(true);
+        if (!(abilityInfoText.text.Contains(":")))
         {
-            if (attackDamage7 > 0 && agileDamage7 > 0 && attackDamageBoost7 > 0)
-            {
-                Attack7.text += ":  <i> Att. " + (attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)(healthJager.getValue() / 50))) + "  Accur. -" + agileDamage7 + "  DMG+ " + attackDamageBoost7;
-            }
-            else if (agileDamage7 > 0 && attackDamageBoost7 > 0)
-            {
-                Attack7.text += ":  <i> Accur. -" + agileDamage7 + "  DMG+ " + attackDamageBoost7;
-            }
-            else if (attackDamage7 > 0 && attackDamageBoost7 > 0)
-            {
-                Attack7.text += ":  <i> Att. " + (attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)(healthJager.getValue() / 50))) + "  DMG+ " + attackDamageBoost7;
-            }
-            else if (attackDamage7 > 0 && attackDamageBoost7 > 0)
-            {
-                Attack7.text += ":  <i> Att. " + (attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)(healthJager.getValue() / 50))) + "  Accur. -" + agileDamage7;
-            }
-            else if (attackDamageBoost7 > 0 && agileDamage7 <= 0 && attackDamage7 <= 0)
-            {
-                Attack7.text += ":  <i>DMG+ " + attackDamageBoost7;
-            }
-            else if (attackDamageBoost7 <= 0 && agileDamage7 > 0 && attackDamage7 <= 0)
-            {
-                Attack7.text += ":  <i>Accur. -" + agileDamage7;
-            }
-            else
-            {
-                Attack7.text += ":  <i> Att. " + (attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)(healthJager.getValue() / 50)));
-            }
-
-            if (damageTeammate7 > 0)
-            {
-                Attack7.text += " PID: " + damageTeammate7;
-            }
+            abilityInfoText.text += ": " + abilityMessage7;
         }
-        else if (Attack7.text.Contains(":"))
+        else if (abilityInfoText.text.Contains(":"))
         {
-            string[] parts = Attack7.text.Split(':');
+            string[] parts = abilityInfoText.text.Split(':');
 
             // Take the first part (before the colon)
             string modifiedString = parts[0];
 
-            Attack7.text = modifiedString;
+            abilityInfoText.text = modifiedString;
+            abilityMenu.SetActive(false);
         }
     }
 
     public void abilityInfo8()
     {
-        if (!(Attack8.text.Contains(":")))
+        int abilityButtonID = 7;
+        abilityMenu.SetActive(true);
+        if (!(abilityInfoText.text.Contains(":")))
         {
-            if (attackDamage8 > 0 && agileDamage8 > 0 && attackDamageBoost8 > 0)
-            {
-                Attack8.text += ":  <i> Att. " + (attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[7] * (float)(healthJager.getValue() / 50))) + "  Accur. -" + agileDamage8 + "  DMG+ " + attackDamageBoost8;
-            }
-            else if (agileDamage8 > 0 && attackDamageBoost8 > 0)
-            {
-                Attack8.text += ":  <i> Accur. -" + agileDamage8 + "  DMG+ " + attackDamageBoost8;
-            }
-            else if (attackDamage8 > 0 && attackDamageBoost8 > 0)
-            {
-                Attack8.text += ":  <i> Att. " + (attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[7] * (float)(healthJager.getValue() / 50))) + "  DMG+ " + attackDamageBoost8;
-            }
-            else if (attackDamage8 > 0 && attackDamageBoost8 > 0)
-            {
-                Attack8.text += ":  <i> Att. " + (attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[7] * (float)(healthJager.getValue() / 50))) + "  Accur. -" + agileDamage8;
-            }
-            else if (attackDamageBoost8 > 0 && agileDamage8 <= 0 && attackDamage8 <= 0)
-            {
-                Attack8.text += ":  <i>DMG+ " + attackDamageBoost8;
-            }
-            else if (attackDamageBoost8 <= 0 && agileDamage8 > 0 && attackDamage8 <= 0)
-            {
-                Attack8.text += ":  <i>Accur. -" + agileDamage8;
-            }
-            else
-            {
-                Attack8.text += ":  <i> Att. " + (attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[7] * (float)(healthJager.getValue() / 50)));
-            }
-
-            if (damageTeammate8 > 0)
-            {
-                Attack8.text += " PID: " + damageTeammate8;
-            }
+            abilityInfoText.text += ": " + abilityMessage8;
         }
-        else if (Attack8.text.Contains(":"))
+        else if (abilityInfoText.text.Contains(":"))
         {
-            string[] parts = Attack8.text.Split(':');
+            string[] parts = abilityInfoText.text.Split(':');
 
             // Take the first part (before the colon)
             string modifiedString = parts[0];
 
-            Attack8.text = modifiedString;
+            abilityInfoText.text = modifiedString;
+            abilityMenu.SetActive(false);
         }
     }
 
@@ -800,7 +676,11 @@ public class PlayerAbilities : MonoBehaviour
 
     public int getWaitingTime()
     {
-        return  attackAgainTimer;
+        if (attackOverAgain > 0)
+        {
+            return 0;
+        }
+        else return attackAgainTimer;
     }
 
     private void PlayerAttacked()
@@ -815,7 +695,7 @@ public class PlayerAbilities : MonoBehaviour
         if (UnityEngine.Random.Range(0, 100 - missAbiblityChangesMina) <= 5 && canMiss)
         {
             UseMessage.text = enemyName + " tried to attack and missed!";
-
+            attackMissed = true;
             attackAgainTimer = 70;
         }
         else if (enemyAbilities.getWaitingTime() + this.getWaitingTime() == 0)
@@ -825,9 +705,9 @@ public class PlayerAbilities : MonoBehaviour
             if (hitAll)
             {
                 healthEnemy01.SetSliderValue(attackDamage1 + attackDamageBoostMina);
-                if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)(healthMina.getValue() / 50))); }
-                if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)(healthMina.getValue() / 50))); }
-                if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)(healthMina.getValue() / 50))); }
+                if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)((100-healthMina.getValue()) /50))); }
+                if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)((100-healthMina.getValue()) /50))); }
+                if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)((100-healthMina.getValue()) /50))); }
 
                 if (attackDamageBoost1 > 0)
                 {
@@ -838,7 +718,7 @@ public class PlayerAbilities : MonoBehaviour
             {
                 if (attackDamage1 > 0)
                 {
-                    healthEnemySelected.SetSliderValue(attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)(healthMina.getValue() / 50)));
+                    healthEnemySelected.SetSliderValue(attackDamage1 + attackDamageBoostMina + ((float)damageBhealthMulti[0] * (float)((100-healthMina.getValue()) /50)));
                 }
 
                 if (attackDamageBoost1 > 0)
@@ -859,9 +739,15 @@ public class PlayerAbilities : MonoBehaviour
             if (recieveToPartnerDamage[0])
             {
                 switchINCdamage = true;
+                switchINCdamageTurns = 3;
             }
 
-            if(hitAll)
+            if (enemyHitPartner[0])
+            {
+                enemyHitPartnerOnTurn = true;
+            }
+
+            if (hitAll)
             {
                 enemyAbilities.reduceAttackSpeed(-agileDamage1, 0);
                 enemyAbilities.reduceAttackSpeed(-agileDamage1, 1);
@@ -872,7 +758,17 @@ public class PlayerAbilities : MonoBehaviour
             {
                 enemyAbilities.reduceAttackSpeed(-agileDamage1, selectedEnemy);
             }
-            
+
+            if(attackOverAgain == 0 && attackTimes > 1)
+            {
+                attackOverAgain = attackTimes;
+            }
+
+            if(thornDamageActive > 0)
+            {
+                thornDamage = thornDamageActive;
+            }
+          
             //--maxAbilityUse;
 
             if (userName1 != null && !(userName1.Equals("")))
@@ -903,7 +799,7 @@ public class PlayerAbilities : MonoBehaviour
         if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss2)
         {
             UseMessage.text = enemyName + " tried to attack and missed!";
-
+            attackMissed = true;
             attackAgainTimer = 70;
         }
         else if (enemyAbilities.getWaitingTime() + this.getWaitingTime() == 0)
@@ -915,9 +811,9 @@ public class PlayerAbilities : MonoBehaviour
                 if (attackDamage2 > 0)
                 {
                     healthEnemy01.SetSliderValue(attackDamage2 + attackDamageBoostMina);
-                    if (healthEnemy02 != null){healthEnemy02.SetSliderValue(attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)(healthMina.getValue() / 50)));}
-                    if (healthEnemy03 != null){healthEnemy03.SetSliderValue(attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)(healthMina.getValue() / 50)));}
-                    if (healthEnemy04 != null){healthEnemy04.SetSliderValue(attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)(healthMina.getValue() / 50)));}
+                    if (healthEnemy02 != null){healthEnemy02.SetSliderValue(attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)((100-healthMina.getValue()) /50)));}
+                    if (healthEnemy03 != null){healthEnemy03.SetSliderValue(attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)((100-healthMina.getValue()) /50)));}
+                    if (healthEnemy04 != null){healthEnemy04.SetSliderValue(attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)((100-healthMina.getValue()) /50)));}
                 }
 
                 if (attackDamageBoost2 > 0)
@@ -929,7 +825,7 @@ public class PlayerAbilities : MonoBehaviour
             {
                 if (attackDamage2 > 0)
                 {
-                    healthEnemySelected.SetSliderValue(attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)(healthMina.getValue() / 50)));
+                    healthEnemySelected.SetSliderValue(attackDamage2 + attackDamageBoostMina + ((float)damageBhealthMulti[1] * (float)((100-healthMina.getValue()) /50)));
                 }
 
                 if (attackDamageBoost2 > 0)
@@ -950,6 +846,12 @@ public class PlayerAbilities : MonoBehaviour
             if (recieveToPartnerDamage[1])
             {
                 switchINCdamage = true;
+                switchINCdamageTurns = 3;
+            }
+
+            if (enemyHitPartner[1])
+            {
+                enemyHitPartnerOnTurn = true;
             }
 
             if (hitAll)
@@ -962,6 +864,16 @@ public class PlayerAbilities : MonoBehaviour
             else
             {
                 enemyAbilities.reduceAttackSpeed(-agileDamage2, selectedEnemy);
+            }
+
+            if (attackOverAgain == 0 && attackTimes2 > 1)
+            {
+                attackOverAgain = attackTimes2;
+            }
+
+            if (thornDamageActive2 > 0)
+            {
+                thornDamage = thornDamageActive2;
             }
 
             //--maxAbilityUse;
@@ -994,7 +906,7 @@ public class PlayerAbilities : MonoBehaviour
         if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss5)
         {
             UseMessage.text = enemyName + " tried to attack and missed!";
-
+            attackMissed = true;
             attackAgainTimer = 70;
         }
         else if (enemyAbilities.getWaitingTime() + this.getWaitingTime() == 0)
@@ -1006,9 +918,9 @@ public class PlayerAbilities : MonoBehaviour
                 if (attackDamage5 > 0)
                 {
                     healthEnemy01.SetSliderValue(attackDamage5 + attackDamageBoostMina);
-                    if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)(healthMina.getValue() / 50))); }
-                    if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)(healthMina.getValue() / 50))); }
-                    if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)(healthMina.getValue() / 50))); }
+                    if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)((100-healthMina.getValue()) /50))); }
+                    if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)((100-healthMina.getValue()) /50))); }
+                    if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)((100-healthMina.getValue()) /50))); }
                 }
 
                 if (attackDamageBoost5 > 0)
@@ -1020,7 +932,7 @@ public class PlayerAbilities : MonoBehaviour
             {
                 if (attackDamage5 > 0)
                 {
-                    healthEnemySelected.SetSliderValue(attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)(healthMina.getValue() / 50)));
+                    healthEnemySelected.SetSliderValue(attackDamage5 + attackDamageBoostMina + ((float)damageBhealthMulti[2] * (float)((100-healthMina.getValue()) /50)));
                 }
 
                 if (attackDamageBoost5 > 0)
@@ -1041,6 +953,12 @@ public class PlayerAbilities : MonoBehaviour
             if (recieveToPartnerDamage[2])
             {
                 switchINCdamage = true;
+                switchINCdamageTurns = 3;
+            }
+
+            if (enemyHitPartner[2])
+            {
+                enemyHitPartnerOnTurn = true;
             }
 
             if (hitAll)
@@ -1053,6 +971,16 @@ public class PlayerAbilities : MonoBehaviour
             else
             {
                 enemyAbilities.reduceAttackSpeed(-agileDamage5, selectedEnemy);
+            }
+
+            if (attackOverAgain == 0 && attackTimes5 > 1)
+            {
+                attackOverAgain = attackTimes5;
+            }
+
+            if (thornDamageActive5 > 0)
+            {
+                thornDamage = thornDamageActive5;
             }
 
             //--maxAbilityUse;
@@ -1085,7 +1013,7 @@ public class PlayerAbilities : MonoBehaviour
         if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss3)
         {
             UseMessage.text = enemyName + " tried to attack and missed!";
-
+            attackMissed = true;
             attackAgainTimer = 70;
         }
         else if (enemyAbilities.getWaitingTime() + this.getWaitingTime() == 0)
@@ -1097,9 +1025,9 @@ public class PlayerAbilities : MonoBehaviour
                 if (attackDamage3 > 0)
                 {
                     healthEnemy01.SetSliderValue(attackDamage3 + attackDamageBoostJager);
-                    if (healthEnemy02 != null){healthEnemy02.SetSliderValue(attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[3] * (float)(healthJager.getValue() / 50)));}
-                    if (healthEnemy03 != null){healthEnemy03.SetSliderValue(attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[3] * (float)(healthJager.getValue() / 50)));}
-                    if (healthEnemy04 != null){healthEnemy04.SetSliderValue(attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[3] * (float)(healthJager.getValue() / 50)));}
+                    if (healthEnemy02 != null){healthEnemy02.SetSliderValue(attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[3] * (float)((100-healthJager.getValue()) /50)));}
+                    if (healthEnemy03 != null){healthEnemy03.SetSliderValue(attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[3] * (float)((100-healthJager.getValue()) /50)));}
+                    if (healthEnemy04 != null){healthEnemy04.SetSliderValue(attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[3] * (float)((100-healthJager.getValue()) /50)));}
                 }
 
                 if (attackDamageBoost3 > 0)
@@ -1111,7 +1039,7 @@ public class PlayerAbilities : MonoBehaviour
             {
                 if (attackDamage3 > 0)
                 {
-                    healthEnemySelected.SetSliderValue(attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[3] * (float)(healthJager.getValue() / 50)));
+                    healthEnemySelected.SetSliderValue(attackDamage3 + attackDamageBoostJager + ((float)damageBhealthMulti[3] * (float)((100-healthJager.getValue()) /50)));
                 }
 
                 if (attackDamageBoost3 > 0)
@@ -1132,6 +1060,12 @@ public class PlayerAbilities : MonoBehaviour
             if (recieveToPartnerDamage[3])
             {
                 switchINCdamage = true;
+                switchINCdamageTurns = 3;
+            }
+
+            if (enemyHitPartner[3])
+            {
+                enemyHitPartnerOnTurn = true;
             }
 
             if (hitAll)
@@ -1145,6 +1079,17 @@ public class PlayerAbilities : MonoBehaviour
             {
                 enemyAbilities.reduceAttackSpeed(-agileDamage3, selectedEnemy);
             }
+
+            if (attackOverAgain == 0 && attackTimes3 > 1)
+            {
+                attackOverAgain = attackTimes3;
+            }
+
+            if (thornDamageActive3 > 0)
+            {
+                thornDamage = thornDamageActive3;
+            }
+
             //--maxAbilityUse;
 
             if (userName3 != null && !(userName3.Equals("")))
@@ -1175,7 +1120,7 @@ public class PlayerAbilities : MonoBehaviour
         if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss4)
         {
             UseMessage.text = enemyName + " tried to attack and missed!";
-
+            attackMissed = true;
             attackAgainTimer = 70;
         }
         else if (enemyAbilities.getWaitingTime() + this.getWaitingTime() == 0)
@@ -1187,9 +1132,9 @@ public class PlayerAbilities : MonoBehaviour
                 if (attackDamage4 > 0)
                 {
                     healthEnemy01.SetSliderValue(attackDamage4 + attackDamageBoostJager);
-                    if (healthEnemy02 != null){healthEnemy02.SetSliderValue(attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)(healthJager.getValue() / 50)));}
-                    if (healthEnemy03 != null){healthEnemy03.SetSliderValue(attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)(healthJager.getValue() / 50)));}
-                    if (healthEnemy04 != null){healthEnemy04.SetSliderValue(attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)(healthJager.getValue() / 50)));}
+                    if (healthEnemy02 != null){healthEnemy02.SetSliderValue(attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)((100-healthJager.getValue()) /50)));}
+                    if (healthEnemy03 != null){healthEnemy03.SetSliderValue(attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)((100-healthJager.getValue()) /50)));}
+                    if (healthEnemy04 != null){healthEnemy04.SetSliderValue(attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)((100-healthJager.getValue()) /50)));}
                 }
 
                 if (attackDamageBoost4 > 0)
@@ -1201,7 +1146,7 @@ public class PlayerAbilities : MonoBehaviour
             {
                 if (attackDamage4 > 0)
                 {
-                    healthEnemySelected.SetSliderValue(attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)(healthJager.getValue() / 50)));
+                    healthEnemySelected.SetSliderValue(attackDamage4 + attackDamageBoostJager + ((float)damageBhealthMulti[4] * (float)((100-healthJager.getValue()) /50)));
                 }
 
                 if (attackDamageBoost4 > 0)
@@ -1222,6 +1167,12 @@ public class PlayerAbilities : MonoBehaviour
             if (recieveToPartnerDamage[4])
             {
                 switchINCdamage = true;
+                switchINCdamageTurns = 3;
+            }
+
+            if (enemyHitPartner[4])
+            {
+                enemyHitPartnerOnTurn = true;
             }
 
             if (hitAll)
@@ -1235,7 +1186,22 @@ public class PlayerAbilities : MonoBehaviour
             {
                 enemyAbilities.reduceAttackSpeed(-agileDamage4, selectedEnemy);
             }
+
+            if (attackOverAgain == 0 && attackTimes4 > 1)
+            {
+                attackOverAgain = attackTimes4;
+            }
+
+            if (thornDamageActive4 > 0)
+            {
+                thornDamage = thornDamageActive4;
+            }
             //--maxAbilityUse;
+
+
+            AttackButton3.gameObject.SetActive(true);
+            AttackButton7.gameObject.SetActive(true);
+            AttackButton8.gameObject.SetActive(true);
 
             if (userName4 != null && !(userName4.Equals("")))
             {
@@ -1265,7 +1231,7 @@ public class PlayerAbilities : MonoBehaviour
         if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss6)
         {
             UseMessage.text = enemyName + " tried to attack and missed!";
-
+            attackMissed = true;
             attackAgainTimer = 70;
         }
         else if (enemyAbilities.getWaitingTime() + this.getWaitingTime() == 0)
@@ -1277,41 +1243,47 @@ public class PlayerAbilities : MonoBehaviour
                 if (attackDamage6 > 0)
                 {
                     healthEnemy01.SetSliderValue(attackDamage6 + attackDamageBoostJager);
-                    if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage6 + attackDamageBoostJager + ((float)damageBhealthMulti[5] * (float)(healthJager.getValue() / 50))); }
-                    if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage6 + attackDamageBoostJager + ((float)damageBhealthMulti[5] * (float)(healthJager.getValue() / 50))); }
-                    if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage6 + attackDamageBoostJager + ((float)damageBhealthMulti[5] * (float)(healthJager.getValue() / 50))); }
+                    if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage6 + attackDamageBoostMina + ((float)damageBhealthMulti[5] * (float)((100-healthMina.getValue()) /50))); }
+                    if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage6 + attackDamageBoostMina + ((float)damageBhealthMulti[5] * (float)((100-healthMina.getValue()) /50))); }
+                    if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage6 + attackDamageBoostMina + ((float)damageBhealthMulti[5] * (float)((100-healthMina.getValue()) /50))); }
                 }
 
                 if (attackDamageBoost6 > 0)
                 {
-                    attackDamageBoostJager += attackDamageBoost6;
+                    attackDamageBoostMina += attackDamageBoost6;
                 }
             }
             else
             {
                 if (attackDamage6 > 0)
                 {
-                    healthEnemySelected.SetSliderValue(attackDamage6 + attackDamageBoostJager + ((float)damageBhealthMulti[5] * (float)(healthJager.getValue() / 50)));
+                    healthEnemySelected.SetSliderValue(attackDamage6 + attackDamageBoostMina + ((float)damageBhealthMulti[5] * (float)((100-healthJager.getValue()) /50)));
                 }
 
                 if (attackDamageBoost6 > 0)
                 {
-                    attackDamageBoostJager += attackDamageBoost6;
+                    attackDamageBoostMina += attackDamageBoost6;
                 }
             }
 
             if (harmTeammate6)
             {
-                healthMina.SetSliderValue(damageTeammate6);
-                if (attackDamageBoostMina - agileDamageTeammate6 >= 0)
+                healthJager.SetSliderValue(damageTeammate6);
+                if (attackDamageBoostJager - agileDamageTeammate6 >= 0)
                 {
-                    attackDamageBoostMina -= agileDamageTeammate6;
+                    attackDamageBoostJager -= agileDamageTeammate6;
                 }
             }
 
             if (recieveToPartnerDamage[5])
             {
                 switchINCdamage = true;
+                switchINCdamageTurns = 3;
+            }
+
+            if (enemyHitPartner[5])
+            {
+                enemyHitPartnerOnTurn = true;
             }
 
             if (hitAll)
@@ -1325,6 +1297,17 @@ public class PlayerAbilities : MonoBehaviour
             {
                 enemyAbilities.reduceAttackSpeed(-agileDamage6, selectedEnemy);
             }
+
+            if (attackOverAgain == 0 && attackTimes6 > 1)
+            {
+                attackOverAgain = attackTimes6;
+            }
+
+            if (thornDamageActive6 > 0)
+            {
+                thornDamage = thornDamageActive6;
+            }
+
             //--maxAbilityUse;
 
             if (userName6 != null && !(userName6.Equals("")))
@@ -1355,7 +1338,7 @@ public class PlayerAbilities : MonoBehaviour
         if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss7)
         {
             UseMessage.text = enemyName + " tried to attack and missed!";
-
+            attackMissed = true;
             attackAgainTimer = 70;
         }
         else if (enemyAbilities.getWaitingTime() + this.getWaitingTime() == 0)
@@ -1367,9 +1350,9 @@ public class PlayerAbilities : MonoBehaviour
                 if (attackDamage7 > 0)
                 {
                     healthEnemy01.SetSliderValue(attackDamage7 + attackDamageBoostJager);
-                    if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)(healthJager.getValue() / 50))); }
-                    if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)(healthJager.getValue() / 50))); }
-                    if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)(healthJager.getValue() / 50))); }
+                    if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)((100-healthJager.getValue()) /50))); }
+                    if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)((100-healthJager.getValue()) /50))); }
+                    if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)((100-healthJager.getValue()) /50))); }
                 }
 
                 if (attackDamageBoost7 > 0)
@@ -1381,7 +1364,7 @@ public class PlayerAbilities : MonoBehaviour
             {
                 if (attackDamage7 > 0)
                 {
-                    healthEnemySelected.SetSliderValue(attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)(healthJager.getValue() / 50)));
+                    healthEnemySelected.SetSliderValue(attackDamage7 + attackDamageBoostJager + ((float)damageBhealthMulti[6] * (float)((100-healthJager.getValue()) /50)));
                 }
 
                 if (attackDamageBoost7 > 0)
@@ -1402,6 +1385,12 @@ public class PlayerAbilities : MonoBehaviour
             if (recieveToPartnerDamage[6])
             {
                 switchINCdamage = true;
+                switchINCdamageTurns = 3;
+            }
+
+            if (enemyHitPartner[6])
+            {
+                enemyHitPartnerOnTurn = true;
             }
 
             if (hitAll)
@@ -1415,6 +1404,17 @@ public class PlayerAbilities : MonoBehaviour
             {
                 enemyAbilities.reduceAttackSpeed(-agileDamage7, selectedEnemy);
             }
+
+            if (attackOverAgain == 0 && attackTimes7 > 1)
+            {
+                attackOverAgain = attackTimes7;
+            }
+
+            if (thornDamageActive7 > 0)
+            {
+                thornDamage = thornDamageActive7;
+            }
+
             //--maxAbilityUse;
 
             if (userName7 != null && !(userName7.Equals("")))
@@ -1445,7 +1445,7 @@ public class PlayerAbilities : MonoBehaviour
         if (UnityEngine.Random.Range(0, 100) <= 5 && canMiss8)
         {
             UseMessage.text = enemyName + " tried to attack and missed!";
-
+            attackMissed = true;
             attackAgainTimer = 70;
         }
         else if (enemyAbilities.getWaitingTime() + this.getWaitingTime() == 0)
@@ -1457,9 +1457,9 @@ public class PlayerAbilities : MonoBehaviour
                 if (attackDamage8 > 0)
                 {
                     healthEnemy01.SetSliderValue(attackDamage8 + attackDamageBoostJager);
-                    if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[7] * (float)(healthJager.getValue() / 50))); }
-                    if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[7] * (float)(healthJager.getValue() / 50))); }
-                    if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[7] * (float)(healthJager.getValue() / 50))); }
+                    if (healthEnemy02 != null) { healthEnemy02.SetSliderValue(attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[7] * (float)((100-healthJager.getValue()) /50))); }
+                    if (healthEnemy03 != null) { healthEnemy03.SetSliderValue(attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[7] * (float)((100-healthJager.getValue()) /50))); }
+                    if (healthEnemy04 != null) { healthEnemy04.SetSliderValue(attackDamage8 + attackDamageBoostJager + ((float)damageBhealthMulti[7] * (float)((100-healthJager.getValue()) /50))); }
                 }
 
                 if (attackDamageBoost8 > 0)
@@ -1492,6 +1492,12 @@ public class PlayerAbilities : MonoBehaviour
             if (recieveToPartnerDamage[7])
             {
                 switchINCdamage = true;
+                switchINCdamageTurns = 3;
+            }
+
+            if (enemyHitPartner[7])
+            {
+                enemyHitPartnerOnTurn = true;
             }
 
             if (hitAll)
@@ -1505,6 +1511,17 @@ public class PlayerAbilities : MonoBehaviour
             {
                 enemyAbilities.reduceAttackSpeed(-agileDamage8, selectedEnemy);
             }
+
+            if (attackOverAgain == 0 && attackTimes8 > 1)
+            {
+                attackOverAgain = attackTimes8;
+            }
+
+            if (thornDamageActive8 > 0)
+            {
+                thornDamage = thornDamageActive8;
+            }
+
             //--maxAbilityUse;
 
             if (userName8 != null && !(userName8.Equals("")))
@@ -1589,8 +1606,22 @@ public class PlayerAbilities : MonoBehaviour
         if (attackAgainTimer > 0)
         {
             --attackAgainTimer;
+
+
+            if (attackOverAgain > 0 && attackAgainTimer == 45)
+            {
+                UseMessage.text = enemyName + " attacked again!";
+            }
+            else if (attackOverAgain > 0 && attackAgainTimer == 15)
+            {
+                --attackOverAgain;
+                attackAgainTimer = 80;
+                activateAttack(false);
+            }
+
             //Debug.Log(attackAgainTimer);
         }
+
 
         if (attackAgainTimer == 45)
         {
@@ -1622,44 +1653,77 @@ public class PlayerAbilities : MonoBehaviour
             {
                 enemy4.interactable = false;
             }
-
             selectedEnemy = -1;
         }
+
 
         if (attackAgainTimer == 5)
         {
             AbilitySets.afterPlayerAttacked();
             UseMessage.text = "...";
+            this.rememberSelectedEnemy = -1;
+            this.selectedEnemy = -1;
+            abilityChosen = -1;
+            playOnClick = true;
         }
 
 
-        if (healthEnemy01 != null && healthEnemy02 != null && healthEnemy03 != null && healthEnemy04 != null && (healthEnemy01.getValue() <= 0 && healthEnemy02.getValue() <= 0) && healthEnemy03.getValue() <= 0 && healthEnemy04.getValue() <= 0)
+        if (healthEnemy01 != null && healthEnemy02 != null && healthEnemy03 != null && healthEnemy04 != null)
         {
-            SceneManager.LoadScene(returnToMainSceneName);
+            if (healthEnemy01.getValue() <= 0 && healthEnemy02.getValue() <= 0 && healthEnemy03.getValue() <= 0 && healthEnemy04.getValue() <= 0)
+            {
+                SceneManager.LoadScene(returnToMainSceneName);
+            }
         }
-        else if (healthEnemy01 != null && healthEnemy02 != null && healthEnemy03 != null && (healthEnemy01.getValue() <= 0 && healthEnemy02.getValue() <= 0 && healthEnemy03.getValue() <= 0))
+        else if (healthEnemy01 != null && healthEnemy02 != null && healthEnemy03 != null)
         {
-            SceneManager.LoadScene(returnToMainSceneName);
+            if (healthEnemy01.getValue() <= 0 && healthEnemy02.getValue() <= 0 && healthEnemy03.getValue() <= 0)
+            {
+                SceneManager.LoadScene(returnToMainSceneName);
+            }
         }
-        else if (healthEnemy01 != null && healthEnemy02 != null && (healthEnemy01.getValue() <= 0 && healthEnemy02.getValue() <= 0))
+        else if (healthEnemy01 != null && healthEnemy02 != null)
         {
-            SceneManager.LoadScene(returnToMainSceneName);
+            if(healthEnemy01.getValue() <= 0 && healthEnemy02.getValue() <= 0)
+            {
+                SceneManager.LoadScene(returnToMainSceneName);
+            }
         }
         else if (healthEnemy01 != null && healthEnemy01.getValue() <= 0)
         {
             SceneManager.LoadScene(returnToMainSceneName);
         }
-        else if (healthMina != null && (healthMina.getValue() <= 0 && healthJager.getValue() <= 0))
+        
+        if (healthMina != null && (healthMina.getValue() <= 0 && healthJager.getValue() <= 0))
         {
             SceneManager.LoadScene(returnToMainSceneName);
         }
     }
 
+    private void stopWhenFinished(Animator animation)
+    {
+        if (animation.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        {
+            animation.speed = 0;
+        }
+    }
+
     public void unlockAttacks()
     {
-        switchINCdamage = false;
+        if(switchINCdamageTurns > 0)
+        {
+            --switchINCdamageTurns;
+        }
+        else
+        {
+            switchINCdamage = false;
+        }
 
-        if(healthMina.getValue() > 0)
+        enemyHitPartnerOnTurn = false;
+
+        this.thornDamage = 0;
+
+        if (healthMina.getValue() > 0)
         {
             AttackButton1.interactable = true;
             AttackButton2.interactable = true;
@@ -1678,36 +1742,105 @@ public class PlayerAbilities : MonoBehaviour
 
     public void selectEnemy1()
     {
-        healthEnemySelected = healthEnemy01;
-        selectedEnemy = 0;
-        activateAttack();
+        if (playOnClick)
+        {
+            healthEnemySelected = healthEnemy01;
+            selectedEnemy = 0;
+            activateAttack(true);
+        }
     }
 
     public void selectEnemy2()
     {
-        healthEnemySelected = healthEnemy02;
-        selectedEnemy = 1;
-        activateAttack();
+        if (playOnClick)
+        {
+            healthEnemySelected = healthEnemy02;
+            selectedEnemy = 1;
+            activateAttack(true);
+        }
     }
 
     public void selectEnemy3()
     {
-        healthEnemySelected = healthEnemy03;
-        selectedEnemy = 2;
-        activateAttack();
+        if (playOnClick)
+        {
+            healthEnemySelected = healthEnemy03;
+            selectedEnemy = 2;
+            activateAttack(true);
+        }
     }
 
     public void selectEnemy4()
     {
-        healthEnemySelected = healthEnemy04;
-        selectedEnemy = 3;
-        activateAttack();
+        if(playOnClick)
+        {
+            healthEnemySelected = healthEnemy04;
+            selectedEnemy = 3;
+            activateAttack(true);
+        }
     }
 
+    private bool playOnClick = true;
     private int selectedEnemy = -1;
+    private int rememberSelectedEnemy = -1;
+    private bool attackMissed = false;
 
-    private void activateAttack()
+
+    //Play the attack AND enemy getting hit animations
+    private void playAnimations(int attack,bool play)
     {
+        if (!attackMissed && attack > -1 && (!play || playOnClick))
+        {
+            playOnClick = false;
+            if (this.selectedEnemy != -1)
+            {
+                this.rememberSelectedEnemy = this.selectedEnemy;
+            }
+
+            if (attack == 3)
+            {
+                cameraFocus.speed = 1;
+                cameraFocus.Play(cameraFocus.GetCurrentAnimatorStateInfo(0).fullPathHash, -1, 0f);
+
+                if (this.selectedEnemy == 2 || this.rememberSelectedEnemy == 2)
+                {
+                    enemyOne.speed = 1;
+                    enemyOne.Play(enemyOne.GetCurrentAnimatorStateInfo(0).fullPathHash, -1, 0f);
+                }
+                if (this.selectedEnemy == 1 || this.rememberSelectedEnemy == 1)
+                {
+                    enemyTwo.speed = 1;
+                    enemyTwo.Play(enemyTwo.GetCurrentAnimatorStateInfo(0).fullPathHash, -1, 0f);
+                }
+                if (this.selectedEnemy == 0 || this.rememberSelectedEnemy == 0)
+                {
+                    enemyThree.speed = 1;
+                    enemyThree.Play(enemyThree.GetCurrentAnimatorStateInfo(0).fullPathHash, -1, 0f);
+                }
+            }
+
+            if (attack == 3)
+            {
+                animateAbilityOne.speed = 1;
+                animateAbilityOne.Play(animateAbilityOne.GetCurrentAnimatorStateInfo(0).fullPathHash, -1, 0f);
+            }
+
+            attackMissed = false;
+        }
+        else if(attackMissed)
+        {
+            if (this.selectedEnemy != -1)
+            {
+                this.rememberSelectedEnemy = this.selectedEnemy;
+            }
+            attackMissed = false;
+        }
+    }
+
+    private void activateAttack(bool play)
+    {
+        playAnimations(abilityChosen, play);
+
         if (abilityChosen == 0)
         {
             this.PlayerAttacked();
@@ -1739,6 +1872,43 @@ public class PlayerAbilities : MonoBehaviour
         else if (abilityChosen == 7)
         {
             this.PlayerAttacked8();
+        }
+    }
+
+    //Leave this scene, go back
+    public void fleeBattle()
+    {
+        SceneManager.LoadScene("TestLevelScene");
+    }
+
+    private bool jagerSelected;
+
+    //Switch abilities in Box from Partner to Partner
+    public void switchAbilities()
+    {
+        if (!jagerSelected)
+        {
+            jagerSelected = true;
+            AttackButton1.gameObject.SetActive(true);
+            AttackButton2.gameObject.SetActive(true);
+            AttackButton5.gameObject.SetActive(true);
+            AttackButton6.gameObject.SetActive(true);
+            AttackButton3.gameObject.SetActive(false);
+            AttackButton4.gameObject.SetActive(false);
+            AttackButton7.gameObject.SetActive(false);
+            AttackButton8.gameObject.SetActive(false);
+        }
+        else
+        {
+            jagerSelected = false;
+            AttackButton1.gameObject.SetActive(false);
+            AttackButton2.gameObject.SetActive(false);
+            AttackButton5.gameObject.SetActive(false);
+            AttackButton6.gameObject.SetActive(false);
+            AttackButton3.gameObject.SetActive(true);
+            AttackButton4.gameObject.SetActive(true);
+            AttackButton7.gameObject.SetActive(true);
+            AttackButton8.gameObject.SetActive(true);
         }
     }
 }

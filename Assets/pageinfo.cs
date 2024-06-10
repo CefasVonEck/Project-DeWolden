@@ -15,28 +15,16 @@ public class pageinfo : MonoBehaviour
 
     public pagehandler scrip;
 
-<<<<<<< HEAD
-=======
+
     public bool isunlocked = false;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/CombatBranch
-=======
->>>>>>> origin/CombatBranch
     [SerializeField]
     private GameObject page;
 
     [SerializeField]
     private journalhandler jour;
 
-
-    //[SerializeField]
-    //private GameObject pop;
-
->>>>>>> origin/CombatBranch
     // Start is called before the first frame update
     void Start()
     {

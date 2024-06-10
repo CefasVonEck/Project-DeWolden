@@ -25,6 +25,8 @@ public class journalhandler : MonoBehaviour
     [SerializeField]
     private GameObject hin;
 
+    public bool unlocked;
+
 
     private void Awake()
     {

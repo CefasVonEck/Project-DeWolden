@@ -1,18 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-<<<<<<< HEAD
 using TMPro;
 
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-using TMPro;
-=======
->>>>>>> origin/CombatBranch
-=======
->>>>>>> origin/CombatBranch
->>>>>>> origin/CombatBranch
+
 
 public class GameChecker : MonoBehaviour
 {
@@ -27,19 +18,9 @@ public class GameChecker : MonoBehaviour
 
     public int pieces;
 
-<<<<<<< HEAD
     public TextMeshProUGUI piec;
 
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public TextMeshProUGUI piec;
 
-=======
->>>>>>> origin/CombatBranch
-=======
->>>>>>> origin/CombatBranch
->>>>>>> origin/CombatBranch
     // Start is called before the first frame update
     void Start()
     {
@@ -62,20 +43,9 @@ public class GameChecker : MonoBehaviour
             jag.SetActive(false);
             Spin.SetActive(false);
         }
-<<<<<<< HEAD
 
 
         piec.text = pieces.ToString();
 
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-        piec.text = pieces.ToString();
-=======
->>>>>>> origin/CombatBranch
-=======
->>>>>>> origin/CombatBranch
->>>>>>> origin/CombatBranch
     }
 }

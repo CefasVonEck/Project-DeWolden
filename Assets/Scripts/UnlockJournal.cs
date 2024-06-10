@@ -19,8 +19,6 @@ public class UnlockJournal : MonoBehaviour
     //This Object is a "Text" Cloud that will be visable for a short while
     [SerializeField]
     private GameObject showUpdate;
-<<<<<<< HEAD
-
 
     [SerializeField]
     private bool forjournal = false;
@@ -30,37 +28,25 @@ public class UnlockJournal : MonoBehaviour
 
     public GameObject jourdia;
 
+    public journalhandler scrip2;
+    public pageinfo scrip;
+
 
     private void Awake()
     {
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> origin/CombatBranch
-        hint = GameObject.FindWithTag("HintObj");
->>>>>>> origin/CombatBranch
-=======
-        hint = GameObject.FindWithTag("HintObj");
->>>>>>> origin/CombatBranch
-
-        hint = GameObject.FindWithTag("HintObj");
 
 
         pointA = this.gameObject.transform;
     }
-=======
+
     private int showTimer = 0;
->>>>>>> parent of bd80bc4 (Final working version)
 
     // Start is called before the first frame update
     void Start()
     {
         if (unlockable != null)
         {
-<<<<<<< HEAD
+
 
             float distance = Vector2.Distance(pointA.position, pointB.position);
             if (distance <= 1f)
@@ -70,18 +56,12 @@ public class UnlockJournal : MonoBehaviour
                     scrip2.unlocked = true;
                     hint.SetActive(true);
                     jourdia.SetActive(true);
-<<<<<<< HEAD
+
                     Destroy(showUpdate.gameObject);
 
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
+
                     Destroy(showUpdate.gameObject);
-=======
->>>>>>> origin/CombatBranch
-=======
->>>>>>> origin/CombatBranch
->>>>>>> origin/CombatBranch
+
                     Destroy(this.gameObject);
                 }
                 else
@@ -111,9 +91,9 @@ public class UnlockJournal : MonoBehaviour
                 }
             }
 
-=======
+
             unlockable.SetActive(false);
->>>>>>> parent of bd80bc4 (Final working version)
+
         }
     }
 
@@ -123,16 +103,7 @@ public class UnlockJournal : MonoBehaviour
         float distance = Vector3.Distance(pointA.position, pointB.position);
         if (distance < 0.5f)
         {
-            if ((unlockable != null && !unlockable.active))
-            {
-                unlockable.SetActive(true);
-            }
-
-            if (showTimer == 0) 
-            { 
-                showUpdate.SetActive(true); 
-                showTimer = 250; 
-            }
+            
         }
     }
 
