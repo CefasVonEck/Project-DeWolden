@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+<<<<<<< HEAD
 using TMPro;
+=======
+>>>>>>> origin/CombatBranch
 
 public class GameChecker : MonoBehaviour
 {
@@ -16,8 +19,11 @@ public class GameChecker : MonoBehaviour
 
     public int pieces;
 
+<<<<<<< HEAD
     public TextMeshProUGUI piec;
 
+=======
+>>>>>>> origin/CombatBranch
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +46,10 @@ public class GameChecker : MonoBehaviour
             jag.SetActive(false);
             Spin.SetActive(false);
         }
+<<<<<<< HEAD
 
         piec.text = pieces.ToString();
+=======
+>>>>>>> origin/CombatBranch
     }
 }

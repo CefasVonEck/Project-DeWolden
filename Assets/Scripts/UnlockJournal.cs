@@ -41,6 +41,10 @@ public class UnlockJournal : MonoBehaviour
 
     private void Awake()
     {
+<<<<<<< HEAD
+=======
+        hint = GameObject.FindWithTag("HintObj");
+>>>>>>> origin/CombatBranch
 
         pointA = this.gameObject.transform;
     }
@@ -64,7 +68,10 @@ public class UnlockJournal : MonoBehaviour
                     scrip2.unlocked = true;
                     hint.SetActive(true);
                     jourdia.SetActive(true);
+<<<<<<< HEAD
                     Destroy(showUpdate.gameObject);
+=======
+>>>>>>> origin/CombatBranch
                     Destroy(this.gameObject);
                 }
                 else

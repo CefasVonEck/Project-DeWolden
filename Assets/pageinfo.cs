@@ -29,7 +29,10 @@ public class Pageinfo : MonoBehaviour
 
     public bool isunlocked = false;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/CombatBranch
     [SerializeField]
     private GameObject page;
 

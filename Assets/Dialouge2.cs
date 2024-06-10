@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+
 using UnityEngine.SceneManagement;
+
 
 public class Dialouge2 : MonoBehaviour
 {
@@ -14,9 +16,12 @@ public class Dialouge2 : MonoBehaviour
     [SerializeField]
     private Sprite SJag;
 
+<<<<<<< HEAD
     [SerializeField]
     private Sprite SSpin;
 
+=======
+>>>>>>> origin/CombatBranch
     [Header("game control")]
     // to check if the player is in dialouge
     [SerializeField]
@@ -108,9 +113,12 @@ public class Dialouge2 : MonoBehaviour
     private string Dia4M = "how u doing";
 
     [SerializeField]
+<<<<<<< HEAD
     private string Dia5M = "how u doing";
 
     [SerializeField]
+=======
+>>>>>>> origin/CombatBranch
     private string NameMain = "Mina";
 
     [SerializeField]
@@ -141,8 +149,11 @@ public class Dialouge2 : MonoBehaviour
 
     public GameObject jag;
 
+<<<<<<< HEAD
     public GameObject pop;
     public GameObject pop2;
+=======
+>>>>>>> origin/CombatBranch
 
     // Start is called before the first frame update
     void Start()
@@ -180,7 +191,11 @@ public class Dialouge2 : MonoBehaviour
         // setting first dia right
         if (curdiaMain1 == 1)
         {
+<<<<<<< HEAD
             PlayerRen.GetComponent<Image>().sprite = SSpin;
+=======
+            PlayerRen.GetComponent<Image>().sprite = SJag;
+>>>>>>> origin/CombatBranch
 
             write.text = Dia1M;
             bright.SetActive(true);
@@ -245,7 +260,11 @@ public class Dialouge2 : MonoBehaviour
         // setting first dia right
         if (curdiaMain1 == 3)
         {
+<<<<<<< HEAD
             PlayerRen.GetComponent<Image>().sprite = SSpin;
+=======
+            PlayerRen.GetComponent<Image>().sprite = SJag;
+>>>>>>> origin/CombatBranch
 
             NpcRen.SetBool("comin", false);
 
@@ -306,6 +325,7 @@ public class Dialouge2 : MonoBehaviour
             }
         }
 
+<<<<<<< HEAD
         // setting first dia right
         if (curdiaMain1 == 5)
         {
@@ -339,6 +359,8 @@ public class Dialouge2 : MonoBehaviour
             }
         }
 
+=======
+>>>>>>> origin/CombatBranch
     }
 
     void nexttxt1()
@@ -366,6 +388,7 @@ public class Dialouge2 : MonoBehaviour
     }
 
     void fintxt1()
+<<<<<<< HEAD
     { 
 
 
@@ -375,6 +398,13 @@ public class Dialouge2 : MonoBehaviour
             jag.SetActive(false);
             check.pieces += 1;
             pop2.SetActive(true);
+=======
+    {
+        if (forJag == true)
+        {
+            jag.SetActive(false);
+            check.pieces += 1;
+>>>>>>> origin/CombatBranch
         }
 
         bright.SetActive(false);
@@ -399,7 +429,11 @@ public class Dialouge2 : MonoBehaviour
 
         scrip.isunlocked = true;
 
+<<<<<<< HEAD
         SceneManager.LoadScene("Combat"); 
+=======
+
+>>>>>>> origin/CombatBranch
     }
 
     void startdia()

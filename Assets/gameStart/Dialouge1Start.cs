@@ -398,11 +398,14 @@ public class Dialouge1Start : MonoBehaviour
         //if part one is being active
         if (startdia.Startdia1 == true)
         {
+            boxes.SetActive(true);
+
             india = true;
             // keep track of dialouge and enable the dialouge
             nexttxt1();
             DiatrackMain1();
 
+            // have the needed textboxes and renders 
             txtboxmain.SetActive(true);
             txtboxNPC.SetActive(true);
             NPCRen.SetActive(true);

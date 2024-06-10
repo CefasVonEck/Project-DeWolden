@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Sevs Trash/Level Two.unity
     guid: 97728d8bf79358f43908583d24a31e17
+  - enabled: 1
+    path: Assets/Scenes/MainGame.unity
+    guid: 0dfd0f71150c9e2458f55ec31f5701a4
   m_configObjects: {}

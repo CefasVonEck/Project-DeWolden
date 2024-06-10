@@ -208,7 +208,9 @@ public class StartGame : MonoBehaviour
     {
         india = false;
 
+
         bright.SetActive(false);
+
         // having the right box show up
         aniMain.SetBool("main", false);
         playRen.SetBool("coming", false);
@@ -227,7 +229,9 @@ public class StartGame : MonoBehaviour
         }
 
         play.GetComponent<Player>().enabled = true;
+
         Destroy(this);
+
 
     }
 
