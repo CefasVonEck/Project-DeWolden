@@ -20,10 +20,13 @@ public class journalhandler : MonoBehaviour
     private GameObject DesLocP;
 
     [SerializeField]
-    private dialouge check;
+    private GameObject EmptyPages;
 
-    [SerializeField]
-    private GameObject hin;
+    public bool unlocked;
+
+    public GameObject hint;
+
+    public GameObject taskpage;
 
 
     private void Awake()
@@ -33,41 +36,51 @@ public class journalhandler : MonoBehaviour
         locpage = GameObject.FindWithTag("locp");
         DesCharP = GameObject.FindWithTag("DesCharP");
         DesLocP = GameObject.FindWithTag("DesLocP");
-
-        hin = GameObject.FindWithTag("jourh");
-
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
         DesCharP.SetActive(false);
         DesLocP.SetActive(false);
         charpage.SetActive(false);
         locpage.SetActive(false);
         jour.SetActive(false);
-        hin.SetActive(false);
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if(check.hastalked == true)
-        {
-            hin.SetActive(true);
-        }
-
-// && check.hastalked == true
-
-        if (Input.GetKeyDown("j"))
+        if (Input.GetKeyDown("j") && unlocked == true)
         {
             if (jour.activeInHierarchy == false)
             {
                 OpenJour();
+                EmptyPages.SetActive(true);
+
+                charpage.SetActive(false);
+                locpage.SetActive(false);
+
+                DesCharP.SetActive(false);
+                DesLocP.SetActive(false);
+
             }
-            else if (jour.activeInHierarchy == true)
+        }
+
+        if (Input.GetKeyDown("f"))
+        {
+            if (jour.activeInHierarchy == true)
             {
                 CloseJour();
             }
+        }
+
+        if (unlocked == true)
+        {
+            hint.SetActive(true);
+        }
+        else
+        {
+            hint.SetActive(false);
         }
     }
 
@@ -88,12 +101,6 @@ public class journalhandler : MonoBehaviour
         // unpause the game
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
-
-        DesCharP.SetActive(false);
-        DesLocP.SetActive(false);
-        charpage.SetActive(false);
-        locpage.SetActive(false);
-
     }
 
     public void Charopen()
@@ -104,6 +111,7 @@ public class journalhandler : MonoBehaviour
 
         DesCharP.SetActive(false);
         DesLocP.SetActive(false);
+        EmptyPages.SetActive(false);
     }
 
     public void Locopen()
@@ -114,21 +122,41 @@ public class journalhandler : MonoBehaviour
 
         DesCharP.SetActive(false);
         DesLocP.SetActive(false);
+        EmptyPages.SetActive(false);
+
     }
 
     public void OpenChar()
     {
-        DesCharP.SetActive(true);
+        // have the location page open
         charpage.SetActive(false);
         locpage.SetActive(false);
+
+        DesCharP.SetActive(true);
         DesLocP.SetActive(false);
+        EmptyPages.SetActive(false);
     }
 
     public void OpenLoc()
     {
-        DesCharP.SetActive(false);
+        // have the location page open
         charpage.SetActive(false);
         locpage.SetActive(false);
+
+        DesCharP.SetActive(false);
         DesLocP.SetActive(true);
+        EmptyPages.SetActive(false);
+    }
+
+    public void OpenTask()
+    {
+        // have the location page open
+        charpage.SetActive(false);
+        locpage.SetActive(false);
+
+        DesCharP.SetActive(false);
+        DesLocP.SetActive(false);
+
+        EmptyPages.SetActive(true);
     }
 }
